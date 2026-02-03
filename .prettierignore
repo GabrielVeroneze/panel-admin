@@ -1,0 +1,41 @@
+# Dependências
+node_modules/
+
+# Build
+dist/
+build/
+coverage/
+
+# Cache / tooling
+.vite/
+.cache/
+.tmp/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Ambiente
+.env
+.env.*
+!.env.example
+
+# Arquivos gerados automaticamente
+*.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Relatórios de teste
+coverage/
+reports/
+
+# Configs que você normalmente não formata
+CHANGELOG.md
+
+# Arquivos compilados
+*.min.js
+*.min.css
