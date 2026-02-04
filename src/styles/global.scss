@@ -1,0 +1,22 @@
+@use '@/styles/reset';
+@use '@/styles/base/fonts';
+@use '@/styles/tokens' as *;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body {
+    background-color: $gray-light;
+    color: $gray-darkest;
+    font-family: $font-family-base;
+    line-height: 1.25;
+}
