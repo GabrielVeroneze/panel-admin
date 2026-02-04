@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use '@/styles/tokens' as *;
+
+@mixin media-up($size) {
+    @media (min-width: map.get($breakpoints, $size)) {
+        @content;
+    }
+}
+
+@mixin media-down($size) {
+    @media (max-width: calc(map.get($breakpoints, $size) - 1px)) {
+        @content;
+    }
+}
+
+@mixin media-between($min, $max) {
+    @media (min-width: map.get($breakpoints, $min)) and (max-width: calc(map.get($breakpoints, $max) - 1px)) {
+        @content;
+    }
+}
