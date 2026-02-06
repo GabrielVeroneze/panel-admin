@@ -1,0 +1,15 @@
+@use '@/styles/tokens' as *;
+
+.input {
+    background: url('@/shared/icons/solid/search.svg') right $space-3 center /
+    20px no-repeat;
+    background-color: $gray-light;
+    border: $border solid $gray-base;
+    border-radius: $rounded-md;
+    color: $gray-dark;
+    font-size: $text-2xl;
+    font-weight: $font-normal;
+    max-width: 402px;
+    padding: $space-2-5 $space-4;
+    width: 100%;
+}
