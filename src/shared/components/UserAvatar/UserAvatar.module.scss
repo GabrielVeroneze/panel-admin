@@ -1,0 +1,12 @@
+@use '@/styles/tokens' as *;
+
+.button {
+    background: transparent;
+    border-radius: $rounded-full;
+
+    .image {
+        border-radius: $rounded-full;
+        display: block;
+        object-fit: cover;
+    }
+}
