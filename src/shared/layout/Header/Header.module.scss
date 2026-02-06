@@ -1,0 +1,12 @@
+@use '@/styles/tokens' as *;
+
+.header {
+    align-items: center;
+    background-color: $white;
+    border-bottom: $border solid $gray-light;
+    display: flex;
+    gap: $space-8;
+    height: 71px;
+    padding: $space-3-5 $space-5;
+    width: 100%;
+}
