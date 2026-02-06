@@ -1,0 +1,13 @@
+@use '@/styles/tokens' as *;
+
+.item {
+    .link {
+        color: $gray-dark;
+        font-size: $text-xl;
+        font-weight: $font-medium;
+
+        &.active {
+            color: $blue-dark;
+        }
+    }
+}
