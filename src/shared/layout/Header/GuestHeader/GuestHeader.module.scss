@@ -10,6 +10,12 @@
         .list {
             display: flex;
             gap: $space-4;
+
+            .item {
+                color: $gray-dark;
+                font-size: $text-xl;
+                font-weight: $font-medium;
+            }
         }
     }
 
