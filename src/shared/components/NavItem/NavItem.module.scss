@@ -1,13 +1,30 @@
 @use '@/styles/tokens' as *;
 
 .item {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+
     .link {
-        color: $gray-dark;
-        font-size: $text-xl;
-        font-weight: $font-medium;
+        align-items: center;
+        color: inherit;
+        display: flex;
+        font-size: inherit;
+        font-weight: inherit;
+        gap: $space-4;
 
         &.active {
             color: $blue-dark;
+        }
+
+        .icon {
+            height: 24px;
+            width: 24px;
+
+            svg {
+                height: 100%;
+                width: 100%;
+            }
         }
     }
 }
