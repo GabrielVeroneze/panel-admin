@@ -16,7 +16,11 @@ export const GuestHeader = () => {
             <nav className={styles.nav}>
                 <ul className={styles.list}>
                     {navItems.map((item) => (
-                        <NavItem key={item.label} {...item} />
+                        <NavItem
+                            key={item.label}
+                            className={styles.item}
+                            {...item}
+                        />
                     ))}
                 </ul>
             </nav>
