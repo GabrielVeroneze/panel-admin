@@ -6,7 +6,11 @@
     border-bottom: $border solid $gray-light;
     display: flex;
     gap: $space-8;
+    grid-area: header;
     height: 71px;
     padding: $space-3-5 $space-5;
+    position: sticky;
+    top: 0;
     width: 100%;
+    z-index: 10;
 }
