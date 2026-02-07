@@ -1,10 +1,15 @@
 @use '@/styles/tokens' as *;
 
+$header-height: 71px;
+
 .sidebar {
     background-color: $white;
     border-right: $border solid $gray-light;
+    grid-area: sidebar;
     height: 100vh;
     padding: $space-4 $space-3;
+    position: fixed;
+    top: $header-height;
     width: 250px;
 
     .menu {
