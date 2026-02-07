@@ -1,0 +1,17 @@
+$header-height: 71px;
+$sidebar-width: 250px;
+
+.layout {
+    display: grid;
+    grid-template-areas:
+        'header header'
+        'sidebar main';
+    grid-template-columns: $sidebar-width 1fr;
+    grid-template-rows: $header-height 1fr;
+    min-height: 100vh;
+}
+
+.main {
+    grid-area: main;
+    overflow-y: auto;
+}
