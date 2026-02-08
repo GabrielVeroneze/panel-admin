@@ -5,7 +5,7 @@ import styles from './AuthenticatedHeader.module.scss'
 export const AuthenticatedHeader = () => {
     return (
         <div className={styles.container}>
-            <Input />
+            <Input className={styles.input} />
             <div className={styles.actions}>
                 <IconButton icon={<BellSolidIcon />} ariaLabel="Notificações" />
                 <UserAvatar src="" />
