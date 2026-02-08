@@ -7,9 +7,13 @@ import {
 } from '@/shared/icons'
 import styles from './Sidebar.module.scss'
 
-export const Sidebar = () => {
+type SidebarProps = {
+    isOpen: boolean
+}
+
+export const Sidebar = ({ isOpen }: SidebarProps) => {
     return (
-        <nav className={styles.sidebar}>
+        <nav className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
             <ul className={styles.menu}>
                 <NavItem
                     className={styles.menuItem}
