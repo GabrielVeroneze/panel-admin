@@ -1,16 +1,24 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
-$header-height: 71px;
+$header-height-desktop: 71px;
+$header-height-tablet: 63px;
 
 .sidebar {
     background-color: $white;
     border-right: $border solid $gray-light;
     grid-area: sidebar;
-    height: 100vh;
+    height: calc(100vh - $header-height-desktop);
     padding: $space-4 $space-3;
     position: fixed;
-    top: $header-height;
+    top: $header-height-desktop;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
     width: 250px;
+
+    &.open {
+        transform: translateX(0);
+    }
 
     .menu {
         display: flex;
@@ -26,6 +34,16 @@ $header-height: 71px;
 
         .menuItem {
             padding: $space-1 $space-2;
+        }
+    }
+
+    @include media-down(md) {
+        height: calc(100vh - $header-height-tablet);
+        top: $header-height-tablet;
+        transform: translateX(-100%);
+
+        &.open {
+            transform: translateX(0);
         }
     }
 }
