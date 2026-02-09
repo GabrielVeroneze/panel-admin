@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router'
 import { Header, Sidebar } from '@/shared/layout'
-import styles from './LayoutPage.module.scss'
+import styles from './AppLayout.module.scss'
 
-export const LayoutPage = () => {
+export const AppLayout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
     const isAuth = false
 
