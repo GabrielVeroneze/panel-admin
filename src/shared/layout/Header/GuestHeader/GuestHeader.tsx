@@ -5,9 +5,9 @@ import styles from './GuestHeader.module.scss'
 
 const navItems = [
     { label: 'Dashboard', to: '/' },
-    { label: 'Team', to: '#' },
-    { label: 'Projects', to: '#' },
-    { label: 'Calendar', to: '#' },
+    { label: 'Team', to: '/team' },
+    { label: 'Projects', to: '/projects' },
+    { label: 'Calendar', to: '/calendar' },
 ]
 
 export const GuestHeader = () => {
