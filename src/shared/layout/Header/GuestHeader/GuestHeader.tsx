@@ -24,7 +24,7 @@ export const GuestHeader = () => {
                     ))}
                 </ul>
             </nav>
-            <Link to="#" className={styles.link}>
+            <Link to="/auth/sign-up" className={styles.link}>
                 <LoginIcon />
                 <span>Login/Register</span>
             </Link>
