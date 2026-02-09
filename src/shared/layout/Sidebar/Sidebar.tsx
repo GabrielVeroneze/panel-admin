@@ -18,7 +18,7 @@ export const Sidebar = ({ isOpen }: SidebarProps) => {
                 <NavItem
                     className={styles.menuItem}
                     icon={<ChartPieSolidIcon />}
-                    to="#"
+                    to="/"
                     label="Overview"
                 />
                 <NavItemExpandable
@@ -27,17 +27,17 @@ export const Sidebar = ({ isOpen }: SidebarProps) => {
                 >
                     <NavItem
                         className={styles.submenuItem}
-                        to="#"
+                        to="/users"
                         label="Users"
                     />
                     <NavItem
                         className={styles.submenuItem}
-                        to="#"
+                        to="/profile"
                         label="Profile"
                     />
                     <NavItem
                         className={styles.submenuItem}
-                        to="#"
+                        to="/settings"
                         label="Settings"
                     />
                 </NavItemExpandable>
@@ -47,7 +47,7 @@ export const Sidebar = ({ isOpen }: SidebarProps) => {
                 >
                     <NavItem
                         className={styles.submenuItem}
-                        to="#"
+                        to="/products"
                         label="Product List"
                     />
                 </NavItemExpandable>
@@ -57,18 +57,13 @@ export const Sidebar = ({ isOpen }: SidebarProps) => {
                 >
                     <NavItem
                         className={styles.submenuItem}
-                        to="#"
+                        to="/auth/sign-in"
                         label="Sign In"
                     />
                     <NavItem
                         className={styles.submenuItem}
-                        to="#"
+                        to="/auth/sign-up"
                         label="Sign Up"
-                    />
-                    <NavItem
-                        className={styles.submenuItem}
-                        to="#"
-                        label="Forgot Password"
                     />
                 </NavItemExpandable>
             </ul>
