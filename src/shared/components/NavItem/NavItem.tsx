@@ -12,7 +12,13 @@ type NavItemProps = {
 export const NavItem = ({ to, label, icon, className = '' }: NavItemProps) => {
     return (
         <li className={`${styles.item} ${className}`}>
-            <NavLink to={to} className={styles.link}>
+            <NavLink
+                to={to}
+                className={({ isActive }) => `
+                    ${styles.link}
+                    ${isActive ? styles.active : ''}
+                `}
+            >
                 {icon && <span className={styles.icon}>{icon}</span>}
                 <span>{label}</span>
             </NavLink>
