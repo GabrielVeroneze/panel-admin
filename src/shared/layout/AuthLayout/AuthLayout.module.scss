@@ -1,0 +1,23 @@
+@use '@/styles/mixins' as *;
+
+$header-height-desktop: 71px;
+$header-height-tablet: 63px;
+
+.layout {
+    display: grid;
+    grid-template-areas:
+        'header'
+        'main';
+    grid-template-columns: 1fr;
+    grid-template-rows: $header-height-desktop 1fr;
+    min-height: 100vh;
+
+    .main {
+        grid-area: main;
+        overflow-y: auto;
+    }
+
+    @include media-down(md) {
+        grid-template-rows: $header-height-tablet 1fr;
+    }
+}
