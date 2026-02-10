@@ -1,0 +1,82 @@
+@use '@/styles/tokens' as *;
+
+.button {
+    align-items: center;
+    border-radius: $rounded;
+    display: inline-flex;
+    gap: $space-2;
+    justify-content: center;
+    transition:
+        background-color 0.2s,
+        color 0.2s;
+
+    /* Variantes de cor */
+    &.primary {
+        background: $blue-dark;
+        color: $white;
+    }
+    &.black {
+        background: $gray-darkest;
+        color: $white;
+    }
+    &.gray {
+        background: $gray-light;
+        color: $black;
+    }
+    &.transparent {
+        background: transparent;
+        border: $border solid $gray-light;
+        color: $black;
+    }
+    &.danger {
+        background: $red-dark;
+        color: $white;
+    }
+    &.success {
+        background: $green-dark;
+        color: $white;
+    }
+    &.warning {
+        background: $yellow-base;
+        color: $black;
+    }
+
+    /* Tamanhos */
+    &.xs {
+        font-size: $text-base;
+        font-weight: 400;
+        padding: $space-1-5 $space-2;
+    }
+    &.sm {
+        font-size: $text-lg;
+        font-weight: 400;
+        padding: $space-2 $space-2-5;
+    }
+    &.md {
+        font-size: $text-xl;
+        font-weight: 400;
+        padding: $space-2 $space-3;
+    }
+    &.lg {
+        font-size: $text-2xl;
+        font-weight: 400;
+        padding: $space-2-5 $space-3;
+    }
+    &.xl {
+        font-size: $text-3xl;
+        font-weight: 400;
+        padding: $space-3 $space-4;
+    }
+
+    /* Estados */
+    &:hover {
+        filter: brightness(0.95);
+    }
+    &:active {
+        transform: translateY(1px);
+    }
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
