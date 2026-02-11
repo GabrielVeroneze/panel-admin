@@ -1,0 +1,41 @@
+@use '@/styles/tokens' as *;
+
+.badge {
+    align-items: center;
+    border-radius: $rounded;
+    display: inline-flex;
+
+    /* Variantes de cor */
+    &.gray {
+        background: $gray-light;
+        color: $gray-darkest;
+    }
+    &.red {
+        background: $red-light;
+        color: $red-darkest;
+    }
+    &.yellow {
+        background: $yellow-light;
+        color: $yellow-darkest;
+    }
+    &.green {
+        background: $green-light;
+        color: $green-darkest;
+    }
+    &.blue {
+        background: $blue-light;
+        color: $blue-darkest;
+    }
+
+    /* Tamanhos */
+    &.sm {
+        font-size: $text-lg;
+        font-weight: $font-medium;
+        padding: $space-1-5 $space-2-5;
+    }
+    &.md {
+        font-size: $text-xl;
+        font-weight: $font-medium;
+        padding: $space-2 $space-3;
+    }
+}
