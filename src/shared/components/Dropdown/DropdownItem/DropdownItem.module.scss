@@ -1,0 +1,33 @@
+@use '@/styles/tokens' as *;
+
+.item {
+    padding: 0 $space-4;
+
+    .button {
+        align-items: center;
+        color: inherit;
+        display: flex;
+        font-size: $text-xl;
+        font-weight: $font-medium;
+        gap: $space-3;
+        text-align: left;
+
+        .icon {
+            height: 20px;
+            width: 20px;
+
+            svg {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+
+    &.default {
+        color: $gray-dark;
+    }
+
+    &.danger {
+        color: $red-dark;
+    }
+}
