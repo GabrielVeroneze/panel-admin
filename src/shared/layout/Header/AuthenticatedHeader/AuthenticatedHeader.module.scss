@@ -11,6 +11,13 @@
         align-items: center;
         display: flex;
         gap: $space-3;
+
+        .userInfo {
+            color: $gray-darkest;
+            display: flex;
+            flex-direction: column;
+            gap: $space-0-5;
+        }
     }
 
     @include media-down(md) {
