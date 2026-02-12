@@ -1,0 +1,35 @@
+@use '@/styles/tokens' as *;
+
+.container {
+    position: relative;
+
+    .trigger {
+        align-items: center;
+        all: unset;
+        cursor: pointer;
+        display: flex;
+    }
+
+    .dropdown {
+        background-color: $white;
+        border: $border solid $gray-light;
+        border-radius: $rounded-sm;
+        box-shadow: $shadow;
+        display: flex;
+        flex-direction: column;
+        gap: $space-5;
+        min-width: 188px;
+        padding: $space-3-5 0;
+        position: absolute;
+        top: calc(100% + $space-2-5);
+        z-index: 100;
+
+        &.right {
+            right: 0;
+        }
+
+        &.left {
+            left: 0;
+        }
+    }
+}
