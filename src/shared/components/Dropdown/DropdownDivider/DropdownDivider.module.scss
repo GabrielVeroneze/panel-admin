@@ -1,0 +1,7 @@
+@use '@/styles/tokens' as *;
+
+.divider {
+    background-color: $gray-light;
+    height: 1px;
+    width: 100%;
+}
