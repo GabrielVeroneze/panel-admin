@@ -1,0 +1,24 @@
+@use '@/styles/tokens' as *;
+
+.textarea {
+    background-color: $gray-light;
+    border: $border solid $gray-base;
+    border-radius: $rounded;
+    box-shadow: $shadow;
+    color: $gray-dark;
+    font-family: $font-family-base;
+    font-size: $text-xl;
+    font-weight: $font-normal;
+    max-width: 224px;
+    min-height: 150px;
+    outline: none;
+    padding: $space-3;
+    resize: none;
+    width: 100%;
+
+    &::placeholder {
+        color: $gray-dark;
+        font-size: $text-xl;
+        font-weight: $font-normal;
+    }
+}
