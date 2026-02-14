@@ -1,0 +1,52 @@
+@use '@/styles/tokens' as *;
+
+.container {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: $space-1-5;
+    width: max-content;
+
+    .input {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+
+        &:checked + .track {
+            background-color: $blue-dark;
+
+            .thumb {
+                transform: translateX(12px);
+            }
+        }
+
+        &:focus + .track {
+            box-shadow: 0 0 0 2px rgba($blue-dark, 0.3);
+        }
+    }
+
+    .track {
+        align-items: center;
+        background-color: $gray-base;
+        border-radius: $rounded;
+        display: flex;
+        height: 14px;
+        padding: $space-px;
+        transition: background-color 120ms ease-in-out;
+        width: 26px;
+
+        .thumb {
+            background-color: $white;
+            border-radius: $rounded-full;
+            height: 12px;
+            transition: transform 120ms ease-in-out;
+            width: 12px;
+        }
+    }
+
+    .label {
+        color: $gray-dark;
+        font-size: $text-xl;
+        font-weight: $font-normal;
+    }
+}
