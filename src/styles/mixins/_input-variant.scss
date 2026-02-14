@@ -1,0 +1,24 @@
+@mixin input-variant($bg, $border, $placeholder, $icon, $focus) {
+    .icon {
+        color: $icon;
+    }
+
+    .input {
+        background-color: $bg;
+        border-color: $border;
+
+        &::placeholder {
+            color: $placeholder;
+        }
+    }
+
+    &:focus-within {
+        .icon {
+            color: $focus;
+        }
+
+        .input {
+            border-color: $focus;
+        }
+    }
+}
