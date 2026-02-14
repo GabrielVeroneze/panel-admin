@@ -1,15 +1,85 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
-.input {
-    background: url('@/shared/icons/solid/search.svg') right $space-3 center /
-    20px no-repeat;
-    background-color: $gray-light;
-    border: $border solid $gray-base;
-    border-radius: $rounded-md;
-    color: $gray-dark;
-    font-size: $text-2xl;
-    font-weight: $font-normal;
-    max-width: 402px;
-    padding: $space-2-5 $space-4;
+.wrapper {
+    align-items: center;
+    display: flex;
+    height: 32px;
+    max-width: 224px;
+    position: relative;
     width: 100%;
+
+    .icon {
+        height: 16px;
+        left: $space-2;
+        position: absolute;
+        top: $space-2;
+        transition: color 0.3s ease;
+        width: 16px;
+
+        svg {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .input {
+        border: $border solid;
+        border-radius: $rounded;
+        color: $gray-darkest;
+        font-size: $text-xl;
+        font-weight: $font-normal;
+        height: inherit;
+        padding: $space-1-5 $space-3;
+        transition: border-color 0.3s ease;
+        width: inherit;
+    }
+
+    &.withIcon .input {
+        padding-left: $space-8;
+    }
+
+    /* Sizes */
+    &.regular {
+    }
+
+    &.large {
+    }
+
+    /* Variants */
+    &.default {
+        @include input-variant(
+            $gray-light,
+            $gray-base,
+            $gray-base,
+            $gray-dark,
+            $blue-dark
+        );
+    }
+
+    &.success {
+        @include input-variant(
+            $green-light,
+            $green-base,
+            $green-base,
+            $green-base,
+            $green-dark
+        );
+    }
+
+    &.danger {
+        @include input-variant(
+            $red-light,
+            $red-base,
+            $red-base,
+            $red-base,
+            $red-dark
+        );
+    }
+
+    /* Disabled */
+    &.disabled {
+        opacity: 0.55;
+        pointer-events: none;
+    }
 }
