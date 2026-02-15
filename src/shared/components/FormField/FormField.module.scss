@@ -10,11 +10,8 @@
     }
 
     .message {
+        color: $gray-dark;
         font-weight: $font-normal;
-
-        &.default {
-            color: $gray-dark;
-        }
 
         &.success {
             color: $green-dark;
