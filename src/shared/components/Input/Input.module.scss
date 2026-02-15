@@ -47,7 +47,7 @@
         );
     }
 
-    &.danger {
+    &.error {
         @include input-variant(
             $red-light,
             $red-base,
