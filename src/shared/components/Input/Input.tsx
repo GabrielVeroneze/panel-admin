@@ -1,11 +1,13 @@
-import type { ComponentProps, ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import type { FieldSize, FieldStatus } from '@/shared/types'
+import type { NativeInputProps } from './Input.types'
 import styles from './Input.module.scss'
 
 type InputProps = {
-    size?: 'regular' | 'large'
-    status?: 'success' | 'danger'
+    size?: FieldSize
+    status?: FieldStatus
     icon?: ReactNode
-} & Omit<ComponentProps<'input'>, 'size'>
+} & NativeInputProps
 
 export const Input = ({
     size = 'regular',
