@@ -3,13 +3,13 @@ import styles from './Input.module.scss'
 
 type InputProps = {
     size?: 'regular' | 'large'
-    variant?: 'default' | 'success' | 'danger'
+    status?: 'success' | 'danger'
     icon?: ReactNode
 } & Omit<ComponentProps<'input'>, 'size'>
 
 export const Input = ({
     size = 'regular',
-    variant = 'default',
+    status,
     icon,
     className,
     disabled,
@@ -20,7 +20,7 @@ export const Input = ({
             className={`
                 ${styles.wrapper}
                 ${styles[size]}
-                ${styles[variant]}
+                ${status ? styles[status] : ''}
                 ${icon ? styles.withIcon : ''}
                 ${disabled ? styles.disabled : ''}
                 ${className}
