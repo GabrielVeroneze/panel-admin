@@ -28,6 +28,35 @@
         width: inherit;
     }
 
+    /* Status */
+    @include input-variant(
+        $gray-light,
+        $gray-base,
+        $gray-base,
+        $gray-dark,
+        $blue-dark
+    );
+
+    &.success {
+        @include input-variant(
+            $green-light,
+            $green-base,
+            $green-base,
+            $green-base,
+            $green-dark
+        );
+    }
+
+    &.danger {
+        @include input-variant(
+            $red-light,
+            $red-base,
+            $red-base,
+            $red-base,
+            $red-dark
+        );
+    }
+
     /* Sizes */
     &.regular {
         height: 32px;
@@ -71,37 +100,6 @@
                 padding-left: $space-9;
             }
         }
-    }
-
-    /* Variants */
-    &.default {
-        @include input-variant(
-            $gray-light,
-            $gray-base,
-            $gray-base,
-            $gray-dark,
-            $blue-dark
-        );
-    }
-
-    &.success {
-        @include input-variant(
-            $green-light,
-            $green-base,
-            $green-base,
-            $green-base,
-            $green-dark
-        );
-    }
-
-    &.danger {
-        @include input-variant(
-            $red-light,
-            $red-base,
-            $red-base,
-            $red-base,
-            $red-dark
-        );
     }
 
     /* Disabled */
