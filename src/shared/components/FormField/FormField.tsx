@@ -1,10 +1,12 @@
-import type { ReactNode } from 'react'
+import { cloneElement, isValidElement, type ReactElement } from 'react'
+import type { FieldSize, FieldStatus } from '@/shared/types'
+import type { FieldComponentProps } from './FormField.types'
 import styles from './FormField.module.scss'
 
 type FormFieldProps = {
-    children: ReactNode
-    size?: 'regular' | 'large'
-    status?: 'success' | 'error'
+    children: ReactElement<FieldComponentProps>
+    size?: FieldSize
+    status?: FieldStatus
     id: string
     label?: string
     message?: string
@@ -18,6 +20,13 @@ export const FormField = ({
     label,
     message,
 }: FormFieldProps) => {
+    const enhancedChild = isValidElement(children)
+        ? cloneElement(children, {
+              id,
+              status,
+          })
+        : children
+
     return (
         <div className={`${styles.field} ${styles[size]}`}>
             {label && (
@@ -25,7 +34,7 @@ export const FormField = ({
                     {label}
                 </label>
             )}
-            {children}
+            {enhancedChild}
             {message && (
                 <span
                     className={`
