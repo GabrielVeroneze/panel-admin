@@ -4,18 +4,13 @@
 .wrapper {
     align-items: center;
     display: flex;
-    height: 32px;
     max-width: 224px;
     position: relative;
     width: 100%;
 
     .icon {
-        height: 16px;
-        left: $space-2;
         position: absolute;
-        top: $space-2;
         transition: color 0.3s ease;
-        width: 16px;
 
         svg {
             height: 100%;
@@ -27,23 +22,55 @@
         border: $border solid;
         border-radius: $rounded;
         color: $gray-darkest;
-        font-size: $text-xl;
         font-weight: $font-normal;
         height: inherit;
-        padding: $space-1-5 $space-3;
         transition: border-color 0.3s ease;
         width: inherit;
     }
 
-    &.withIcon .input {
-        padding-left: $space-8;
-    }
-
     /* Sizes */
     &.regular {
+        height: 32px;
+
+        .icon {
+            height: 16px;
+            left: $space-2;
+            top: $space-2;
+            width: 16px;
+        }
+
+        .input {
+            font-size: $text-xl;
+            padding: $space-1-5 $space-3;
+        }
+
+        &.withIcon {
+            .input {
+                padding-left: $space-8;
+            }
+        }
     }
 
     &.large {
+        height: 38px;
+
+        .icon {
+            height: 18px;
+            left: $space-2-5;
+            top: $space-2-5;
+            width: 18px;
+        }
+
+        .input {
+            font-size: $text-2xl;
+            padding: $space-2 $space-3-5;
+        }
+
+        &.withIcon {
+            .input {
+                padding-left: $space-9;
+            }
+        }
     }
 
     /* Variants */
