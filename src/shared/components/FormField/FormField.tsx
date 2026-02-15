@@ -4,7 +4,7 @@ import styles from './FormField.module.scss'
 type FormFieldProps = {
     children: ReactNode
     size?: 'regular' | 'large'
-    status?: 'default' | 'success' | 'error'
+    status?: 'success' | 'error'
     id: string
     label?: string
     message?: string
@@ -13,7 +13,7 @@ type FormFieldProps = {
 export const FormField = ({
     children,
     size = 'regular',
-    status = 'default',
+    status,
     id,
     label,
     message,
@@ -27,7 +27,12 @@ export const FormField = ({
             )}
             {children}
             {message && (
-                <span className={`${styles.message} ${styles[status]}`}>
+                <span
+                    className={`
+                        ${styles.message}
+                        ${status ? styles[status] : ''}
+                    `}
+                >
                     {message}
                 </span>
             )}
