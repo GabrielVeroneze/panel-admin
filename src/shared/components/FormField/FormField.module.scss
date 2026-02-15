@@ -1,0 +1,51 @@
+@use '@/styles/tokens' as *;
+
+.field {
+    display: flex;
+    flex-direction: column;
+
+    .label {
+        color: $gray-darkest;
+        font-weight: $font-medium;
+    }
+
+    .message {
+        font-weight: $font-normal;
+
+        &.default {
+            color: $gray-dark;
+        }
+
+        &.success {
+            color: $green-dark;
+        }
+
+        &.error {
+            color: $red-dark;
+        }
+    }
+
+    &.regular {
+        gap: $space-1-5;
+
+        .label {
+            font-size: $text-xl;
+        }
+
+        .message {
+            font-size: $text-lg;
+        }
+    }
+
+    &.large {
+        gap: $space-2;
+
+        .label {
+            font-size: $text-2xl;
+        }
+
+        .message {
+            font-size: $text-xl;
+        }
+    }
+}
