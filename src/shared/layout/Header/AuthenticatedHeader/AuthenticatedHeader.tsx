@@ -20,7 +20,10 @@ export const AuthenticatedHeader = () => {
         <div className={styles.container}>
             <Input className={styles.input} />
             <div className={styles.actions}>
-                <IconButton icon={<BellSolidIcon />} ariaLabel="Notificações" />
+                <IconButton
+                    icon={<BellSolidIcon />}
+                    aria-label="Notificações"
+                />
                 <Dropdown
                     trigger={
                         <UserAvatar src="https://i.pravatar.cc/300?u=a04258213sdfg40fw2" />

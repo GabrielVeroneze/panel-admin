@@ -21,7 +21,7 @@ export const Header = ({ isAuthenticated, onToggleSidebar }: HeaderProps) => {
             {showMenuButton && (
                 <IconButton
                     icon={<MenuAlt1SolidIcon />}
-                    ariaLabel="Abrir menu"
+                    aria-label="Abrir menu"
                     size={28}
                     onClick={onToggleSidebar}
                 />
