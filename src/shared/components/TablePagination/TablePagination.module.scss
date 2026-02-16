@@ -1,0 +1,25 @@
+@use '@/styles/tokens' as *;
+
+.pagination {
+    align-items: center;
+    display: flex;
+    gap: $space-3;
+
+    .controls {
+        align-items: center;
+        color: $gray-darkest;
+        display: flex;
+        gap: $space-3;
+    }
+
+    .info {
+        color: $gray-dark;
+        font-size: $text-xl;
+        font-weight: $font-normal;
+
+        strong {
+            color: $gray-darkest;
+            font-weight: $font-semibold;
+        }
+    }
+}
