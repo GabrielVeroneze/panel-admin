@@ -1,0 +1,10 @@
+@use '@/styles/tokens' as *;
+
+.card {
+    background-color: $white;
+    border: $border solid $gray-light;
+    border-radius: $rounded-md;
+    box-shadow: $shadow;
+    padding: $space-5;
+    width: max-content;
+}
