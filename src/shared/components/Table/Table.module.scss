@@ -1,0 +1,15 @@
+@use '@/styles/tokens' as *;
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+
+    &.striped {
+        tbody {
+            tr:nth-child(even) {
+                background-color: $gray-light;
+                border-radius: $rounded;
+            }
+        }
+    }
+}
