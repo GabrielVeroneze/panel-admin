@@ -1,0 +1,11 @@
+@use '@/styles/tokens' as *;
+
+.tableRow {
+    align-items: center;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    height: 52px;
+    justify-items: start;
+    padding: 0 $space-4;
+}
