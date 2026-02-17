@@ -1,0 +1,8 @@
+@use '@/styles/tokens' as *;
+
+.tableHead {
+    background-color: $gray-light;
+    border-bottom: $border solid $gray-base;
+    border-radius: $rounded $rounded 0 0;
+    display: block;
+}
