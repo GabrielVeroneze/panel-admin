@@ -1,0 +1,12 @@
+@use '@/styles/tokens' as *;
+
+.tableCell {
+    color: $gray-dark;
+    font-size: $text-xl;
+    font-weight: $font-normal;
+
+    &.header {
+        font-weight: $font-medium;
+        text-transform: uppercase;
+    }
+}
