@@ -1,0 +1,36 @@
+@use '@/styles/tokens' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &.default {
+        gap: $space-3;
+    }
+
+    &.compact {
+        gap: $space-2;
+    }
+
+    &.avatarLayout {
+        align-items: center;
+        flex-direction: row;
+
+        .textBlock {
+            display: flex;
+            flex-direction: column;
+            gap: $space-2;
+            width: 100%;
+        }
+    }
+
+    &.tableLayout {
+        .tableRow {
+            display: grid;
+            gap: $space-2;
+            grid-auto-columns: 1fr;
+            grid-auto-flow: column;
+        }
+    }
+}
