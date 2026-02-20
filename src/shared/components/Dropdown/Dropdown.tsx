@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react'
+import clsx from 'clsx'
 import styles from './Dropdown.module.scss'
 
 type DropdownProps = {
@@ -27,7 +28,7 @@ export const Dropdown = ({
                 {trigger}
             </button>
             {open && (
-                <ul className={`${styles.dropdown} ${styles[align]}`}>
+                <ul className={clsx(styles.dropdown, styles[align])}>
                     {children}
                 </ul>
             )}

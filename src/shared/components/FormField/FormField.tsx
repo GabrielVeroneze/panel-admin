@@ -1,6 +1,7 @@
 import { cloneElement, isValidElement, type ReactElement } from 'react'
 import type { FieldSize, FieldStatus } from '@/shared/types'
 import type { FieldComponentProps } from './FormField.types'
+import clsx from 'clsx'
 import styles from './FormField.module.scss'
 
 type FormFieldProps = {
@@ -28,7 +29,7 @@ export const FormField = ({
         : children
 
     return (
-        <div className={`${styles.field} ${styles[size]}`}>
+        <div className={clsx(styles.field, styles[size])}>
             {label && (
                 <label className={styles.label} htmlFor={id}>
                     {label}
@@ -37,10 +38,7 @@ export const FormField = ({
             {enhancedChild}
             {message && (
                 <span
-                    className={`
-                        ${styles.message}
-                        ${status ? styles[status] : ''}
-                    `}
+                    className={clsx(styles.message, status && styles[status])}
                 >
                     {message}
                 </span>

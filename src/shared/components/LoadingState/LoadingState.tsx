@@ -1,5 +1,6 @@
 import { Skeleton } from '@/shared/components'
 import type { LoadingType, LoadingVariant } from './LoadingState.types'
+import clsx from 'clsx'
 import styles from './LoadingState.module.scss'
 
 type LoadingStateProps = {
@@ -18,11 +19,11 @@ export const LoadingState = ({
     if (type === 'table') {
         return (
             <div
-                className={`
-                    ${styles.container}
-                    ${styles.tableLayout}
-                    ${styles[variant]}
-                `}
+                className={clsx(
+                    styles.container,
+                    styles.tableLayout,
+                    styles[variant],
+                )}
             >
                 {Array.from({ length: lines }).map((_, rowIndex) => (
                     <div key={rowIndex} className={styles.tableRow}>
@@ -38,11 +39,11 @@ export const LoadingState = ({
     if (type === 'avatar') {
         return (
             <div
-                className={`
-                    ${styles.container}
-                    ${styles.avatarLayout}
-                    ${styles[variant]}
-                `}
+                className={clsx(
+                    styles.container,
+                    styles.avatarLayout,
+                    styles[variant],
+                )}
             >
                 <Skeleton height={90} width={90} />
                 <div className={styles.textBlock}>
@@ -55,7 +56,7 @@ export const LoadingState = ({
     }
 
     return (
-        <div className={`${styles.container} ${styles[variant]}`}>
+        <div className={clsx(styles.container, styles[variant])}>
             {Array.from({ length: lines }).map((_, index) => (
                 <Skeleton key={index} height={16} />
             ))}

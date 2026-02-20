@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { BadgeColor, BadgeSize } from './Badge.types'
+import clsx from 'clsx'
 import styles from './Badge.module.scss'
 
 type BadgeProps = {
@@ -14,13 +15,7 @@ export const Badge = ({
     size = 'md',
 }: BadgeProps) => {
     return (
-        <span
-            className={`
-                ${styles.badge}
-                ${styles[color]}
-                ${styles[size]}
-            `}
-        >
+        <span className={clsx(styles.badge, styles[color], styles[size])}>
             {children}
         </span>
     )

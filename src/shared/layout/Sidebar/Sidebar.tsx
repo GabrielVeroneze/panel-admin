@@ -5,6 +5,7 @@ import {
     LockClosedSolidIcon,
     ShoppingBagSolidIcon,
 } from '@/shared/icons'
+import clsx from 'clsx'
 import styles from './Sidebar.module.scss'
 
 type SidebarProps = {
@@ -13,7 +14,7 @@ type SidebarProps = {
 
 export const Sidebar = ({ isOpen }: SidebarProps) => {
     return (
-        <nav className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+        <nav className={clsx(styles.sidebar, isOpen && styles.open)}>
             <ul className={styles.menu}>
                 <NavItem
                     className={styles.menuItem}

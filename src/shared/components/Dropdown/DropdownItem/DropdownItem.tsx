@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import clsx from 'clsx'
 import styles from './DropdownItem.module.scss'
 
 type DropdownItemProps = {
@@ -17,7 +18,7 @@ export const DropdownItem = ({
     onClick,
 }: DropdownItemProps) => {
     return (
-        <li className={`${styles.item} ${styles[variant]}`}>
+        <li className={clsx(styles.item, styles[variant])}>
             <button
                 className={styles.button}
                 onClick={onClick}

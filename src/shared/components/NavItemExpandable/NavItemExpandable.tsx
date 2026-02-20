@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react'
+import clsx from 'clsx'
 import styles from './NavItemExpandable.module.scss'
 
 type NavItemExpandableProps = {
@@ -14,17 +15,14 @@ export const NavItemExpandable = ({
 }: NavItemExpandableProps) => {
     const [openItem, setOpenItem] = useState<string | null>(null)
 
+    const isExpanded = openItem === label
+
     const handleToggle = () => {
         setOpenItem((prev) => (prev === label ? null : label))
     }
 
     return (
-        <li
-            className={`
-                ${styles.item}
-                ${openItem === label ? styles.expanded : ''}
-            `}
-        >
+        <li className={clsx(styles.item, isExpanded && styles.expanded)}>
             <button className={styles.button} onClick={handleToggle}>
                 {icon}
                 <span>{label}</span>

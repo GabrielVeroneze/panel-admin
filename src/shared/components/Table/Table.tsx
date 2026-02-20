@@ -1,4 +1,5 @@
 import type { ComponentProps, CSSProperties } from 'react'
+import clsx from 'clsx'
 import styles from './Table.module.scss'
 
 type TableProps = {
@@ -11,10 +12,7 @@ export const Table = ({ children, columns, striped, ...props }: TableProps) => {
 
     return (
         <table
-            className={`
-                ${styles.table}
-                ${striped ? styles.striped : ''}
-            `}
+            className={clsx(styles.table, striped && styles.striped)}
             style={style}
             {...props}
         >

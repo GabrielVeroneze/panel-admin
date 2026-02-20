@@ -1,4 +1,5 @@
 import type { ComponentPropsWithoutRef, ElementType } from 'react'
+import clsx from 'clsx'
 import styles from './Card.module.scss'
 
 type CardProps<T extends ElementType = 'div'> = {
@@ -14,7 +15,7 @@ export const Card = <T extends ElementType = 'div'>({
     const Component = as || 'div'
 
     return (
-        <Component className={`${styles.card} ${className}`} {...props}>
+        <Component className={clsx(styles.card, className)} {...props}>
             {children}
         </Component>
     )

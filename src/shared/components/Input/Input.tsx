@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import type { FieldSize, FieldStatus } from '@/shared/types'
 import type { NativeInputProps } from './Input.types'
+import clsx from 'clsx'
 import styles from './Input.module.scss'
 
 type InputProps = {
@@ -19,14 +20,14 @@ export const Input = ({
 }: InputProps) => {
     return (
         <div
-            className={`
-                ${styles.wrapper}
-                ${styles[size]}
-                ${status ? styles[status] : ''}
-                ${icon ? styles.withIcon : ''}
-                ${disabled ? styles.disabled : ''}
-                ${className}
-            `}
+            className={clsx(
+                styles.wrapper,
+                styles[size],
+                status && styles[status],
+                icon && styles.withIcon,
+                disabled && styles.disabled,
+                className,
+            )}
         >
             {icon && <span className={styles.icon}>{icon}</span>}
             <input className={styles.input} disabled={disabled} {...props} />

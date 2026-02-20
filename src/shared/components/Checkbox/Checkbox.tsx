@@ -1,4 +1,5 @@
 import type { ComponentProps } from 'react'
+import clsx from 'clsx'
 import styles from './Checkbox.module.scss'
 
 type CheckboxProps = {
@@ -14,12 +15,7 @@ export const Checkbox = ({
     return (
         <label className={styles.container}>
             <input className={styles.input} type="checkbox" {...props} />
-            <span
-                className={`
-                    ${styles.control}
-                    ${styles[variant]}
-                `}
-            />
+            <span className={clsx(styles.control, styles[variant])} />
             {label && <span className={styles.label}>{label}</span>}
         </label>
     )

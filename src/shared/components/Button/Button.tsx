@@ -4,6 +4,7 @@ import type {
     ButtonSize,
     ButtonVariant,
 } from './Button.types'
+import clsx from 'clsx'
 import styles from './Button.module.scss'
 
 export type ButtonProps = {
@@ -28,11 +29,7 @@ export const Button = ({
 
     return (
         <button
-            className={`
-                ${styles.button}
-                ${styles[variant]}
-                ${styles[size]}
-            `}
+            className={clsx(styles.button, styles[variant], styles[size])}
             {...props}
         >
             {showLeftIcon && icon}
