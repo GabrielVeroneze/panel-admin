@@ -9,13 +9,7 @@ type TableCellProps = {
 export const TableCell = ({ children, header, ...props }: TableCellProps) => {
     if (header) {
         return (
-            <th
-                className={clsx(
-                    styles.tableCell,
-                    styles.header
-                )}
-                {...props}
-            >
+            <th className={clsx(styles.tableCell, styles.header)} {...props}>
                 {children}
             </th>
         )
