@@ -4,6 +4,7 @@
 .footer {
     align-items: center;
     background-color: $white;
+    border-radius: $rounded-md;
     display: flex;
     gap: $space-6;
     grid-area: footer;
