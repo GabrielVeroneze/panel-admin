@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router'
-import { Header, Sidebar } from '@/shared/layout'
+import { Footer, Header, Sidebar } from '@/shared/layout'
 import styles from './AppLayout.module.scss'
 
 export const AppLayout = () => {
@@ -18,6 +18,7 @@ export const AppLayout = () => {
             <main className={styles.main}>
                 <Outlet />
             </main>
+            <Footer />
         </div>
     )
 }
