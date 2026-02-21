@@ -1,0 +1,45 @@
+@use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
+
+.footer {
+    align-items: center;
+    background-color: $white;
+    display: flex;
+    gap: $space-6;
+    grid-area: footer;
+    height: 120px;
+    justify-content: space-between;
+    padding: $space-12 $space-8;
+    width: 100%;
+
+    .copy {
+        color: $gray-dark;
+        font-size: $text-xl;
+        font-weight: $font-normal;
+    }
+
+    .social {
+        .list {
+            align-items: center;
+            display: flex;
+            gap: $space-6;
+
+            .item {
+                .link {
+                    display: block;
+                    height: 24px;
+                    width: 24px;
+                }
+            }
+        }
+    }
+
+    @include media-down(md) {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: $space-5;
+        height: 143px;
+        justify-content: center;
+        padding: $space-8 $space-6;
+    }
+}
