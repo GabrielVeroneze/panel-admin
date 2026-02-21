@@ -15,10 +15,12 @@ export const AppLayout = () => {
         <div className={styles.layout}>
             <Header isAuthenticated={isAuth} onToggleSidebar={toggleSidebar} />
             <Sidebar isOpen={isSidebarOpen} />
-            <main className={styles.main}>
-                <Outlet />
-            </main>
-            <Footer />
+            <div className={styles.content}>
+                <main className={styles.main}>
+                    <Outlet />
+                </main>
+                <Footer />
+            </div>
         </div>
     )
 }
