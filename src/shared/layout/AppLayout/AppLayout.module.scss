@@ -1,3 +1,4 @@
+@use '@/styles/tokens' as *;
 @use '@/styles/mixins' as *;
 
 $header-height-desktop: 71px;
@@ -10,23 +11,37 @@ $sidebar-width: 250px;
     display: grid;
     grid-template-areas:
         'header header'
-        'sidebar main'
-        'sidebar footer';
+        'sidebar content';
     grid-template-columns: $sidebar-width 1fr;
-    grid-template-rows: $header-height-desktop 1fr $footer-height-desktop;
+    grid-template-rows: $header-height-desktop 1fr;
     min-height: 100vh;
 
-    .main {
-        grid-area: main;
-        overflow-y: auto;
+    .content {
+        display: grid;
+        gap: $space-3;
+        grid-area: content;
+        grid-template-areas:
+            'main'
+            'footer';
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr $footer-height-desktop;
+        padding: $space-3;
+
+        .main {
+            grid-area: main;
+            overflow-y: auto;
+        }
     }
 
     @include media-down(md) {
         grid-template-areas:
             'header'
-            'main'
-            'footer';
+            'content';
         grid-template-columns: 1fr;
-        grid-template-rows: $header-height-tablet 1fr $footer-height-tablet;
+        grid-template-rows: $header-height-tablet 1fr;
+
+        .content {
+            grid-template-rows: 1fr $footer-height-tablet;
+        }
     }
 }
