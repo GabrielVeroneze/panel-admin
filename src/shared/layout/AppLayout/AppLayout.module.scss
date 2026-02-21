@@ -2,15 +2,18 @@
 
 $header-height-desktop: 71px;
 $header-height-tablet: 63px;
+$footer-height-desktop: 120px;
+$footer-height-tablet: 143px;
 $sidebar-width: 250px;
 
 .layout {
     display: grid;
     grid-template-areas:
         'header header'
-        'sidebar main';
+        'sidebar main'
+        'sidebar footer';
     grid-template-columns: $sidebar-width 1fr;
-    grid-template-rows: $header-height-desktop 1fr;
+    grid-template-rows: $header-height-desktop 1fr $footer-height-desktop;
     min-height: 100vh;
 
     .main {
@@ -21,8 +24,9 @@ $sidebar-width: 250px;
     @include media-down(md) {
         grid-template-areas:
             'header'
-            'main';
+            'main'
+            'footer';
         grid-template-columns: 1fr;
-        grid-template-rows: $header-height-tablet 1fr;
+        grid-template-rows: $header-height-tablet 1fr $footer-height-tablet;
     }
 }
