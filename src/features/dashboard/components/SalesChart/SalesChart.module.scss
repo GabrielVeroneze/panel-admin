@@ -1,0 +1,64 @@
+@use '@/styles/tokens' as *;
+
+.container {
+    margin: $space-3 $space-1-5 $space-1-5;
+
+    .header {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        .titleWrapper {
+            align-items: center;
+            display: flex;
+            gap: $space-2;
+
+            .title {
+                color: $black;
+                font-size: $text-2xl;
+                font-weight: $font-bold;
+            }
+
+            svg {
+                color: $gray-base;
+                height: 22px;
+                width: 22px;
+            }
+        }
+    }
+
+    .chartContainer {
+        margin-top: $space-10;
+
+        .chart {
+            aspect-ratio: 1.618;
+            height: 330px;
+            width: 100%;
+
+            :global(.recharts-cartesian-axis-tick-value) {
+                fill: $gray-dark;
+                font-size: $text-lg;
+                font-weight: $font-medium;
+            }
+
+            :global(.recharts-default-tooltip) {
+                border-radius: $rounded;
+            }
+
+            :global(.recharts-tooltip-label) {
+                font-size: $text-lg;
+                font-weight: $font-semibold;
+            }
+
+            :global(.recharts-tooltip-item) {
+                font-size: $text-lg;
+                font-weight: $font-medium;
+            }
+        }
+    }
+
+    :global(.recharts-surface:focus),
+    :global(.recharts-surface) > g {
+        outline: none;
+    }
+}
