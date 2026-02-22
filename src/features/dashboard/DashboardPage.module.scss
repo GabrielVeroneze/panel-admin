@@ -1,0 +1,45 @@
+@use '@/styles/tokens' as *;
+
+.dashboard {
+    display: grid;
+    grid-template-areas:
+        'sales sales sales'
+        'todaySales todayVisitors weekVisitors'
+        'country country customers'
+        'country country device'
+        'transactions transactions transactions';
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, auto);
+
+    .sales {
+        grid-area: sales;
+    }
+
+    .todaySales {
+        grid-area: todaySales;
+    }
+
+    .todayVisitors {
+        grid-area: todayVisitors;
+    }
+
+    .weekVisitors {
+        grid-area: weekVisitors;
+    }
+
+    .sessionsByCountry {
+        grid-area: country;
+    }
+
+    .latestCustomers {
+        grid-area: customers;
+    }
+
+    .sessionsByDevice {
+        grid-area: device;
+    }
+
+    .transactions {
+        grid-area: transactions;
+    }
+}
