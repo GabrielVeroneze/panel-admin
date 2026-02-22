@@ -14,28 +14,28 @@ import styles from './DashboardPage.module.scss'
 export const DashboardPage = () => {
     return (
         <section className={styles.dashboard}>
-            <Card className={styles.sales}>
+            <Card as="article" className={styles.sales}>
                 <SalesChart />
             </Card>
-            <Card className={styles.todaySales}>
+            <Card as="article" className={styles.todaySales}>
                 <TodaySales />
             </Card>
-            <Card className={styles.todayVisitors}>
+            <Card as="article" className={styles.todayVisitors}>
                 <TodayVisitors />
             </Card>
-            <Card className={styles.weekVisitors}>
+            <Card as="article" className={styles.weekVisitors}>
                 <WeekVisitors />
             </Card>
-            <Card className={styles.sessionsByCountry}>
+            <Card as="article" className={styles.sessionsByCountry}>
                 <SessionsByCountry />
             </Card>
-            <Card className={styles.latestCustomers}>
+            <Card as="article" className={styles.latestCustomers}>
                 <LatestCustomersList />
             </Card>
-            <Card className={styles.sessionsByDevice}>
+            <Card as="article" className={styles.sessionsByDevice}>
                 <SessionsByDevice />
             </Card>
-            <Card className={styles.transactions}>
+            <Card as="article" className={styles.transactions}>
                 <TransactionsTable />
             </Card>
         </section>
