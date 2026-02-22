@@ -14,33 +14,41 @@
 
     .sales {
         grid-area: sales;
+        width: 100%;
     }
 
     .todaySales {
         grid-area: todaySales;
+        width: 100%;
     }
 
     .todayVisitors {
         grid-area: todayVisitors;
+        width: 100%;
     }
 
     .weekVisitors {
         grid-area: weekVisitors;
+        width: 100%;
     }
 
     .sessionsByCountry {
         grid-area: country;
+        width: 100%;
     }
 
     .latestCustomers {
         grid-area: customers;
+        width: 100%;
     }
 
     .sessionsByDevice {
         grid-area: device;
+        width: 100%;
     }
 
     .transactions {
         grid-area: transactions;
+        width: 100%;
     }
 }
