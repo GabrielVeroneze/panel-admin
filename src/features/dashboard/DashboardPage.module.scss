@@ -2,6 +2,7 @@
 
 .dashboard {
     display: grid;
+    gap: $space-3;
     grid-template-areas:
         'sales sales sales'
         'todaySales todayVisitors weekVisitors'
