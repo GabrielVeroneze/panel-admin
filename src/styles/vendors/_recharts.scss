@@ -1,0 +1,41 @@
+@use '@/styles/tokens' as *;
+
+/*
+    Customizações globais do Recharts
+    Esses estilos sobrescrevem classes internas da biblioteca
+*/
+
+/*
+    Tooltip padrão do Recharts
+    Aplica borda arredondada usando token do design system
+*/
+.recharts-default-tooltip {
+    border-radius: $rounded;
+}
+
+/*
+    Texto principal (label) dentro do tooltip
+    Normalmente é a data ou categoria exibida
+*/
+.recharts-tooltip-label {
+    font-size: $text-lg;
+    font-weight: $font-semibold;
+}
+
+/*
+    Itens de valor dentro do tooltip
+    Ex: "Sales: $4000"
+*/
+.recharts-tooltip-item {
+    font-size: $text-lg;
+    font-weight: $font-medium;
+}
+
+/*
+    Remove outline padrão de foco aplicado pelo SVG do Recharts
+    Evita bordas indesejadas ao clicar ou navegar via teclado
+*/
+.recharts-surface:focus,
+.recharts-surface > g {
+    outline: none;
+}
