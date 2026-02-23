@@ -1,0 +1,51 @@
+@use '@/styles/tokens' as *;
+
+.container {
+    .header {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        .titleWrapper {
+            display: flex;
+            flex-direction: column-reverse;
+
+            .title {
+                color: $gray-dark;
+                font-size: $text-xl;
+                font-weight: $font-normal;
+            }
+
+            .value {
+                color: $gray-darkest;
+                font-size: $text-4xl;
+                font-weight: $font-bold;
+            }
+        }
+
+        .variation {
+            align-items: center;
+            display: flex;
+            font-size: $text-xl;
+            font-weight: $font-bold;
+            gap: $space-1;
+
+            &.positive {
+                color: $green-base;
+            }
+
+            &.negative {
+                color: $red-dark;
+            }
+
+            svg {
+                height: 14px;
+                width: 14px;
+            }
+        }
+    }
+
+    .chartContainer {
+        margin-top: $space-6;
+    }
+}
