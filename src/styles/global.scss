@@ -1,6 +1,7 @@
 @use '@/styles/reset';
 @use '@/styles/base/fonts';
 @use '@/styles/tokens' as *;
+@use '@/styles/vendors';
 
 *,
 *::before,
