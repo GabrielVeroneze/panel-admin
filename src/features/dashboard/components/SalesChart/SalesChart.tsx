@@ -3,17 +3,17 @@ import { Button, ButtonGroup } from '@/shared/components'
 import { ExclamationCircleIcon } from '@/shared/icons'
 import styles from './SalesChart.module.scss'
 
-export const SalesChart = () => {
-    const data = [
-        { date: '01 Apr', templates: 40000, hosting: 100000 },
-        { date: '02 Apr', templates: 80000, hosting: 70000 },
-        { date: '03 Apr', templates: 80000, hosting: 140000 },
-        { date: '04 Apr', templates: 160000, hosting: 120000 },
-        { date: '05 Apr', templates: 140000, hosting: 50000 },
-        { date: '06 Apr', templates: 130000, hosting: 90000 },
-        { date: '07 Apr', templates: 100000, hosting: 50000 },
-    ]
+const data = [
+    { date: '01 Apr', templates: 40000, hosting: 100000 },
+    { date: '02 Apr', templates: 80000, hosting: 70000 },
+    { date: '03 Apr', templates: 80000, hosting: 140000 },
+    { date: '04 Apr', templates: 160000, hosting: 120000 },
+    { date: '05 Apr', templates: 140000, hosting: 50000 },
+    { date: '06 Apr', templates: 130000, hosting: 90000 },
+    { date: '07 Apr', templates: 100000, hosting: 50000 },
+]
 
+export const SalesChart = () => {
     const formatYAxis = (value: number) => `${value / 1000}K`
 
     const formatTooltip = (value: number | undefined) => {
@@ -48,14 +48,12 @@ export const SalesChart = () => {
                 >
                     <CartesianGrid vertical={false} />
                     <XAxis
-                        className={styles.axis}
                         dataKey="date"
                         axisLine={false}
                         tickLine={false}
                         tickMargin={26}
                     />
                     <YAxis
-                        className={styles.axis}
                         domain={[0, 200000]}
                         ticks={[0, 40000, 80000, 120000, 160000, 200000]}
                         axisLine={false}
