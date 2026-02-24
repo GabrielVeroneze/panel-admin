@@ -4,13 +4,13 @@ import { MetricCard } from '@/features/dashboard/components'
 import styles from './WeekVisitors.module.scss'
 
 const data = [
-    { name: 'M', day: 'Monday', users: 50000 },
-    { name: 'T', day: 'Tuesday', users: 80000 },
-    { name: 'W', day: 'Wednesday', users: 90000 },
-    { name: 'T', day: 'Thursday', users: 50000 },
-    { name: 'F', day: 'Friday', users: 90000 },
-    { name: 'S', day: 'Saturday', users: 40000 },
-    { name: 'S', day: 'Sunday', users: 55000 },
+    { key: 'mon', label: 'M', day: 'Monday', users: 50000 },
+    { key: 'tue', label: 'T', day: 'Tuesday', users: 80000 },
+    { key: 'wed', label: 'W', day: 'Wednesday', users: 90000 },
+    { key: 'thu', label: 'T', day: 'Thursday', users: 50000 },
+    { key: 'fri', label: 'F', day: 'Friday', users: 90000 },
+    { key: 'sat', label: 'S', day: 'Saturday', users: 40000 },
+    { key: 'sun', label: 'S', day: 'Sunday', users: 55000 },
 ]
 
 export const WeekVisitors = () => {
@@ -45,10 +45,11 @@ export const WeekVisitors = () => {
                 }}
             >
                 <XAxis
-                    dataKey="name"
+                    dataKey="key"
                     axisLine={false}
                     tickLine={false}
                     tickMargin={8}
+                    tickFormatter={(_value, index) => data[index].label}
                 />
                 <Tooltip
                     labelFormatter={formatDayLabel}
