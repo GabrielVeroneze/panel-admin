@@ -1,0 +1,13 @@
+@use '@/styles/tokens' as *;
+
+.chart {
+    aspect-ratio: 1.618;
+    height: 245px;
+    width: 100%;
+
+    :global(.recharts-cartesian-axis-tick-value) {
+        fill: $gray-darkest;
+        font-size: $text-lg;
+        font-weight: $font-semibold;
+    }
+}
