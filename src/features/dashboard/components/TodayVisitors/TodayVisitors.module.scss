@@ -1,0 +1,7 @@
+@use '@/styles/tokens' as *;
+
+.chart {
+    aspect-ratio: 1.618;
+    height: 245px;
+    width: 100%;
+}
