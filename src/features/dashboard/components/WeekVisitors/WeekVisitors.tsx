@@ -1,8 +1,5 @@
 import { Bar, BarChart, Tooltip, XAxis, type TooltipProps } from 'recharts'
-import type {
-    NameType,
-    ValueType,
-} from 'recharts/types/component/DefaultTooltipContent'
+import { formatCompactNumber } from '@/shared/utils'
 import { MetricCard } from '@/features/dashboard/components'
 import styles from './WeekVisitors.module.scss'
 
@@ -17,19 +14,19 @@ const data = [
 ]
 
 export const WeekVisitors = () => {
-    const formatUsersValue: TooltipProps<ValueType, NameType>['formatter'] = (
+    const formatUsersValue: TooltipProps<number, string>['formatter'] = (
         value,
     ) => {
         if (typeof value !== 'number') return value
 
-        return `${(value / 1000).toFixed(0)}k`
+        return formatCompactNumber(value)
     }
 
-    const formatDayLabel: TooltipProps<
-        ValueType,
-        NameType
-    >['labelFormatter'] = (_label, payload) => {
-        return payload?.[0]?.payload?.day ?? ''
+    const formatDayLabel: TooltipProps<number, string>['labelFormatter'] = (
+        _label,
+        payload,
+    ) => {
+        return payload[0].payload.day
     }
 
     return (
