@@ -1,4 +1,5 @@
 import { Bar, BarChart, Tooltip, XAxis } from 'recharts'
+import { formatCurrency } from '@/shared/utils'
 import { MetricCard } from '@/features/dashboard/components'
 import styles from './TodaySales.module.scss'
 
@@ -12,7 +13,8 @@ const data = [
 ]
 
 export const TodaySales = () => {
-    const formatTooltip = (value: number | undefined) => `$${value}`
+    const formatTooltip = (value?: number) =>
+        value ? formatCurrency(value) : ''
 
     return (
         <MetricCard title="Today Sales" value={'$45,897'} variation={4.3}>
