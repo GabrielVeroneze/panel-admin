@@ -12,7 +12,7 @@ $sidebar-width: 250px;
     grid-template-areas:
         'header header'
         'sidebar content';
-    grid-template-columns: $sidebar-width 1fr;
+    grid-template-columns: $sidebar-width minmax(0, 1fr);
     grid-template-rows: $header-height-desktop 1fr;
     min-height: 100vh;
 
@@ -29,7 +29,6 @@ $sidebar-width: 250px;
 
         .main {
             grid-area: main;
-            overflow-y: auto;
         }
     }
 
