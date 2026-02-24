@@ -1,4 +1,5 @@
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
+import { formatCompactCurrency, formatCompactNumberUpper } from '@/shared/utils'
 import { Button, ButtonGroup } from '@/shared/components'
 import { ExclamationCircleIcon } from '@/shared/icons'
 import styles from './SalesChart.module.scss'
@@ -14,13 +15,10 @@ const data = [
 ]
 
 export const SalesChart = () => {
-    const formatYAxis = (value: number) => `${value / 1000}K`
+    const formatYAxis = formatCompactNumberUpper
 
-    const formatTooltip = (value: number | undefined) => {
-        if (value === undefined) return ''
-
-        return `$${value / 1000}k`
-    }
+    const formatTooltip = (value?: number) =>
+        value ? formatCompactCurrency(value) : ''
 
     return (
         <div className={styles.container}>
