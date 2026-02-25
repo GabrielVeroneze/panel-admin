@@ -56,19 +56,26 @@ export const SessionsByCountry = () => {
     }
 
     return (
-        <div className={styles.chart}>
-            <MapContainer
-                center={[25, 0]}
-                zoom={1}
-                dragging={false}
-                zoomControl={false}
-                attributionControl={false}
-                doubleClickZoom={false}
-                keyboard={false}
-                className={styles.map}
-            >
-                <GeoJSON data={worldGeoJson as any} style={style} />
-            </MapContainer>
+        <div className={styles.container}>
+            <header className={styles.header}>
+                <h2 className={styles.title}>Sessions by Country</h2>
+                <strong className={styles.value}>United States</strong>
+            </header>
+            <div className={styles.mapContainer}>
+                <MapContainer
+                    className={styles.map}
+                    center={[25, 0]}
+                    zoom={1}
+                    dragging={false}
+                    zoomControl={false}
+                    attributionControl={false}
+                    doubleClickZoom={false}
+                    keyboard={false}
+                >
+                    <GeoJSON data={worldGeoJson as any} style={style} />
+                </MapContainer>
+            </div>
+            <div className={styles.list}>list</div>
         </div>
     )
 }
