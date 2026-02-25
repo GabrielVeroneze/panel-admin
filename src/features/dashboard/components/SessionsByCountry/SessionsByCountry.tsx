@@ -1,5 +1,5 @@
 import { MapContainer, GeoJSON } from 'react-leaflet'
-import type { Feature } from 'geojson'
+import type { Feature, FeatureCollection } from 'geojson'
 import worldGeoJson from './world.geo.json'
 import styles from './SessionsByCountry.module.scss'
 
@@ -43,7 +43,16 @@ export const SessionsByCountry = () => {
         return '#a4cafe'
     }
 
-    const style = (feature: Feature) => {
+    const style = (feature?: Feature) => {
+        if (!feature) {
+            return {
+                fillColor: '#d1d5db',
+                weight: 1,
+                color: '#ffffff',
+                fillOpacity: 1,
+            }
+        }
+
         const isoCode = feature.properties?.iso_a2
         const sessions = sessionsMap.get(isoCode) ?? 0
 
@@ -72,7 +81,10 @@ export const SessionsByCountry = () => {
                     doubleClickZoom={false}
                     keyboard={false}
                 >
-                    <GeoJSON data={worldGeoJson as any} style={style} />
+                    <GeoJSON
+                        data={worldGeoJson as FeatureCollection}
+                        style={style}
+                    />
                 </MapContainer>
             </div>
             <div className={styles.list}>list</div>
