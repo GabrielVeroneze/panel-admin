@@ -1,9 +1,10 @@
 import { MapContainer, GeoJSON } from 'react-leaflet'
+import { Bar, BarChart, Tooltip, YAxis } from 'recharts'
 import type { Feature, FeatureCollection } from 'geojson'
 import worldGeoJson from './world.geo.json'
 import styles from './SessionsByCountry.module.scss'
 
-const data = [
+const dataMap = [
     { countryCode: 'US', sessions: 35000 },
     { countryCode: 'CA', sessions: 25000 },
     { countryCode: 'MX', sessions: 20000 },
@@ -26,10 +27,19 @@ const data = [
     { countryCode: 'AO', sessions: 5000 },
 ]
 
-export const SessionsByCountry = () => {
-    const maxSessions = Math.max(...data.map((c) => c.sessions), 0)
+const dataChart = [
+    { country: 'United States', value: 40000 },
+    { country: 'Canada', value: 30000 },
+    { country: 'France', value: 25000 },
+    { country: 'Italy', value: 20000 },
+    { country: 'Australia', value: 18000 },
+    { country: 'India', value: 15000 },
+]
 
-    const sessionsMap = new Map(data.map((c) => [c.countryCode, c.sessions]))
+export const SessionsByCountry = () => {
+    const maxSessions = Math.max(...dataMap.map((c) => c.sessions), 0)
+
+    const sessionsMap = new Map(dataMap.map((c) => [c.countryCode, c.sessions]))
 
     const getColor = (value: number, max: number) => {
         if (!value) return '#d1d5db'
@@ -87,7 +97,42 @@ export const SessionsByCountry = () => {
                     />
                 </MapContainer>
             </div>
-            <div className={styles.list}>list</div>
+            <div className={styles.chartContainer}>
+                <BarChart
+                    className={styles.chart}
+                    layout="vertical"
+                    data={dataChart}
+                    barSize={16}
+                    responsive
+                    margin={{
+                        top: 0,
+                        right: 0,
+                        left: 0,
+                        bottom: 0,
+                    }}
+                >
+                    <YAxis
+                        type="category"
+                        dataKey="country"
+                        axisLine={false}
+                        tickLine={false}
+                        tickMargin={46}
+                        width={162}
+                        tick={{
+                            textAnchor: 'start',
+                            dx: -72,
+                        }}
+                    />
+                    <Tooltip cursor={false} />
+                    <Bar
+                        dataKey="value"
+                        name="Value"
+                        fill="#1c64f2"
+                        radius={4}
+                        background={{ fill: '#f4f4f5', radius: 4 }}
+                    />
+                </BarChart>
+            </div>
         </div>
     )
 }
