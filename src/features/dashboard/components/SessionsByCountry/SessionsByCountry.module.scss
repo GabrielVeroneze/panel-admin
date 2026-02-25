@@ -1,12 +1,36 @@
 @use '@/styles/tokens' as *;
 
-.chart {
-    height: 100%;
-    width: 100%;
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: $space-7;
 
-    .map {
-        background: $white;
-        height: 275px;
+    .header {
+        display: flex;
+        flex-direction: column-reverse;
+
+        .title {
+            color: $gray-dark;
+            font-size: $text-xl;
+            font-weight: $font-normal;
+        }
+
+        .value {
+            color: $gray-darkest;
+            font-size: $text-4xl;
+            font-weight: $font-bold;
+        }
+    }
+
+    .mapContainer {
+        height: 100%;
+        overflow: hidden;
         width: 100%;
+
+        .map {
+            background: $white;
+            height: 275px;
+            width: 100%;
+        }
     }
 }
