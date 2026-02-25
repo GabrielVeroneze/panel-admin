@@ -1,0 +1,12 @@
+@use '@/styles/tokens' as *;
+
+.chart {
+    height: 100%;
+    width: 100%;
+
+    .map {
+        background: $white;
+        height: 275px;
+        width: 100%;
+    }
+}
