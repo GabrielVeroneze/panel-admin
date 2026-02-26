@@ -1,8 +1,19 @@
 import { MapContainer, GeoJSON } from 'react-leaflet'
 import { Bar, BarChart, Tooltip, YAxis } from 'recharts'
 import type { Feature, FeatureCollection } from 'geojson'
+import L from 'leaflet'
 import worldGeoJson from './world.geo.json'
 import styles from './SessionsByCountry.module.scss'
+import 'proj4leaflet'
+
+const robinsonCrs = new L.Proj.CRS(
+    'ESRI:54030',
+    '+proj=robin +lon_0=0 +x_0=0 +y_0=0 +units=m +no_defs',
+    {
+        origin: [0, 0],
+        resolutions: [65536, 32768, 16384, 8192, 4096, 2048, 1024, 512, 256],
+    },
+)
 
 const dataMap = [
     { countryCode: 'US', sessions: 35000 },
@@ -83,13 +94,15 @@ export const SessionsByCountry = () => {
             <div className={styles.mapContainer}>
                 <MapContainer
                     className={styles.map}
-                    center={[25, 0]}
-                    zoom={1}
-                    dragging={false}
+                    crs={robinsonCrs}
+                    center={[10, 15]}
+                    zoom={0.2}
+                    zoomSnap={0}
                     zoomControl={false}
-                    attributionControl={false}
+                    dragging={false}
                     doubleClickZoom={false}
-                    keyboard={false}
+                    scrollWheelZoom={false}
+                    attributionControl={false}
                 >
                     <GeoJSON
                         data={worldGeoJson as FeatureCollection}
