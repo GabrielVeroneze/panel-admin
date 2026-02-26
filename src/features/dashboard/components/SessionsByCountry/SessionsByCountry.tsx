@@ -13,6 +13,7 @@ import L from 'leaflet'
 import worldGeoJson from './world.geo.json'
 import styles from './SessionsByCountry.module.scss'
 import 'proj4leaflet'
+import 'leaflet/dist/leaflet.css'
 
 const robinsonCrs = new L.Proj.CRS(
     'ESRI:54030',
@@ -89,6 +90,25 @@ export const SessionsByCountry = () => {
 
     const sessionsMap = new Map(dataMap.map((c) => [c.countryCode, c.sessions]))
 
+    const onEachFeature = (feature: Feature, layer: L.Layer) => {
+        const isoCode = feature.properties?.iso_a2
+        const countryName = feature.properties?.name
+        const sessions = sessionsMap.get(isoCode) ?? 0
+
+        layer.bindTooltip(
+            `
+                <div class="map-tooltip">
+                    <strong>${countryName}</strong>
+                    <div>${sessions.toLocaleString()} sessions</div>
+                </div>
+            `,
+            {
+                sticky: true,
+                direction: 'top',
+            },
+        )
+    }
+
     const getColor = (value: number, max: number) => {
         if (!value) return '#d1d5db'
 
@@ -143,6 +163,7 @@ export const SessionsByCountry = () => {
                 >
                     <GeoJSON
                         data={worldGeoJson as FeatureCollection}
+                        onEachFeature={onEachFeature}
                         style={style}
                     />
                 </MapContainer>
