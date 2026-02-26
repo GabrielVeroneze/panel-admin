@@ -1,5 +1,5 @@
 import { IconButton } from '@/shared/components'
-import { ChevronLeftIcon, ChevronRightIcon } from '@/shared/icons'
+import { ChevronLeftIcon, ChevronRightIcon } from '@/shared/assets/icons'
 import styles from './TablePagination.module.scss'
 
 type TablePaginationProps = {

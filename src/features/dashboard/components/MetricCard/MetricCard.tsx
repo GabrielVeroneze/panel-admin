@@ -1,4 +1,4 @@
-import { ArrowDownSolidIcon, ArrowUpSolidIcon } from '@/shared/icons'
+import { ArrowDownSolidIcon, ArrowUpSolidIcon } from '@/shared/assets/icons'
 import type { ReactNode } from 'react'
 import clsx from 'clsx'
 import styles from './MetricCard.module.scss'

@@ -1,7 +1,7 @@
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
 import { formatCompactCurrency, formatCompactNumberUpper } from '@/shared/utils'
 import { Button, ButtonGroup } from '@/shared/components'
-import { ExclamationCircleIcon } from '@/shared/icons'
+import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import styles from './SalesChart.module.scss'
 
 const data = [

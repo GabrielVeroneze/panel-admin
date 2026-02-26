@@ -4,7 +4,7 @@ import {
     DocumentReportSolidIcon,
     LockClosedSolidIcon,
     ShoppingBagSolidIcon,
-} from '@/shared/icons'
+} from '@/shared/assets/icons'
 import clsx from 'clsx'
 import styles from './Sidebar.module.scss'
 

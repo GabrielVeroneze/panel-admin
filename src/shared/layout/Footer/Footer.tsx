@@ -3,7 +3,7 @@ import {
     FacebookFSolidIcon,
     GithubSolidIcon,
     TwitterSolidIcon,
-} from '@/shared/icons'
+} from '@/shared/assets/icons'
 import styles from './Footer.module.scss'
 
 const socialLinks = [

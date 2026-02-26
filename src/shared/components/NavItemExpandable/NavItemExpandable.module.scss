@@ -8,7 +8,7 @@
 
     .button {
         align-items: center;
-        background: url('@/shared/icons/outline/chevron-down.svg') right
+        background: url('@/shared/assets/icons/outline/chevron-down.svg') right
             $space-2 center / 22px no-repeat;
         border-radius: $rounded;
         color: $gray-darkest;
@@ -42,7 +42,7 @@
     &.expanded {
         .button {
             background-color: $gray-light;
-            background-image: url('@/shared/icons/outline/chevron-up.svg');
+            background-image: url('@/shared/assets/icons/outline/chevron-up.svg');
         }
 
         .submenu {

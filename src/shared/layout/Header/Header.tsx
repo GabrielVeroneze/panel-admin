@@ -1,8 +1,8 @@
 import { AuthenticatedHeader } from './AuthenticatedHeader/AuthenticatedHeader'
 import { GuestHeader } from './GuestHeader/GuestHeader'
 import { IconButton } from '@/shared/components'
-import { MenuAlt1SolidIcon } from '@/shared/icons'
-import { LogoImage } from '@/shared/images'
+import { MenuAlt1SolidIcon } from '@/shared/assets/icons'
+import { LogoImage } from '@/shared/assets/images'
 import { useBreakpoint } from '@/shared/hooks'
 import styles from './Header.module.scss'
 

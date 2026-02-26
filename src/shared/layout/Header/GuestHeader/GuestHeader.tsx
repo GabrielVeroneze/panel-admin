@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { NavItem } from '@/shared/components'
-import { LoginIcon } from '@/shared/icons'
+import { LoginIcon } from '@/shared/assets/icons'
 import styles from './GuestHeader.module.scss'
 
 const navItems = [

@@ -12,7 +12,7 @@ import {
     LogoutIcon,
     TrashSolidIcon,
     UserSolidIcon,
-} from '@/shared/icons'
+} from '@/shared/assets/icons'
 import styles from './AuthenticatedHeader.module.scss'
 
 export const AuthenticatedHeader = () => {
