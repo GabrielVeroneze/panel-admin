@@ -3,6 +3,7 @@ import {
     Bar,
     BarChart,
     Tooltip,
+    XAxis,
     YAxis,
     type YAxisTickContentProps,
 } from 'recharts'
@@ -169,6 +170,7 @@ export const SessionsByCountry = () => {
                         tickMargin={46}
                         width={152}
                     />
+                    <XAxis type="number" hide />
                     <Tooltip cursor={false} />
                     <Bar
                         dataKey="value"
