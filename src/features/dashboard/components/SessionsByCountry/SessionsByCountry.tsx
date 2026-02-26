@@ -1,5 +1,11 @@
 import { MapContainer, GeoJSON } from 'react-leaflet'
-import { Bar, BarChart, Tooltip, YAxis } from 'recharts'
+import {
+    Bar,
+    BarChart,
+    Tooltip,
+    YAxis,
+    type YAxisTickContentProps,
+} from 'recharts'
 import { AU, CA, FR, IN, IT, US } from '@/shared/assets/flags'
 import type { Feature, FeatureCollection } from 'geojson'
 import L from 'leaflet'
@@ -57,11 +63,11 @@ const dataChart = [
     { country: 'India', value: 15000 },
 ]
 
-const CustomYAxisTick = ({ x, y, payload }) => {
+const CustomYAxisTick = ({ x, y, payload }: YAxisTickContentProps) => {
     const Flag = flagMap[payload.value]
 
     return (
-        <g transform={`translate(${x - 100}, ${y - 6.5})`}>
+        <g transform={`translate(${Number(x) - 100}, ${Number(y) - 6.5})`}>
             {Flag && <Flag height={14} width={20} />}
             <text
                 x={32}
@@ -157,7 +163,7 @@ export const SessionsByCountry = () => {
                     <YAxis
                         type="category"
                         dataKey="country"
-                        tick={<CustomYAxisTick />}
+                        tick={CustomYAxisTick}
                         axisLine={false}
                         tickLine={false}
                         tickMargin={46}
