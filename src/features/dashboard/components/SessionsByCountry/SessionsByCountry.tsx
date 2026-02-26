@@ -1,5 +1,6 @@
 import { MapContainer, GeoJSON } from 'react-leaflet'
 import { Bar, BarChart, Tooltip, YAxis } from 'recharts'
+import { AU, CA, FR, IN, IT, US } from '@/shared/assets/flags'
 import type { Feature, FeatureCollection } from 'geojson'
 import L from 'leaflet'
 import worldGeoJson from './world.geo.json'
@@ -14,6 +15,15 @@ const robinsonCrs = new L.Proj.CRS(
         resolutions: [65536, 32768, 16384, 8192, 4096, 2048, 1024, 512, 256],
     },
 )
+
+const flagMap: Record<string, React.ElementType> = {
+    'United States': US,
+    Canada: CA,
+    France: FR,
+    Italy: IT,
+    Australia: AU,
+    India: IN,
+}
 
 const dataMap = [
     { countryCode: 'US', sessions: 35000 },
@@ -46,6 +56,26 @@ const dataChart = [
     { country: 'Australia', value: 18000 },
     { country: 'India', value: 15000 },
 ]
+
+const CustomYAxisTick = ({ x, y, payload }) => {
+    const Flag = flagMap[payload.value]
+
+    return (
+        <g transform={`translate(${x - 100}, ${y - 6.5})`}>
+            {Flag && <Flag height={14} width={20} />}
+            <text
+                x={32}
+                y={11}
+                textAnchor="start"
+                fill="#18181b"
+                fontSize={12}
+                fontWeight={500}
+            >
+                {payload.value}
+            </text>
+        </g>
+    )
+}
 
 export const SessionsByCountry = () => {
     const maxSessions = Math.max(...dataMap.map((c) => c.sessions), 0)
@@ -127,14 +157,11 @@ export const SessionsByCountry = () => {
                     <YAxis
                         type="category"
                         dataKey="country"
+                        tick={<CustomYAxisTick />}
                         axisLine={false}
                         tickLine={false}
                         tickMargin={46}
-                        width={162}
-                        tick={{
-                            textAnchor: 'start',
-                            dx: -72,
-                        }}
+                        width={152}
                     />
                     <Tooltip cursor={false} />
                     <Bar
