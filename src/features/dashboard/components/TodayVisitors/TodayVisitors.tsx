@@ -1,4 +1,5 @@
-import { Area, AreaChart, Tooltip, XAxis } from 'recharts'
+import { Area, AreaChart, Tooltip as RechartsTooltip, XAxis } from 'recharts'
+import { Tooltip } from '@/shared/components'
 import { MetricCard } from '@/features/dashboard/components'
 import styles from './TodayVisitors.module.scss'
 
@@ -72,7 +73,7 @@ export const TodayVisitors = () => {
                     </linearGradient>
                 </defs>
                 <XAxis dataKey="time" hide />
-                <Tooltip cursor={false} />
+                <RechartsTooltip content={Tooltip} cursor={false} />
                 <Area
                     type="monotone"
                     dataKey="visitors"
