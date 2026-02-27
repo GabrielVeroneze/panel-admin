@@ -1,0 +1,64 @@
+@use '@/styles/tokens' as *;
+
+.tooltip {
+    background-color: $white;
+    border: $border solid $gray-light;
+    border-radius: $rounded;
+    box-shadow: $shadow;
+    min-height: 52px;
+    min-width: 118px;
+    padding: $space-2 $space-1-5 $space-3;
+    position: relative;
+    width: max-content;
+
+    .title {
+        color: $gray-darkest;
+        font-size: $text-lg;
+        font-weight: $font-semibold;
+        margin-bottom: $space-2;
+    }
+
+    .items {
+        display: flex;
+        flex-direction: column;
+        gap: $space-2;
+
+        .item {
+            align-items: center;
+            display: flex;
+
+            .dot {
+                border-radius: $rounded-full;
+                height: 8px;
+                margin-right: $space-1;
+                width: 8px;
+            }
+
+            .label {
+                color: $gray-dark;
+                font-size: $text-lg;
+                font-weight: $font-normal;
+            }
+
+            .value {
+                color: $gray-darkest;
+                font-size: $text-lg;
+                font-weight: $font-semibold;
+                margin-left: $space-0-5;
+            }
+        }
+    }
+
+    &::after {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid $white;
+        content: '';
+        height: 0;
+        left: 50%;
+        position: absolute;
+        top: 100%;
+        transform: translateX(-50%);
+        width: 0;
+    }
+}
