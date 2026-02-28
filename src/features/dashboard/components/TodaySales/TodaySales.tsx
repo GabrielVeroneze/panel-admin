@@ -1,6 +1,6 @@
-import { Bar, BarChart, Tooltip as RechartsTooltip, XAxis } from 'recharts'
+import { Bar, BarChart, Tooltip, XAxis } from 'recharts'
 import { formatCurrency } from '@/shared/utils'
-import { Tooltip } from '@/shared/components'
+import { ChartTooltip } from '@/shared/components'
 import { MetricCard } from '@/features/dashboard/components'
 import styles from './TodaySales.module.scss'
 
@@ -33,8 +33,8 @@ export const TodaySales = () => {
                 }}
             >
                 <XAxis dataKey="time" hide />
-                <RechartsTooltip
-                    content={Tooltip}
+                <Tooltip
+                    content={ChartTooltip}
                     formatter={formatTooltip}
                     cursor={{ fill: '#f4f4f5' }}
                 />
