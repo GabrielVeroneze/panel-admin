@@ -1,13 +1,6 @@
-import {
-    CartesianGrid,
-    Line,
-    LineChart,
-    Tooltip as RechartsTooltip,
-    XAxis,
-    YAxis,
-} from 'recharts'
-import { formatCompactCurrency, formatCompactNumberUpper } from '@/shared/utils'
-import { Button, ButtonGroup, Tooltip } from '@/shared/components'
+import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
+import { formatCompactCurrency, formatCompactNumber } from '@/shared/utils'
+import { Button, ButtonGroup, ChartTooltip } from '@/shared/components'
 import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import styles from './SalesChart.module.scss'
 
@@ -22,7 +15,8 @@ const data = [
 ]
 
 export const SalesChart = () => {
-    const formatYAxis = formatCompactNumberUpper
+    const formatYAxis = (value: number) =>
+        formatCompactNumber(value, { suffix: 'K' })
 
     const formatTooltip = (value?: number) =>
         value ? formatCompactCurrency(value) : ''
@@ -67,8 +61,8 @@ export const SalesChart = () => {
                         tickFormatter={formatYAxis}
                         width="auto"
                     />
-                    <RechartsTooltip
-                        content={Tooltip}
+                    <Tooltip
+                        content={ChartTooltip}
                         formatter={formatTooltip}
                         cursor={{
                             strokeWidth: 1,
