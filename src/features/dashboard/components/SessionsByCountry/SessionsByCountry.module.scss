@@ -3,11 +3,11 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: $space-7;
 
     .header {
         display: flex;
         flex-direction: column-reverse;
+        margin-bottom: $space-7;
 
         .title {
             color: $gray-dark;
@@ -24,17 +24,38 @@
 
     .mapContainer {
         height: 100%;
-        overflow: hidden;
         width: 100%;
 
         .map {
             background: $white;
             height: 275px;
             width: 100%;
+
+            &:global(.leaflet-container) {
+                overflow: visible;
+            }
+
+            :global(.leaflet-tooltip) {
+                background: none;
+                border: none;
+                box-shadow: none;
+                opacity: 1 !important;
+                padding: 0;
+            }
+
+            :global(.leaflet-interactive) {
+                &:focus {
+                    outline: none;
+                }
+            }
         }
     }
 
     .chartContainer {
+        background-color: $white;
+        padding-top: $space-7;
+        z-index: 500;
+
         .chart {
             aspect-ratio: 1.618;
             height: 208px;
