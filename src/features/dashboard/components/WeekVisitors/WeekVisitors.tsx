@@ -1,12 +1,6 @@
-import {
-    Bar,
-    BarChart,
-    Tooltip as RechartsTooltip,
-    XAxis,
-    type TooltipProps,
-} from 'recharts'
+import { Bar, BarChart, Tooltip, XAxis, type TooltipProps } from 'recharts'
 import { formatCompactNumber } from '@/shared/utils'
-import { Tooltip } from '@/shared/components'
+import { ChartTooltip } from '@/shared/components'
 import { MetricCard } from '@/features/dashboard/components'
 import styles from './WeekVisitors.module.scss'
 
@@ -58,8 +52,8 @@ export const WeekVisitors = () => {
                     tickMargin={8}
                     tickFormatter={(_value, index) => data[index].label}
                 />
-                <RechartsTooltip
-                    content={Tooltip}
+                <Tooltip
+                    content={ChartTooltip}
                     labelFormatter={formatDayLabel}
                     formatter={formatUsersValue}
                     cursor={false}
