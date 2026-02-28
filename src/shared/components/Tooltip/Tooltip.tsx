@@ -1,32 +1,17 @@
-import type { TooltipContentProps } from 'recharts'
+import type { TooltipItem } from './Tooltip.types'
 import styles from './Tooltip.module.scss'
 
-export const Tooltip = ({
-    active,
-    payload,
-    label,
-    formatter,
-    labelFormatter,
-}: TooltipContentProps<number, string>) => {
-    if (!active || !payload.length) return null
+type TooltipProps = {
+    title?: string
+    items: TooltipItem[]
+}
 
-    const formattedLabel = labelFormatter
-        ? labelFormatter(label, payload)
-        : label
-
-    const getFormattedValue = (
-        item: (typeof payload)[number],
-        index: number,
-    ) =>
-        formatter
-            ? formatter(item.value, item.name, item, index, payload)
-            : item.value
-
+export const Tooltip = ({ title, items }: TooltipProps) => {
     return (
         <div className={styles.tooltip} role="tooltip">
-            {formattedLabel && <p className={styles.title}>{formattedLabel}</p>}
+            {title && <p className={styles.title}>{title}</p>}
             <ul className={styles.items}>
-                {payload.map((item, index) => (
+                {items.map((item, index) => (
                     <li key={index} className={styles.item}>
                         {item.color && (
                             <span
@@ -35,9 +20,7 @@ export const Tooltip = ({
                             />
                         )}
                         <span className={styles.label}>{item.name}: </span>
-                        <span className={styles.value}>
-                            {getFormattedValue(item, index)}
-                        </span>
+                        <span className={styles.value}>{item.value}</span>
                     </li>
                 ))}
             </ul>
