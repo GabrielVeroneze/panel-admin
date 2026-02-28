@@ -17,3 +17,11 @@ export const formatCurrency = (value: number) => {
 export const formatCompactCurrency = (value: number) => {
     return `$${(value / 1000).toFixed(0)}k`
 }
+
+export const formatChangePercent = (current: number, previous: number) => {
+    if (!previous) return '0%'
+
+    const change = ((current - previous) / previous) * 100
+
+    return `${change.toFixed(0)}%`
+}
