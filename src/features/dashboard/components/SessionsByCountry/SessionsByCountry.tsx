@@ -8,7 +8,7 @@ import {
     YAxis,
     type YAxisTickContentProps,
 } from 'recharts'
-import { formatCompactNumber } from '@/shared/utils'
+import { formatChangePercent, formatCompactNumber } from '@/shared/utils'
 import { Tooltip } from '@/shared/components'
 import { AU, CA, FR, IN, IT, US } from '@/shared/assets/flags'
 import type { Feature, FeatureCollection } from 'geojson'
@@ -37,26 +37,26 @@ const flagMap: Record<string, React.ElementType> = {
 }
 
 const dataMap = [
-    { countryCode: 'US', sessions: 35000 },
-    { countryCode: 'CA', sessions: 25000 },
-    { countryCode: 'MX', sessions: 20000 },
-    { countryCode: 'CO', sessions: 5000 },
-    { countryCode: 'PE', sessions: 15000 },
-    { countryCode: 'BO', sessions: 15000 },
-    { countryCode: 'ES', sessions: 10000 },
-    { countryCode: 'FR', sessions: 10000 },
-    { countryCode: 'IT', sessions: 10000 },
-    { countryCode: 'RU', sessions: 5000 },
-    { countryCode: 'IR', sessions: 5000 },
-    { countryCode: 'PK', sessions: 5000 },
-    { countryCode: 'IN', sessions: 15000 },
-    { countryCode: 'CN', sessions: 15000 },
-    { countryCode: 'MY', sessions: 5000 },
-    { countryCode: 'ID', sessions: 20000 },
-    { countryCode: 'AU', sessions: 20000 },
-    { countryCode: 'SD', sessions: 5000 },
-    { countryCode: 'SS', sessions: 5000 },
-    { countryCode: 'AO', sessions: 5000 },
+    { countryCode: 'US', sessions: 35000, previousWeek: 30000 },
+    { countryCode: 'CA', sessions: 25000, previousWeek: 20000 },
+    { countryCode: 'MX', sessions: 20000, previousWeek: 18000 },
+    { countryCode: 'CO', sessions: 5000, previousWeek: 4000 },
+    { countryCode: 'PE', sessions: 15000, previousWeek: 12000 },
+    { countryCode: 'BO', sessions: 15000, previousWeek: 13000 },
+    { countryCode: 'ES', sessions: 10000, previousWeek: 9000 },
+    { countryCode: 'FR', sessions: 10000, previousWeek: 8000 },
+    { countryCode: 'IT', sessions: 10000, previousWeek: 9500 },
+    { countryCode: 'RU', sessions: 5000, previousWeek: 6000 },
+    { countryCode: 'IR', sessions: 5000, previousWeek: 4000 },
+    { countryCode: 'PK', sessions: 5000, previousWeek: 4500 },
+    { countryCode: 'IN', sessions: 15000, previousWeek: 12000 },
+    { countryCode: 'CN', sessions: 15000, previousWeek: 14000 },
+    { countryCode: 'MY', sessions: 5000, previousWeek: 4800 },
+    { countryCode: 'ID', sessions: 20000, previousWeek: 18000 },
+    { countryCode: 'AU', sessions: 20000, previousWeek: 17000 },
+    { countryCode: 'SD', sessions: 5000, previousWeek: 4000 },
+    { countryCode: 'SS', sessions: 5000, previousWeek: 4500 },
+    { countryCode: 'AO', sessions: 5000, previousWeek: 4200 },
 ]
 
 const dataChart = [
@@ -93,10 +93,15 @@ export const SessionsByCountry = () => {
 
     const sessionsMap = new Map(dataMap.map((c) => [c.countryCode, c.sessions]))
 
+    const previousMap = new Map(
+        dataMap.map((c) => [c.countryCode, c.previousWeek]),
+    )
+
     const onEachFeature = (feature: Feature, layer: L.Layer) => {
         const isoCode = feature.properties?.iso_a2
         const countryName = feature.properties?.name
         const sessions = sessionsMap.get(isoCode) ?? 0
+        const previous = previousMap.get(isoCode) ?? 0
 
         const tooltipHtml = renderToString(
             <Tooltip
@@ -108,7 +113,7 @@ export const SessionsByCountry = () => {
                     },
                     {
                         name: 'Change',
-                        value: '24%',
+                        value: formatChangePercent(sessions, previous),
                     },
                 ]}
             />,
