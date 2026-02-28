@@ -1,12 +1,15 @@
+import { renderToString } from 'react-dom/server'
 import { MapContainer, GeoJSON } from 'react-leaflet'
 import {
     Bar,
     BarChart,
-    Tooltip,
+    Tooltip as RechartsTooltip,
     XAxis,
     YAxis,
     type YAxisTickContentProps,
 } from 'recharts'
+import { formatCompactNumber } from '@/shared/utils'
+import { Tooltip } from '@/shared/components'
 import { AU, CA, FR, IN, IT, US } from '@/shared/assets/flags'
 import type { Feature, FeatureCollection } from 'geojson'
 import L from 'leaflet'
@@ -95,18 +98,26 @@ export const SessionsByCountry = () => {
         const countryName = feature.properties?.name
         const sessions = sessionsMap.get(isoCode) ?? 0
 
-        layer.bindTooltip(
-            `
-                <div class="map-tooltip">
-                    <strong>${countryName}</strong>
-                    <div>${sessions.toLocaleString()} sessions</div>
-                </div>
-            `,
-            {
-                sticky: true,
-                direction: 'top',
-            },
+        const tooltipHtml = renderToString(
+            <Tooltip
+                title={countryName}
+                items={[
+                    {
+                        name: 'Visitors',
+                        value: formatCompactNumber(sessions, { decimals: 1 }),
+                    },
+                    {
+                        name: 'Change',
+                        value: '24%',
+                    },
+                ]}
+            />,
         )
+
+        layer.bindTooltip(tooltipHtml, {
+            sticky: true,
+            direction: 'top',
+        })
     }
 
     const getColor = (value: number, max: number) => {
@@ -192,7 +203,7 @@ export const SessionsByCountry = () => {
                         width={152}
                     />
                     <XAxis type="number" hide />
-                    <Tooltip cursor={false} />
+                    <RechartsTooltip cursor={false} />
                     <Bar
                         dataKey="value"
                         name="Value"
