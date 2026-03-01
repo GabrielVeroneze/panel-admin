@@ -10,13 +10,15 @@ import {
 } from 'recharts'
 import { formatChangePercent, formatCompactNumber } from '@/shared/utils'
 import { ChartTooltip, Tooltip } from '@/shared/components'
-import { AU, CA, FR, IN, IT, US } from '@/shared/assets/flags'
 import type { Feature, FeatureCollection } from 'geojson'
+import * as Flags from '@/shared/assets/flags'
 import L from 'leaflet'
 import worldGeoJson from './world.geo.json'
 import styles from './SessionsByCountry.module.scss'
 import 'proj4leaflet'
 import 'leaflet/dist/leaflet.css'
+
+type FlagKey = keyof typeof Flags
 
 const robinsonCrs = new L.Proj.CRS(
     'ESRI:54030',
@@ -103,10 +105,23 @@ export const SessionsByCountry = () => {
         const sessions = sessionsMap.get(isoCode) ?? 0
         const previous = previousMap.get(isoCode) ?? 0
 
+        const Flag = Flags[isoCode as FlagKey]
+
         const tooltipHtml = renderToString(
             <Tooltip
                 showArrow
-                title={countryName}
+                title={
+                    <div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 4,
+                        }}
+                    >
+                        {Flag && <Flag height={12} width={18} />}
+                        <span>{countryName}</span>
+                    </div>
+                }
                 items={[
                     {
                         name: 'Visitors',
