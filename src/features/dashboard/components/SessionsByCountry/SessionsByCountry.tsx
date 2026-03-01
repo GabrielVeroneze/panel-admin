@@ -29,15 +29,6 @@ const robinsonCrs = new L.Proj.CRS(
     },
 )
 
-const flagMap: Record<string, React.ElementType> = {
-    'United States': US,
-    Canada: CA,
-    France: FR,
-    Italy: IT,
-    Australia: AU,
-    India: IN,
-}
-
 const dataMap = [
     { countryCode: 'US', sessions: 40000, previousWeek: 30000 },
     { countryCode: 'CA', sessions: 30000, previousWeek: 20000 },
@@ -62,16 +53,28 @@ const dataMap = [
 ]
 
 const dataChart = [
-    { country: 'United States', value: 40000 },
-    { country: 'Canada', value: 30000 },
-    { country: 'France', value: 25000 },
-    { country: 'Italy', value: 20000 },
-    { country: 'Australia', value: 18000 },
-    { country: 'India', value: 15000 },
+    { countryCode: 'US', label: 'United States', value: 40000 },
+    { countryCode: 'CA', label: 'Canada', value: 30000 },
+    { countryCode: 'FR', label: 'France', value: 25000 },
+    { countryCode: 'IT', label: 'Italy', value: 20000 },
+    { countryCode: 'AU', label: 'Australia', value: 18000 },
+    { countryCode: 'ID', label: 'India', value: 15000 },
 ]
 
-const CustomYAxisTick = ({ x, y, payload }: YAxisTickContentProps) => {
-    const Flag = flagMap[payload.value]
+const CustomYAxisTick = ({
+    x,
+    y,
+    payload,
+    index,
+    tickFormatter,
+}: YAxisTickContentProps) => {
+    const isoCode = payload.value
+
+    const Flag = Flags[isoCode as FlagKey]
+
+    const label = tickFormatter
+        ? tickFormatter(payload.value, index)
+        : payload.value
 
     return (
         <g transform={`translate(${Number(x) - 100}, ${Number(y) - 6.5})`}>
@@ -84,7 +87,7 @@ const CustomYAxisTick = ({ x, y, payload }: YAxisTickContentProps) => {
                 fontSize={12}
                 fontWeight={500}
             >
-                {payload.value}
+                {label}
             </text>
         </g>
     )
@@ -219,8 +222,11 @@ export const SessionsByCountry = () => {
                 >
                     <YAxis
                         type="category"
-                        dataKey="country"
+                        dataKey="countryCode"
                         tick={CustomYAxisTick}
+                        tickFormatter={(_value, index) =>
+                            dataChart[index].label
+                        }
                         axisLine={false}
                         tickLine={false}
                         tickMargin={46}
