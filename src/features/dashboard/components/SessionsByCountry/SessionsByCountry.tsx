@@ -9,7 +9,7 @@ import {
     type YAxisTickContentProps,
 } from 'recharts'
 import { formatChangePercent, formatCompactNumber } from '@/shared/utils'
-import { Tooltip } from '@/shared/components'
+import { ChartTooltip, Tooltip } from '@/shared/components'
 import { AU, CA, FR, IN, IT, US } from '@/shared/assets/flags'
 import type { Feature, FeatureCollection } from 'geojson'
 import L from 'leaflet'
@@ -159,6 +159,9 @@ export const SessionsByCountry = () => {
         }
     }
 
+    const formatTooltip = (value?: number) =>
+        value ? formatCompactNumber(value, { decimals: 1 }) : ''
+
     return (
         <div className={styles.container}>
             <header className={styles.header}>
@@ -209,7 +212,11 @@ export const SessionsByCountry = () => {
                         width={152}
                     />
                     <XAxis type="number" hide />
-                    <RechartsTooltip cursor={false} />
+                    <RechartsTooltip
+                        content={ChartTooltip}
+                        formatter={formatTooltip}
+                        cursor={false}
+                    />
                     <Bar
                         dataKey="value"
                         name="Value"
