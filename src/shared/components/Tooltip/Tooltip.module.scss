@@ -49,27 +49,27 @@
         }
     }
 
-    &::before {
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 10px solid $gray-light;
-        content: '';
-        left: 50%;
-        position: absolute;
-        top: 100%;
-        transform: translateX(-50%);
-    }
+    &.withArrow {
+        &::before {
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid $gray-light;
+            content: '';
+            left: 50%;
+            position: absolute;
+            top: 100%;
+            transform: translateX(-50%);
+        }
 
-    &::after {
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-top: 8px solid $white;
-        content: '';
-        height: 0;
-        left: 50%;
-        position: absolute;
-        top: 100%;
-        transform: translateX(-50%);
-        width: 0;
+        &::after {
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid $white;
+            content: '';
+            left: 50%;
+            position: absolute;
+            top: 100%;
+            transform: translateX(-50%);
+        }
     }
 }
