@@ -29,37 +29,132 @@ const robinsonCrs = new L.Proj.CRS(
     },
 )
 
-const dataMap = [
-    { countryCode: 'US', sessions: 40000, previousWeek: 30000 },
-    { countryCode: 'CA', sessions: 30000, previousWeek: 20000 },
-    { countryCode: 'MX', sessions: 20000, previousWeek: 18000 },
-    { countryCode: 'CO', sessions: 5000, previousWeek: 4000 },
-    { countryCode: 'PE', sessions: 15000, previousWeek: 12000 },
-    { countryCode: 'BO', sessions: 15000, previousWeek: 13000 },
-    { countryCode: 'ES', sessions: 10000, previousWeek: 9000 },
-    { countryCode: 'FR', sessions: 25000, previousWeek: 8000 },
-    { countryCode: 'IT', sessions: 20000, previousWeek: 9500 },
-    { countryCode: 'RU', sessions: 5000, previousWeek: 6000 },
-    { countryCode: 'IR', sessions: 5000, previousWeek: 4000 },
-    { countryCode: 'PK', sessions: 5000, previousWeek: 4500 },
-    { countryCode: 'IN', sessions: 15000, previousWeek: 12000 },
-    { countryCode: 'CN', sessions: 15000, previousWeek: 14000 },
-    { countryCode: 'MY', sessions: 5000, previousWeek: 4800 },
-    { countryCode: 'ID', sessions: 15000, previousWeek: 18000 },
-    { countryCode: 'AU', sessions: 18000, previousWeek: 17000 },
-    { countryCode: 'SD', sessions: 5000, previousWeek: 4000 },
-    { countryCode: 'SS', sessions: 5000, previousWeek: 4500 },
-    { countryCode: 'AO', sessions: 5000, previousWeek: 4200 },
+const data = [
+    {
+        countryCode: 'US',
+        countryName: 'United States',
+        sessions: 40000,
+        previousWeek: 30000,
+    },
+    {
+        countryCode: 'CA',
+        countryName: 'Canada',
+        sessions: 30000,
+        previousWeek: 20000,
+    },
+    {
+        countryCode: 'MX',
+        countryName: 'Mexico',
+        sessions: 20000,
+        previousWeek: 18000,
+    },
+    {
+        countryCode: 'CO',
+        countryName: 'Colombia',
+        sessions: 5000,
+        previousWeek: 4000,
+    },
+    {
+        countryCode: 'PE',
+        countryName: 'Peru',
+        sessions: 15000,
+        previousWeek: 12000,
+    },
+    {
+        countryCode: 'BO',
+        countryName: 'Bolivia',
+        sessions: 15000,
+        previousWeek: 13000,
+    },
+    {
+        countryCode: 'ES',
+        countryName: 'Spain',
+        sessions: 10000,
+        previousWeek: 9000,
+    },
+    {
+        countryCode: 'FR',
+        countryName: 'France',
+        sessions: 25000,
+        previousWeek: 8000,
+    },
+    {
+        countryCode: 'IT',
+        countryName: 'Italy',
+        sessions: 20000,
+        previousWeek: 9500,
+    },
+    {
+        countryCode: 'RU',
+        countryName: 'Russia',
+        sessions: 5000,
+        previousWeek: 6000,
+    },
+    {
+        countryCode: 'IR',
+        countryName: 'Iran',
+        sessions: 5000,
+        previousWeek: 4000,
+    },
+    {
+        countryCode: 'PK',
+        countryName: 'Pakistan',
+        sessions: 5000,
+        previousWeek: 4500,
+    },
+    {
+        countryCode: 'IN',
+        countryName: 'India',
+        sessions: 15000,
+        previousWeek: 12000,
+    },
+    {
+        countryCode: 'CN',
+        countryName: 'China',
+        sessions: 15000,
+        previousWeek: 14000,
+    },
+    {
+        countryCode: 'MY',
+        countryName: 'Malaysia',
+        sessions: 5000,
+        previousWeek: 4800,
+    },
+    {
+        countryCode: 'ID',
+        countryName: 'Indonesia',
+        sessions: 15000,
+        previousWeek: 18000,
+    },
+    {
+        countryCode: 'AU',
+        countryName: 'Australia',
+        sessions: 18000,
+        previousWeek: 17000,
+    },
+    {
+        countryCode: 'SD',
+        countryName: 'Sudan',
+        sessions: 5000,
+        previousWeek: 4000,
+    },
+    {
+        countryCode: 'SS',
+        countryName: 'South Sudan',
+        sessions: 5000,
+        previousWeek: 4500,
+    },
+    {
+        countryCode: 'AO',
+        countryName: 'Angola',
+        sessions: 5000,
+        previousWeek: 4200,
+    },
 ]
 
-const dataChart = [
-    { countryCode: 'US', label: 'United States', value: 40000 },
-    { countryCode: 'CA', label: 'Canada', value: 30000 },
-    { countryCode: 'FR', label: 'France', value: 25000 },
-    { countryCode: 'IT', label: 'Italy', value: 20000 },
-    { countryCode: 'AU', label: 'Australia', value: 18000 },
-    { countryCode: 'ID', label: 'India', value: 15000 },
-]
+const topCountries = [...data]
+    .sort((a, b) => b.sessions - a.sessions)
+    .slice(0, 6)
 
 const CustomYAxisTick = ({
     x,
@@ -94,12 +189,12 @@ const CustomYAxisTick = ({
 }
 
 export const SessionsByCountry = () => {
-    const maxSessions = Math.max(...dataMap.map((c) => c.sessions), 0)
+    const maxSessions = Math.max(...data.map((c) => c.sessions), 0)
 
-    const sessionsMap = new Map(dataMap.map((c) => [c.countryCode, c.sessions]))
+    const sessionsMap = new Map(data.map((c) => [c.countryCode, c.sessions]))
 
     const previousMap = new Map(
-        dataMap.map((c) => [c.countryCode, c.previousWeek]),
+        data.map((c) => [c.countryCode, c.previousWeek]),
     )
 
     const onEachFeature = (feature: Feature, layer: L.Layer) => {
@@ -210,7 +305,7 @@ export const SessionsByCountry = () => {
                 <BarChart
                     className={styles.chart}
                     layout="vertical"
-                    data={dataChart}
+                    data={topCountries}
                     barSize={16}
                     responsive
                     margin={{
@@ -225,7 +320,7 @@ export const SessionsByCountry = () => {
                         dataKey="countryCode"
                         tick={CustomYAxisTick}
                         tickFormatter={(_value, index) =>
-                            dataChart[index].label
+                            topCountries[index].countryName
                         }
                         axisLine={false}
                         tickLine={false}
@@ -239,8 +334,8 @@ export const SessionsByCountry = () => {
                         cursor={false}
                     />
                     <Bar
-                        dataKey="value"
-                        name="Value"
+                        dataKey="sessions"
+                        name="Sessions"
                         fill="#1c64f2"
                         radius={4}
                         background={{ fill: '#f4f4f5', radius: 4 }}
