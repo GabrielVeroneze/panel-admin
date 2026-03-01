@@ -6,6 +6,7 @@ import {
     Tooltip as RechartsTooltip,
     XAxis,
     YAxis,
+    type TooltipProps,
     type YAxisTickContentProps,
 } from 'recharts'
 import { formatChangePercent, formatCompactNumber } from '@/shared/utils'
@@ -272,8 +273,15 @@ export const SessionsByCountry = () => {
         }
     }
 
-    const formatTooltip = (value?: number) =>
+    const formatTooltip: TooltipProps<number, string>['formatter'] = (value) =>
         value ? formatCompactNumber(value, { decimals: 1 }) : ''
+
+    const formatTooltipLabel: TooltipProps<number, string>['labelFormatter'] = (
+        _label,
+        payload,
+    ) => {
+        return payload[0].payload.countryName
+    }
 
     return (
         <div className={styles.container}>
@@ -330,6 +338,7 @@ export const SessionsByCountry = () => {
                     <XAxis type="number" hide />
                     <RechartsTooltip
                         content={ChartTooltip}
+                        labelFormatter={formatTooltipLabel}
                         formatter={formatTooltip}
                         cursor={false}
                     />
