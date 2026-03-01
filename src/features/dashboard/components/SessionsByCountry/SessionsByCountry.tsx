@@ -105,6 +105,7 @@ export const SessionsByCountry = () => {
 
         const tooltipHtml = renderToString(
             <Tooltip
+                showArrow
                 title={countryName}
                 items={[
                     {
