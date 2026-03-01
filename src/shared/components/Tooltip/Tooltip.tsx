@@ -1,14 +1,19 @@
 import type { TooltipItem } from './Tooltip.types'
+import clsx from 'clsx'
 import styles from './Tooltip.module.scss'
 
 type TooltipProps = {
     title?: string
     items: TooltipItem[]
+    showArrow?: boolean
 }
 
-export const Tooltip = ({ title, items }: TooltipProps) => {
+export const Tooltip = ({ title, items, showArrow = false }: TooltipProps) => {
     return (
-        <div className={styles.tooltip} role="tooltip">
+        <div
+            className={clsx(styles.tooltip, showArrow && styles.withArrow)}
+            role="tooltip"
+        >
             {title && <p className={styles.title}>{title}</p>}
             <ul className={styles.items}>
                 {items.map((item, index) => (
