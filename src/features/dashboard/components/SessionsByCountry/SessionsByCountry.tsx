@@ -17,7 +17,6 @@ import L from 'leaflet'
 import worldGeoJson from './world.geo.json'
 import styles from './SessionsByCountry.module.scss'
 import 'proj4leaflet'
-import 'leaflet/dist/leaflet.css'
 
 type FlagKey = keyof typeof Flags
 
