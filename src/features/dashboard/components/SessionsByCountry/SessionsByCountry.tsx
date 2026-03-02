@@ -1,4 +1,3 @@
-import { renderToString } from 'react-dom/server'
 import { MapContainer, GeoJSON } from 'react-leaflet'
 import {
     Bar,
@@ -8,54 +7,12 @@ import {
     YAxis,
     type TooltipProps,
 } from 'recharts'
-import { formatChangePercent, formatCompactNumber } from '@/shared/utils'
 import { ChartTooltip, Tooltip } from '@/shared/components'
 import type { Feature, FeatureCollection } from 'geojson'
 import worldGeoJson from './world.geo.json'
 import styles from './SessionsByCountry.module.scss'
 
 export const SessionsByCountry = () => {
-    const onEachFeature = (feature: Feature, layer: L.Layer) => {
-        const isoCode = feature.properties?.iso_a2
-        const countryName = feature.properties?.name
-        const sessions = sessionsMap.get(isoCode) ?? 0
-        const previous = previousMap.get(isoCode) ?? 0
-
-        const Flag = Flags[isoCode as FlagKey]
-
-        const tooltipHtml = renderToString(
-            <Tooltip
-                showArrow
-                title={
-                    <div
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: 4,
-                        }}
-                    >
-                        {Flag && <Flag height={12} width={18} />}
-                        <span>{countryName}</span>
-                    </div>
-                }
-                items={[
-                    {
-                        name: 'Visitors',
-                        value: formatCompactNumber(sessions, { decimals: 1 }),
-                    },
-                    {
-                        name: 'Change',
-                        value: formatChangePercent(sessions, previous),
-                    },
-                ]}
-            />,
-        )
-
-        layer.bindTooltip(tooltipHtml, {
-            sticky: true,
-            direction: 'top',
-        })
-    }
 
     const getColor = (value: number, max: number) => {
         if (!value) return '#d1d5db'
