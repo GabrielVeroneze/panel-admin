@@ -7,48 +7,12 @@ import {
     XAxis,
     YAxis,
     type TooltipProps,
-    type YAxisTickContentProps,
 } from 'recharts'
 import { formatChangePercent, formatCompactNumber } from '@/shared/utils'
 import { ChartTooltip, Tooltip } from '@/shared/components'
 import type { Feature, FeatureCollection } from 'geojson'
-import * as Flags from '@/shared/assets/flags'
 import worldGeoJson from './world.geo.json'
 import styles from './SessionsByCountry.module.scss'
-
-type FlagKey = keyof typeof Flags
-
-const CustomYAxisTick = ({
-    x,
-    y,
-    payload,
-    index,
-    tickFormatter,
-}: YAxisTickContentProps) => {
-    const isoCode = payload.value
-
-    const Flag = Flags[isoCode as FlagKey]
-
-    const label = tickFormatter
-        ? tickFormatter(payload.value, index)
-        : payload.value
-
-    return (
-        <g transform={`translate(${Number(x) - 100}, ${Number(y) - 6.5})`}>
-            {Flag && <Flag height={14} width={20} />}
-            <text
-                x={32}
-                y={11}
-                textAnchor="start"
-                fill="#18181b"
-                fontSize={12}
-                fontWeight={500}
-            >
-                {label}
-            </text>
-        </g>
-    )
-}
 
 export const SessionsByCountry = () => {
     const onEachFeature = (feature: Feature, layer: L.Layer) => {
