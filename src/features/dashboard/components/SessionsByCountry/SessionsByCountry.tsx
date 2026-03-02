@@ -1,4 +1,3 @@
-import { MapContainer, GeoJSON } from 'react-leaflet'
 import {
     Bar,
     BarChart,
@@ -7,8 +6,6 @@ import {
     YAxis,
 } from 'recharts'
 import { ChartTooltip, Tooltip } from '@/shared/components'
-import type { Feature, FeatureCollection } from 'geojson'
-import worldGeoJson from './world.geo.json'
 import styles from './SessionsByCountry.module.scss'
 
 export const SessionsByCountry = () => {
@@ -20,24 +17,6 @@ export const SessionsByCountry = () => {
                 <strong className={styles.value}>United States</strong>
             </header>
             <div className={styles.mapContainer}>
-                <MapContainer
-                    className={styles.map}
-                    crs={robinsonCrs}
-                    center={[10, 15]}
-                    zoom={0.2}
-                    zoomSnap={0}
-                    zoomControl={false}
-                    dragging={false}
-                    doubleClickZoom={false}
-                    scrollWheelZoom={false}
-                    attributionControl={false}
-                >
-                    <GeoJSON
-                        data={worldGeoJson as FeatureCollection}
-                        onEachFeature={onEachFeature}
-                        style={style}
-                    />
-                </MapContainer>
             </div>
             <div className={styles.chartContainer}>
                 <BarChart
