@@ -5,7 +5,6 @@ import {
     Tooltip as RechartsTooltip,
     XAxis,
     YAxis,
-    type TooltipProps,
 } from 'recharts'
 import { ChartTooltip, Tooltip } from '@/shared/components'
 import type { Feature, FeatureCollection } from 'geojson'
@@ -13,28 +12,6 @@ import worldGeoJson from './world.geo.json'
 import styles from './SessionsByCountry.module.scss'
 
 export const SessionsByCountry = () => {
-
-    const getColor = (value: number, max: number) => {
-        if (!value) return '#d1d5db'
-
-        const intensity = value / max
-
-        if (intensity > 0.75) return '#1a56db'
-        if (intensity > 0.5) return '#3f83f8'
-        if (intensity > 0.25) return '#76a9fa'
-
-        return '#a4cafe'
-    }
-
-    const formatTooltip: TooltipProps<number, string>['formatter'] = (value) =>
-        value ? formatCompactNumber(value, { decimals: 1 }) : ''
-
-    const formatTooltipLabel: TooltipProps<number, string>['labelFormatter'] = (
-        _label,
-        payload,
-    ) => {
-        return payload[0].payload.countryName
-    }
 
     return (
         <div className={styles.container}>
