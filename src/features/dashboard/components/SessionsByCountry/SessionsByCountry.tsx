@@ -13,21 +13,11 @@ import { formatChangePercent, formatCompactNumber } from '@/shared/utils'
 import { ChartTooltip, Tooltip } from '@/shared/components'
 import type { Feature, FeatureCollection } from 'geojson'
 import * as Flags from '@/shared/assets/flags'
-import L from 'leaflet'
 import worldGeoJson from './world.geo.json'
 import styles from './SessionsByCountry.module.scss'
-import 'proj4leaflet'
 
 type FlagKey = keyof typeof Flags
 
-const robinsonCrs = new L.Proj.CRS(
-    'ESRI:54030',
-    '+proj=robin +lon_0=0 +x_0=0 +y_0=0 +units=m +no_defs',
-    {
-        origin: [0, 0],
-        resolutions: [65536, 32768, 16384, 8192, 4096, 2048, 1024, 512, 256],
-    },
-)
 
 const data = [
     {
