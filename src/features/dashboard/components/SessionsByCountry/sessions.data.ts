@@ -1,0 +1,134 @@
+export const data = [
+    {
+        countryCode: 'US',
+        countryName: 'United States',
+        sessions: 40000,
+        previousWeek: 30000,
+    },
+    {
+        countryCode: 'CA',
+        countryName: 'Canada',
+        sessions: 30000,
+        previousWeek: 20000,
+    },
+    {
+        countryCode: 'MX',
+        countryName: 'Mexico',
+        sessions: 20000,
+        previousWeek: 18000,
+    },
+    {
+        countryCode: 'CO',
+        countryName: 'Colombia',
+        sessions: 5000,
+        previousWeek: 4000,
+    },
+    {
+        countryCode: 'PE',
+        countryName: 'Peru',
+        sessions: 15000,
+        previousWeek: 12000,
+    },
+    {
+        countryCode: 'BO',
+        countryName: 'Bolivia',
+        sessions: 15000,
+        previousWeek: 13000,
+    },
+    {
+        countryCode: 'ES',
+        countryName: 'Spain',
+        sessions: 10000,
+        previousWeek: 9000,
+    },
+    {
+        countryCode: 'FR',
+        countryName: 'France',
+        sessions: 25000,
+        previousWeek: 8000,
+    },
+    {
+        countryCode: 'IT',
+        countryName: 'Italy',
+        sessions: 20000,
+        previousWeek: 9500,
+    },
+    {
+        countryCode: 'RU',
+        countryName: 'Russia',
+        sessions: 5000,
+        previousWeek: 6000,
+    },
+    {
+        countryCode: 'IR',
+        countryName: 'Iran',
+        sessions: 5000,
+        previousWeek: 4000,
+    },
+    {
+        countryCode: 'PK',
+        countryName: 'Pakistan',
+        sessions: 5000,
+        previousWeek: 4500,
+    },
+    {
+        countryCode: 'IN',
+        countryName: 'India',
+        sessions: 15000,
+        previousWeek: 12000,
+    },
+    {
+        countryCode: 'CN',
+        countryName: 'China',
+        sessions: 15000,
+        previousWeek: 14000,
+    },
+    {
+        countryCode: 'MY',
+        countryName: 'Malaysia',
+        sessions: 5000,
+        previousWeek: 4800,
+    },
+    {
+        countryCode: 'ID',
+        countryName: 'Indonesia',
+        sessions: 15000,
+        previousWeek: 18000,
+    },
+    {
+        countryCode: 'AU',
+        countryName: 'Australia',
+        sessions: 18000,
+        previousWeek: 17000,
+    },
+    {
+        countryCode: 'SD',
+        countryName: 'Sudan',
+        sessions: 5000,
+        previousWeek: 4000,
+    },
+    {
+        countryCode: 'SS',
+        countryName: 'South Sudan',
+        sessions: 5000,
+        previousWeek: 4500,
+    },
+    {
+        countryCode: 'AO',
+        countryName: 'Angola',
+        sessions: 5000,
+        previousWeek: 4200,
+    },
+]
+
+export const topCountries = [...data]
+    .sort((a, b) => b.sessions - a.sessions)
+    .slice(0, 6)
+
+export const sessionsMap = new Map(data.map((c) => [c.countryCode, c.sessions]))
+
+export const previousMap = new Map(
+    data.map((c) => [c.countryCode, c.previousWeek]),
+)
+
+export const maxSessions = Math.max(...data.map((c) => c.sessions), 0)
