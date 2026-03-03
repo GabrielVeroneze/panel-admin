@@ -11,7 +11,7 @@ type UserInfoProps = {
 
 const avatarSizeByVariant = {
     sm: 28,
-    md: 0,
+    md: 50,
 }
 
 export const UserInfo = ({
