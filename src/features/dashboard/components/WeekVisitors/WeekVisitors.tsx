@@ -1,7 +1,11 @@
-import { Bar, BarChart, Tooltip, XAxis, type TooltipProps } from 'recharts'
+import { Bar, BarChart, Tooltip, XAxis } from 'recharts'
 import { formatCompactNumber } from '@/shared/utils'
 import { ChartTooltip } from '@/shared/components'
 import { MetricCard } from '@/features/dashboard/components'
+import type {
+    ChartLabelFormatter,
+    ChartValueFormatter,
+} from '@/features/dashboard/types'
 import styles from './WeekVisitors.module.scss'
 
 const data = [
@@ -14,22 +18,16 @@ const data = [
     { key: 'sun', label: 'S', day: 'Sunday', users: 55000 },
 ]
 
+const formatUsersTooltip: ChartValueFormatter = (value) => {
+    if (typeof value !== 'number') return value
+    return formatCompactNumber(value)
+}
+
+const formatDayTooltipLabel: ChartLabelFormatter = (_, payload) => {
+    return payload?.[0]?.payload?.day ?? ''
+}
+
 export const WeekVisitors = () => {
-    const formatUsersValue: TooltipProps<number, string>['formatter'] = (
-        value,
-    ) => {
-        if (typeof value !== 'number') return value
-
-        return formatCompactNumber(value)
-    }
-
-    const formatDayLabel: TooltipProps<number, string>['labelFormatter'] = (
-        _label,
-        payload,
-    ) => {
-        return payload[0].payload.day
-    }
-
     return (
         <MetricCard title="This Week Visitors" value={'566,768'} variation={10}>
             <BarChart
@@ -54,8 +52,8 @@ export const WeekVisitors = () => {
                 />
                 <Tooltip
                     content={ChartTooltip}
-                    labelFormatter={formatDayLabel}
-                    formatter={formatUsersValue}
+                    labelFormatter={formatDayTooltipLabel}
+                    formatter={formatUsersTooltip}
                     cursor={false}
                 />
                 <Bar
