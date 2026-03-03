@@ -3,7 +3,6 @@
 .container {
     align-items: center;
     display: flex;
-    gap: $space-1-5;
 
     .text {
         display: flex;
@@ -12,14 +11,40 @@
 
         .name {
             color: $gray-darkest;
-            font-size: $text-xl;
             font-weight: $font-medium;
         }
 
         .email {
             color: $gray-dark;
-            font-size: $text-lg;
             font-weight: $font-normal;
+        }
+    }
+
+    &.sm {
+        gap: $space-1-5;
+
+        .text {
+            .name {
+                font-size: $text-xl;
+            }
+
+            .email {
+                font-size: $text-lg;
+            }
+        }
+    }
+
+    &.md {
+        gap: $space-6;
+
+        .text {
+            .name {
+                font-size: $text-2xl;
+            }
+
+            .email {
+                font-size: $text-xl;
+            }
         }
     }
 }
