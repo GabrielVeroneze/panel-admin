@@ -1,8 +1,8 @@
 import { formatCompactNumber } from '@/shared/utils'
-import type { TooltipProps } from 'recharts'
-
-type ValueFormatter = TooltipProps<number, string>['formatter']
-type LabelFormatter = TooltipProps<number, string>['labelFormatter']
+import type {
+    ChartLabelFormatter,
+    ChartValueFormatter,
+} from '@/features/dashboard/types'
 
 export const getColor = (value: number, max: number) => {
     if (!value) return '#d1d5db'
@@ -16,8 +16,11 @@ export const getColor = (value: number, max: number) => {
     return '#a4cafe'
 }
 
-export const formatChartValue: ValueFormatter = (value) =>
-    value ? formatCompactNumber(value, { decimals: 1 }) : ''
+export const formatSessionsTooltip: ChartValueFormatter = (value) => {
+    if (typeof value !== 'number') return value
+    return formatCompactNumber(value, { decimals: 1 })
+}
 
-export const formatChartLabel: LabelFormatter = (_label, payload) =>
-    payload?.[0]?.payload?.countryName ?? ''
+export const formatCountryTooltipLabel: ChartLabelFormatter = (_, payload) => {
+    return payload?.[0]?.payload?.countryName ?? ''
+}
