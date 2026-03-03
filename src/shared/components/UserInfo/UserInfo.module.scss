@@ -1,0 +1,25 @@
+@use '@/styles/tokens' as *;
+
+.container {
+    align-items: center;
+    display: flex;
+    gap: $space-1-5;
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        gap: $space-0-5;
+
+        .name {
+            color: $gray-darkest;
+            font-size: $text-xl;
+            font-weight: $font-medium;
+        }
+
+        .email {
+            color: $gray-dark;
+            font-size: $text-lg;
+            font-weight: $font-normal;
+        }
+    }
+}
