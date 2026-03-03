@@ -2,6 +2,7 @@ import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
 import { formatCompactCurrency, formatCompactNumber } from '@/shared/utils'
 import { Button, ButtonGroup, ChartTooltip } from '@/shared/components'
 import { ExclamationCircleIcon } from '@/shared/assets/icons'
+import type { ChartValueFormatter } from '@/features/dashboard/types'
 import styles from './SalesChart.module.scss'
 
 const data = [
@@ -14,13 +15,15 @@ const data = [
     { date: '07 Apr', templates: 100000, hosting: 50000 },
 ]
 
+const formatSalesTick = (value: number) =>
+    formatCompactNumber(value, { suffix: 'K' })
+
+const formatSalesTooltip: ChartValueFormatter = (value) => {
+    if (typeof value !== 'number') return value
+    return formatCompactCurrency(value)
+}
+
 export const SalesChart = () => {
-    const formatYAxis = (value: number) =>
-        formatCompactNumber(value, { suffix: 'K' })
-
-    const formatTooltip = (value?: number) =>
-        value ? formatCompactCurrency(value) : ''
-
     return (
         <div className={styles.container}>
             <header className={styles.header}>
@@ -58,12 +61,12 @@ export const SalesChart = () => {
                         axisLine={false}
                         tickLine={false}
                         tickMargin={26}
-                        tickFormatter={formatYAxis}
+                        tickFormatter={formatSalesTick}
                         width="auto"
                     />
                     <Tooltip
                         content={ChartTooltip}
-                        formatter={formatTooltip}
+                        formatter={formatSalesTooltip}
                         cursor={{
                             strokeWidth: 1,
                             strokeDasharray: '5 5',
