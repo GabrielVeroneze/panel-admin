@@ -2,7 +2,10 @@ import { Bar, BarChart, Tooltip, XAxis, YAxis } from 'recharts'
 import { ChartTooltip } from '@/shared/components'
 import { SessionsYAxisTick } from './SessionsYAxisTick'
 import { topCountries } from '../sessions.data'
-import { formatChartLabel, formatChartValue } from '../sessions.utils'
+import {
+    formatCountryTooltipLabel,
+    formatSessionsTooltip,
+} from '../sessions.utils'
 
 type SessionsChartProps = {
     className?: string
@@ -38,8 +41,8 @@ export const SessionsChart = ({ className }: SessionsChartProps) => {
             <XAxis type="number" hide />
             <Tooltip
                 content={ChartTooltip}
-                labelFormatter={formatChartLabel}
-                formatter={formatChartValue}
+                labelFormatter={formatCountryTooltipLabel}
+                formatter={formatSessionsTooltip}
                 cursor={false}
             />
             <Bar
