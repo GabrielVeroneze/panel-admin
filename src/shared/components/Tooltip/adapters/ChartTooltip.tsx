@@ -30,7 +30,7 @@ export const ChartTooltip = ({
             items={payload.map((item, index) => ({
                 name: item.name,
                 value: getFormattedValue(item, index),
-                color: item.color,
+                color: item.color ?? item.payload?.fill,
             }))}
         />
     )
