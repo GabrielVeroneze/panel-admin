@@ -123,7 +123,7 @@ export const data = [
 
 export const topCountries = [...data]
     .sort((a, b) => b.sessions - a.sessions)
-    .slice(0, 6)
+    .slice(0, 7)
 
 export const sessionsMap = new Map(data.map((c) => [c.countryCode, c.sessions]))
 
