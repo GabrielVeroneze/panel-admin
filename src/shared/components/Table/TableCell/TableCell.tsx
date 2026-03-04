@@ -6,17 +6,25 @@ type TableCellProps = {
     header?: boolean
 } & ComponentProps<'td'>
 
-export const TableCell = ({ children, header, ...props }: TableCellProps) => {
+export const TableCell = ({
+    children,
+    header,
+    className,
+    ...props
+}: TableCellProps) => {
     if (header) {
         return (
-            <th className={clsx(styles.tableCell, styles.header)} {...props}>
+            <th
+                className={clsx(styles.tableCell, styles.header, className)}
+                {...props}
+            >
                 {children}
             </th>
         )
     }
 
     return (
-        <td className={styles.tableCell} {...props}>
+        <td className={clsx(styles.tableCell, className)} {...props}>
             {children}
         </td>
     )
