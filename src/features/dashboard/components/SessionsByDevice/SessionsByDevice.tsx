@@ -11,20 +11,20 @@ const data = [
     {
         metric: 'Traffic',
         device: 'Desktop',
-        value: 55,
+        value: 54,
         fill: '#16bdca',
     },
     {
         metric: 'Traffic',
-        device: 'Mobile',
-        value: 30,
-        fill: '#1c64f2',
+        device: 'Tablet',
+        value: 23,
+        fill: '#ff8a4c',
     },
     {
         metric: 'Traffic',
-        device: 'Tablet',
-        value: 15,
-        fill: '#ff8a4c',
+        device: 'Mobile',
+        value: 23,
+        fill: '#1c64f2',
     },
 ]
 
@@ -47,6 +47,8 @@ export const SessionsByDevice = () => {
                         dataKey="value"
                         nameKey="metric"
                         data={data}
+                        startAngle={90}
+                        endAngle={-270}
                         innerRadius="55%"
                         outerRadius="100%"
                         stroke="none"
