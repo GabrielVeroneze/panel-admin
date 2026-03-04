@@ -25,3 +25,12 @@ export const formatChangePercent = (current: number, previous: number) => {
 
     return `${change.toFixed(0)}%`
 }
+
+export const formatPercent = (
+    value: number,
+    options?: { decimals?: number },
+) => {
+    const { decimals = 0 } = options ?? {}
+
+    return `${value.toFixed(decimals)}%`
+}
