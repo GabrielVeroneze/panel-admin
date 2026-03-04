@@ -39,3 +39,8 @@
 .recharts-surface > g {
     outline: none;
 }
+
+.recharts-wrapper svg:focus,
+.recharts-wrapper path:focus {
+    outline: none;
+}
