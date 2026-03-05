@@ -14,7 +14,7 @@ $header-height-tablet: 63px;
     top: $header-height-desktop;
     transform: translateX(0);
     transition: transform 0.3s ease;
-    width: 250px;
+    width: 206px;
 
     &.open {
         transform: translateX(0);
@@ -28,7 +28,7 @@ $header-height-tablet: 63px;
         .menuItem,
         .submenuItem {
             color: $gray-darkest;
-            font-size: $text-2xl;
+            font-size: $text-xl;
             font-weight: $font-medium;
         }
 
