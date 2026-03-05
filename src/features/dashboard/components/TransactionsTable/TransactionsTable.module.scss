@@ -1,10 +1,6 @@
 @use '@/styles/tokens' as *;
 
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: $space-4;
-
     .header {
         .title {
             color: $gray-darkest;
@@ -21,5 +17,10 @@
     }
 
     .tableContainer {
+        margin-top: $space-4;
+
+        strong {
+            font-weight: $font-semibold;
+        }
     }
 }
