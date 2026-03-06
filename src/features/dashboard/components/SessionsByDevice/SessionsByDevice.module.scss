@@ -14,11 +14,13 @@
 
     .chartContainer {
         margin-top: $space-6;
+        max-width: 182px;
+        width: 100%;
 
         .chart {
             aspect-ratio: 1;
-            height: 182px;
-            width: 182px;
+            height: 100%;
+            width: 100%;
         }
     }
 }
