@@ -23,20 +23,13 @@ export const MapTooltip = ({
     const Flag = Flags[countryCode as FlagKey]
 
     return (
-        <div
-            style={{
-                position: 'fixed',
-                left: x,
-                top: y - 12,
-                pointerEvents: 'none',
-            }}
-        >
+        <div className="tooltip-container" style={{ left: x, top: y - 12 }}>
             <Tooltip
                 showArrow
                 title={
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div className="tooltip-title">
                         {Flag && <Flag height={12} width={18} />}
-                        <span style={{ marginLeft: 4 }}>{countryName}</span>
+                        <span>{countryName}</span>
                     </div>
                 }
                 items={[

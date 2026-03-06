@@ -32,6 +32,17 @@
             height: 275px;
             width: 100%;
         }
+
+        :global(.tooltip-container) {
+            pointer-events: none;
+            position: fixed;
+        }
+
+        :global(.tooltip-title) {
+            align-items: center;
+            display: flex;
+            gap: $space-1;
+        }
     }
 
     .chartContainer {
