@@ -1,6 +1,6 @@
 import { formatChangePercent, formatCompactNumber } from '@/shared/utils'
 import { Tooltip } from '@/shared/components'
-import { previousMap, sessionsMap } from '../sessions.data'
+import { getCountryMetrics } from './map.utils'
 import * as Flags from '@/shared/assets/flags'
 
 type FlagKey = keyof typeof Flags
@@ -18,8 +18,7 @@ export const MapTooltip = ({
     countryCode,
     countryName,
 }: MapTooltipProps) => {
-    const sessions = sessionsMap.get(countryCode) ?? 0
-    const previous = previousMap.get(countryCode) ?? 0
+    const { sessions, previous } = getCountryMetrics(countryCode)
 
     const Flag = Flags[countryCode as FlagKey]
 
