@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { mapFeatures } from './map.features'
 import { path } from './map.projection'
-import { getCountryColor } from './map.style'
+import { getCountryColor } from './map.utils'
 import { MapTooltip } from './MapTooltip'
 
 type TooltipState = {
