@@ -23,7 +23,7 @@ export const MapTooltip = ({
     const Flag = Flags[countryCode as FlagKey]
 
     return (
-        <div className="tooltip-container" style={{ left: x, top: y - 12 }}>
+        <div className="tooltip-container" style={{ left: x, top: y }}>
             <Tooltip
                 showArrow
                 title={

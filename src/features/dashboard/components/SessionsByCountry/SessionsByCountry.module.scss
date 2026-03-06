@@ -36,6 +36,7 @@
         :global(.tooltip-container) {
             pointer-events: none;
             position: fixed;
+            transform: translate(-50%, -120%);
         }
 
         :global(.tooltip-title) {
