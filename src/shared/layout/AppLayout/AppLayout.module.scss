@@ -40,7 +40,9 @@ $sidebar-width: 206px;
         grid-template-rows: $header-height-tablet 1fr;
 
         .content {
+            gap: $space-1-5;
             grid-template-rows: 1fr $footer-height-tablet;
+            padding: $space-1-5;
         }
     }
 }
