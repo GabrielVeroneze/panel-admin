@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .card {
     background-color: $white;
@@ -7,4 +8,8 @@
     box-shadow: $shadow;
     padding: $space-5;
     width: max-content;
+
+    @include media-down(md) {
+        padding: $space-4;
+    }
 }
