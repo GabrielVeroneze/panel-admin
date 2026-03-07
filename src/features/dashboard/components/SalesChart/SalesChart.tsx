@@ -1,5 +1,6 @@
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
 import { formatCompactCurrency, formatCompactNumber } from '@/shared/utils'
+import { useBreakpoint } from '@/shared/hooks'
 import { Button, ButtonGroup, ChartTooltip } from '@/shared/components'
 import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import type { ChartValueFormatter } from '@/features/dashboard/types'
@@ -24,6 +25,8 @@ const formatSalesTooltip: ChartValueFormatter = (value) => {
 }
 
 export const SalesChart = () => {
+    const { isTablet } = useBreakpoint()
+
     return (
         <div className={styles.container}>
             <header className={styles.header}>
@@ -32,9 +35,9 @@ export const SalesChart = () => {
                     <ExclamationCircleIcon />
                 </div>
                 <ButtonGroup>
-                    <Button>Year</Button>
-                    <Button>Month</Button>
-                    <Button>Day</Button>
+                    <Button size={isTablet ? 'sm' : 'md'}>Year</Button>
+                    <Button size={isTablet ? 'sm' : 'md'}>Month</Button>
+                    <Button size={isTablet ? 'sm' : 'md'}>Day</Button>
                 </ButtonGroup>
             </header>
             <div className={styles.chartContainer}>
@@ -43,9 +46,9 @@ export const SalesChart = () => {
                     data={data}
                     responsive
                     margin={{
-                        right: 6,
+                        right: isTablet ? 14 : 6,
                         bottom: 18,
-                        left: 2,
+                        left: isTablet ? 0 : 2,
                     }}
                 >
                     <CartesianGrid vertical={false} />
@@ -54,6 +57,7 @@ export const SalesChart = () => {
                         axisLine={false}
                         tickLine={false}
                         tickMargin={26}
+                        angle={isTablet ? -45 : 0}
                     />
                     <YAxis
                         domain={[0, 200000]}
