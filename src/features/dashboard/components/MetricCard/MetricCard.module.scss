@@ -2,6 +2,11 @@
 @use '@/styles/mixins' as *;
 
 .container {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+    height: 100%;
+
     .header {
         align-items: center;
         display: flex;
@@ -47,10 +52,14 @@
     }
 
     .chartContainer {
-        margin-top: $space-6;
+        align-items: flex-end;
+        display: flex;
+        flex-grow: 1;
     }
 
     @include media-down(md) {
+        gap: $space-5;
+
         .header {
             .titleWrapper {
                 .title {
@@ -70,10 +79,6 @@
                     width: 12px;
                 }
             }
-        }
-
-        .chartContainer {
-            margin-top: $space-5;
         }
     }
 }
