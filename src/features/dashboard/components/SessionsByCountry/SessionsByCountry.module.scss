@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .container {
     display: flex;
@@ -53,6 +54,34 @@
             aspect-ratio: 1.618;
             height: 242px;
             width: 100%;
+        }
+    }
+
+    @include media-down(md) {
+        .header {
+            margin-bottom: $space-6;
+
+            .title {
+                font-size: $text-lg;
+            }
+
+            .value {
+                font-size: $text-3xl;
+            }
+        }
+
+        .mapContainer {
+            .map {
+                height: 250px;
+            }
+        }
+
+        .chartContainer {
+            padding-top: $space-6;
+
+            .chart {
+                height: 404px;
+            }
         }
     }
 }
