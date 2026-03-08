@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .container {
     display: flex;
@@ -28,6 +29,25 @@
                 color: $black;
                 font-size: $text-xl;
                 font-weight: $font-semibold;
+            }
+        }
+    }
+
+    @include media-down(md) {
+        gap: $space-3-5;
+
+        .title {
+            font-size: $text-xl;
+        }
+
+        .list {
+            .item {
+                gap: $space-1-5;
+                padding: $space-1-5 0;
+
+                .value {
+                    font-size: $text-lg;
+                }
             }
         }
     }
