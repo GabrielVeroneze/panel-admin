@@ -54,6 +54,14 @@
             aspect-ratio: 1.618;
             height: 242px;
             width: 100%;
+
+            :global(.recharts-cartesian-axis-tick-label) {
+                text {
+                    fill: $gray-darkest;
+                    font-size: $text-xl;
+                    font-weight: $font-medium;
+                }
+            }
         }
     }
 
@@ -81,6 +89,12 @@
 
             .chart {
                 height: 278px;
+
+                :global(.recharts-cartesian-axis-tick-label) {
+                    text {
+                        font-size: $text-lg;
+                    }
+                }
             }
         }
     }
