@@ -13,7 +13,7 @@
     }
 
     @include media-down(md) {
-        height: 202px;
+        height: 224px;
 
         :global(.recharts-cartesian-axis-tick-value) {
             font-size: $text-base;
