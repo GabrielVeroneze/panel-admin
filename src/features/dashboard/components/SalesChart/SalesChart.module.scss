@@ -72,4 +72,35 @@
             }
         }
     }
+
+    @include media-down(xs) {
+        .header {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: $space-3;
+
+            .titleWrapper {
+                .title {
+                    font-size: $text-3xl;
+                }
+
+                svg {
+                    height: 26px;
+                    width: 26px;
+                }
+            }
+        }
+
+        .chartContainer {
+            margin-top: $space-7;
+
+            .chart {
+                height: 404px;
+
+                :global(.recharts-cartesian-axis-tick-value) {
+                    font-size: $text-xl;
+                }
+            }
+        }
+    }
 }
