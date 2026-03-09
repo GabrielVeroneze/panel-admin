@@ -12,4 +12,8 @@
     @include media-down(md) {
         padding: $space-4;
     }
+
+    @include media-down(xs) {
+        padding: $space-5;
+    }
 }
