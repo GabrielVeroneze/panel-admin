@@ -35,9 +35,9 @@ export const SalesChart = () => {
                     <ExclamationCircleIcon />
                 </div>
                 <ButtonGroup>
-                    <Button size={isTablet ? 'sm' : 'md'}>Year</Button>
-                    <Button size={isTablet ? 'sm' : 'md'}>Month</Button>
-                    <Button size={isTablet ? 'sm' : 'md'}>Day</Button>
+                    <Button size="md">Year</Button>
+                    <Button size="md">Month</Button>
+                    <Button size="md">Day</Button>
                 </ButtonGroup>
             </header>
             <div className={styles.chartContainer}>
