@@ -68,4 +68,18 @@
             display: none;
         }
     }
+
+    @include media-down(xs) {
+        gap: $space-3;
+        grid-template-areas:
+            'sales'
+            'todayVisitors'
+            'weekVisitors'
+            'todaySales'
+            'customers'
+            'country'
+            'transactions';
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: repeat(7, auto);
+    }
 }
