@@ -44,27 +44,27 @@
     /* Tamanhos */
     &.xs {
         font-size: $text-base;
-        font-weight: 400;
+        font-weight: $font-normal;
         padding: $space-1-5 $space-2;
     }
     &.sm {
         font-size: $text-lg;
-        font-weight: 400;
+        font-weight: $font-normal;
         padding: $space-2 $space-2-5;
     }
     &.md {
         font-size: $text-xl;
-        font-weight: 400;
+        font-weight: $font-normal;
         padding: $space-2 $space-3;
     }
     &.lg {
         font-size: $text-2xl;
-        font-weight: 400;
+        font-weight: $font-normal;
         padding: $space-2-5 $space-3;
     }
     &.xl {
         font-size: $text-3xl;
-        font-weight: 400;
+        font-weight: $font-normal;
         padding: $space-3 $space-4;
     }
 
