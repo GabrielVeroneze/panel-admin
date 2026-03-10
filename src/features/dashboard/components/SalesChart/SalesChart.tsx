@@ -3,6 +3,7 @@ import { formatCompactCurrency, formatCompactNumber } from '@/shared/utils'
 import { useBreakpoint } from '@/shared/hooks'
 import { Button, ButtonGroup, ChartTooltip } from '@/shared/components'
 import { ExclamationCircleIcon } from '@/shared/assets/icons'
+import { chartConfig } from './salesChart.config'
 import type { ChartValueFormatter } from '@/features/dashboard/types'
 import styles from './SalesChart.module.scss'
 
@@ -25,7 +26,10 @@ const formatSalesTooltip: ChartValueFormatter = (value) => {
 }
 
 export const SalesChart = () => {
-    const { isTablet } = useBreakpoint()
+    const { isMobile, isTablet } = useBreakpoint()
+
+    const device = isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'
+    const config = chartConfig[device]
 
     return (
         <div className={styles.container}>
@@ -45,11 +49,7 @@ export const SalesChart = () => {
                     className={styles.chart}
                     data={data}
                     responsive
-                    margin={{
-                        right: isTablet ? 14 : 6,
-                        bottom: 18,
-                        left: isTablet ? 0 : 2,
-                    }}
+                    margin={config.margin}
                 >
                     <CartesianGrid vertical={false} />
                     <XAxis
@@ -57,17 +57,21 @@ export const SalesChart = () => {
                         axisLine={false}
                         tickLine={false}
                         tickMargin={26}
-                        angle={isTablet ? -45 : 0}
+                        angle={config.xAxisAngle}
+                        padding={config.padding}
+                        interval="preserveStartEnd"
                     />
-                    <YAxis
-                        domain={[0, 200000]}
-                        ticks={[0, 40000, 80000, 120000, 160000, 200000]}
-                        axisLine={false}
-                        tickLine={false}
-                        tickMargin={26}
-                        tickFormatter={formatSalesTick}
-                        width="auto"
-                    />
+                    {config.showYAxis && (
+                        <YAxis
+                            domain={[0, 200000]}
+                            ticks={[0, 40000, 80000, 120000, 160000, 200000]}
+                            axisLine={false}
+                            tickLine={false}
+                            tickMargin={26}
+                            tickFormatter={formatSalesTick}
+                            width="auto"
+                        />
+                    )}
                     <Tooltip
                         content={ChartTooltip}
                         formatter={formatSalesTooltip}
