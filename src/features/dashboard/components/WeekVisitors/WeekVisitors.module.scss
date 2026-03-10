@@ -19,4 +19,12 @@
             font-size: $text-base;
         }
     }
+
+    @include media-down(xs) {
+        height: 240px;
+
+        :global(.recharts-cartesian-axis-tick-value) {
+            font-size: $text-xl;
+        }
+    }
 }
