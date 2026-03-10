@@ -9,4 +9,8 @@
     @include media-down(md) {
         height: 224px;
     }
+
+    @include media-down(xs) {
+        height: 240px;
+    }
 }
