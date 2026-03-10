@@ -81,4 +81,30 @@
             }
         }
     }
+
+    @include media-down(xs) {
+        gap: $space-7;
+
+        .header {
+            .titleWrapper {
+                .title {
+                    font-size: $text-2xl;
+                }
+
+                .value {
+                    font-size: $text-5xl;
+                }
+            }
+
+            .variation {
+                font-size: $text-2xl;
+                gap: $space-1-5;
+
+                svg {
+                    height: 16px;
+                    width: 16px;
+                }
+            }
+        }
+    }
 }
