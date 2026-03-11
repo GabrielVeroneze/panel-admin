@@ -39,6 +39,10 @@
 
         .tableContainer {
             margin-top: $space-3-5;
+
+            .status {
+                display: none;
+            }
         }
     }
 
@@ -56,6 +60,10 @@
 
         .tableContainer {
             margin-top: $space-5;
+
+            .amount {
+                display: none;
+            }
         }
     }
 }
