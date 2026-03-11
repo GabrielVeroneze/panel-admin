@@ -17,5 +17,9 @@
 
     @include media-down(xs) {
         font-size: $text-2xl;
+
+        &.header {
+            font-size: $text-xl;
+        }
     }
 }
