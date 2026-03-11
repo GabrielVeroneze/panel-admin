@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .container {
     align-items: center;
@@ -39,6 +40,34 @@
 
             .email {
                 font-size: $text-lg;
+            }
+        }
+
+        @include media-down(md) {
+            .text {
+                .name {
+                    font-size: $text-lg;
+                }
+
+                .email {
+                    font-size: $text-base;
+                }
+            }
+        }
+
+        @include media-down(xs) {
+            gap: $space-2;
+
+            .text {
+                gap: $space-1;
+
+                .name {
+                    font-size: $text-2xl;
+                }
+
+                .email {
+                    font-size: $text-xl;
+                }
             }
         }
     }
