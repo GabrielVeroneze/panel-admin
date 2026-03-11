@@ -51,4 +51,23 @@
             }
         }
     }
+
+    @include media-down(xs) {
+        gap: $space-6;
+
+        .title {
+            font-size: $text-3xl;
+        }
+
+        .list {
+            .item {
+                gap: $space-3;
+                padding: $space-2-5 0;
+
+                .value {
+                    font-size: $text-2xl;
+                }
+            }
+        }
+    }
 }
