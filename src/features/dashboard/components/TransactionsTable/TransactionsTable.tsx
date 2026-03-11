@@ -112,10 +112,18 @@ export const TransactionsTable = () => {
                 <Table striped>
                     <TableHead>
                         <TableRow>
-                            <TableCell header>Transaction</TableCell>
-                            <TableCell header>Date & Time</TableCell>
-                            <TableCell header>Amount</TableCell>
-                            <TableCell header>Status</TableCell>
+                            <TableCell className={styles.transaction} header>
+                                Transaction
+                            </TableCell>
+                            <TableCell className={styles.date} header>
+                                Date & Time
+                            </TableCell>
+                            <TableCell className={styles.amount} header>
+                                Amount
+                            </TableCell>
+                            <TableCell className={styles.status} header>
+                                Status
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -124,17 +132,19 @@ export const TransactionsTable = () => {
 
                             return (
                                 <TableRow key={transaction.id}>
-                                    <TableCell>
+                                    <TableCell className={styles.transaction}>
                                         {transaction.description.text}{' '}
                                         <strong>
                                             {transaction.description.highlight}
                                         </strong>
                                     </TableCell>
-                                    <TableCell>{transaction.date}</TableCell>
-                                    <TableCell>
+                                    <TableCell className={styles.date}>
+                                        {transaction.date}
+                                    </TableCell>
+                                    <TableCell className={styles.amount}>
                                         <strong>{transaction.amount}</strong>
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell className={styles.status}>
                                         <Badge size="sm" color={status.color}>
                                             {status.label}
                                         </Badge>
