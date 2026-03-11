@@ -41,4 +41,21 @@
             margin-top: $space-3-5;
         }
     }
+
+    @include media-down(xs) {
+        .header {
+            .title {
+                font-size: $text-3xl;
+                margin-bottom: $space-2;
+            }
+
+            .text {
+                font-size: $text-xl;
+            }
+        }
+
+        .tableContainer {
+            margin-top: $space-5;
+        }
+    }
 }
