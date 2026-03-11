@@ -98,4 +98,42 @@
             }
         }
     }
+
+    @include media-down(xs) {
+        .header {
+            margin-bottom: $space-8;
+
+            .title {
+                font-size: $text-2xl;
+            }
+
+            .value {
+                font-size: $text-5xl;
+            }
+        }
+
+        .mapContainer {
+            .map {
+                height: 200px;
+            }
+
+            :global(.tooltip-title) {
+                gap: $space-1-5;
+            }
+        }
+
+        .chartContainer {
+            padding-top: $space-8;
+
+            .chart {
+                height: 312px;
+
+                :global(.recharts-cartesian-axis-tick-label) {
+                    text {
+                        font-size: $text-2xl;
+                    }
+                }
+            }
+        }
+    }
 }
