@@ -6,19 +6,11 @@ import {
     TableHead,
     TableRow,
 } from '@/shared/components'
+import type { Transaction } from '@/features/dashboard/types'
 import styles from './TransactionsTable.module.scss'
 
-type TransactionStatus = 'completed' | 'cancelled' | 'inProgress'
-
-type Transaction = {
-    id: string
-    description: {
-        text: string
-        highlight: string
-    }
-    date: string
-    amount: string
-    status: TransactionStatus
+type TransactionsTableProps = {
+    transactions: Transaction[]
 }
 
 const statusMap = {
@@ -36,70 +28,7 @@ const statusMap = {
     },
 } as const
 
-const data: Transaction[] = [
-    {
-        id: '1',
-        description: {
-            text: 'Payment from',
-            highlight: 'Bonnie Green',
-        },
-        date: 'Apr 23, 2021',
-        amount: '$2300',
-        status: 'completed',
-    },
-    {
-        id: '2',
-        description: {
-            text: 'Payment refund to',
-            highlight: '#00910',
-        },
-        date: 'Apr 23, 2021',
-        amount: '-$670',
-        status: 'completed',
-    },
-    {
-        id: '3',
-        description: {
-            text: 'Payment failed from',
-            highlight: '#087651',
-        },
-        date: 'Apr 18, 2021',
-        amount: '$234',
-        status: 'cancelled',
-    },
-    {
-        id: '4',
-        description: {
-            text: 'Payment from',
-            highlight: 'Bonnie Green',
-        },
-        date: 'Apr 15, 2021',
-        amount: '$5000',
-        status: 'inProgress',
-    },
-    {
-        id: '5',
-        description: {
-            text: 'Payment from',
-            highlight: 'Jese Leos',
-        },
-        date: 'Apr 15, 2021',
-        amount: '$2300',
-        status: 'completed',
-    },
-    {
-        id: '6',
-        description: {
-            text: 'Payment from',
-            highlight: 'THEMBERG LLC',
-        },
-        date: 'Apr 11, 2021',
-        amount: '$280',
-        status: 'completed',
-    },
-]
-
-export const TransactionsTable = () => {
+export const TransactionsTable = ({ transactions }: TransactionsTableProps) => {
     return (
         <div className={styles.container}>
             <header className={styles.header}>
@@ -127,7 +56,7 @@ export const TransactionsTable = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data.map((transaction) => {
+                        {transactions.map((transaction) => {
                             const status = statusMap[transaction.status]
 
                             return (
