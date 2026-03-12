@@ -18,6 +18,8 @@
     }
 
     .tableContainer {
+        --table-columns: 3fr 2fr 1fr 1fr;
+
         margin-top: $space-4;
 
         strong {
@@ -38,6 +40,8 @@
         }
 
         .tableContainer {
+            --table-columns: 3fr 2fr 1fr;
+
             margin-top: $space-3-5;
 
             .status {
@@ -59,6 +63,8 @@
         }
 
         .tableContainer {
+            --table-columns: 2fr 1fr;
+
             margin-top: $space-5;
 
             .amount {
