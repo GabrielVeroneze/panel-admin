@@ -111,4 +111,49 @@
             }
         }
     }
+
+    @include media-down(xs) {
+        min-height: 60px;
+        min-width: 106px;
+        padding: $space-2 $space-2 $space-3-5;
+
+        .title {
+            font-size: $text-xl;
+            margin-bottom: $space-2-5;
+        }
+
+        .items {
+            gap: $space-2-5;
+
+            .item {
+                .dot {
+                    height: 10px;
+                    width: 10px;
+                }
+
+                .label {
+                    font-size: $text-xl;
+                }
+
+                .value {
+                    font-size: $text-xl;
+                    margin-left: $space-1;
+                }
+            }
+        }
+
+        &.withArrow {
+            &::before {
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 10px solid $gray-light;
+            }
+
+            &::after {
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-top: 8px solid $white;
+            }
+        }
+    }
 }
