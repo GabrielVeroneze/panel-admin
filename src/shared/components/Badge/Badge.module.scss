@@ -5,6 +5,7 @@
     align-items: center;
     border-radius: $rounded;
     display: inline-flex;
+    white-space: nowrap;
 
     /* Variantes de cor */
     &.gray {
