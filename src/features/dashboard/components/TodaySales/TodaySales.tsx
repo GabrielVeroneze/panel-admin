@@ -2,24 +2,19 @@ import { Bar, BarChart, Tooltip, XAxis } from 'recharts'
 import { formatCurrency } from '@/shared/utils'
 import { ChartTooltip } from '@/shared/components'
 import { MetricCard } from '@/features/dashboard/components'
-import type { ChartValueFormatter } from '@/features/dashboard/types'
+import type { ChartValueFormatter, TodaySale } from '@/features/dashboard/types'
 import styles from './TodaySales.module.scss'
 
-const data = [
-    { time: '09:00 AM', sales: 4000, profit: 2000 },
-    { time: '11:00 AM', sales: 5000, profit: 4250 },
-    { time: '13:00 PM', sales: 9000, profit: 3000 },
-    { time: '15:00 PM', sales: 3500, profit: 2000 },
-    { time: '17:00 PM', sales: 5000, profit: 4250 },
-    { time: '19:00 PM', sales: 7000, profit: 3500 },
-]
+type TodaySalesProps = {
+    data: TodaySale[]
+}
 
 const formatCurrencyTooltip: ChartValueFormatter = (value) => {
     if (typeof value !== 'number') return value
     return formatCurrency(value)
 }
 
-export const TodaySales = () => {
+export const TodaySales = ({ data }: TodaySalesProps) => {
     return (
         <MetricCard title="Today Sales" value={'$45,897'} variation={4.3}>
             <BarChart
