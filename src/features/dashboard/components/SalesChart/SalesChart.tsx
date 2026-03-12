@@ -4,18 +4,12 @@ import { useBreakpoint } from '@/shared/hooks'
 import { Button, ButtonGroup, ChartTooltip } from '@/shared/components'
 import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import { chartConfig } from './salesChart.config'
-import type { ChartValueFormatter } from '@/features/dashboard/types'
+import type { ChartValueFormatter, Sale } from '@/features/dashboard/types'
 import styles from './SalesChart.module.scss'
 
-const data = [
-    { date: '01 Apr', templates: 40000, hosting: 100000 },
-    { date: '02 Apr', templates: 80000, hosting: 70000 },
-    { date: '03 Apr', templates: 80000, hosting: 140000 },
-    { date: '04 Apr', templates: 160000, hosting: 120000 },
-    { date: '05 Apr', templates: 140000, hosting: 50000 },
-    { date: '06 Apr', templates: 130000, hosting: 90000 },
-    { date: '07 Apr', templates: 100000, hosting: 50000 },
-]
+type SalesChartProps = {
+    data: Sale[]
+}
 
 const formatSalesTick = (value: number) =>
     formatCompactNumber(value, { suffix: 'K' })
@@ -25,7 +19,7 @@ const formatSalesTooltip: ChartValueFormatter = (value) => {
     return formatCompactCurrency(value)
 }
 
-export const SalesChart = () => {
+export const SalesChart = ({ data }: SalesChartProps) => {
     const { isMobile, isTablet } = useBreakpoint()
 
     const device = isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'
