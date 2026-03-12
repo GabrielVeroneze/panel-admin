@@ -1,1 +1,7 @@
 export * from './chart.types'
+export * from './customers.types'
+export * from './dashboard.types'
+export * from './sales.types'
+export * from './sessions.types'
+export * from './transactions.types'
+export * from './visitors.types'
