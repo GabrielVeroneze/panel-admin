@@ -1,44 +1,14 @@
 import { Area, AreaChart, Tooltip, XAxis } from 'recharts'
 import { ChartTooltip } from '@/shared/components'
 import { MetricCard } from '@/features/dashboard/components'
+import type { TodayVisitor } from '@/features/dashboard/types'
 import styles from './TodayVisitors.module.scss'
 
-const data = [
-    {
-        time: '09:00 AM',
-        visitors: 450,
-    },
-    {
-        time: '11:00 AM',
-        visitors: 300,
-    },
-    {
-        time: '13:00 PM',
-        visitors: 350,
-    },
-    {
-        time: '15:00 PM',
-        visitors: 250,
-    },
-    {
-        time: '17:00 PM',
-        visitors: 500,
-    },
-    {
-        time: '19:00 PM',
-        visitors: 150,
-    },
-    {
-        time: '21:00 PM',
-        visitors: 250,
-    },
-    {
-        time: '23:00 PM',
-        visitors: 175,
-    },
-]
+type TodayVisitorsProps = {
+    data: TodayVisitor[]
+}
 
-export const TodayVisitors = () => {
+export const TodayVisitors = ({ data }: TodayVisitorsProps) => {
     return (
         <MetricCard title="Today Visitors" value={'6,438'} variation={4.3}>
             <AreaChart
