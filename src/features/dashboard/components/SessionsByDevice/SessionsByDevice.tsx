@@ -4,29 +4,13 @@ import { ChartTooltip } from '@/shared/components'
 import type {
     ChartLabelFormatter,
     ChartValueFormatter,
+    DeviceSession,
 } from '@/features/dashboard/types'
 import styles from './SessionsByDevice.module.scss'
 
-const data = [
-    {
-        metric: 'Traffic',
-        device: 'Desktop',
-        value: 54,
-        fill: '#16bdca',
-    },
-    {
-        metric: 'Traffic',
-        device: 'Tablet',
-        value: 23,
-        fill: '#ff8a4c',
-    },
-    {
-        metric: 'Traffic',
-        device: 'Mobile',
-        value: 23,
-        fill: '#1c64f2',
-    },
-]
+type SessionsByDeviceProps = {
+    data: DeviceSession[]
+}
 
 const formatDeviceTooltip: ChartValueFormatter = (value) => {
     if (typeof value !== 'number') return value
@@ -37,7 +21,7 @@ const formatDeviceTooltipLabel: ChartLabelFormatter = (_, payload) => {
     return payload?.[0]?.payload?.device ?? ''
 }
 
-export const SessionsByDevice = () => {
+export const SessionsByDevice = ({ data }: SessionsByDeviceProps) => {
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Sessions by Device</h2>
