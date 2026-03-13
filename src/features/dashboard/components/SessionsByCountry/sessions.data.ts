@@ -120,15 +120,3 @@ export const data = [
         previousWeek: 4200,
     },
 ]
-
-export const topCountries = [...data]
-    .sort((a, b) => b.sessions - a.sessions)
-    .slice(0, 7)
-
-export const sessionsMap = new Map(data.map((c) => [c.countryCode, c.sessions]))
-
-export const previousMap = new Map(
-    data.map((c) => [c.countryCode, c.previousWeek]),
-)
-
-export const maxSessions = Math.max(...data.map((c) => c.sessions), 0)
