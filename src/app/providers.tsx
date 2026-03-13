@@ -1,5 +1,5 @@
 import { Provider as ReduxProvider } from 'react-redux'
-import { store } from '@/app/store'
+import { store } from '@/store'
 import type { ReactNode } from 'react'
 
 type ProvidersProps = {
