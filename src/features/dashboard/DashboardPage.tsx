@@ -1,4 +1,5 @@
 import { Card } from '@/shared/components'
+import { useDashboard } from './hooks'
 import {
     LatestCustomersList,
     SalesChart,
@@ -12,31 +13,37 @@ import {
 import styles from './DashboardPage.module.scss'
 
 export const DashboardPage = () => {
+    const { data, loading } = useDashboard()
+
+    if (loading) return <p>Loading...</p>
+
+    if (!data) return <p>No data</p>
+
     return (
         <section className={styles.dashboard}>
             <Card as="article" className={styles.sales}>
-                <SalesChart />
+                <SalesChart data={data.sales} />
             </Card>
             <Card as="article" className={styles.todaySales}>
-                <TodaySales />
+                <TodaySales data={data.todaySales} />
             </Card>
             <Card as="article" className={styles.todayVisitors}>
-                <TodayVisitors />
+                <TodayVisitors data={data.todayVisitors} />
             </Card>
             <Card as="article" className={styles.weekVisitors}>
-                <WeekVisitors />
+                <WeekVisitors data={data.weekVisitors} />
             </Card>
             <Card as="article" className={styles.sessionsByCountry}>
-                <SessionsByCountry />
+                <SessionsByCountry data={data.sessionsByCountry} />
             </Card>
             <Card as="article" className={styles.latestCustomers}>
-                <LatestCustomersList />
+                <LatestCustomersList customers={data.latestCustomers} />
             </Card>
             <Card as="article" className={styles.sessionsByDevice}>
-                <SessionsByDevice />
+                <SessionsByDevice data={data.sessionsByDevice} />
             </Card>
             <Card as="article" className={styles.transactions}>
-                <TransactionsTable />
+                <TransactionsTable transactions={data.transactions} />
             </Card>
         </section>
     )
