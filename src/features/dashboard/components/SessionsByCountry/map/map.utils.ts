@@ -1,14 +1,20 @@
-import { maxSessions, previousMap, sessionsMap } from '../sessions.data'
-
-export const getCountryMetrics = (countryCode: string) => {
+export const getCountryMetrics = (
+    countryCode: string,
+    sessionsMap: Map<string, number>,
+    previousMap: Map<string, number>,
+) => {
     const sessions = sessionsMap.get(countryCode) ?? 0
     const previous = previousMap.get(countryCode) ?? 0
 
     return { sessions, previous }
 }
 
-export const getCountryColor = (isoCode: string) => {
-    const { sessions } = getCountryMetrics(isoCode)
+export const getCountryColor = (
+    isoCode: string,
+    sessionsMap: Map<string, number>,
+    maxSessions: number,
+) => {
+    const sessions = sessionsMap.get(isoCode) ?? 0
 
     if (!sessions) return '#d1d5db'
 
