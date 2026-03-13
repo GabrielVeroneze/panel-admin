@@ -1,9 +1,17 @@
 import { SessionsMap } from './map/SessionsMap'
 import { SessionsChart } from './chart/SessionsChart'
-import { topCountries } from './sessions.data'
+import { getSessionsData } from './sessions.utils'
+import type { CountrySession } from '@/features/dashboard/types'
 import styles from './SessionsByCountry.module.scss'
 
-export const SessionsByCountry = () => {
+type SessionsByCountryProps = {
+    data: CountrySession[]
+}
+
+export const SessionsByCountry = ({ data }: SessionsByCountryProps) => {
+    const { topCountries, sessionsMap, previousMap, maxSessions } =
+        getSessionsData(data)
+
     const topCountry = topCountries[0]
 
     return (
@@ -15,10 +23,18 @@ export const SessionsByCountry = () => {
                 </strong>
             </header>
             <div className={styles.mapContainer}>
-                <SessionsMap className={styles.map} />
+                <SessionsMap
+                    className={styles.map}
+                    sessionsMap={sessionsMap}
+                    previousMap={previousMap}
+                    maxSessions={maxSessions}
+                />
             </div>
             <div className={styles.chartContainer}>
-                <SessionsChart className={styles.chart} />
+                <SessionsChart
+                    className={styles.chart}
+                    topCountries={topCountries}
+                />
             </div>
         </div>
     )
