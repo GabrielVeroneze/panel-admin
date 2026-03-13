@@ -1,17 +1,21 @@
 import { Bar, BarChart, Tooltip, XAxis, YAxis } from 'recharts'
 import { ChartTooltip } from '@/shared/components'
 import { SessionsYAxisTick } from './SessionsYAxisTick'
-import { topCountries } from '../sessions.data'
 import {
     formatCountryTooltipLabel,
     formatSessionsTooltip,
 } from '../sessions.utils'
+import type { CountrySession } from '@/features/dashboard/types'
 
 type SessionsChartProps = {
     className?: string
+    topCountries: CountrySession[]
 }
 
-export const SessionsChart = ({ className }: SessionsChartProps) => {
+export const SessionsChart = ({
+    className,
+    topCountries,
+}: SessionsChartProps) => {
     return (
         <BarChart
             className={className}
