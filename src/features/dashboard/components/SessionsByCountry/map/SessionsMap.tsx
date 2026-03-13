@@ -13,9 +13,17 @@ type TooltipState = {
 
 type SessionsMapProps = {
     className?: string
+    sessionsMap: Map<string, number>
+    previousMap: Map<string, number>
+    maxSessions: number
 }
 
-export const SessionsMap = ({ className }: SessionsMapProps) => {
+export const SessionsMap = ({
+    className,
+    sessionsMap,
+    previousMap,
+    maxSessions,
+}: SessionsMapProps) => {
     const [tooltip, setTooltip] = useState<TooltipState>(null)
 
     return (
@@ -29,7 +37,11 @@ export const SessionsMap = ({ className }: SessionsMapProps) => {
                         <path
                             key={index}
                             d={path(feature) || ''}
-                            fill={getCountryColor(isoCode)}
+                            fill={getCountryColor(
+                                isoCode,
+                                sessionsMap,
+                                maxSessions,
+                            )}
                             stroke="#ffffff"
                             strokeWidth={1}
                             onMouseMove={(e) => {
@@ -45,7 +57,13 @@ export const SessionsMap = ({ className }: SessionsMapProps) => {
                     )
                 })}
             </svg>
-            {tooltip && <MapTooltip {...tooltip} />}
+            {tooltip && (
+                <MapTooltip
+                    {...tooltip}
+                    sessionsMap={sessionsMap}
+                    previousMap={previousMap}
+                />
+            )}
         </div>
     )
 }
