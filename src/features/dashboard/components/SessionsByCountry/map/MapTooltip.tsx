@@ -10,6 +10,8 @@ type MapTooltipProps = {
     y: number
     countryCode: string
     countryName: string
+    sessionsMap: Map<string, number>
+    previousMap: Map<string, number>
 }
 
 export const MapTooltip = ({
@@ -17,8 +19,14 @@ export const MapTooltip = ({
     y,
     countryCode,
     countryName,
+    sessionsMap,
+    previousMap,
 }: MapTooltipProps) => {
-    const { sessions, previous } = getCountryMetrics(countryCode)
+    const { sessions, previous } = getCountryMetrics(
+        countryCode,
+        sessionsMap,
+        previousMap,
+    )
 
     const Flag = Flags[countryCode as FlagKey]
 
