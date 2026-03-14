@@ -10,12 +10,21 @@ export const formatCompactNumber = (
     return `${(value / 1000).toFixed(decimals)}${suffix}`
 }
 
-export const formatCurrency = (value: number) => {
-    return `$${value}`
-}
+export const formatCurrency = (
+    value: number,
+    options?: {
+        compact?: boolean
+        decimals?: number
+    },
+) => {
+    const { compact = false, decimals = 0 } = options ?? {}
 
-export const formatCompactCurrency = (value: number) => {
-    return `$${(value / 1000).toFixed(0)}k`
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        notation: compact ? 'compact' : 'standard',
+        maximumFractionDigits: decimals,
+    }).format(value)
 }
 
 export const formatChangePercent = (current: number, previous: number) => {
