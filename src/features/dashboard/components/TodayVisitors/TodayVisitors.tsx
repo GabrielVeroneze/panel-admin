@@ -1,4 +1,5 @@
 import { Area, AreaChart, Tooltip, XAxis } from 'recharts'
+import { formatNumber } from '@/shared/utils'
 import { ChartTooltip } from '@/shared/components'
 import { MetricCard } from '@/features/dashboard/components'
 import type { TodayVisitor } from '@/features/dashboard/types'
@@ -10,7 +11,11 @@ type TodayVisitorsProps = {
 
 export const TodayVisitors = ({ data }: TodayVisitorsProps) => {
     return (
-        <MetricCard title="Today Visitors" value={'6,438'} variation={4.3}>
+        <MetricCard
+            title="Today Visitors"
+            value={formatNumber(data.summary.total)}
+            variation={data.summary.variation}
+        >
             <AreaChart
                 className={styles.chart}
                 data={data.chart}
