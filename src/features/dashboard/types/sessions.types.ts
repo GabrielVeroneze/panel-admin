@@ -7,7 +7,7 @@ export type CountrySession = {
 
 export type DeviceSession = {
     metric: string
-    device: string
+    device: 'Desktop' | 'Tablet' | 'Mobile'
     value: number
     fill: string
 }
