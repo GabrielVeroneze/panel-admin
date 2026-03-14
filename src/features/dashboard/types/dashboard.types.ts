@@ -11,9 +11,9 @@ import type {
 
 export type DashboardData = {
     sales: Sale[]
-    todaySales: TodaySale[]
-    todayVisitors: TodayVisitor[]
-    weekVisitors: WeekVisitor[]
+    todaySales: TodaySale
+    todayVisitors: TodayVisitor
+    weekVisitors: WeekVisitor
     sessionsByCountry: CountrySession[]
     latestCustomers: LatestCustomer[]
     sessionsByDevice: DeviceSession[]
