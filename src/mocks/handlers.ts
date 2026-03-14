@@ -1,7 +1,9 @@
-import { http, HttpResponse } from 'msw'
+import { delay, http, HttpResponse } from 'msw'
 
 export const handlers = [
-    http.get('/api/dashboard', () => {
+    http.get('/api/dashboard', async () => {
+        await delay(1000)
+
         return HttpResponse.json({
             sales: [
                 { date: '01 Apr', templates: 40000, hosting: 100000 },
