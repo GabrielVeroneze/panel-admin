@@ -5,7 +5,7 @@ import type { TodayVisitor } from '@/features/dashboard/types'
 import styles from './TodayVisitors.module.scss'
 
 type TodayVisitorsProps = {
-    data: TodayVisitor[]
+    data: TodayVisitor
 }
 
 export const TodayVisitors = ({ data }: TodayVisitorsProps) => {
@@ -13,7 +13,7 @@ export const TodayVisitors = ({ data }: TodayVisitorsProps) => {
         <MetricCard title="Today Visitors" value={'6,438'} variation={4.3}>
             <AreaChart
                 className={styles.chart}
-                data={data}
+                data={data.chart}
                 responsive
                 margin={{
                     top: 0,
