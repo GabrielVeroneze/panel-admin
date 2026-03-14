@@ -6,6 +6,7 @@ import {
     TableHead,
     TableRow,
 } from '@/shared/components'
+import { formatCurrency } from '@/shared/utils'
 import type { Transaction } from '@/features/dashboard/types'
 import styles from './TransactionsTable.module.scss'
 
@@ -71,7 +72,7 @@ export const TransactionsTable = ({ transactions }: TransactionsTableProps) => {
                                         {transaction.date}
                                     </TableCell>
                                     <TableCell className={styles.amount}>
-                                        <strong>{transaction.amount}</strong>
+                                        <strong>{formatCurrency(transaction.amount)}</strong>
                                     </TableCell>
                                     <TableCell className={styles.status}>
                                         <Badge size="sm" color={status.color}>
