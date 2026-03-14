@@ -1,5 +1,5 @@
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
-import { formatCompactCurrency, formatCompactNumber } from '@/shared/utils'
+import { formatCompactNumber, formatCurrency } from '@/shared/utils'
 import { useBreakpoint } from '@/shared/hooks'
 import { Button, ButtonGroup, ChartTooltip } from '@/shared/components'
 import { ExclamationCircleIcon } from '@/shared/assets/icons'
@@ -16,7 +16,7 @@ const formatSalesTick = (value: number) =>
 
 const formatSalesTooltip: ChartValueFormatter = (value) => {
     if (typeof value !== 'number') return value
-    return formatCompactCurrency(value)
+    return formatCurrency(value, { compact: true })
 }
 
 export const SalesChart = ({ data }: SalesChartProps) => {
