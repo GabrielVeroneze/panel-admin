@@ -1,11 +1,19 @@
+import type { Summary } from './'
+
 export type TodayVisitor = {
-    time: string
-    visitors: number
+    summary: Summary
+    chart: {
+        time: string
+        visitors: number
+    }[]
 }
 
 export type WeekVisitor = {
-    key: string
-    label: string
-    day: string
-    users: number
+    summary: Summary
+    chart: {
+        key: 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
+        label: string
+        day: string
+        users: number
+    }[]
 }
