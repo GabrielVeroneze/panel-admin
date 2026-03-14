@@ -10,7 +10,7 @@ import type {
 import styles from './WeekVisitors.module.scss'
 
 type WeekVisitorsProps = {
-    data: WeekVisitor[]
+    data: WeekVisitor
 }
 
 const formatUsersTooltip: ChartValueFormatter = (value) => {
@@ -27,7 +27,7 @@ export const WeekVisitors = ({ data }: WeekVisitorsProps) => {
         <MetricCard title="This Week Visitors" value={'566,768'} variation={10}>
             <BarChart
                 className={styles.chart}
-                data={data}
+                data={data.chart}
                 barSize={10}
                 barGap={4}
                 responsive
@@ -43,7 +43,7 @@ export const WeekVisitors = ({ data }: WeekVisitorsProps) => {
                     axisLine={false}
                     tickLine={false}
                     tickMargin={8}
-                    tickFormatter={(_value, index) => data[index].label}
+                    tickFormatter={(_value, index) => data.chart[index].label}
                 />
                 <Tooltip
                     content={ChartTooltip}
