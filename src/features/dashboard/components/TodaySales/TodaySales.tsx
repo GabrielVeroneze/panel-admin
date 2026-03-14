@@ -6,7 +6,7 @@ import type { ChartValueFormatter, TodaySale } from '@/features/dashboard/types'
 import styles from './TodaySales.module.scss'
 
 type TodaySalesProps = {
-    data: TodaySale[]
+    data: TodaySale
 }
 
 const formatCurrencyTooltip: ChartValueFormatter = (value) => {
@@ -19,7 +19,7 @@ export const TodaySales = ({ data }: TodaySalesProps) => {
         <MetricCard title="Today Sales" value={'$45,897'} variation={4.3}>
             <BarChart
                 className={styles.chart}
-                data={data}
+                data={data.chart}
                 barSize={10}
                 barGap={4}
                 responsive
