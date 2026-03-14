@@ -1,3 +1,14 @@
+export const formatNumber = (
+    value: number,
+    options?: { decimals?: number },
+) => {
+    const { decimals = 0 } = options ?? {}
+
+    return new Intl.NumberFormat('en-US', {
+        maximumFractionDigits: decimals,
+    }).format(value)
+}
+
 export const formatCompactNumber = (
     value: number,
     options?: {
