@@ -16,7 +16,11 @@ const formatCurrencyTooltip: ChartValueFormatter = (value) => {
 
 export const TodaySales = ({ data }: TodaySalesProps) => {
     return (
-        <MetricCard title="Today Sales" value={'$45,897'} variation={4.3}>
+        <MetricCard
+            title="Today Sales"
+            value={formatCurrency(data.summary.total)}
+            variation={data.summary.variation}
+        >
             <BarChart
                 className={styles.chart}
                 data={data.chart}
