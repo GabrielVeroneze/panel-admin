@@ -1,3 +1,5 @@
+import type { Summary } from './'
+
 export type Sale = {
     date: string
     templates: number
@@ -5,7 +7,10 @@ export type Sale = {
 }
 
 export type TodaySale = {
-    time: string
-    sales: number
-    profit: number
+    summary: Summary
+    chart: {
+        time: string
+        sales: number
+        profit: number
+    }[]
 }
