@@ -1,5 +1,5 @@
 import { Bar, BarChart, Tooltip, XAxis } from 'recharts'
-import { formatCompactNumber } from '@/shared/utils'
+import { formatCompactNumber, formatNumber } from '@/shared/utils'
 import { ChartTooltip } from '@/shared/components'
 import { MetricCard } from '@/features/dashboard/components'
 import type {
@@ -24,7 +24,11 @@ const formatDayTooltipLabel: ChartLabelFormatter = (_, payload) => {
 
 export const WeekVisitors = ({ data }: WeekVisitorsProps) => {
     return (
-        <MetricCard title="This Week Visitors" value={'566,768'} variation={10}>
+        <MetricCard
+            title="This Week Visitors"
+            value={formatNumber(data.summary.total)}
+            variation={data.summary.variation}
+        >
             <BarChart
                 className={styles.chart}
                 data={data.chart}
