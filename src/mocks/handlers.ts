@@ -3,7 +3,7 @@ import { http, HttpResponse } from 'msw'
 export const handlers = [
     http.get('/api/dashboard', () => {
         return HttpResponse.json({
-            salesChart: [
+            sales: [
                 { date: '01 Apr', templates: 40000, hosting: 100000 },
                 { date: '02 Apr', templates: 80000, hosting: 70000 },
                 { date: '03 Apr', templates: 80000, hosting: 140000 },
@@ -260,7 +260,7 @@ export const handlers = [
                         highlight: 'Bonnie Green',
                     },
                     date: 'Apr 23, 2021',
-                    amount: '$2300',
+                    amount: 2300,
                     status: 'completed',
                 },
                 {
@@ -270,7 +270,7 @@ export const handlers = [
                         highlight: '#00910',
                     },
                     date: 'Apr 23, 2021',
-                    amount: '-$670',
+                    amount: -670,
                     status: 'completed',
                 },
                 {
@@ -280,7 +280,7 @@ export const handlers = [
                         highlight: '#087651',
                     },
                     date: 'Apr 18, 2021',
-                    amount: '$234',
+                    amount: 234,
                     status: 'cancelled',
                 },
                 {
@@ -290,7 +290,7 @@ export const handlers = [
                         highlight: 'Bonnie Green',
                     },
                     date: 'Apr 15, 2021',
-                    amount: '$5000',
+                    amount: 5000,
                     status: 'inProgress',
                 },
                 {
@@ -300,7 +300,7 @@ export const handlers = [
                         highlight: 'Jese Leos',
                     },
                     date: 'Apr 15, 2021',
-                    amount: '$2300',
+                    amount: 2300,
                     status: 'completed',
                 },
                 {
@@ -310,7 +310,7 @@ export const handlers = [
                         highlight: 'THEMBERG LLC',
                     },
                     date: 'Apr 11, 2021',
-                    amount: '$280',
+                    amount: 280,
                     status: 'completed',
                 },
             ],
