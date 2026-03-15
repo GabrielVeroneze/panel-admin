@@ -4,10 +4,16 @@ import type { LatestCustomer } from '@/features/dashboard/types'
 import styles from './LatestCustomersList.module.scss'
 
 type LatestCustomersProps = {
-    customers: LatestCustomer[]
+    customers?: LatestCustomer[]
+    loading?: boolean
 }
 
-export const LatestCustomersList = ({ customers }: LatestCustomersProps) => {
+export const LatestCustomersList = ({
+    customers,
+    loading,
+}: LatestCustomersProps) => {
+    if (loading) return <LatestCustomersListSkeleton />
+
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Latest Customers</h2>
