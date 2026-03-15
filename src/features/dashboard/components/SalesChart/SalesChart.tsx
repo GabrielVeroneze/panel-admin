@@ -3,12 +3,14 @@ import { formatCompactNumber, formatCurrency } from '@/shared/utils'
 import { useBreakpoint } from '@/shared/hooks'
 import { Button, ButtonGroup, ChartTooltip } from '@/shared/components'
 import { ExclamationCircleIcon } from '@/shared/assets/icons'
+import { SalesChartSkeleton } from './SalesChartSkeleton'
 import { chartConfig } from './salesChart.config'
 import type { ChartValueFormatter, Sale } from '@/features/dashboard/types'
 import styles from './SalesChart.module.scss'
 
 type SalesChartProps = {
-    data: Sale[]
+    data?: Sale[]
+    loading?: boolean
 }
 
 const formatSalesTick = (value: number) =>
@@ -19,11 +21,13 @@ const formatSalesTooltip: ChartValueFormatter = (value) => {
     return formatCurrency(value, { compact: true })
 }
 
-export const SalesChart = ({ data }: SalesChartProps) => {
+export const SalesChart = ({ data, loading }: SalesChartProps) => {
     const { isMobile, isTablet } = useBreakpoint()
 
     const device = isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'
     const config = chartConfig[device]
+
+    if (loading) return <SalesChartSkeleton />
 
     return (
         <div className={styles.container}>
