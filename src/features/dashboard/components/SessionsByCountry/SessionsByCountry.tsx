@@ -1,14 +1,21 @@
 import { SessionsMap } from './map/SessionsMap'
 import { SessionsChart } from './chart/SessionsChart'
+import { SessionsByCountrySkeleton } from './SessionsByCountrySkeleton'
 import { getSessionsData } from './sessions.utils'
 import type { CountrySession } from '@/features/dashboard/types'
 import styles from './SessionsByCountry.module.scss'
 
 type SessionsByCountryProps = {
-    data: CountrySession[]
+    data?: CountrySession[]
+    loading?: boolean
 }
 
-export const SessionsByCountry = ({ data }: SessionsByCountryProps) => {
+export const SessionsByCountry = ({
+    data,
+    loading,
+}: SessionsByCountryProps) => {
+    if (loading) return <SessionsByCountrySkeleton />
+
     const { topCountries, sessionsMap, previousMap, maxSessions } =
         getSessionsData(data)
 
