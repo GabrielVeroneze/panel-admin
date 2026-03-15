@@ -1,6 +1,7 @@
 import { Pie, PieChart, Tooltip } from 'recharts'
 import { formatPercent } from '@/shared/utils'
 import { ChartTooltip } from '@/shared/components'
+import { SessionsByDeviceSkeleton } from './SessionsByDeviceSkeleton'
 import type {
     ChartLabelFormatter,
     ChartValueFormatter,
@@ -9,7 +10,8 @@ import type {
 import styles from './SessionsByDevice.module.scss'
 
 type SessionsByDeviceProps = {
-    data: DeviceSession[]
+    data?: DeviceSession[]
+    loading?: boolean
 }
 
 const formatDeviceTooltip: ChartValueFormatter = (value) => {
@@ -21,7 +23,9 @@ const formatDeviceTooltipLabel: ChartLabelFormatter = (_, payload) => {
     return payload?.[0]?.payload?.device ?? ''
 }
 
-export const SessionsByDevice = ({ data }: SessionsByDeviceProps) => {
+export const SessionsByDevice = ({ data, loading }: SessionsByDeviceProps) => {
+    if (loading) return <SessionsByDeviceSkeleton />
+
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Sessions by Device</h2>
