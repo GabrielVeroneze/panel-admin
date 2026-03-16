@@ -15,35 +15,43 @@ import styles from './DashboardPage.module.scss'
 export const DashboardPage = () => {
     const { data, loading } = useDashboard()
 
-    if (loading) return <p>Loading...</p>
-
-    if (!data) return <p>No data</p>
-
     return (
         <section className={styles.dashboard}>
             <Card as="article" className={styles.sales}>
-                <SalesChart data={data.sales} />
+                <SalesChart data={data?.sales} loading={loading} />
             </Card>
             <Card as="article" className={styles.todaySales}>
-                <TodaySales data={data.todaySales} />
+                <TodaySales data={data?.todaySales} loading={loading} />
             </Card>
             <Card as="article" className={styles.todayVisitors}>
-                <TodayVisitors data={data.todayVisitors} />
+                <TodayVisitors data={data?.todayVisitors} loading={loading} />
             </Card>
             <Card as="article" className={styles.weekVisitors}>
-                <WeekVisitors data={data.weekVisitors} />
+                <WeekVisitors data={data?.weekVisitors} loading={loading} />
             </Card>
             <Card as="article" className={styles.sessionsByCountry}>
-                <SessionsByCountry data={data.sessionsByCountry} />
+                <SessionsByCountry
+                    data={data?.sessionsByCountry}
+                    loading={loading}
+                />
             </Card>
             <Card as="article" className={styles.latestCustomers}>
-                <LatestCustomersList customers={data.latestCustomers} />
+                <LatestCustomersList
+                    customers={data?.latestCustomers}
+                    loading={loading}
+                />
             </Card>
             <Card as="article" className={styles.sessionsByDevice}>
-                <SessionsByDevice data={data.sessionsByDevice} />
+                <SessionsByDevice
+                    data={data?.sessionsByDevice}
+                    loading={loading}
+                />
             </Card>
             <Card as="article" className={styles.transactions}>
-                <TransactionsTable transactions={data.transactions} />
+                <TransactionsTable
+                    transactions={data?.transactions}
+                    loading={loading}
+                />
             </Card>
         </section>
     )
