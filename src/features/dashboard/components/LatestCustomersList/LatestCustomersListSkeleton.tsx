@@ -7,8 +7,8 @@ export const LatestCustomersListSkeleton = () => {
     const items = Array.from({ length: 6 })
 
     return (
-        <div className={styles.container}>
-            <Skeleton width={140} height={20} />
+        <div className={clsx(styles.container, styles.skeleton)}>
+            <Skeleton className={styles.titleSkeleton} />
             <ul className={styles.list}>
                 {items.map((_, index) => (
                     <li key={index} className={styles.item}>
@@ -19,14 +19,14 @@ export const LatestCustomersListSkeleton = () => {
                             )}
                         >
                             <div>
-                                <Skeleton width={28} height={28} />
+                                <Skeleton className={styles.avatarSkeleton} />
                             </div>
                             <div className={userInfoStyles.text}>
-                                <Skeleton width={120} height={18} />
-                                <Skeleton width={180} height={15} />
+                                <Skeleton className={styles.nameSkeleton} />
+                                <Skeleton className={styles.emailSkeleton} />
                             </div>
                         </div>
-                        <Skeleton width={50} height={18} />
+                        <Skeleton className={styles.valueSkeleton} />
                     </li>
                 ))}
             </ul>
