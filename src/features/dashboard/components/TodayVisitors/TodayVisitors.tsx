@@ -1,15 +1,18 @@
 import { Area, AreaChart, Tooltip, XAxis } from 'recharts'
 import { formatNumber } from '@/shared/utils'
 import { ChartTooltip } from '@/shared/components'
-import { MetricCard } from '@/features/dashboard/components'
+import { MetricCard, MetricCardSkeleton } from '@/features/dashboard/components'
 import type { TodayVisitor } from '@/features/dashboard/types'
 import styles from './TodayVisitors.module.scss'
 
 type TodayVisitorsProps = {
-    data: TodayVisitor
+    data?: TodayVisitor
+    loading?: boolean
 }
 
-export const TodayVisitors = ({ data }: TodayVisitorsProps) => {
+export const TodayVisitors = ({ data, loading }: TodayVisitorsProps) => {
+    if (loading) return <MetricCardSkeleton />
+
     return (
         <MetricCard
             title="Today Visitors"
