@@ -1,5 +1,7 @@
 import { Skeleton } from '@/shared/components'
+import clsx from 'clsx'
 import styles from './LatestCustomersList.module.scss'
+import userInfoStyles from '@/shared/components/UserInfo/UserInfo.module.scss'
 
 export const LatestCustomersListSkeleton = () => {
     const items = Array.from({ length: 6 })
@@ -11,20 +13,15 @@ export const LatestCustomersListSkeleton = () => {
                 {items.map((_, index) => (
                     <li key={index} className={styles.item}>
                         <div
-                            style={{
-                                alignItems: 'center',
-                                display: 'flex',
-                                gap: 6,
-                            }}
+                            className={clsx(
+                                userInfoStyles.container,
+                                userInfoStyles.sm,
+                            )}
                         >
-                            <Skeleton width={28} height={28} />
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    gap: 2,
-                                }}
-                            >
+                            <div>
+                                <Skeleton width={28} height={28} />
+                            </div>
+                            <div className={userInfoStyles.text}>
                                 <Skeleton width={120} height={18} />
                                 <Skeleton width={180} height={15} />
                             </div>
