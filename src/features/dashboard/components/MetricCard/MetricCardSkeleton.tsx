@@ -1,18 +1,19 @@
 import { Skeleton } from '@/shared/components'
+import clsx from 'clsx'
 import styles from './MetricCard.module.scss'
 
 export const MetricCardSkeleton = () => {
     return (
-        <div className={styles.container}>
+        <div className={clsx(styles.container, styles.skeleton)}>
             <header className={styles.header}>
                 <div className={styles.titleWrapper}>
-                    <Skeleton width={120} height={18} />
-                    <Skeleton width={90} height={28} />
+                    <Skeleton className={styles.titleSkeleton} />
+                    <Skeleton className={styles.valueSkeleton} />
                 </div>
-                <Skeleton width={55} height={18} />
+                <Skeleton className={styles.variationSkeleton} />
             </header>
             <div className={styles.chartContainer}>
-                <Skeleton height={245} />
+                <Skeleton className={styles.chartSkeleton} />
             </div>
         </div>
     )
