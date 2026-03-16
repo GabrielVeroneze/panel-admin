@@ -7,11 +7,13 @@ import {
     TableRow,
 } from '@/shared/components'
 import { formatCurrency } from '@/shared/utils'
+import { TransactionsTableSkeleton } from './TransactionsTableSkeleton'
 import type { Transaction } from '@/features/dashboard/types'
 import styles from './TransactionsTable.module.scss'
 
 type TransactionsTableProps = {
-    transactions: Transaction[]
+    transactions?: Transaction[]
+    loading?: boolean
 }
 
 const statusMap = {
@@ -29,7 +31,12 @@ const statusMap = {
     },
 } as const
 
-export const TransactionsTable = ({ transactions }: TransactionsTableProps) => {
+export const TransactionsTable = ({
+    transactions,
+    loading,
+}: TransactionsTableProps) => {
+    if (loading) return <TransactionsTableSkeleton />
+
     return (
         <div className={styles.container}>
             <header className={styles.header}>
@@ -72,7 +79,9 @@ export const TransactionsTable = ({ transactions }: TransactionsTableProps) => {
                                         {transaction.date}
                                     </TableCell>
                                     <TableCell className={styles.amount}>
-                                        <strong>{formatCurrency(transaction.amount)}</strong>
+                                        <strong>
+                                            {formatCurrency(transaction.amount)}
+                                        </strong>
                                     </TableCell>
                                     <TableCell className={styles.status}>
                                         <Badge size="sm" color={status.color}>
