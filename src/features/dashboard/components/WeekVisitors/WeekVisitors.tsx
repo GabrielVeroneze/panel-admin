@@ -1,7 +1,7 @@
 import { Bar, BarChart, Tooltip, XAxis } from 'recharts'
 import { formatCompactNumber, formatNumber } from '@/shared/utils'
 import { ChartTooltip } from '@/shared/components'
-import { MetricCard } from '@/features/dashboard/components'
+import { MetricCard, MetricCardSkeleton } from '@/features/dashboard/components'
 import type {
     ChartLabelFormatter,
     ChartValueFormatter,
@@ -10,7 +10,8 @@ import type {
 import styles from './WeekVisitors.module.scss'
 
 type WeekVisitorsProps = {
-    data: WeekVisitor
+    data?: WeekVisitor
+    loading?: boolean
 }
 
 const formatUsersTooltip: ChartValueFormatter = (value) => {
@@ -22,7 +23,9 @@ const formatDayTooltipLabel: ChartLabelFormatter = (_, payload) => {
     return payload?.[0]?.payload?.day ?? ''
 }
 
-export const WeekVisitors = ({ data }: WeekVisitorsProps) => {
+export const WeekVisitors = ({ data, loading }: WeekVisitorsProps) => {
+    if (loading) return <MetricCardSkeleton />
+
     return (
         <MetricCard
             title="This Week Visitors"
