@@ -1,22 +1,23 @@
 import { Skeleton } from '@/shared/components'
+import clsx from 'clsx'
 import styles from './SalesChart.module.scss'
 
 export const SalesChartSkeleton = () => {
     return (
-        <div className={styles.container}>
+        <div className={clsx(styles.container, styles.skeleton)}>
             <header className={styles.header}>
                 <div className={styles.titleWrapper}>
-                    <Skeleton width={50} height={20} />
-                    <Skeleton width={22} height={22} />
+                    <Skeleton className={styles.titleSkeleton} />
+                    <Skeleton className={styles.iconSkeleton} />
                 </div>
-                <div style={{ display: 'flex' }}>
-                    <Skeleton width={55} height={32} />
-                    <Skeleton width={65} height={32} />
-                    <Skeleton width={50} height={32} />
+                <div className={styles.groupSkeleton}>
+                    <Skeleton className={styles.buttonSkeleton} />
+                    <Skeleton className={styles.buttonSkeleton} />
+                    <Skeleton className={styles.buttonSkeleton} />
                 </div>
             </header>
             <div className={styles.chartContainer}>
-                <Skeleton height={330} />
+                <Skeleton className={styles.chart} />
             </div>
         </div>
     )
