@@ -44,6 +44,39 @@
         }
     }
 
+    &.skeleton {
+        .titleSkeleton {
+            height: 20px;
+            width: 50px;
+        }
+
+        .iconSkeleton {
+            height: 22px;
+            width: 22px;
+        }
+
+        .groupSkeleton {
+            display: flex;
+        }
+
+        .buttonSkeleton {
+            &:first-child {
+                height: 32px;
+                width: 55px;
+            }
+
+            &:nth-child(2) {
+                height: 32px;
+                width: 65px;
+            }
+
+            &:last-child {
+                height: 32px;
+                width: 50px;
+            }
+        }
+    }
+
     @include media-down(md) {
         margin: 0;
 
