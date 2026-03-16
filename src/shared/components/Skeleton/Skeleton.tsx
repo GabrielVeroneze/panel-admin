@@ -6,5 +6,14 @@ type SkeletonProps = {
 }
 
 export const Skeleton = ({ height = 16, width = '100%' }: SkeletonProps) => {
-    return <div className={styles.skeleton} style={{ height, width }} />
+    return (
+        <div
+            className={styles.skeleton}
+            style={{
+                height,
+                width,
+                maxWidth: '100%',
+            }}
+        />
+    )
 }
