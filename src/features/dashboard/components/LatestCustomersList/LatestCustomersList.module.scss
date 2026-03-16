@@ -33,6 +33,33 @@
         }
     }
 
+    &.skeleton {
+        .titleSkeleton {
+            height: 20px;
+            width: 140px;
+        }
+
+        .avatarSkeleton {
+            height: 28px;
+            width: 28px;
+        }
+
+        .nameSkeleton {
+            height: 18px;
+            width: 120px;
+        }
+
+        .emailSkeleton {
+            height: 15px;
+            width: 180px;
+        }
+
+        .valueSkeleton {
+            height: 18px;
+            width: 50px;
+        }
+    }
+
     @include media-down(md) {
         gap: $space-3-5;
 
