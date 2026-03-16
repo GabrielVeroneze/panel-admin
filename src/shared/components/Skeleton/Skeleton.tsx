@@ -1,14 +1,16 @@
+import clsx from 'clsx'
 import styles from './Skeleton.module.scss'
 
 type SkeletonProps = {
     height?: string | number
     width?: string | number
+    className?: string
 }
 
-export const Skeleton = ({ height = 16, width = '100%' }: SkeletonProps) => {
+export const Skeleton = ({ height, width, className }: SkeletonProps) => {
     return (
         <div
-            className={styles.skeleton}
+            className={clsx(styles.skeleton, className)}
             style={{
                 height,
                 width,
