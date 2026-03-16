@@ -10,11 +10,13 @@
     .header {
         align-items: center;
         display: flex;
+        gap: $space-1;
         justify-content: space-between;
 
         .titleWrapper {
             display: flex;
             flex-direction: column-reverse;
+            min-width: 0;
 
             .title {
                 color: $gray-dark;
