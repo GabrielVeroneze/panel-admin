@@ -77,6 +77,28 @@
                 }
             }
         }
+
+        &.skeleton {
+            .titleSkeleton {
+                height: 18px;
+                width: 125px;
+            }
+
+            .nameSkeleton {
+                height: 15px;
+                width: 100px;
+            }
+
+            .emailSkeleton {
+                height: 12px;
+                width: 150px;
+            }
+
+            .valueSkeleton {
+                height: 15px;
+                width: 45px;
+            }
+        }
     }
 
     @include media-down(xs) {
