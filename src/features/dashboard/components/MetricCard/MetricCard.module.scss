@@ -59,6 +59,28 @@
         flex-grow: 1;
     }
 
+    &.skeleton {
+        .titleSkeleton {
+            height: 18px;
+            width: 120px;
+        }
+
+        .valueSkeleton {
+            height: 28px;
+            width: 90px;
+        }
+
+        .variationSkeleton {
+            height: 18px;
+            width: 55px;
+        }
+
+        .chartSkeleton {
+            height: 245px;
+            width: 100%;
+        }
+    }
+
     @include media-down(md) {
         gap: $space-5;
 
