@@ -164,5 +164,38 @@
                 }
             }
         }
+
+        &.skeleton {
+            .titleSkeleton {
+                height: 25px;
+                width: 55px;
+            }
+
+            .iconSkeleton {
+                height: 26px;
+                width: 26px;
+            }
+
+            .groupSkeleton {
+                max-width: 100%;
+            }
+
+            .buttonSkeleton {
+                &:first-child {
+                    height: 40px;
+                    width: 100px;
+                }
+
+                &:nth-child(2) {
+                    height: 40px;
+                    width: 100px;
+                }
+
+                &:last-child {
+                    height: 40px;
+                    width: 100px;
+                }
+            }
+        }
     }
 }
