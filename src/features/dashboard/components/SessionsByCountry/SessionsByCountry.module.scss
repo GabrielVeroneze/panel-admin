@@ -65,6 +65,28 @@
         }
     }
 
+    &.skeleton {
+        .titleSkeleton {
+            height: 18px;
+            width: 140px;
+        }
+
+        .valueSkeleton {
+            height: 28px;
+            width: 150px;
+        }
+
+        .mapSkeleton {
+            height: 275px;
+            width: 100%;
+        }
+
+        .chartSkeleton {
+            height: 242px;
+            width: 100%;
+        }
+    }
+
     @include media-down(md) {
         .header {
             margin-bottom: $space-6;
