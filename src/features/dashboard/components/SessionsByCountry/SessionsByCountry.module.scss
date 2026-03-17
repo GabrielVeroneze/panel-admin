@@ -119,6 +119,26 @@
                 }
             }
         }
+
+        &.skeleton {
+            .titleSkeleton {
+                height: 15px;
+                width: 120px;
+            }
+
+            .valueSkeleton {
+                height: 25px;
+                width: 130px;
+            }
+
+            .mapSkeleton {
+                height: 250px;
+            }
+
+            .chartSkeleton {
+                height: 278px;
+            }
+        }
     }
 
     @include media-down(xs) {
