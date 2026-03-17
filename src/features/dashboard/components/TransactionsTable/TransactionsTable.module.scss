@@ -27,6 +27,40 @@
         }
     }
 
+    &.skeleton {
+        .titleSkeleton {
+            height: 20px;
+            width: 110px;
+        }
+
+        .textSkeleton {
+            height: 15px;
+            width: 200px;
+        }
+
+        .tableSkeleton {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .transactionSkeleton {
+            height: 42px;
+            width: 42%;
+        }
+
+        .dateSkeleton {
+            height: 42px;
+            width: 28%;
+        }
+
+        .amountSkeleton,
+        .statusSkeleton {
+            height: 42px;
+            width: 15%;
+        }
+    }
+
     @include media-down(md) {
         .header {
             .title {
