@@ -1,18 +1,19 @@
 import { Skeleton } from '@/shared/components'
+import clsx from 'clsx'
 import styles from './SessionsByCountry.module.scss'
 
 export const SessionsByCountrySkeleton = () => {
     return (
-        <div className={styles.container}>
+        <div className={clsx(styles.container, styles.skeleton)}>
             <header className={styles.header}>
-                <Skeleton width={140} height={18} />
-                <Skeleton width={150} height={28} />
+                <Skeleton className={styles.titleSkeleton} />
+                <Skeleton className={styles.valueSkeleton} />
             </header>
             <div className={styles.mapContainer}>
-                <Skeleton height={275} />
+                <Skeleton className={styles.mapSkeleton} />
             </div>
             <div className={styles.chartContainer}>
-                <Skeleton height={242} />
+                <Skeleton className={styles.chartSkeleton} />
             </div>
         </div>
     )
