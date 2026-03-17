@@ -151,5 +151,26 @@
                 }
             }
         }
+
+        &.skeleton {
+            .titleSkeleton {
+                height: 20px;
+                width: 140px;
+            }
+
+            .valueSkeleton {
+                height: 35px;
+                width: 110px;
+            }
+
+            .variationSkeleton {
+                height: 20px;
+                width: 65px;
+            }
+
+            .chartSkeleton {
+                height: 240px;
+            }
+        }
     }
 }
