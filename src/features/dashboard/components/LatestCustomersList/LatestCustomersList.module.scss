@@ -118,5 +118,27 @@
                 }
             }
         }
+
+        &.skeleton {
+            .titleSkeleton {
+                height: 25px;
+                width: 170px;
+            }
+
+            .nameSkeleton {
+                height: 20px;
+                width: 125px;
+            }
+
+            .emailSkeleton {
+                height: 18px;
+                width: 190px;
+            }
+
+            .valueSkeleton {
+                height: 20px;
+                width: 55px;
+            }
+        }
     }
 }
