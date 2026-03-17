@@ -82,6 +82,37 @@
                 display: none;
             }
         }
+
+        &.skeleton {
+            .titleSkeleton {
+                height: 18px;
+                width: 90px;
+            }
+
+            .textSkeleton {
+                height: 12px;
+                width: 160px;
+            }
+
+            .transactionSkeleton {
+                height: 38px;
+                width: 50%;
+            }
+
+            .dateSkeleton {
+                height: 38px;
+                width: 33%;
+            }
+
+            .amountSkeleton {
+                height: 38px;
+                width: 17%;
+            }
+
+            .statusSkeleton {
+                display: none;
+            }
+        }
     }
 
     @include media-down(xs) {
