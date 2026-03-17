@@ -136,5 +136,31 @@
                 display: none;
             }
         }
+
+        &.skeleton {
+            .titleSkeleton {
+                height: 25px;
+                width: 125px;
+            }
+
+            .textSkeleton {
+                height: 18px;
+                width: 225px;
+            }
+
+            .transactionSkeleton {
+                height: 54px;
+                width: 66%;
+            }
+
+            .dateSkeleton {
+                height: 54px;
+                width: 34%;
+            }
+
+            .amountSkeleton {
+                display: none;
+            }
+        }
     }
 }
