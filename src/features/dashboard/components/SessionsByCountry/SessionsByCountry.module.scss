@@ -177,5 +177,25 @@
                 }
             }
         }
+
+        &.skeleton {
+            .titleSkeleton {
+                height: 20px;
+                width: 155px;
+            }
+
+            .valueSkeleton {
+                height: 35px;
+                width: 180px;
+            }
+
+            .mapSkeleton {
+                height: 200px;
+            }
+
+            .chartSkeleton {
+                height: 312px;
+            }
+        }
     }
 }
