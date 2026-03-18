@@ -1,6 +1,7 @@
 import { Pie, PieChart, Tooltip } from 'recharts'
 import { formatPercent } from '@/shared/utils'
-import { ChartTooltip } from '@/shared/components'
+import { ChartTooltip, EmptyState } from '@/shared/components'
+import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import { SessionsByDeviceSkeleton } from './SessionsByDeviceSkeleton'
 import type {
     ChartLabelFormatter,
@@ -25,6 +26,16 @@ const formatDeviceTooltipLabel: ChartLabelFormatter = (_, payload) => {
 
 export const SessionsByDevice = ({ data, loading }: SessionsByDeviceProps) => {
     if (loading) return <SessionsByDeviceSkeleton />
+
+    if (!data) {
+        return (
+            <EmptyState
+                icon={<ExclamationCircleIcon />}
+                title="No device data"
+                description="No sessions by device."
+            />
+        )
+    }
 
     return (
         <div className={styles.container}>
