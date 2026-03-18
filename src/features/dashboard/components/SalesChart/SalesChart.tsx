@@ -1,7 +1,12 @@
 import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
 import { formatCompactNumber, formatCurrency } from '@/shared/utils'
 import { useBreakpoint } from '@/shared/hooks'
-import { Button, ButtonGroup, ChartTooltip } from '@/shared/components'
+import {
+    Button,
+    ButtonGroup,
+    ChartTooltip,
+    EmptyState,
+} from '@/shared/components'
 import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import { SalesChartSkeleton } from './SalesChartSkeleton'
 import { chartConfig } from './salesChart.config'
@@ -28,6 +33,16 @@ export const SalesChart = ({ data, loading }: SalesChartProps) => {
     const config = chartConfig[device]
 
     if (loading) return <SalesChartSkeleton />
+
+    if (!data) {
+        return (
+            <EmptyState
+                icon={<ExclamationCircleIcon />}
+                title="No sales data"
+                description="There are no sales to display."
+            />
+        )
+    }
 
     return (
         <div className={styles.container}>
