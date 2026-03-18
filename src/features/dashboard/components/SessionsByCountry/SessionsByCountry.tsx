@@ -1,3 +1,5 @@
+import { EmptyState } from '@/shared/components'
+import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import { SessionsMap } from './map/SessionsMap'
 import { SessionsChart } from './chart/SessionsChart'
 import { SessionsByCountrySkeleton } from './SessionsByCountrySkeleton'
@@ -15,6 +17,16 @@ export const SessionsByCountry = ({
     loading,
 }: SessionsByCountryProps) => {
     if (loading) return <SessionsByCountrySkeleton />
+
+    if (!data) {
+        return (
+            <EmptyState
+                icon={<ExclamationCircleIcon />}
+                title="No session data"
+                description="No country sessions available."
+            />
+        )
+    }
 
     const { topCountries, sessionsMap, previousMap, maxSessions } =
         getSessionsData(data)
