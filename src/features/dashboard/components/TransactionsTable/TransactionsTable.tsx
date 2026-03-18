@@ -1,11 +1,13 @@
 import {
     Badge,
+    EmptyState,
     Table,
     TableBody,
     TableCell,
     TableHead,
     TableRow,
 } from '@/shared/components'
+import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import { formatCurrency } from '@/shared/utils'
 import { TransactionsTableSkeleton } from './TransactionsTableSkeleton'
 import type { Transaction } from '@/features/dashboard/types'
@@ -36,6 +38,16 @@ export const TransactionsTable = ({
     loading,
 }: TransactionsTableProps) => {
     if (loading) return <TransactionsTableSkeleton />
+
+    if (!transactions) {
+        return (
+            <EmptyState
+                icon={<ExclamationCircleIcon />}
+                title="No transactions"
+                description="There are no transactions yet."
+            />
+        )
+    }
 
     return (
         <div className={styles.container}>
