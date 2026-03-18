@@ -1,6 +1,7 @@
 import { Bar, BarChart, Tooltip, XAxis } from 'recharts'
 import { formatCompactNumber, formatNumber } from '@/shared/utils'
-import { ChartTooltip } from '@/shared/components'
+import { ChartTooltip, EmptyState } from '@/shared/components'
+import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import { MetricCard, MetricCardSkeleton } from '@/features/dashboard/components'
 import type {
     ChartLabelFormatter,
@@ -26,6 +27,15 @@ const formatDayTooltipLabel: ChartLabelFormatter = (_, payload) => {
 export const WeekVisitors = ({ data, loading }: WeekVisitorsProps) => {
     if (loading) return <MetricCardSkeleton />
 
+    if (!data) {
+        return (
+            <EmptyState
+                icon={<ExclamationCircleIcon />}
+                title="No data"
+                description="No visitors this week."
+            />
+        )
+    }
     return (
         <MetricCard
             title="This Week Visitors"
