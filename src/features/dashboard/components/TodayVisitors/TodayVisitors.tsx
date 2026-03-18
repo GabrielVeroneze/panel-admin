@@ -1,6 +1,7 @@
 import { Area, AreaChart, Tooltip, XAxis } from 'recharts'
 import { formatNumber } from '@/shared/utils'
-import { ChartTooltip } from '@/shared/components'
+import { ChartTooltip, EmptyState } from '@/shared/components'
+import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import { MetricCard, MetricCardSkeleton } from '@/features/dashboard/components'
 import type { TodayVisitor } from '@/features/dashboard/types'
 import styles from './TodayVisitors.module.scss'
@@ -12,6 +13,16 @@ type TodayVisitorsProps = {
 
 export const TodayVisitors = ({ data, loading }: TodayVisitorsProps) => {
     if (loading) return <MetricCardSkeleton />
+
+    if (!data) {
+        return (
+            <EmptyState
+                icon={<ExclamationCircleIcon />}
+                title="No data"
+                description="No visitors recorded."
+            />
+        )
+    }
 
     return (
         <MetricCard
