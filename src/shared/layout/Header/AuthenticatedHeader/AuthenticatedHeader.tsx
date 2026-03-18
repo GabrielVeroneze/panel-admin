@@ -10,6 +10,7 @@ import {
     BellSolidIcon,
     CogSolidIcon,
     LogoutIcon,
+    SearchIcon,
     TrashSolidIcon,
     UserSolidIcon,
 } from '@/shared/assets/icons'
@@ -18,7 +19,12 @@ import styles from './AuthenticatedHeader.module.scss'
 export const AuthenticatedHeader = () => {
     return (
         <div className={styles.container}>
-            <Input className={styles.input} />
+            <Input
+                className={styles.input}
+                icon={<SearchIcon />}
+                placeholder="Search"
+                size="large"
+            />
             <div className={styles.actions}>
                 <IconButton
                     icon={<BellSolidIcon />}
