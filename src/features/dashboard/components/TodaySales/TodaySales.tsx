@@ -1,6 +1,7 @@
 import { Bar, BarChart, Tooltip, XAxis } from 'recharts'
 import { formatCurrency } from '@/shared/utils'
-import { ChartTooltip } from '@/shared/components'
+import { ChartTooltip, EmptyState } from '@/shared/components'
+import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import { MetricCard, MetricCardSkeleton } from '@/features/dashboard/components'
 import type { ChartValueFormatter, TodaySale } from '@/features/dashboard/types'
 import styles from './TodaySales.module.scss'
@@ -17,6 +18,16 @@ const formatCurrencyTooltip: ChartValueFormatter = (value) => {
 
 export const TodaySales = ({ data, loading }: TodaySalesProps) => {
     if (loading) return <MetricCardSkeleton />
+
+    if (!data) {
+        return (
+            <EmptyState
+                icon={<ExclamationCircleIcon />}
+                title="No data"
+                description="No sales today."
+            />
+        )
+    }
 
     return (
         <MetricCard
