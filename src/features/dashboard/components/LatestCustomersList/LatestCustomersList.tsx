@@ -1,5 +1,7 @@
-import { UserInfo } from '@/shared/components'
+import { EmptyState, UserInfo } from '@/shared/components'
+import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import { formatCurrency } from '@/shared/utils'
+import { LatestCustomersListSkeleton } from './LatestCustomersListSkeleton'
 import type { LatestCustomer } from '@/features/dashboard/types'
 import styles from './LatestCustomersList.module.scss'
 
@@ -13,6 +15,16 @@ export const LatestCustomersList = ({
     loading,
 }: LatestCustomersProps) => {
     if (loading) return <LatestCustomersListSkeleton />
+
+    if (!customers) {
+        return (
+            <EmptyState
+                icon={<ExclamationCircleIcon />}
+                title="No customers"
+                description="No recent customers found."
+            />
+        )
+    }
 
     return (
         <div className={styles.container}>
