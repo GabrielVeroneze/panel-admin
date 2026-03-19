@@ -25,7 +25,6 @@ $sidebar-width: 206px;
             'footer';
         grid-template-columns: 1fr;
         grid-template-rows: 1fr $footer-height-desktop;
-        padding: $space-3;
 
         .main {
             grid-area: main;
@@ -42,14 +41,12 @@ $sidebar-width: 206px;
         .content {
             gap: $space-1-5;
             grid-template-rows: 1fr $footer-height-tablet;
-            padding: $space-1-5;
         }
     }
 
     @include media-down(xs) {
         .content {
             gap: $space-3;
-            padding: $space-3;
         }
     }
 }
