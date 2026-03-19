@@ -20,6 +20,7 @@ export const Button = ({
     size = 'md',
     icon,
     iconPosition = 'none',
+    className,
     ...props
 }: ButtonProps) => {
     const isIconOnly = icon && iconPosition === 'only'
@@ -29,7 +30,12 @@ export const Button = ({
 
     return (
         <button
-            className={clsx(styles.button, styles[variant], styles[size])}
+            className={clsx(
+                styles.button,
+                styles[variant],
+                styles[size],
+                className,
+            )}
             {...props}
         >
             {showLeftIcon && icon}
