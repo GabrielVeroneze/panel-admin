@@ -3,6 +3,7 @@
 
 .wrapper {
     align-items: center;
+    border-radius: $rounded;
     display: flex;
     max-width: 400px;
     position: relative;
@@ -20,7 +21,7 @@
 
     .input {
         border: $border solid;
-        border-radius: $rounded;
+        border-radius: inherit;
         color: $gray-darkest;
         font-weight: $font-normal;
         height: inherit;
