@@ -1,0 +1,8 @@
+@use '@/styles/tokens' as *;
+
+.users {
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
