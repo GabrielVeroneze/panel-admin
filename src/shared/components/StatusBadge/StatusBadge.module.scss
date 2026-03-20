@@ -1,0 +1,28 @@
+@use '@/styles/tokens' as *;
+
+.badge {
+    align-items: center;
+    color: $gray-darkest;
+    display: flex;
+    font-size: $text-2xl;
+    font-weight: $font-normal;
+    gap: $space-2-5;
+
+    .dot {
+        border-radius: $rounded-full;
+        height: 12px;
+        width: 12px;
+    }
+
+    &.active {
+        .dot {
+            background-color: $green-base;
+        }
+    }
+
+    &.offline {
+        .dot {
+            background-color: $red-base;
+        }
+    }
+}
