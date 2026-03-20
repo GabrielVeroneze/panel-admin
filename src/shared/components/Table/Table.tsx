@@ -13,6 +13,7 @@ export const Table = ({
     columns,
     striped,
     borderedRows,
+    className,
     ...props
 }: TableProps) => {
     const style = { '--table-columns': columns } as CSSProperties
@@ -23,6 +24,7 @@ export const Table = ({
                 styles.table,
                 striped && styles.striped,
                 borderedRows && styles.borderedRows,
+                className,
             )}
             style={style}
             {...props}
