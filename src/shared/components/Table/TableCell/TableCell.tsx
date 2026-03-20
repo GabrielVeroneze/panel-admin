@@ -4,27 +4,33 @@ import styles from './TableCell.module.scss'
 
 type TableCellProps = {
     header?: boolean
+    size?: 'md' | 'lg'
 } & ComponentProps<'td'>
 
 export const TableCell = ({
     children,
     header,
+    size = 'md',
     className,
     ...props
 }: TableCellProps) => {
+    const classes = clsx(
+        styles.tableCell,
+        styles[size],
+        header && styles.header,
+        className,
+    )
+
     if (header) {
         return (
-            <th
-                className={clsx(styles.tableCell, styles.header, className)}
-                {...props}
-            >
+            <th className={classes} {...props}>
                 {children}
             </th>
         )
     }
 
     return (
-        <td className={clsx(styles.tableCell, className)} {...props}>
+        <td className={classes} {...props}>
             {children}
         </td>
     )
