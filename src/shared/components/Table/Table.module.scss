@@ -12,4 +12,12 @@
             }
         }
     }
+
+    &.borderedRows {
+        tbody {
+            tr {
+                border-bottom: $border solid $gray-light;
+            }
+        }
+    }
 }
