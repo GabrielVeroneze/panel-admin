@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router'
-import { AppLayout, AuthLayout } from '@/shared/layout'
+import { AppLayout, AuthLayout, PageLayout } from '@/shared/layout'
 import { ErrorPage, NotFoundPage } from '@/shared/pages'
 import { DashboardPage } from '@/features/dashboard'
 import { UsersPage } from '@/features/users'
@@ -14,11 +14,16 @@ export const router = createBrowserRouter([
         element: <AppLayout />,
         errorElement: <ErrorPage />,
         children: [
-            { index: true, element: <DashboardPage /> },
+            {
+                element: <PageLayout />,
+                children: [
+                    { index: true, element: <DashboardPage /> },
+                    { path: 'profile', element: <ProfilePage /> },
+                    { path: 'settings', element: <SettingsPage /> },
+                ],
+            },
             { path: 'users', element: <UsersPage /> },
-            { path: 'profile', element: <ProfilePage /> },
             { path: 'products', element: <ProductsPage /> },
-            { path: 'settings', element: <SettingsPage /> },
         ],
     },
     {
