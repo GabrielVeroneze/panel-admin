@@ -1,1 +1,31 @@
 @use '@/styles/tokens' as *;
+
+.footer {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: $space-6 $space-5;
+
+    .info {
+        align-items: center;
+        display: flex;
+        gap: $space-3;
+
+        .text {
+            color: $gray-dark;
+            font-size: $text-xl;
+            font-weight: $font-normal;
+
+            .time {
+                color: $gray-darkest;
+                font-weight: $font-semibold;
+            }
+        }
+
+        .icon {
+            color: $gray-base;
+            height: auto;
+            width: 18px;
+        }
+    }
+}
