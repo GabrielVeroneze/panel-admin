@@ -22,8 +22,13 @@ export const router = createBrowserRouter([
                     { path: 'settings', element: <SettingsPage /> },
                 ],
             },
-            { path: 'users', element: <UsersPage /> },
-            { path: 'products', element: <ProductsPage /> },
+            {
+                element: <PageLayout variant="plain" />,
+                children: [
+                    { path: 'users', element: <UsersPage /> },
+                    { path: 'products', element: <ProductsPage /> },
+                ],
+            },
         ],
     },
     {
