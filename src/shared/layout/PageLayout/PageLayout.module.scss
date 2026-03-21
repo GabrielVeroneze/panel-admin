@@ -4,16 +4,28 @@
 .content {
     display: flex;
     flex-direction: column;
-    gap: $space-3;
-    padding: $space-3;
+
+    &.default {
+        gap: $space-3;
+        padding: $space-3;
+    }
+
+    &.plain {
+        gap: $space-0;
+        padding: $space-0;
+    }
 
     @include media-down(md) {
-        gap: $space-1-5;
-        padding: $space-1-5;
+        &.default {
+            gap: $space-1-5;
+            padding: $space-1-5;
+        }
     }
 
     @include media-down(xs) {
-        gap: $space-3;
-        padding: $space-3;
+        &.default {
+            gap: $space-3;
+            padding: $space-3;
+        }
     }
 }
