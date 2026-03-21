@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router'
-import { Footer, Header, Sidebar } from '@/shared/layout'
+import { Header, Sidebar } from '@/shared/layout'
 import styles from './AppLayout.module.scss'
 
 export const AppLayout = () => {
@@ -15,12 +15,9 @@ export const AppLayout = () => {
         <div className={styles.layout}>
             <Header isAuthenticated={isAuth} onToggleSidebar={toggleSidebar} />
             <Sidebar isOpen={isSidebarOpen} />
-            <div className={styles.content}>
-                <main className={styles.main}>
-                    <Outlet />
-                </main>
-                <Footer />
-            </div>
+            <main className={styles.main}>
+                <Outlet />
+            </main>
         </div>
     )
 }
