@@ -3,50 +3,26 @@
 
 $header-height-desktop: 71px;
 $header-height-tablet: 63px;
-$footer-height-desktop: 120px;
-$footer-height-tablet: 143px;
 $sidebar-width: 206px;
 
 .layout {
     display: grid;
     grid-template-areas:
         'header header'
-        'sidebar content';
+        'sidebar main';
     grid-template-columns: $sidebar-width minmax(0, 1fr);
     grid-template-rows: $header-height-desktop 1fr;
     min-height: 100vh;
 
-    .content {
-        display: grid;
-        gap: $space-3;
-        grid-area: content;
-        grid-template-areas:
-            'main'
-            'footer';
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr $footer-height-desktop;
-
-        .main {
-            grid-area: main;
-        }
+    .main {
+        grid-area: main;
     }
 
     @include media-down(md) {
         grid-template-areas:
             'header'
-            'content';
+            'main';
         grid-template-columns: 1fr;
         grid-template-rows: $header-height-tablet 1fr;
-
-        .content {
-            gap: $space-1-5;
-            grid-template-rows: 1fr $footer-height-tablet;
-        }
-    }
-
-    @include media-down(xs) {
-        .content {
-            gap: $space-3;
-        }
     }
 }
