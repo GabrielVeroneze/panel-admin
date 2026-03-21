@@ -1,12 +1,17 @@
 import { Outlet } from 'react-router'
 import { Footer } from '@/shared/layout'
+import clsx from 'clsx'
 import styles from './PageLayout.module.scss'
 
-export const PageLayout = () => {
+type PageLayoutProps = {
+    variant?: 'default' | 'plain'
+}
+
+export const PageLayout = ({ variant = 'default' }: PageLayoutProps) => {
     return (
-        <div className={styles.content}>
+        <div className={clsx(styles.content, styles[variant])}>
             <Outlet />
-            <Footer />
+            {variant === 'default' && <Footer />}
         </div>
     )
 }
