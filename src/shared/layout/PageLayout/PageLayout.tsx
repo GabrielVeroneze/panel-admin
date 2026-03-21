@@ -1,10 +1,12 @@
-import type { ReactNode } from 'react'
+import { Outlet } from 'react-router'
+import { Footer } from '@/shared/layout'
 import styles from './PageLayout.module.scss'
 
-type PageLayoutProps = {
-    children: ReactNode
-}
-
-export const PageLayout = ({ children }: PageLayoutProps) => {
-    return <div className={styles.container}>{children}</div>
+export const PageLayout = () => {
+    return (
+        <div className={styles.content}>
+            <Outlet />
+            <Footer />
+        </div>
+    )
 }
