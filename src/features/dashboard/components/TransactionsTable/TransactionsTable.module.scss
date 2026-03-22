@@ -18,7 +18,7 @@
     }
 
     .tableContainer {
-        --table-columns: 3fr 2fr 1fr 1fr;
+        --table-columns: 3fr 2fr 1fr minmax(85px, 1fr);
 
         margin-top: $space-4;
 
