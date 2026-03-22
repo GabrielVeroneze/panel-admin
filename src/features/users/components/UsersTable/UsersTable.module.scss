@@ -1,5 +1,5 @@
 @use '@/styles/tokens' as *;
 
 .table {
-    --table-columns: 0.5fr 2.5fr 2.5fr 2fr 2fr 1fr;
+    --table-columns: 0.5fr minmax(125px, 2.5fr) 2.5fr 2fr 2fr minmax(82px, 1fr);
 }
