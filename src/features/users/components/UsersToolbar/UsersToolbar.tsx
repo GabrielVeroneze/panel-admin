@@ -1,9 +1,9 @@
 import { Button, IconButton, Input } from '@/shared/components'
 import {
     CogIcon,
-    DocumentDownloadSolidIcon,
     DotsVerticalSolidIcon,
     ExclamationCircleSolidIcon,
+    PlusSolidIcon,
     TrashSolidIcon,
 } from '@/shared/assets/icons'
 import styles from './UsersToolbar.module.scss'
@@ -24,12 +24,11 @@ export const UsersToolbar = () => {
             </div>
             <Button
                 className={styles.button}
-                size="lg"
-                variant="transparent"
+                icon={<PlusSolidIcon />}
                 iconPosition="left"
-                icon={<DocumentDownloadSolidIcon />}
+                size="lg"
             >
-                Export
+                Add User
             </Button>
         </div>
     )
