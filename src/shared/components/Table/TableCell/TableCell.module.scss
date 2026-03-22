@@ -4,6 +4,8 @@
 .tableCell {
     color: $gray-darkest;
     font-weight: $font-normal;
+    min-width: 0;
+    text-align: start;
 
     &.header {
         font-weight: $font-semibold;
@@ -15,7 +17,7 @@
     }
 
     &.lg {
-        font-size: $text-2xl;
+        font-size: $text-xl;
     }
 
     @include media-down(md) {
