@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .footer {
     align-items: center;
@@ -27,5 +28,9 @@
             height: auto;
             width: 18px;
         }
+    }
+
+    @include media-down(md) {
+        padding: $space-5;
     }
 }
