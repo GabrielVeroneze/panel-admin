@@ -3,8 +3,8 @@ import {
     CogIcon,
     DotsVerticalSolidIcon,
     ExclamationCircleSolidIcon,
-    PlusSolidIcon,
     TrashSolidIcon,
+    UserAddSolidIcon,
 } from '@/shared/assets/icons'
 import styles from './UsersToolbar.module.scss'
 
@@ -24,7 +24,7 @@ export const UsersToolbar = () => {
             </div>
             <Button
                 className={styles.button}
-                icon={<PlusSolidIcon />}
+                icon={<UserAddSolidIcon />}
                 iconPosition="left"
                 size="lg"
             >
