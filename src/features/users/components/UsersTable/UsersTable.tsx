@@ -155,19 +155,19 @@ export const UsersTable = () => {
         <Table borderedRows className={styles.table}>
             <TableHead>
                 <TableRow>
-                    <TableCell size="lg" header>
+                    <TableCell className={styles.checkbox} size="lg" header>
                         <Checkbox />
                     </TableCell>
-                    <TableCell size="lg" header>
+                    <TableCell className={styles.name} size="lg" header>
                         Name
                     </TableCell>
-                    <TableCell size="lg" header>
+                    <TableCell className={styles.position} size="lg" header>
                         Position
                     </TableCell>
-                    <TableCell size="lg" header>
+                    <TableCell className={styles.country} size="lg" header>
                         Country
                     </TableCell>
-                    <TableCell size="lg" header>
+                    <TableCell className={styles.status} size="lg" header>
                         Status
                     </TableCell>
                 </TableRow>
@@ -175,10 +175,10 @@ export const UsersTable = () => {
             <TableBody>
                 {users.map((user) => (
                     <TableRow key={user.id} size="lg">
-                        <TableCell size="lg">
+                        <TableCell className={styles.checkbox} size="lg">
                             <Checkbox />
                         </TableCell>
-                        <TableCell size="lg">
+                        <TableCell className={styles.name} size="lg">
                             <UserInfo
                                 variant="md"
                                 avatarUrl={user.image}
@@ -186,12 +186,16 @@ export const UsersTable = () => {
                                 email={user.email}
                             />
                         </TableCell>
-                        <TableCell size="lg">{user.position}</TableCell>
-                        <TableCell size="lg">{user.country}</TableCell>
-                        <TableCell size="lg">
+                        <TableCell className={styles.position} size="lg">
+                            {user.position}
+                        </TableCell>
+                        <TableCell className={styles.country} size="lg">
+                            {user.country}
+                        </TableCell>
+                        <TableCell className={styles.status} size="lg">
                             <StatusBadge status={user.status} />
                         </TableCell>
-                        <TableCell size="lg">
+                        <TableCell className={styles.actions} size="lg">
                             <Button
                                 size="md"
                                 variant="primary"
