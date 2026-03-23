@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .container {
     align-items: center;
@@ -23,5 +24,28 @@
     .button {
         flex-shrink: 0;
         margin-left: auto;
+    }
+
+    @include media-down(md) {
+        flex-wrap: wrap;
+        gap: $space-4 $space-3;
+        padding: $space-2 $space-2 $space-4;
+
+        .input {
+            max-width: 100%;
+            order: 0;
+        }
+
+        .actions {
+            border-left: none;
+            gap: $space-3;
+            order: 2;
+            padding-left: $space-0;
+        }
+
+        .button {
+            flex-grow: 1;
+            order: 1;
+        }
     }
 }
