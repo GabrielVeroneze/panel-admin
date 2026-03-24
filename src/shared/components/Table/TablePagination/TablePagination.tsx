@@ -1,9 +1,9 @@
-import { IconButton } from '@/shared/components'
+import { Button } from '@/shared/components'
 import { ChevronLeftIcon, ChevronRightIcon } from '@/shared/assets/icons'
 import styles from './TablePagination.module.scss'
 
 type TablePaginationProps = {
-    variant?: 'simple' | 'withTotal'
+    label?: string
     page: number
     pageSize: number
     total: number
@@ -11,7 +11,7 @@ type TablePaginationProps = {
 }
 
 export const TablePagination = ({
-    variant = 'simple',
+    label,
     page,
     pageSize,
     total,
@@ -28,39 +28,35 @@ export const TablePagination = ({
     return (
         <div className={styles.pagination}>
             <div className={styles.controls}>
-                <IconButton
+                <Button
                     icon={<ChevronLeftIcon />}
+                    iconPosition="left"
+                    variant="transparent"
                     aria-label="Previous page"
-                    size={30}
                     onClick={() => canGoBack && onPageChange(page - 1)}
                     disabled={!canGoBack}
-                />
-                <IconButton
+                >
+                    <span className={styles.buttonText}>Previous</span>
+                </Button>
+                <Button
                     icon={<ChevronRightIcon />}
+                    iconPosition="right"
+                    variant="primary"
                     aria-label="Next page"
-                    size={30}
                     onClick={() => canGoNext && onPageChange(page + 1)}
                     disabled={!canGoNext}
-                />
+                >
+                    <span className={styles.buttonText}>Next</span>
+                </Button>
             </div>
             <div className={styles.info}>
-                {variant === 'simple' && (
-                    <span>
-                        Show{' '}
-                        <strong>
-                            {start}-{end}
-                        </strong>
-                    </span>
-                )}
-                {variant === 'withTotal' && (
-                    <span>
-                        Show{' '}
-                        <strong>
-                            {start}-{end}
-                        </strong>{' '}
-                        of <strong>{total}</strong>
-                    </span>
-                )}
+                <span>
+                    Showing{' '}
+                    <strong>
+                        {start}-{end}
+                    </strong>{' '}
+                    of <strong>{total}</strong> {label}
+                </span>
             </div>
         </div>
     )
