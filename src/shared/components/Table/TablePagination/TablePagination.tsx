@@ -29,6 +29,7 @@ export const TablePagination = ({
         <div className={styles.pagination}>
             <div className={styles.controls}>
                 <Button
+                    className={styles.button}
                     icon={<ChevronLeftIcon />}
                     iconPosition="left"
                     variant="transparent"
@@ -39,6 +40,7 @@ export const TablePagination = ({
                     <span className={styles.buttonText}>Previous</span>
                 </Button>
                 <Button
+                    className={styles.button}
                     icon={<ChevronRightIcon />}
                     iconPosition="right"
                     variant="primary"
