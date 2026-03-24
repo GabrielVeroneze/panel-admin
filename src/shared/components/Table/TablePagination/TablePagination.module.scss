@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .pagination {
     align-items: center;
@@ -11,9 +12,10 @@
         display: flex;
         gap: $space-3;
 
-        .buttonText {
-            display: none;
-            line-height: 1;
+        .button {
+            .buttonText {
+                display: none;
+            }
         }
     }
 
@@ -25,6 +27,22 @@
         strong {
             color: $gray-darkest;
             font-weight: $font-semibold;
+        }
+    }
+
+    @include media-down(md) {
+        align-items: stretch;
+        flex-direction: column-reverse;
+        flex-grow: 1;
+
+        .controls {
+            .button {
+                flex-grow: 1;
+
+                .buttonText {
+                    display: inline-block;
+                }
+            }
         }
     }
 }
