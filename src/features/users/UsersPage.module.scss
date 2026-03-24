@@ -1,8 +1,13 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .users {
     background-color: $white;
     display: flex;
     flex-direction: column;
     height: 100%;
+
+    @include media-down(md) {
+        padding: $space-0 $space-2-5;
+    }
 }
