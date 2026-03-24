@@ -34,6 +34,7 @@
         align-items: stretch;
         flex-direction: column-reverse;
         flex-grow: 1;
+        gap: $space-4;
 
         .controls {
             .button {
@@ -43,6 +44,12 @@
                     display: inline-block;
                 }
             }
+        }
+    }
+
+    @include media-down(xs) {
+        .info {
+            font-size: $text-2xl;
         }
     }
 }
