@@ -6,7 +6,7 @@ export const UsersFooter = () => {
     return (
         <div className={styles.footer}>
             <TablePagination
-                variant="withTotal"
+                label="users"
                 page={1}
                 pageSize={15}
                 total={987}
