@@ -38,4 +38,8 @@
             display: none;
         }
     }
+
+    @include media-down(xs) {
+        padding: $space-5 $space-0;
+    }
 }
