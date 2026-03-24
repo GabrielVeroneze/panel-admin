@@ -10,6 +10,11 @@
         color: $gray-darkest;
         display: flex;
         gap: $space-3;
+
+        .buttonText {
+            display: none;
+            line-height: 1;
+        }
     }
 
     .info {
