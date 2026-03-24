@@ -32,7 +32,7 @@
     }
 
     @include media-down(md) {
-        padding: $space-5;
+        padding: $space-5 $space-2-5;
 
         .info {
             display: none;
