@@ -22,7 +22,7 @@ $sidebar-width: 206px;
         grid-template-areas:
             'header'
             'main';
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         grid-template-rows: $header-height-tablet 1fr;
     }
 }
