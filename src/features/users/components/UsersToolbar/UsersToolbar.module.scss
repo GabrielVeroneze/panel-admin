@@ -48,4 +48,8 @@
             order: 1;
         }
     }
+
+    @include media-down(xs) {
+        padding: $space-3 $space-0 $space-4;
+    }
 }
