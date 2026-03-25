@@ -1,6 +1,6 @@
 import { delay, http, HttpResponse } from 'msw'
 
-export const handlers = [
+export const dashboardHandlers = [
     http.get('/api/dashboard', async () => {
         await delay(1000)
 
