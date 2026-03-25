@@ -5,14 +5,14 @@
     overflow-x: auto;
 
     .table {
-        --table-columns: 0.5fr minmax(140px, 2.5fr) 2.5fr 2fr 2fr
+        --table-columns: 0.5fr minmax(210px, 2.5fr) 2.5fr 2fr 2fr
             minmax(110px, 1fr);
     }
 
     @include media-down(lg) {
         .table {
-            --table-columns: 0.5fr minmax(140px, 3fr) 2fr 1.5fr
-                minmax(110px, 1fr);
+            --table-columns: 0.5fr minmax(210px, 3fr) 2fr 1.5fr
+                minmax(100px, 1fr);
 
             min-width: 485px;
 
