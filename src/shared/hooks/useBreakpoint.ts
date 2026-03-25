@@ -11,9 +11,9 @@ export const useBreakpoint = () => {
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
-    const isMobile = width < 360
-    const isTablet = width >= 360 && width < 768
-    const isDesktop = width >= 768
+    const isMobile = width < 576
+    const isTablet = width >= 576 && width < 1024
+    const isDesktop = width >= 1024
 
     return { isMobile, isTablet, isDesktop }
 }
