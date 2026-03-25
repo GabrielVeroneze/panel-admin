@@ -47,7 +47,7 @@
         }
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         .info {
             font-size: $text-2xl;
         }

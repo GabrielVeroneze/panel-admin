@@ -69,7 +69,7 @@
         }
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         gap: $space-3;
         grid-template-areas:
             'sales'

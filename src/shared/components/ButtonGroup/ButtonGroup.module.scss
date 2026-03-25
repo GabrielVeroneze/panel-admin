@@ -21,7 +21,7 @@
         border-top-left-radius: 0;
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         width: 100%;
     }
 }

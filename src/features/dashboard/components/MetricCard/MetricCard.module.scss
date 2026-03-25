@@ -127,7 +127,7 @@
         }
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         gap: $space-7;
 
         .header {

@@ -31,7 +31,7 @@
         }
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         gap: $space-3;
         padding: 0 $space-2;
 

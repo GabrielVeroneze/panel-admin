@@ -20,7 +20,7 @@
         }
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         height: 240px;
 
         :global(.recharts-cartesian-axis-tick-value) {

@@ -115,7 +115,7 @@
         }
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         .header {
             .title {
                 font-size: $text-3xl;

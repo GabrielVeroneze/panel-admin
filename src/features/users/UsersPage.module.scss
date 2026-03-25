@@ -11,7 +11,7 @@
         padding: $space-0 $space-2-5;
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         padding: $space-0 $space-3;
     }
 }

@@ -21,7 +21,7 @@
         padding: $space-3-5 $space-4;
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         .logo {
             display: none;
         }

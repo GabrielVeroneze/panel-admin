@@ -10,7 +10,7 @@
         height: 224px;
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         height: 240px;
     }
 }

@@ -63,7 +63,7 @@
             padding: $space-2 $space-2-5;
         }
 
-        @include media-down(xs) {
+        @include media-down(sm) {
             font-size: $text-2xl;
             padding: $space-2-5 $space-3;
             width: 100%;

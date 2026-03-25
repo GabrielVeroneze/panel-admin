@@ -141,7 +141,7 @@
         }
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         .header {
             margin-bottom: $space-8;
 

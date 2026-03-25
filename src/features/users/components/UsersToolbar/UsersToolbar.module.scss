@@ -49,7 +49,7 @@
         }
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         padding: $space-3 $space-0 $space-4;
     }
 }

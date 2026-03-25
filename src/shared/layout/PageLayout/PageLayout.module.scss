@@ -22,7 +22,7 @@
         }
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         &.default {
             gap: $space-3;
             padding: $space-3;

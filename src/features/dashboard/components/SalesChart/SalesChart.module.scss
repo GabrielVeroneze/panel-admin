@@ -135,7 +135,7 @@
         }
     }
 
-    @include media-down(xs) {
+    @include media-down(sm) {
         .header {
             align-items: flex-start;
             flex-direction: column;
