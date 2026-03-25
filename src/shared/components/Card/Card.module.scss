@@ -9,7 +9,7 @@
     padding: $space-5;
     width: max-content;
 
-    @include media-down(md) {
+    @include media-down(lg) {
         padding: $space-4;
     }
 

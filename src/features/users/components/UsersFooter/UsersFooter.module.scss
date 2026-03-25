@@ -31,7 +31,7 @@
         }
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         padding: $space-5 $space-2-5;
 
         .info {

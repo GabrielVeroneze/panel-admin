@@ -9,7 +9,7 @@
             minmax(110px, 1fr);
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         .table {
             --table-columns: 0.5fr minmax(140px, 3fr) 2fr 1.5fr
                 minmax(110px, 1fr);

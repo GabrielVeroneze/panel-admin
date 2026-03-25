@@ -18,7 +18,7 @@ $sidebar-width: 206px;
         grid-area: main;
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         grid-template-areas:
             'header'
             'main';

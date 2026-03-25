@@ -26,7 +26,7 @@
         margin-left: auto;
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         flex-wrap: wrap;
         gap: $space-4 $space-3;
         padding: $space-2-5 $space-0 $space-4;

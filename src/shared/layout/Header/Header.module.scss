@@ -15,7 +15,7 @@
     width: 100%;
     z-index: 999;
 
-    @include media-down(md) {
+    @include media-down(lg) {
         gap: $space-5;
         height: 63px;
         padding: $space-3-5 $space-4;

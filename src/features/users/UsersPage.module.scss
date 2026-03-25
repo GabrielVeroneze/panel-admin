@@ -7,7 +7,7 @@
     flex-direction: column;
     height: 100%;
 
-    @include media-down(md) {
+    @include media-down(lg) {
         padding: $space-0 $space-2-5;
     }
 

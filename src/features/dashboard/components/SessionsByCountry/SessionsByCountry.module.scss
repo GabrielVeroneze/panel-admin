@@ -87,7 +87,7 @@
         }
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         .header {
             margin-bottom: $space-6;
 

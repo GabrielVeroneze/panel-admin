@@ -30,7 +30,7 @@
         }
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         align-items: stretch;
         flex-direction: column-reverse;
         flex-grow: 1;

@@ -20,7 +20,7 @@
         }
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         justify-content: flex-end;
 
         .input {

@@ -81,7 +81,7 @@
         }
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         gap: $space-5;
 
         .header {

@@ -12,7 +12,7 @@
         font-weight: $font-semibold;
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         height: 224px;
 
         :global(.recharts-cartesian-axis-tick-value) {

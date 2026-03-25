@@ -43,7 +43,7 @@
             }
         }
 
-        @include media-down(md) {
+        @include media-down(lg) {
             .text {
                 .name {
                     font-size: $text-lg;

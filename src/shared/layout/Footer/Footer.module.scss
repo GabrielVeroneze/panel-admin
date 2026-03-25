@@ -35,7 +35,7 @@
         }
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         align-items: flex-start;
         flex-direction: column;
         gap: $space-5;

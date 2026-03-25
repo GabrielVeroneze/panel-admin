@@ -17,7 +17,7 @@ $header-height-tablet: 63px;
         overflow-y: auto;
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         grid-template-rows: $header-height-tablet 1fr;
     }
 }

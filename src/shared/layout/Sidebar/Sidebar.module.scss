@@ -38,7 +38,7 @@ $header-height-tablet: 63px;
         }
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         height: calc(100vh - $header-height-tablet);
         top: $header-height-tablet;
         transform: translateX(-100%);

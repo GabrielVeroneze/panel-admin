@@ -6,7 +6,7 @@
     height: 245px;
     width: 100%;
 
-    @include media-down(md) {
+    @include media-down(lg) {
         height: 224px;
     }
 

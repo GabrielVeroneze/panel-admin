@@ -61,7 +61,7 @@
         }
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         .header {
             .title {
                 font-size: $text-xl;

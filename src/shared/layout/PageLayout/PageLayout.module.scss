@@ -15,7 +15,7 @@
         padding: $space-0;
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         &.default {
             gap: $space-1-5;
             padding: $space-1-5;

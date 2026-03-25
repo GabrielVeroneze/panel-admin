@@ -20,7 +20,7 @@
         font-size: $text-xl;
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         &.md {
             font-size: $text-base;
         }

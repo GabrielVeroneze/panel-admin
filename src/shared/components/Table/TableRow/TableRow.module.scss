@@ -23,7 +23,7 @@
         min-height: 64px;
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         padding: 0 $space-3;
 
         &.md {

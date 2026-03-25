@@ -77,7 +77,7 @@
         }
     }
 
-    @include media-down(md) {
+    @include media-down(lg) {
         margin: 0;
 
         .header {
