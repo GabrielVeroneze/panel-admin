@@ -5,14 +5,16 @@
     overflow-x: auto;
 
     .table {
-        --table-columns: 0.5fr minmax(125px, 2.5fr) 2.5fr 2fr 2fr
+        --table-columns: 0.5fr minmax(140px, 2.5fr) 2.5fr 2fr 2fr
             minmax(110px, 1fr);
     }
 
     @include media-down(md) {
         .table {
-            --table-columns: 0.5fr minmax(180px, 3fr) 2fr 1.5fr
+            --table-columns: 0.5fr minmax(140px, 3fr) 2fr 1.5fr
                 minmax(110px, 1fr);
+
+            min-width: 485px;
 
             .country {
                 display: none;
@@ -22,7 +24,13 @@
 
     @include media-down(xs) {
         .table {
-            min-width: 700px;
+            --table-columns: 0.5fr minmax(210px, 3fr) 1fr minmax(120px, 1fr);
+
+            min-width: 535px;
+
+            .position {
+                display: none;
+            }
         }
     }
 }
