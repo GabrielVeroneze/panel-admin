@@ -45,7 +45,7 @@
         font-weight: $font-medium;
         padding: $space-2 $space-3;
 
-        @include media-down(md) {
+        @include media-down(lg) {
             font-size: $text-lg;
             padding: $space-1-5 $space-2-5;
         }
