@@ -1,14 +1,28 @@
 @use '@/styles/tokens' as *;
 @use '@/styles/mixins' as *;
 
-.table {
-    --table-columns: 0.5fr minmax(125px, 2.5fr) 2.5fr 2fr 2fr minmax(110px, 1fr);
+.wrapper {
+    overflow-x: auto;
+
+    .table {
+        --table-columns: 0.5fr minmax(125px, 2.5fr) 2.5fr 2fr 2fr
+            minmax(110px, 1fr);
+    }
 
     @include media-down(md) {
-        --table-columns: 0.5fr minmax(180px, 3fr) 2fr 1.5fr minmax(110px, 1fr);
+        .table {
+            --table-columns: 0.5fr minmax(180px, 3fr) 2fr 1.5fr
+                minmax(110px, 1fr);
 
-        .country {
-            display: none;
+            .country {
+                display: none;
+            }
+        }
+    }
+
+    @include media-down(xs) {
+        .table {
+            min-width: 700px;
         }
     }
 }
