@@ -2,17 +2,25 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { fetchUsers } from '../store'
 
-export const useUsers = () => {
+export const useUsers = (page: number, pageSize: number) => {
     const dispatch = useAppDispatch()
 
-    const { list, loading } = useAppSelector((state) => state.users)
+    const { data, loading } = useAppSelector((state) => state.users)
 
     useEffect(() => {
-        dispatch(fetchUsers())
-    }, [dispatch])
+        dispatch(fetchUsers({ page, pageSize }))
+    }, [dispatch, page, pageSize])
+
+    const users = data?.list ?? []
+    const total = data?.total ?? 0
+    const currentPage = data?.page ?? page
+    const currentPageSize = data?.pageSize ?? pageSize
 
     return {
-        users: list,
+        users,
+        total,
+        page: currentPage,
+        pageSize: currentPageSize,
         loading,
     }
 }
