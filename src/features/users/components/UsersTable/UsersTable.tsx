@@ -10,147 +10,21 @@ import {
     UserInfo,
 } from '@/shared/components'
 import { PencilAltSolidIcon } from '@/shared/assets/icons'
+import type { User } from '@/features/users/types'
 import styles from './UsersTable.module.scss'
 
-const users = [
-    {
-        id: 1,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'active',
-    },
-    {
-        id: 2,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'offline',
-    },
-    {
-        id: 3,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'active',
-    },
-    {
-        id: 4,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'offline',
-    },
-    {
-        id: 5,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'active',
-    },
-    {
-        id: 6,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'offline',
-    },
-    {
-        id: 7,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'active',
-    },
-    {
-        id: 8,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'offline',
-    },
-    {
-        id: 9,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'active',
-    },
-    {
-        id: 10,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'offline',
-    },
-    {
-        id: 11,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'active',
-    },
-    {
-        id: 12,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'offline',
-    },
-    {
-        id: 13,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'active',
-    },
-    {
-        id: 14,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'offline',
-    },
-    {
-        id: 15,
-        image: 'https://i.pravatar.cc/150?img=68',
-        name: 'Neil Sims',
-        email: 'bonnie@example.com',
-        position: 'Front End Developer',
-        country: 'United States',
-        status: 'active',
-    },
-]
+type UsersTableProps = {
+    users: User[]
+    loading: boolean
+}
 
-export const UsersTable = () => {
+export const UsersTable = ({ users, loading }: UsersTableProps) => {
+    const isEmpty = !users || users.length === 0
+
+    if (loading) return <span>Skeleton</span>
+
+    if (isEmpty) return <span>Empty</span>
+
     return (
         <div className={styles.wrapper}>
             <Table borderedRows className={styles.table}>
