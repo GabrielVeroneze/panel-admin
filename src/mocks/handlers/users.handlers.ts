@@ -1,10 +1,15 @@
 import { delay, http, HttpResponse } from 'msw'
 
 export const usersHandlers = [
-    http.get('/api/users', async () => {
+    http.get('/api/users', async ({ request }) => {
         await delay(1000)
 
-        return HttpResponse.json([
+        const url = new URL(request.url)
+
+        const page = Number(url.searchParams.get('page') ?? 1)
+        const pageSize = Number(url.searchParams.get('pageSize') ?? 15)
+
+        const allUsers = [
             {
                 id: 1,
                 image: 'https://i.pravatar.cc/150?img=1',
@@ -692,6 +697,18 @@ export const usersHandlers = [
                 country: 'Ireland',
                 status: 'active',
             },
-        ])
+        ]
+
+        const start = (page - 1) * pageSize
+        const end = start + pageSize
+
+        const paginatedUsers = allUsers.slice(start, end)
+
+        return HttpResponse.json({
+            list: paginatedUsers,
+            total: allUsers.length,
+            page,
+            pageSize,
+        })
     }),
 ]
