@@ -7,3 +7,10 @@ export type User = {
     country: string
     status: 'active' | 'offline'
 }
+
+export type UsersData = {
+    list: User[]
+    total: number
+    page: number
+    pageSize: number
+}
