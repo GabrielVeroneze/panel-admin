@@ -2,15 +2,27 @@ import { TablePagination } from '@/shared/components'
 import { EyeSolidIcon } from '@/shared/assets/icons'
 import styles from './UsersFooter.module.scss'
 
-export const UsersFooter = () => {
+type UsersFooterProps = {
+    page: number
+    pageSize: number
+    total: number
+    onPageChange: (page: number) => void
+}
+
+export const UsersFooter = ({
+    page,
+    pageSize,
+    total,
+    onPageChange,
+}: UsersFooterProps) => {
     return (
         <div className={styles.footer}>
             <TablePagination
                 label="users"
-                page={1}
-                pageSize={15}
-                total={987}
-                onPageChange={() => {}}
+                page={page}
+                pageSize={pageSize}
+                total={total}
+                onPageChange={onPageChange}
             />
             <div className={styles.info}>
                 <span className={styles.text}>
