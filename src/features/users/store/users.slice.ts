@@ -1,21 +1,26 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getUsers } from '../api'
-import type { User } from '../types'
+import type { UsersData } from '../types'
 
 type UsersState = {
-    list: User[]
+    data: UsersData | null
     loading: boolean
 }
 
+type FetchUsersParams = {
+    page: number
+    pageSize: number
+}
+
 const initialState: UsersState = {
-    list: [],
+    data: null,
     loading: false,
 }
 
-export const fetchUsers = createAsyncThunk<User[]>(
+export const fetchUsers = createAsyncThunk<UsersData, FetchUsersParams>(
     'users/fetchUsers',
-    async () => {
-        return await getUsers()
+    async ({ page, pageSize }) => {
+        return await getUsers({ page, pageSize })
     },
 )
 
@@ -30,7 +35,7 @@ const usersSlice = createSlice({
             })
             .addCase(fetchUsers.fulfilled, (state, action) => {
                 state.loading = false
-                state.list = action.payload
+                state.data = action.payload
             })
     },
 })
