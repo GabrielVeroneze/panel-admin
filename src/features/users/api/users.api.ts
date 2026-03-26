@@ -1,8 +1,10 @@
 import { api } from '@/services/api'
-import type { User } from '../types'
+import type { UsersData } from '../types'
 
-export const getUsers = async () => {
-    const { data } = await api.get<User[]>('/users')
+export const getUsers = async (params: { page: number; pageSize: number }) => {
+    const { data } = await api.get<UsersData>('/users', {
+        params,
+    })
 
     return data
 }
