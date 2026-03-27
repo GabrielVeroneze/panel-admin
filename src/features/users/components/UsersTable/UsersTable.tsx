@@ -10,6 +10,7 @@ import {
     UserInfo,
 } from '@/shared/components'
 import { PencilAltSolidIcon } from '@/shared/assets/icons'
+import { UsersTableSkeleton } from './UsersTableSkeleton'
 import type { User } from '@/features/users/types'
 import styles from './UsersTable.module.scss'
 
@@ -21,7 +22,7 @@ type UsersTableProps = {
 export const UsersTable = ({ users, loading }: UsersTableProps) => {
     const isEmpty = !users || users.length === 0
 
-    if (loading) return <span>Skeleton</span>
+    if (loading) return <UsersTableSkeleton />
 
     if (isEmpty) return <span>Empty</span>
 
