@@ -102,5 +102,27 @@
                 display: none;
             }
         }
+
+        &.skeleton {
+            .checkboxSkeleton {
+                width: 9%;
+            }
+
+            .nameSkeleton {
+                width: 47%;
+            }
+
+            .positionSkeleton {
+                display: none;
+            }
+
+            .statusSkeleton {
+                width: 20%;
+            }
+
+            .actionsSkeleton {
+                width: 24%;
+            }
+        }
     }
 }
