@@ -64,6 +64,32 @@
                 display: none;
             }
         }
+
+        &.skeleton {
+            .checkboxSkeleton {
+                width: 6%;
+            }
+
+            .nameSkeleton {
+                width: 37%;
+            }
+
+            .positionSkeleton {
+                width: 25%;
+            }
+
+            .countrySkeleton {
+                display: none;
+            }
+
+            .statusSkeleton {
+                width: 19%;
+            }
+
+            .actionsSkeleton {
+                width: 13%;
+            }
+        }
     }
 
     @include media-down(sm) {
