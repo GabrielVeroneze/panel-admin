@@ -2,6 +2,7 @@
 @use '@/styles/mixins' as *;
 
 .wrapper {
+    flex-grow: 1;
     overflow-x: auto;
 
     .table {
