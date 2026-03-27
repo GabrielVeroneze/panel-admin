@@ -1,6 +1,7 @@
 import {
     Button,
     Checkbox,
+    EmptyState,
     StatusBadge,
     Table,
     TableBody,
@@ -9,7 +10,10 @@ import {
     TableRow,
     UserInfo,
 } from '@/shared/components'
-import { PencilAltSolidIcon } from '@/shared/assets/icons'
+import {
+    ExclamationCircleIcon,
+    PencilAltSolidIcon,
+} from '@/shared/assets/icons'
 import { UsersTableSkeleton } from './UsersTableSkeleton'
 import type { User } from '@/features/users/types'
 import styles from './UsersTable.module.scss'
@@ -24,7 +28,15 @@ export const UsersTable = ({ users, loading }: UsersTableProps) => {
 
     if (loading) return <UsersTableSkeleton />
 
-    if (isEmpty) return <span>Empty</span>
+    if (isEmpty) {
+        return (
+            <EmptyState
+                icon={<ExclamationCircleIcon />}
+                title="No users"
+                description="There are no users to display."
+            />
+        )
+    }
 
     return (
         <div className={styles.wrapper}>
