@@ -11,7 +11,7 @@ type InputProps = {
 } & NativeInputProps
 
 export const Input = ({
-    size = 'regular',
+    size = 'medium',
     status,
     icon,
     className,
