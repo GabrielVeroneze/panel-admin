@@ -59,7 +59,7 @@
     }
 
     /* Sizes */
-    &.regular {
+    &.small {
         height: 32px;
 
         .icon {
@@ -81,7 +81,7 @@
         }
     }
 
-    &.large {
+    &.medium {
         height: 38px;
 
         .icon {
@@ -99,6 +99,29 @@
         &.withIcon {
             .input {
                 padding-left: $space-9;
+            }
+        }
+    }
+
+    &.large {
+        border-radius: $rounded-md;
+        height: 44px;
+
+        .icon {
+            height: 20px;
+            left: $space-3;
+            top: $space-3;
+            width: 20px;
+        }
+
+        .input {
+            font-size: $text-2xl;
+            padding: $space-3 $space-5;
+        }
+
+        &.withIcon {
+            .input {
+                padding-left: $space-10;
             }
         }
     }
