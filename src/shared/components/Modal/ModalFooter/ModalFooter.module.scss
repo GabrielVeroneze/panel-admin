@@ -1,0 +1,6 @@
+@use '@/styles/tokens' as *;
+
+.footer {
+    display: flex;
+    gap: $space-5;
+}
