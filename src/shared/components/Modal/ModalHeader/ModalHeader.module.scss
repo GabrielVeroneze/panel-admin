@@ -1,0 +1,15 @@
+@use '@/styles/tokens' as *;
+
+.header {
+    align-items: center;
+    border-bottom: $border solid $gray-light;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: $space-5;
+
+    .title {
+        color: $gray-darkest;
+        font-size: $text-2xl;
+        font-weight: $font-bold;
+    }
+}
