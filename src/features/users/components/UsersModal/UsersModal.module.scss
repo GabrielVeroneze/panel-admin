@@ -1,0 +1,7 @@
+@use '@/styles/tokens' as *;
+
+.form {
+    display: grid;
+    gap: $space-5 $space-4;
+    grid-template-columns: 1fr 1fr;
+}
