@@ -22,7 +22,7 @@
         }
     }
 
-    &.regular {
+    &.small {
         gap: $space-1-5;
 
         .label {
@@ -34,7 +34,7 @@
         }
     }
 
-    &.large {
+    &.medium {
         gap: $space-2;
 
         .label {
