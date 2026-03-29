@@ -45,4 +45,16 @@
             font-size: $text-xl;
         }
     }
+
+    &.large {
+        gap: $space-4;
+
+        .label {
+            font-size: $text-2xl;
+        }
+
+        .message {
+            font-size: $text-xl;
+        }
+    }
 }
