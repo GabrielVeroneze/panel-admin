@@ -15,7 +15,7 @@ type FormFieldProps = {
 
 export const FormField = ({
     children,
-    size = 'regular',
+    size = 'medium',
     status,
     id,
     label,
