@@ -23,7 +23,7 @@ export const AuthenticatedHeader = () => {
                 className={styles.input}
                 icon={<SearchIcon />}
                 placeholder="Search"
-                size="large"
+                size="medium"
             />
             <div className={styles.actions}>
                 <IconButton
