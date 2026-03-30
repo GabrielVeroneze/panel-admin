@@ -8,7 +8,11 @@ import {
 } from '@/shared/assets/icons'
 import styles from './UsersToolbar.module.scss'
 
-export const UsersToolbar = () => {
+type UsersToolbarProps = {
+    onCreate: () => void
+}
+
+export const UsersToolbar = ({ onCreate }: UsersToolbarProps) => {
     return (
         <div className={styles.container}>
             <Input
@@ -27,6 +31,7 @@ export const UsersToolbar = () => {
                 icon={<UserAddSolidIcon />}
                 iconPosition="left"
                 size="lg"
+                onClick={onCreate}
             >
                 Add User
             </Button>
