@@ -4,4 +4,20 @@
     display: grid;
     gap: $space-5 $space-4;
     grid-template-columns: 1fr 1fr;
+
+    .dropzone {
+        grid-column: span 2;
+
+        .icon {
+            color: $gray-dark;
+            height: 36px;
+            width: 36px;
+        }
+
+        .text {
+            color: $gray-darkest;
+            font-size: $text-2xl;
+            font-weight: $font-normal;
+        }
+    }
 }
