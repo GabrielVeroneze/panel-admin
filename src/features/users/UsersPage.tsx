@@ -1,23 +1,44 @@
 import { useState } from 'react'
-import { UsersFooter, UsersTable, UsersToolbar } from './components'
+import { UsersFooter, UsersModal, UsersTable, UsersToolbar } from './components'
 import { useUsers } from './hooks'
+import type { User } from './types'
 import styles from './UsersPage.module.scss'
 
 export const UsersPage = () => {
     const [page, setPage] = useState<number>(1)
+    const [open, setOpen] = useState<boolean>(false)
+    const [selectedUser, setSelectedUser] = useState<User | null>(null)
+
     const pageSize = 15
 
     const { users, total, loading } = useUsers(page, pageSize)
 
+    const handleCreate = () => {
+        setSelectedUser(null)
+        setOpen(true)
+    }
+
+    const handleEdit = (user: User) => {
+        setSelectedUser(user)
+        setOpen(true)
+    }
+
     return (
         <section className={styles.users}>
-            <UsersToolbar />
-            <UsersTable users={users} loading={loading} />
+            <UsersToolbar onCreate={handleCreate} />
+            <UsersTable users={users} loading={loading} onEdit={handleEdit} />
             <UsersFooter
                 page={page}
                 pageSize={pageSize}
                 total={total}
                 onPageChange={setPage}
+            />
+            <UsersModal
+                open={open}
+                user={selectedUser}
+                onClose={() => setOpen(false)}
+                onSubmit={() => setOpen(false)}
+                onDelete={() => setOpen(false)}
             />
         </section>
     )
