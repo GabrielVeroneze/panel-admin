@@ -21,9 +21,10 @@ import styles from './UsersTable.module.scss'
 type UsersTableProps = {
     users: User[]
     loading: boolean
+    onEdit: (user: User) => void
 }
 
-export const UsersTable = ({ users, loading }: UsersTableProps) => {
+export const UsersTable = ({ users, loading, onEdit }: UsersTableProps) => {
     const isEmpty = !users || users.length === 0
 
     if (loading) return <UsersTableSkeleton />
@@ -89,6 +90,7 @@ export const UsersTable = ({ users, loading }: UsersTableProps) => {
                                     variant="primary"
                                     iconPosition="left"
                                     icon={<PencilAltSolidIcon />}
+                                    onClick={() => onEdit(user)}
                                 >
                                     Edit Item
                                 </Button>
