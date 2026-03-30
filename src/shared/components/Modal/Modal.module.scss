@@ -3,12 +3,16 @@
 .modal {
     background: $white;
     border-radius: $rounded-md;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: $space-5;
     max-width: 724px;
     padding: $space-6 $space-5 $space-5;
     width: 100%;
+
+    &[open] {
+        display: flex;
+    }
 
     &::backdrop {
         background: rgba(0, 0, 0, 0.25);
