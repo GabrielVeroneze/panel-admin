@@ -1,0 +1,25 @@
+@use '@/styles/tokens' as *;
+
+.dropzone {
+    align-items: center;
+    background-color: $gray-light;
+    border: $border-2 dashed $gray-base;
+    border-radius: $rounded-lg;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2-5;
+    height: 124px;
+    justify-content: center;
+    transition: 0.2s;
+    width: 100%;
+
+    &.dragging {
+        background: $white;
+        border-color: $blue-dark;
+    }
+
+    .input {
+        display: none;
+    }
+}
