@@ -6,8 +6,9 @@ import {
     ModalContent,
     ModalFooter,
     ModalHeader,
+    UploadDropzone,
 } from '@/shared/components'
-import { XSolidIcon } from '@/shared/assets/icons'
+import { PhotographIcon, XSolidIcon } from '@/shared/assets/icons'
 import type { User } from '@/features/users/types'
 import styles from './UsersModal.module.scss'
 
@@ -100,6 +101,16 @@ export const UsersModal = ({
                             size="large"
                         />
                     </FormField>
+                    <UploadDropzone
+                        className={styles.dropzone}
+                        accept="image/*"
+                        onFileSelect={(file) => console.log(file)}
+                    >
+                        <PhotographIcon className={styles.icon} />
+                        <span className={styles.text}>
+                            Drop files to upload your profile picture
+                        </span>
+                    </UploadDropzone>
                 </form>
             </ModalContent>
             <ModalFooter>
