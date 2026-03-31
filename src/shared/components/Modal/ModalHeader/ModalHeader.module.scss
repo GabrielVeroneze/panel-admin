@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .header {
     align-items: center;
@@ -11,5 +12,9 @@
         color: $gray-darkest;
         font-size: $text-2xl;
         font-weight: $font-bold;
+    }
+
+    @include media-down(lg) {
+        padding: $space-0 $space-2-5 $space-3-5;
     }
 }
