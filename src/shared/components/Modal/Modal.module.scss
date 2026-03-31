@@ -22,7 +22,7 @@
     @include media-down(lg) {
         gap: $space-4;
         margin: auto $space-3;
-        max-width: 100%;
+        max-width: calc(100% - $space-6);
         padding: $space-3-5 $space-2-5 $space-2-5;
     }
 }
