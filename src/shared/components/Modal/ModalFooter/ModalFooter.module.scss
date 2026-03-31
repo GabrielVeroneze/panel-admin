@@ -8,4 +8,8 @@
     @include media-down(lg) {
         gap: $space-4;
     }
+
+    @include media-down(sm) {
+        flex-direction: column;
+    }
 }
