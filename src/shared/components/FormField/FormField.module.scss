@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .field {
     display: flex;
@@ -55,6 +56,10 @@
 
         .message {
             font-size: $text-xl;
+        }
+
+        @include media-down(lg) {
+            gap: $space-2-5;
         }
     }
 }
