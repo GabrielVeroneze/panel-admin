@@ -39,6 +39,7 @@ export const UsersModal = ({
                 <form className={styles.form}>
                     <FormField id="first-name" label="First Name" size="large">
                         <Input
+                            className={styles.input}
                             type="text"
                             placeholder="Enter first name"
                             size="large"
@@ -46,6 +47,7 @@ export const UsersModal = ({
                     </FormField>
                     <FormField id="last-name" label="Last Name" size="large">
                         <Input
+                            className={styles.input}
                             type="text"
                             placeholder="Enter last name"
                             size="large"
@@ -53,6 +55,7 @@ export const UsersModal = ({
                     </FormField>
                     <FormField id="email" label="Email" size="large">
                         <Input
+                            className={styles.input}
                             type="email"
                             placeholder="Enter email address"
                             size="large"
@@ -60,6 +63,7 @@ export const UsersModal = ({
                     </FormField>
                     <FormField id="phone" label="Phone number" size="large">
                         <Input
+                            className={styles.input}
                             type="text"
                             placeholder="Enter phone number +(123) 456 7890"
                             size="large"
@@ -67,6 +71,7 @@ export const UsersModal = ({
                     </FormField>
                     <FormField id="company" label="Company" size="large">
                         <Input
+                            className={styles.input}
                             type="text"
                             placeholder="Enter company name"
                             size="large"
@@ -74,6 +79,7 @@ export const UsersModal = ({
                     </FormField>
                     <FormField id="department" label="Department" size="large">
                         <Input
+                            className={styles.input}
                             type="text"
                             placeholder="Enter department name"
                             size="large"
@@ -85,6 +91,7 @@ export const UsersModal = ({
                         size="large"
                     >
                         <Input
+                            className={styles.input}
                             type="password"
                             placeholder="Enter current password"
                             size="large"
@@ -96,6 +103,7 @@ export const UsersModal = ({
                         size="large"
                     >
                         <Input
+                            className={styles.input}
                             type="password"
                             placeholder="Enter new password"
                             size="large"
@@ -114,11 +122,17 @@ export const UsersModal = ({
                 </form>
             </ModalContent>
             <ModalFooter>
-                <Button variant="primary" size="lg" onClick={onSubmit}>
+                <Button
+                    className={styles.button}
+                    variant="primary"
+                    size="lg"
+                    onClick={onSubmit}
+                >
                     Save
                 </Button>
                 {isEditing ? (
                     <Button
+                        className={styles.button}
                         variant="danger"
                         size="lg"
                         iconPosition="left"
@@ -128,7 +142,12 @@ export const UsersModal = ({
                         Delete account
                     </Button>
                 ) : (
-                    <Button variant="danger" size="lg" onClick={onClose}>
+                    <Button
+                        className={styles.button}
+                        variant="danger"
+                        size="lg"
+                        onClick={onClose}
+                    >
                         Cancel
                     </Button>
                 )}
