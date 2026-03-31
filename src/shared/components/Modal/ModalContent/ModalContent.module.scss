@@ -1,5 +1,10 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .content {
     margin-bottom: $space-3-5;
+
+    @include media-down(lg) {
+        margin: $space-1-5 $space-0 $space-0;
+    }
 }
