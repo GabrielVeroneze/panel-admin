@@ -1,9 +1,14 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .form {
     display: grid;
     gap: $space-5 $space-4;
     grid-template-columns: 1fr 1fr;
+
+    .input {
+        max-width: 100%;
+    }
 
     .dropzone {
         grid-column: span 2;
@@ -19,5 +24,11 @@
             font-size: $text-2xl;
             font-weight: $font-normal;
         }
+    }
+}
+
+@include media-down(lg) {
+    .button {
+        flex-grow: 1;
     }
 }
