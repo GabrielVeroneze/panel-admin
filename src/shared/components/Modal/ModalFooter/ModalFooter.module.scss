@@ -1,6 +1,11 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .footer {
     display: flex;
     gap: $space-5;
+
+    @include media-down(lg) {
+        gap: $space-4;
+    }
 }
