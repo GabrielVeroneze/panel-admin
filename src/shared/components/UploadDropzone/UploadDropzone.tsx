@@ -5,10 +5,13 @@ import {
     type DragEvent,
     type ReactNode,
 } from 'react'
+import type { FieldStatus } from '@/shared/types'
 import clsx from 'clsx'
 import styles from './UploadDropzone.module.scss'
 
 type UploadDropzoneProps = {
+    id?: string
+    status?: FieldStatus
     onFileSelect?: (file: File) => void
     accept?: string
     children?: ReactNode
@@ -16,6 +19,8 @@ type UploadDropzoneProps = {
 }
 
 export const UploadDropzone = ({
+    id,
+    status,
     onFileSelect,
     accept,
     children,
@@ -46,6 +51,7 @@ export const UploadDropzone = ({
             className={clsx(
                 styles.dropzone,
                 isDragging && styles.dragging,
+                status && styles[status],
                 className,
             )}
             onClick={() => inputRef.current?.click()}
@@ -58,6 +64,7 @@ export const UploadDropzone = ({
         >
             <input
                 className={styles.input}
+                id={id}
                 ref={inputRef}
                 type="file"
                 accept={accept}
