@@ -10,7 +10,7 @@
         max-width: 100%;
     }
 
-    .dropzone {
+    .dropzoneField {
         grid-column: span 2;
 
         .icon {
@@ -38,7 +38,7 @@
         gap: $space-5;
         grid-template-columns: 1fr;
 
-        .dropzone {
+        .dropzoneField {
             grid-column: auto;
 
             .text {
