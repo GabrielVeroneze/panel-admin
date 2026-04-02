@@ -6,6 +6,7 @@ import styles from './FormField.module.scss'
 
 type FormFieldProps = {
     children: ReactElement<FieldComponentProps>
+    className?: string
     size?: FieldSize
     status?: FieldStatus
     id: string
@@ -15,6 +16,7 @@ type FormFieldProps = {
 
 export const FormField = ({
     children,
+    className,
     size = 'medium',
     status,
     id,
@@ -29,7 +31,7 @@ export const FormField = ({
         : children
 
     return (
-        <div className={clsx(styles.field, styles[size])}>
+        <div className={clsx(styles.field, styles[size], className)}>
             {label && (
                 <label className={styles.label} htmlFor={id}>
                     {label}
