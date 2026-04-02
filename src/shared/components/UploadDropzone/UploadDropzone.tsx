@@ -5,18 +5,16 @@ import {
     type DragEvent,
     type ReactNode,
 } from 'react'
-import type { FieldStatus } from '@/shared/types'
+import type { FieldControlProps } from '@/shared/types'
 import clsx from 'clsx'
 import styles from './UploadDropzone.module.scss'
 
 type UploadDropzoneProps = {
-    id?: string
-    status?: FieldStatus
     onFileSelect?: (file: File) => void
     accept?: string
     children?: ReactNode
     className?: string
-}
+} & FieldControlProps
 
 export const UploadDropzone = ({
     id,
