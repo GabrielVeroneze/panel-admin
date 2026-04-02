@@ -10,13 +10,14 @@ import {
 } from '@/shared/components'
 import { PhotographIcon, XSolidIcon } from '@/shared/assets/icons'
 import type { User } from '@/features/users/types'
+import type { UserFormValues } from '@/features/users/schemas'
 import styles from './UsersModal.module.scss'
 
 type UsersModalProps = {
     open: boolean
     user?: User | null
     onClose: () => void
-    onSubmit: () => void
+    onSubmit: (data: UserFormValues) => void
     onDelete?: () => void
 }
 
@@ -36,8 +37,11 @@ export const UsersModal = ({
                 onClose={onClose}
             />
             <ModalContent>
-                <form className={styles.form}>
                     <FormField id="first-name" label="First Name" size="large">
+                <form
+                    className={styles.form}
+                    id="user-form"
+                >
                         <Input
                             className={styles.input}
                             type="text"
@@ -124,9 +128,10 @@ export const UsersModal = ({
             <ModalFooter>
                 <Button
                     className={styles.button}
+                    form="user-form"
+                    type="submit"
                     variant="primary"
                     size="lg"
-                    onClick={onSubmit}
                 >
                     Save
                 </Button>
