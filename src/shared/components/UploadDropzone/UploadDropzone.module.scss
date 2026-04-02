@@ -14,12 +14,22 @@
     transition: 0.2s;
     width: 100%;
 
+    .input {
+        display: none;
+    }
+
     &.dragging {
         background: $white;
         border-color: $blue-dark;
     }
 
-    .input {
-        display: none;
+    &.success {
+        background-color: $green-light;
+        border-color: $green-base;
+    }
+
+    &.error {
+        background-color: $red-light;
+        border-color: $red-base;
     }
 }
