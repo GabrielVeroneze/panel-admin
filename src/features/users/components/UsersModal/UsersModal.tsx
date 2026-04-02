@@ -179,7 +179,11 @@ export const UsersModal = ({
                     >
                         <UploadDropzone
                             accept="image/*"
-                            onFileSelect={(file) => setValue('avatar', file)}
+                            onFileSelect={(file) =>
+                                setValue('avatar', file, {
+                                    shouldValidate: true,
+                                })
+                            }
                         >
                             <PhotographIcon className={styles.icon} />
                             <span className={styles.text}>
