@@ -170,16 +170,23 @@ export const UsersModal = ({
                             {...register('newPassword')}
                         />
                     </FormField>
-                    <UploadDropzone
-                        className={styles.dropzone}
-                        accept="image/*"
-                        onFileSelect={(file) => setValue('avatar', file)}
+                    <FormField
+                        className={styles.dropzoneField}
+                        id="avatar"
+                        size="large"
+                        status={errors.avatar && 'error'}
+                        message={errors.avatar?.message}
                     >
-                        <PhotographIcon className={styles.icon} />
-                        <span className={styles.text}>
-                            Drop files to upload your profile picture
-                        </span>
-                    </UploadDropzone>
+                        <UploadDropzone
+                            accept="image/*"
+                            onFileSelect={(file) => setValue('avatar', file)}
+                        >
+                            <PhotographIcon className={styles.icon} />
+                            <span className={styles.text}>
+                                Drop files to upload your profile picture
+                            </span>
+                        </UploadDropzone>
+                    </FormField>
                 </form>
             </ModalContent>
             <ModalFooter>
