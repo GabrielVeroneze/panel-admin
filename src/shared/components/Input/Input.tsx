@@ -1,14 +1,13 @@
 import type { ReactNode } from 'react'
-import type { FieldSize, FieldStatus } from '@/shared/types'
+import type { FieldControlProps, FieldSize } from '@/shared/types'
 import type { NativeInputProps } from './Input.types'
 import clsx from 'clsx'
 import styles from './Input.module.scss'
 
-type InputProps = {
+type InputProps = NativeInputProps & {
     size?: FieldSize
-    status?: FieldStatus
     icon?: ReactNode
-} & NativeInputProps
+} & FieldControlProps
 
 export const Input = ({
     size = 'medium',
