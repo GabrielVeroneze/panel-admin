@@ -1,18 +1,15 @@
 import { cloneElement, isValidElement, type ReactElement } from 'react'
-import type { FieldSize, FieldStatus } from '@/shared/types'
-import type { FieldComponentProps } from './FormField.types'
+import type { FieldControlProps, FieldSize } from '@/shared/types'
 import clsx from 'clsx'
 import styles from './FormField.module.scss'
 
 type FormFieldProps = {
-    children: ReactElement<FieldComponentProps>
+    children: ReactElement<FieldControlProps>
     className?: string
     size?: FieldSize
-    status?: FieldStatus
-    id: string
     label?: string
     message?: string
-}
+} & FieldControlProps
 
 export const FormField = ({
     children,
