@@ -27,6 +27,7 @@ export const UsersModal = ({
     onDelete,
 }: UsersModalProps) => {
     const isEditing = Boolean(user)
+    const formId = 'user-form'
 
     return (
         <Modal open={open} onClose={onClose}>
@@ -35,12 +36,12 @@ export const UsersModal = ({
                 onClose={onClose}
             />
             <ModalContent>
-                <UsersForm user={user} onSubmit={onSubmit} />
+                <UsersForm formId={formId} user={user} onSubmit={onSubmit} />
             </ModalContent>
             <ModalFooter>
                 <Button
                     className={styles.button}
-                    form="user-form"
+                    form={formId}
                     type="submit"
                     variant="primary"
                     size="lg"

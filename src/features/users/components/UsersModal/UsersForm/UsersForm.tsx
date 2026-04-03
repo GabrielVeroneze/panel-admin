@@ -6,11 +6,12 @@ import type { UserFormValues } from '@/features/users/schemas'
 import styles from './UsersForm.module.scss'
 
 type UsersFormProps = {
+    formId: string
     user?: User | null
     onSubmit: (data: UserFormValues) => void
 }
 
-export const UsersForm = ({ user, onSubmit }: UsersFormProps) => {
+export const UsersForm = ({ formId, user, onSubmit }: UsersFormProps) => {
     const {
         register,
         setValue,
@@ -21,7 +22,7 @@ export const UsersForm = ({ user, onSubmit }: UsersFormProps) => {
     return (
         <form
             className={styles.form}
-            id="user-form"
+            id={formId}
             onSubmit={handleSubmit(onSubmit)}
         >
             <FormField
