@@ -6,6 +6,7 @@ import {
     ModalHeader,
 } from '@/shared/components'
 import { XSolidIcon } from '@/shared/assets/icons'
+import { UsersForm } from './UsersForm/UsersForm'
 import type { User } from '@/features/users/types'
 import type { UserFormValues } from '@/features/users/schemas'
 import styles from './UsersModal.module.scss'
@@ -34,6 +35,7 @@ export const UsersModal = ({
                 onClose={onClose}
             />
             <ModalContent>
+                <UsersForm user={user} onSubmit={onSubmit} />
             </ModalContent>
             <ModalFooter>
                 <Button
