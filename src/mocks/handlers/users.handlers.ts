@@ -1,5 +1,5 @@
 import { delay, http, HttpResponse } from 'msw'
-import type { UserEntity } from '@/features/users/types'
+import type { MockUser } from '../types'
 
 export const usersHandlers = [
     http.get('/api/users', async ({ request }) => {
@@ -10,7 +10,7 @@ export const usersHandlers = [
         const page = Number(url.searchParams.get('page') ?? 1)
         const pageSize = Number(url.searchParams.get('pageSize') ?? 15)
 
-        const allUsers: UserEntity[] = [
+        const allUsers: MockUser[] = [
             {
                 id: 1,
                 name: 'Neil Sims',
