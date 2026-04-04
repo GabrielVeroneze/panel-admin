@@ -2,13 +2,13 @@ import { Controller } from 'react-hook-form'
 import { FormField, Input, UploadDropzone } from '@/shared/components'
 import { PhotographIcon } from '@/shared/assets/icons'
 import { useUserForm } from '@/features/users/hooks'
-import type { User } from '@/features/users/types'
+import type { UserEntity } from '@/features/users/types'
 import type { UserFormValues } from '@/features/users/schemas'
 import styles from './UsersForm.module.scss'
 
 type UsersFormProps = {
     formId: string
-    user?: User | null
+    user?: UserEntity | null
     onSubmit: (data: UserFormValues) => void
 }
 

@@ -15,13 +15,13 @@ import {
     PencilAltSolidIcon,
 } from '@/shared/assets/icons'
 import { UsersTableSkeleton } from './UsersTableSkeleton'
-import type { User } from '@/features/users/types'
+import type { UserEntity } from '@/features/users/types'
 import styles from './UsersTable.module.scss'
 
 type UsersTableProps = {
-    users: User[]
+    users: UserEntity[]
     loading: boolean
-    onEdit: (user: User) => void
+    onEdit: (user: UserEntity) => void
 }
 
 export const UsersTable = ({ users, loading, onEdit }: UsersTableProps) => {

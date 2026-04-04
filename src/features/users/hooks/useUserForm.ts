@@ -3,10 +3,10 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { getUserDefaultValues } from '../mappers'
 import { userFormSchema, type UserFormValues } from '../schemas'
-import type { User } from '../types'
+import type { UserEntity } from '../types'
 
 type UseUserFormProps = {
-    user?: User | null
+    user?: UserEntity | null
 }
 
 export const useUserForm = ({ user }: UseUserFormProps) => {
