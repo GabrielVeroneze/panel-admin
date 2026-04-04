@@ -1,16 +1,15 @@
 import type { PaginatedResponse } from '@/shared/types'
 
-export type UserEntity = {
+export type User = {
     id: number
     name: string
     email: string
     phone: string
-    company: string
-    department: string
     image: string
+    department: string
+    company: string
     country: string
     status: 'active' | 'offline'
-    password?: string
 }
 
 export type UserListItem = {
@@ -46,4 +45,4 @@ export type UpdateUserPayload = {
     avatar?: File
 }
 
-export type UsersResponse = PaginatedResponse<UserEntity>
+export type UsersResponse = PaginatedResponse<User>
