@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { UsersFooter, UsersModal, UsersTable, UsersToolbar } from './components'
 import { useUsers } from './hooks'
-import type { UserEntity } from './types'
+import type { User } from './types'
 import styles from './UsersPage.module.scss'
 
 export const UsersPage = () => {
     const [page, setPage] = useState<number>(1)
     const [open, setOpen] = useState<boolean>(false)
-    const [selectedUser, setSelectedUser] = useState<UserEntity | null>(null)
+    const [selectedUser, setSelectedUser] = useState<User | null>(null)
 
     const pageSize = 15
 

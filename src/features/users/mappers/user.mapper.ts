@@ -1,5 +1,5 @@
 import type { UserFormValues } from '../schemas'
-import type { UserEntity } from '../types'
+import type { User } from '../types'
 
 const baseDefaultValues: UserFormValues = {
     firstName: '',
@@ -13,9 +13,7 @@ const baseDefaultValues: UserFormValues = {
     avatar: undefined,
 }
 
-export const getUserDefaultValues = (
-    user?: UserEntity | null,
-): UserFormValues => {
+export const getUserDefaultValues = (user?: User | null): UserFormValues => {
     if (!user) {
         return { ...baseDefaultValues }
     }

@@ -7,13 +7,13 @@ import {
 } from '@/shared/components'
 import { XSolidIcon } from '@/shared/assets/icons'
 import { UsersForm } from './UsersForm/UsersForm'
-import type { UserEntity } from '@/features/users/types'
+import type { User } from '@/features/users/types'
 import type { UserFormValues } from '@/features/users/schemas'
 import styles from './UsersModal.module.scss'
 
 type UsersModalProps = {
     open: boolean
-    user?: UserEntity | null
+    user?: User | null
     onClose: () => void
     onSubmit: (data: UserFormValues) => void
     onDelete?: () => void
