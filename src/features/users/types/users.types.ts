@@ -45,4 +45,4 @@ export type UpdateUserPayload = {
     avatar?: File
 }
 
-export type UsersResponse = PaginatedResponse<User>
+export type PaginatedUsers = PaginatedResponse<User>
