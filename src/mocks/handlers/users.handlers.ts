@@ -918,8 +918,14 @@ export const usersHandlers = [
 
         const paginatedUsers = allUsers.slice(start, end)
 
+        const usersResponse = paginatedUsers.map(
+            ({ password: _password, ...userWithoutPassword }) => {
+                return userWithoutPassword
+            },
+        )
+
         return HttpResponse.json({
-            list: paginatedUsers,
+            list: usersResponse,
             total: allUsers.length,
             page,
             pageSize,
