@@ -1,10 +1,10 @@
 import { api } from '@/services/api'
 import type {
-    UsersResponse,
+    PaginatedUsers,
 } from '../types'
 
 export const getUsers = async (params: { page: number; pageSize: number }) => {
-    const { data } = await api.get<UsersResponse>('/users', {
+    const { data } = await api.get<PaginatedUsers>('/users', {
         params,
     })
 

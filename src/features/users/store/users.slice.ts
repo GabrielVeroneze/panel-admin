@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getUsers } from '../api'
-import type { UsersResponse } from '../types'
+import type { PaginatedUsers } from '../types'
 
 type UsersState = {
-    data: UsersResponse | null
+    data: PaginatedUsers | null
     loading: boolean
 }
 
@@ -17,7 +17,7 @@ const initialState: UsersState = {
     loading: false,
 }
 
-export const fetchUsers = createAsyncThunk<UsersResponse, FetchUsersParams>(
+export const fetchUsers = createAsyncThunk<PaginatedUsers, FetchUsersParams>(
     'users/fetchUsers',
     async ({ page, pageSize }) => {
         return await getUsers({ page, pageSize })
