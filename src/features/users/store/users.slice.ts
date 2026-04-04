@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getUsers } from '../api'
-import type { UsersData } from '../types'
+import type { UsersResponse } from '../types'
 
 type UsersState = {
-    data: UsersData | null
+    data: UsersResponse | null
     loading: boolean
 }
 
@@ -17,7 +17,7 @@ const initialState: UsersState = {
     loading: false,
 }
 
-export const fetchUsers = createAsyncThunk<UsersData, FetchUsersParams>(
+export const fetchUsers = createAsyncThunk<UsersResponse, FetchUsersParams>(
     'users/fetchUsers',
     async ({ page, pageSize }) => {
         return await getUsers({ page, pageSize })
