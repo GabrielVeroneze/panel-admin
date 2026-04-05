@@ -1,5 +1,10 @@
 import { delay, http, HttpResponse } from 'msw'
 import type { MockUser } from '../types'
+import type {
+    CreateUserPayload,
+    PaginatedUsers,
+    User,
+} from '@/features/users/types'
 
 const allUsers: MockUser[] = [
     {
@@ -934,8 +939,36 @@ export const usersHandlers = [
             })
         },
     ),
+
+    http.post<never, CreateUserPayload, User>(
+        '/api/users',
+        async ({ request }) => {
+            const body = await request.json()
+
+            const nextId =
+                allUsers.length > 0
+                    ? Math.max(...allUsers.map((u) => u.id)) + 1
+                    : 1
+
+            const newUser: User = {
+                id: nextId,
+                name: body.name,
+                email: body.email,
+                phone: body.phone,
+                company: body.company,
+                department: body.department,
+                image: body.avatar
+                    ? URL.createObjectURL(body.avatar)
+                    : `https://ui-avatars.com/api/?name=${encodeURIComponent(body.name)}&background=random&size=150`,
                 country: 'United States',
                 status: 'active',
+            }
+
+            allUsers.push({ ...newUser, password: body.password })
+
+            return HttpResponse.json(newUser)
+        },
+    ),
 
 
 
