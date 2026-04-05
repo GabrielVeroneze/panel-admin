@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { UsersFooter, UsersModal, UsersTable, UsersToolbar } from './components'
 import { useUsers } from './hooks'
 import type { User } from './types'
+import type { UserFormValues } from './schemas'
 import styles from './UsersPage.module.scss'
 
 export const UsersPage = () => {
@@ -11,22 +12,40 @@ export const UsersPage = () => {
 
     const pageSize = 15
 
-    const { users, total, loading } = useUsers(page, pageSize)
+    const { users, usersList, total, loading } = useUsers(page, pageSize)
 
     const handleCreate = () => {
         setSelectedUser(null)
         setOpen(true)
     }
 
-    const handleEdit = (user: UserEntity) => {
+    const handleEdit = (userId: number) => {
+        const user = users.find((user) => user.id === userId)
+
+        if (!user) return
+
         setSelectedUser(user)
         setOpen(true)
+    }
+
+    const handleSubmit = (data: UserFormValues) => {
+        if (selectedUser) {
+            console.log('update user', data)
+        } else {
+            console.log('create user', data)
+        }
+
+        setOpen(false)
     }
 
     return (
         <section className={styles.users}>
             <UsersToolbar onCreate={handleCreate} />
-            <UsersTable users={users} loading={loading} onEdit={handleEdit} />
+            <UsersTable
+                users={usersList}
+                loading={loading}
+                onEdit={handleEdit}
+            />
             <UsersFooter
                 page={page}
                 pageSize={pageSize}
@@ -37,8 +56,8 @@ export const UsersPage = () => {
                 open={open}
                 user={selectedUser}
                 onClose={() => setOpen(false)}
-                onSubmit={() => setOpen(false)}
-                onDelete={() => setOpen(false)}
+                onSubmit={handleSubmit}
+                onDelete={(user) => console.log('delete', user)}
             />
         </section>
     )
