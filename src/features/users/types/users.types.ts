@@ -28,7 +28,7 @@ export type CreateUserPayload = {
     phone: string
     company: string
     department: string
-    password?: string
+    password: string
     avatar?: File
 }
 
