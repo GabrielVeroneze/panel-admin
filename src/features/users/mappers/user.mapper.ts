@@ -1,5 +1,5 @@
 import type { UserFormValues } from '../schemas'
-import type { User } from '../types'
+import type { User, UserListItem } from '../types'
 
 const baseDefaultValues: UserFormValues = {
     firstName: '',
@@ -28,3 +28,13 @@ export const getUserDefaultValues = (user?: User | null): UserFormValues => {
         email: user.email,
     }
 }
+
+export const mapUserToListItem = (user: User): UserListItem => ({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    image: user.image,
+    position: user.department,
+    country: user.country,
+    status: user.status,
+})
