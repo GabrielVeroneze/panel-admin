@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store'
-import { fetchUsers } from '../store'
+import { fetchUsers, selectUsersList } from '../store'
 
 export const useUsers = (page: number, pageSize: number) => {
     const dispatch = useAppDispatch()
 
     const { data, loading } = useAppSelector((state) => state.users)
+    const usersList = useAppSelector(selectUsersList)
 
     useEffect(() => {
         dispatch(fetchUsers({ page, pageSize }))
@@ -18,6 +19,7 @@ export const useUsers = (page: number, pageSize: number) => {
 
     return {
         users,
+        usersList,
         total,
         page: currentPage,
         pageSize: currentPageSize,
