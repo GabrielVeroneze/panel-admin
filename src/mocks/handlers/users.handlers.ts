@@ -3,8 +3,13 @@ import type { MockUser } from '../types'
 import type {
     CreateUserPayload,
     PaginatedUsers,
+    UpdateUserPayload,
     User,
 } from '@/features/users/types'
+
+type UpdateUserParams = {
+    id: string
+}
 
 const allUsers: MockUser[] = [
     {
@@ -970,7 +975,40 @@ export const usersHandlers = [
         },
     ),
 
+    http.put<UpdateUserParams, UpdateUserPayload, User>(
+        '/api/users/:id',
+        async ({ params, request }) => {
+            const id = Number(params.id)
+            const body = await request.json()
 
+            const userIndex = allUsers.findIndex((user) => user.id === id)
 
+            if (userIndex === -1) {
+                return HttpResponse.json(null, { status: 404 })
+            }
 
+            const existingUser = allUsers[userIndex]
+
+            const updatedUser: MockUser = {
+                ...existingUser,
+                name: body.name ?? existingUser.name,
+                email: body.email ?? existingUser.email,
+                phone: body.phone ?? existingUser.phone,
+                company: body.company ?? existingUser.company,
+                department: body.department ?? existingUser.department,
+                image: body.avatar
+                    ? URL.createObjectURL(body.avatar)
+                    : existingUser.image,
+                password: body.password
+                    ? body.password.new
+                    : existingUser.password,
+            }
+
+            allUsers[userIndex] = updatedUser
+
+            const { password: _password, ...responseUser } = updatedUser
+
+            return HttpResponse.json(responseUser)
+        },
+    ),
 ]
