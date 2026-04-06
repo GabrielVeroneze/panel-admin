@@ -924,11 +924,21 @@ export const usersHandlers = [
 
             const page = Number(url.searchParams.get('page') ?? 1)
             const pageSize = Number(url.searchParams.get('pageSize') ?? 15)
+            const search = url.searchParams.get('search')?.toLowerCase() ?? ''
+
+            const filteredUsers = search
+                ? allUsers.filter(
+                      (user) =>
+                          user.name.toLowerCase().includes(search) ||
+                          user.email.toLowerCase().includes(search) ||
+                          user.company.toLowerCase().includes(search),
+                  )
+                : allUsers
 
             const start = (page - 1) * pageSize
             const end = start + pageSize
 
-            const paginatedUsers = allUsers.slice(start, end)
+            const paginatedUsers = filteredUsers.slice(start, end)
 
             const usersResponse = paginatedUsers.map(
                 ({ password: _password, ...userWithoutPassword }) => {
@@ -938,7 +948,7 @@ export const usersHandlers = [
 
             return HttpResponse.json({
                 list: usersResponse,
-                total: allUsers.length,
+                total: filteredUsers.length,
                 page,
                 pageSize,
             })
