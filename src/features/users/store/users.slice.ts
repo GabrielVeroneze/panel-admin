@@ -2,10 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
     getUsers,
     createUser as createUserRequest,
+    updateUser as updateUserRequest,
 } from '../api'
 import type {
     CreateUserPayload,
     PaginatedUsers,
+    UpdateUserPayload,
     User,
 } from '../types'
 
@@ -21,6 +23,11 @@ type FetchUsersParams = {
 
 type CreateUserParams = {
     payload: CreateUserPayload
+}
+
+type UpdateUserParams = {
+    id: number
+    payload: UpdateUserPayload
 }
 
 const initialState: UsersState = {
@@ -39,6 +46,13 @@ export const createUser = createAsyncThunk<User, CreateUserParams>(
     'users/createUser',
     async ({ payload }) => {
         return await createUserRequest(payload)
+    },
+)
+
+export const updateUser = createAsyncThunk<User, UpdateUserParams>(
+    'users/updateUser',
+    async ({ id, payload }) => {
+        return await updateUserRequest(id, payload)
     },
 )
 
