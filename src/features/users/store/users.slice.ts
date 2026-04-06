@@ -19,6 +19,7 @@ type UsersState = {
 type FetchUsersParams = {
     page: number
     pageSize: number
+    search?: string
 }
 
 type CreateUserParams = {
@@ -37,8 +38,8 @@ const initialState: UsersState = {
 
 export const fetchUsers = createAsyncThunk<PaginatedUsers, FetchUsersParams>(
     'users/fetchUsers',
-    async ({ page, pageSize }) => {
-        return await getUsers({ page, pageSize })
+    async ({ page, pageSize, search }) => {
+        return await getUsers({ page, pageSize, search })
     },
 )
 
