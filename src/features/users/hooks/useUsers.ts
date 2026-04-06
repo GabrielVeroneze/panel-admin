@@ -2,15 +2,15 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { fetchUsers, selectUsersList } from '../store'
 
-export const useUsers = (page: number, pageSize: number) => {
+export const useUsers = (page: number, pageSize: number, search?: string) => {
     const dispatch = useAppDispatch()
 
     const { data, loading } = useAppSelector((state) => state.users)
     const usersList = useAppSelector(selectUsersList)
 
     useEffect(() => {
-        dispatch(fetchUsers({ page, pageSize }))
-    }, [dispatch, page, pageSize])
+        dispatch(fetchUsers({ page, pageSize, search }))
+    }, [dispatch, page, pageSize, search])
 
     const users = data?.list ?? []
     const total = data?.total ?? 0
