@@ -9,10 +9,20 @@ export const UsersPage = () => {
     const [page, setPage] = useState<number>(1)
     const [open, setOpen] = useState<boolean>(false)
     const [selectedUser, setSelectedUser] = useState<User | null>(null)
+    const [search, setSearch] = useState<string>('')
 
     const pageSize = 15
 
-    const { users, usersList, total, loading } = useUsers(page, pageSize)
+    const { users, usersList, total, loading } = useUsers(
+        page,
+        pageSize,
+        search,
+    )
+
+    const handleSearchChange = (value: string) => {
+        setSearch(value)
+        setPage(1)
+    }
 
     const handleCreate = () => {
         setSelectedUser(null)
@@ -40,7 +50,11 @@ export const UsersPage = () => {
 
     return (
         <section className={styles.users}>
-            <UsersToolbar onCreate={handleCreate} />
+            <UsersToolbar
+                search={search}
+                onSearchChange={handleSearchChange}
+                onCreate={handleCreate}
+            />
             <UsersTable
                 users={usersList}
                 loading={loading}
