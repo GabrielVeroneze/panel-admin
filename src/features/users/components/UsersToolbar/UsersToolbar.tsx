@@ -9,16 +9,24 @@ import {
 import styles from './UsersToolbar.module.scss'
 
 type UsersToolbarProps = {
+    search: string
+    onSearchChange: (value: string) => void
     onCreate: () => void
 }
 
-export const UsersToolbar = ({ onCreate }: UsersToolbarProps) => {
+export const UsersToolbar = ({
+    search,
+    onSearchChange,
+    onCreate,
+}: UsersToolbarProps) => {
     return (
         <div className={styles.container}>
             <Input
                 className={styles.input}
                 size="large"
                 placeholder="Search for users"
+                value={search}
+                onChange={(e) => onSearchChange(e.target.value)}
             />
             <div className={styles.actions}>
                 <IconButton icon={<CogIcon />} />
