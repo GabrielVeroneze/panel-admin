@@ -6,7 +6,13 @@ import type {
     PaginatedUsers,
 } from '../types'
 
-export const getUsers = async (params: { page: number; pageSize: number }) => {
+type GetUsersParams = {
+    page: number
+    pageSize: number
+    search?: string
+}
+
+export const getUsers = async (params: GetUsersParams) => {
     const { data } = await api.get<PaginatedUsers>('/users', {
         params,
     })
