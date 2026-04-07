@@ -10,32 +10,8 @@
         max-width: 100%;
     }
 
-    .dropzoneField {
-        grid-column: span 2;
-
-        .icon {
-            color: $gray-dark;
-            height: 36px;
-            width: 36px;
-        }
-
-        .text {
-            color: $gray-darkest;
-            font-size: $text-2xl;
-            font-weight: $font-normal;
-        }
-    }
-
     @include media-down(sm) {
         gap: $space-5;
         grid-template-columns: 1fr;
-
-        .dropzoneField {
-            grid-column: auto;
-
-            .text {
-                font-size: $text-xl;
-            }
-        }
     }
 }
