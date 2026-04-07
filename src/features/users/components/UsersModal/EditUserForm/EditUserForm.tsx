@@ -1,15 +1,16 @@
+import { FormField, Input } from '@/shared/components'
 import { useUserForm } from '@/features/users/hooks'
-import type { User } from '@/features/users/types'
-import type { UserFormValues } from '@/features/users/schemas'
+import { BaseUserFields } from '../BaseUserFields/BaseUserFields'
+import { AvatarField } from '../AvatarField/AvatarField'
 import styles from './UsersForm.module.scss'
 
-type UsersFormProps = {
+type EditUserFormProps = {
     formId: string
-    user?: User | null
-    onSubmit: (data: UserFormValues) => void
+    user?: any
+    onSubmit: (data: any) => void
 }
 
-export const UsersForm = ({ formId, user, onSubmit }: UsersFormProps) => {
+export const EditUserForm = ({ formId, user, onSubmit }: EditUserFormProps) => {
     const {
         register,
         control,
@@ -23,6 +24,7 @@ export const UsersForm = ({ formId, user, onSubmit }: UsersFormProps) => {
             id={formId}
             onSubmit={handleSubmit(onSubmit)}
         >
+            <BaseUserFields register={register} errors={errors} />
             <FormField
                 id="current-password"
                 label="Current Password"
@@ -53,6 +55,7 @@ export const UsersForm = ({ formId, user, onSubmit }: UsersFormProps) => {
                     {...register('newPassword')}
                 />
             </FormField>
+            <AvatarField control={control} errors={errors} />
         </form>
     )
 }
