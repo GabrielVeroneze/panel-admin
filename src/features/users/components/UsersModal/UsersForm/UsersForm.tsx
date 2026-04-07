@@ -1,6 +1,3 @@
-import { Controller } from 'react-hook-form'
-import { FormField, Input, UploadDropzone } from '@/shared/components'
-import { PhotographIcon } from '@/shared/assets/icons'
 import { useUserForm } from '@/features/users/hooks'
 import type { User } from '@/features/users/types'
 import type { UserFormValues } from '@/features/users/schemas'
@@ -146,29 +143,6 @@ export const UsersForm = ({ formId, user, onSubmit }: UsersFormProps) => {
                     {...register('newPassword')}
                 />
             </FormField>
-            <Controller
-                name="avatar"
-                control={control}
-                render={({ field }) => (
-                    <FormField
-                        className={styles.dropzoneField}
-                        id="avatar"
-                        size="large"
-                        status={errors.avatar && 'error'}
-                        message={errors.avatar?.message}
-                    >
-                        <UploadDropzone
-                            accept="image/*"
-                            onFileSelect={field.onChange}
-                        >
-                            <PhotographIcon className={styles.icon} />
-                            <span className={styles.text}>
-                                Drop files to upload your profile picture
-                            </span>
-                        </UploadDropzone>
-                    </FormField>
-                )}
-            />
         </form>
     )
 }
