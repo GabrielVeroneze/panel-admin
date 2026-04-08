@@ -1,31 +1,18 @@
-import type { UserFormValues } from '../schemas'
-import type { User, UserListItem } from '../types'
-
-const baseDefaultValues: UserFormValues = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    company: '',
-    department: '',
-    currentPassword: '',
-    newPassword: '',
-    avatar: undefined,
-}
-
-export const getUserDefaultValues = (user?: User | null): UserFormValues => {
     if (!user) {
         return { ...baseDefaultValues }
     }
 
+export const mapUserToUpdateFormValues = (user: User): UpdateUserFormValues => {
     const [firstName, ...rest] = user.name.split(' ')
     const lastName = rest.join(' ')
 
     return {
-        ...baseDefaultValues,
         firstName: firstName ?? '',
         lastName: lastName ?? '',
         email: user.email,
+        phone: user.phone,
+        company: user.company,
+        department: user.department,
     }
 }
 
