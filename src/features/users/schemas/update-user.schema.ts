@@ -11,7 +11,7 @@ const ACCEPTED_IMAGE_TYPES = [
     'image/webp',
 ]
 
-export const userFormSchema = z
+export const updateUserSchema = z
     .object({
         firstName: z
             .string()
@@ -127,4 +127,4 @@ export const userFormSchema = z
         }
     })
 
-export type UserFormValues = z.infer<typeof userFormSchema>
+export type UpdateUserFormValues = z.infer<typeof updateUserSchema>
