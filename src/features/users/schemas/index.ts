@@ -1,3 +1,5 @@
+export { baseUserSchema } from './base-user.schema'
+export type { BaseUserFieldsValues } from './base-user.schema'
 export { createUserSchema } from './create-user.schema'
 export type { CreateUserFormValues } from './create-user.schema'
 export { updateUserSchema } from './update-user.schema'
