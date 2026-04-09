@@ -6,16 +6,21 @@ import {
     ModalHeader,
 } from '@/shared/components'
 import { XSolidIcon } from '@/shared/assets/icons'
-import { UsersForm } from './UsersForm/UsersForm'
+import { EditUserForm } from './EditUserForm/EditUserForm'
+import { CreateUserForm } from './CreateUserForm/CreateUserForm'
 import type { User } from '@/features/users/types'
-import type { UserFormValues } from '@/features/users/schemas'
+import type {
+    CreateUserFormValues,
+    UpdateUserFormValues,
+} from '@/features/users/schemas'
 import styles from './UsersModal.module.scss'
 
 type UsersModalProps = {
     open: boolean
     user?: User | null
     onClose: () => void
-    onSubmit: (data: UserFormValues) => void
+    onCreate: (data: CreateUserFormValues) => void
+    onUpdate: (data: UpdateUserFormValues) => void
     onDelete?: () => void
 }
 
@@ -23,7 +28,8 @@ export const UsersModal = ({
     open,
     user,
     onClose,
-    onSubmit,
+    onCreate,
+    onUpdate,
     onDelete,
 }: UsersModalProps) => {
     const isEditing = Boolean(user)
@@ -36,7 +42,15 @@ export const UsersModal = ({
                 onClose={onClose}
             />
             <ModalContent>
-                <UsersForm formId={formId} user={user} onSubmit={onSubmit} />
+                {isEditing ? (
+                    <EditUserForm
+                        formId={formId}
+                        user={user}
+                        onSubmit={onUpdate}
+                    />
+                ) : (
+                    <CreateUserForm formId={formId} onSubmit={onCreate} />
+                )}
             </ModalContent>
             <ModalFooter>
                 <Button
