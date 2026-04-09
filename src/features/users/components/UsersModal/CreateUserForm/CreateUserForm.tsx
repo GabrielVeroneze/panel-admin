@@ -1,26 +1,23 @@
+import { Controller } from 'react-hook-form'
 import { FormField, Input } from '@/shared/components'
-import { useUserForm } from '@/features/users/hooks'
+import { useCreateUserForm } from '@/features/users/hooks'
 import { BaseUserFields } from '../BaseUserFields/BaseUserFields'
 import { AvatarField } from '../AvatarField/AvatarField'
+import type { CreateUserFormValues } from '@/features/users/schemas'
 import styles from './CreateUserForm.module.scss'
 
 type CreateUserFormProps = {
     formId: string
-    user?: any
-    onSubmit: (data: any) => void
+    onSubmit: (data: CreateUserFormValues) => void
 }
 
-export const CreateUserForm = ({
-    formId,
-    user,
-    onSubmit,
-}: CreateUserFormProps) => {
+export const CreateUserForm = ({ formId, onSubmit }: CreateUserFormProps) => {
     const {
         register,
         control,
         handleSubmit,
         formState: { errors },
-    } = useUserForm({ user })
+    } = useCreateUserForm()
 
     return (
         <form
@@ -59,7 +56,16 @@ export const CreateUserForm = ({
                     {...register('confirmPassword')}
                 />
             </FormField>
-            <AvatarField control={control} errors={errors} />
+            <Controller
+                name="avatar"
+                control={control}
+                render={({ field }) => (
+                    <AvatarField
+                        onFileSelect={field.onChange}
+                        error={errors.avatar?.message}
+                    />
+                )}
+            />
         </form>
     )
 }
