@@ -1,13 +1,16 @@
+import { Controller } from 'react-hook-form'
 import { FormField, Input } from '@/shared/components'
-import { useUserForm } from '@/features/users/hooks'
+import { useEditUserForm } from '@/features/users/hooks'
 import { BaseUserFields } from '../BaseUserFields/BaseUserFields'
 import { AvatarField } from '../AvatarField/AvatarField'
+import type { UpdateUserFormValues } from '@/features/users/schemas'
+import type { User } from '@/features/users/types'
 import styles from './UsersForm.module.scss'
 
 type EditUserFormProps = {
     formId: string
-    user?: any
-    onSubmit: (data: any) => void
+    user?: User | null
+    onSubmit: (data: UpdateUserFormValues) => void
 }
 
 export const EditUserForm = ({ formId, user, onSubmit }: EditUserFormProps) => {
@@ -16,7 +19,7 @@ export const EditUserForm = ({ formId, user, onSubmit }: EditUserFormProps) => {
         control,
         handleSubmit,
         formState: { errors },
-    } = useUserForm({ user })
+    } = useEditUserForm(user)
 
     return (
         <form
@@ -55,7 +58,16 @@ export const EditUserForm = ({ formId, user, onSubmit }: EditUserFormProps) => {
                     {...register('newPassword')}
                 />
             </FormField>
-            <AvatarField control={control} errors={errors} />
+            <Controller
+                name="avatar"
+                control={control}
+                render={({ field }) => (
+                    <AvatarField
+                        onFileSelect={field.onChange}
+                        error={errors.avatar?.message}
+                    />
+                )}
+            />
         </form>
     )
 }
