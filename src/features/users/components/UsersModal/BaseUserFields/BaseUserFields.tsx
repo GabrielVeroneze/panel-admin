@@ -1,9 +1,11 @@
 import { FormField, Input } from '@/shared/components'
+import type { FieldErrors, UseFormRegister } from 'react-hook-form'
+import type { BaseUserFieldsValues } from '@/features/users/schemas'
 import styles from './BaseUserFields.module.scss'
 
 type BaseUserFieldsProps = {
-    register: any
-    errors: any
+    register: UseFormRegister<BaseUserFieldsValues>
+    errors: FieldErrors<BaseUserFieldsValues>
 }
 
 export const BaseUserFields = ({ register, errors }: BaseUserFieldsProps) => {
