@@ -1,13 +1,15 @@
+import { Controller, useFormContext } from 'react-hook-form'
 import { FormField, UploadDropzone } from '@/shared/components'
 import { PhotographIcon } from '@/shared/assets/icons'
+import type { BaseUserFieldsValues } from '@/features/users/schemas'
 import styles from './AvatarField.module.scss'
 
-type AvatarFieldProps = {
-    onFileSelect: (file: File | undefined) => void
-    error?: string
-}
+export const AvatarField = () => {
+    const {
+        control,
+        formState: { errors },
+    } = useFormContext<BaseUserFieldsValues>()
 
-export const AvatarField = ({ onFileSelect, error }: AvatarFieldProps) => {
     return (
         <Controller
             name="avatar"
