@@ -4,7 +4,7 @@ import { CommonUserFields } from '../CommonUserFields/CommonUserFields'
 import { AvatarField } from '../AvatarField/AvatarField'
 import { CreatePasswordFields } from './CreatePasswordFields/CreatePasswordFields'
 import type { CreateUserFormValues } from '@/features/users/schemas'
-import styles from '../UsersModal.module.scss'
+import styles from './CreateUserForm.module.scss'
 
 type CreateUserFormProps = {
     formId: string

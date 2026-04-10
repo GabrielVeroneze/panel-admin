@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form'
 import { FormField, Input } from '@/shared/components'
 import type { UpdateUserFormValues } from '@/features/users/schemas'
-import styles from '../UsersModal.module.scss'
+import styles from './EditPasswordFields.module.scss'
 
 export const EditPasswordFields = () => {
     const {

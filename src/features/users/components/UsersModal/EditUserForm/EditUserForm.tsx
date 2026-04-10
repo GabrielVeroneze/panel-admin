@@ -5,7 +5,7 @@ import { AvatarField } from '../AvatarField/AvatarField'
 import { EditPasswordFields } from './EditPasswordFields/EditPasswordFields'
 import type { UpdateUserFormValues } from '@/features/users/schemas'
 import type { User } from '@/features/users/types'
-import styles from '../UsersModal.module.scss'
+import styles from './EditUserForm.module.scss'
 
 type EditUserFormProps = {
     formId: string
