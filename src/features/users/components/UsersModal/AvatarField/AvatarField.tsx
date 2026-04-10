@@ -9,19 +9,28 @@ type AvatarFieldProps = {
 
 export const AvatarField = ({ onFileSelect, error }: AvatarFieldProps) => {
     return (
-        <FormField
-            className={styles.dropzoneField}
-            id="avatar"
-            size="large"
-            status={error ? 'error' : undefined}
-            message={error}
-        >
-            <UploadDropzone accept="image/*" onFileSelect={onFileSelect}>
-                <PhotographIcon className={styles.icon} />
-                <span className={styles.text}>
-                    Drop files to upload your profile picture
-                </span>
-            </UploadDropzone>
-        </FormField>
+        <Controller
+            name="avatar"
+            control={control}
+            render={({ field }) => (
+                <FormField
+                    className={styles.dropzoneField}
+                    id="avatar"
+                    size="large"
+                    status={errors.avatar && 'error'}
+                    message={errors.avatar?.message}
+                >
+                    <UploadDropzone
+                        accept="image/*"
+                        onFileSelect={field.onChange}
+                    >
+                        <PhotographIcon className={styles.icon} />
+                        <span className={styles.text}>
+                            Drop files to upload your profile picture
+                        </span>
+                    </UploadDropzone>
+                </FormField>
+            )}
+        />
     )
 }
