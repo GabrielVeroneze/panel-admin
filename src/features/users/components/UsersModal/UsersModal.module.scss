@@ -1,8 +1,21 @@
 @use '@/styles/tokens' as *;
 @use '@/styles/mixins' as *;
 
+.form {
+    display: grid;
+    gap: $space-5 $space-4;
+    grid-template-columns: 1fr 1fr;
+}
+
 @include media-down(lg) {
     .button {
         flex-grow: 1;
+    }
+}
+
+@include media-down(sm) {
+    .form {
+        gap: $space-5;
+        grid-template-columns: 1fr;
     }
 }
