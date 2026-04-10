@@ -1,3 +1,4 @@
+import { FormProvider } from 'react-hook-form'
 import { useCreateUserForm } from '@/features/users/hooks'
 import { CommonUserFields } from '../CommonUserFields/CommonUserFields'
 import { AvatarField } from '../AvatarField/AvatarField'
@@ -11,23 +12,19 @@ type CreateUserFormProps = {
 }
 
 export const CreateUserForm = ({ formId, onSubmit }: CreateUserFormProps) => {
-    const {
-        register,
-        control,
-        handleSubmit,
-        formState: { errors },
-    } = useCreateUserForm()
+    const methods = useCreateUserForm()
 
     return (
-        <form
-            className={styles.form}
-            id={formId}
-            onSubmit={handleSubmit(onSubmit)}
-        >
+        <FormProvider {...methods}>
+            <form
+                className={styles.form}
+                id={formId}
+                onSubmit={methods.handleSubmit(onSubmit)}
             >
                 <CommonUserFields />
                 <CreatePasswordFields />
                 <AvatarField />
             </form>
+        </FormProvider>
     )
 }
