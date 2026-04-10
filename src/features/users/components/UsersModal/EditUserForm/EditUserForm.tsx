@@ -1,5 +1,4 @@
 import { Controller } from 'react-hook-form'
-import { FormField, Input } from '@/shared/components'
 import { useEditUserForm } from '@/features/users/hooks'
 import { BaseUserFields } from '../BaseUserFields/BaseUserFields'
 import { AvatarField } from '../AvatarField/AvatarField'
@@ -28,36 +27,7 @@ export const EditUserForm = ({ formId, user, onSubmit }: EditUserFormProps) => {
             onSubmit={handleSubmit(onSubmit)}
         >
             <BaseUserFields register={register} errors={errors} />
-            <FormField
-                id="current-password"
-                label="Current Password"
-                size="large"
-                status={errors.currentPassword && 'error'}
-                message={errors.currentPassword?.message}
             >
-                <Input
-                    className={styles.input}
-                    type="password"
-                    placeholder="Enter current password"
-                    size="large"
-                    {...register('currentPassword')}
-                />
-            </FormField>
-            <FormField
-                id="new-password"
-                label="New Password"
-                size="large"
-                status={errors.newPassword && 'error'}
-                message={errors.newPassword?.message}
-            >
-                <Input
-                    className={styles.input}
-                    type="password"
-                    placeholder="Enter new password"
-                    size="large"
-                    {...register('newPassword')}
-                />
-            </FormField>
             <Controller
                 name="avatar"
                 control={control}
