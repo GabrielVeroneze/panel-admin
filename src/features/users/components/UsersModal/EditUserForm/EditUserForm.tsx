@@ -1,3 +1,4 @@
+import { FormProvider } from 'react-hook-form'
 import { useEditUserForm } from '@/features/users/hooks'
 import { CommonUserFields } from '../CommonUserFields/CommonUserFields'
 import { AvatarField } from '../AvatarField/AvatarField'
@@ -13,23 +14,19 @@ type EditUserFormProps = {
 }
 
 export const EditUserForm = ({ formId, user, onSubmit }: EditUserFormProps) => {
-    const {
-        register,
-        control,
-        handleSubmit,
-        formState: { errors },
-    } = useEditUserForm(user)
+    const methods = useEditUserForm(user)
 
     return (
-        <form
-            className={styles.form}
-            id={formId}
-            onSubmit={handleSubmit(onSubmit)}
-        >
+        <FormProvider {...methods}>
+            <form
+                className={styles.form}
+                id={formId}
+                onSubmit={methods.handleSubmit(onSubmit)}
             >
                 <CommonUserFields />
                 <EditPasswordFields />
                 <AvatarField />
             </form>
+        </FormProvider>
     )
 }
