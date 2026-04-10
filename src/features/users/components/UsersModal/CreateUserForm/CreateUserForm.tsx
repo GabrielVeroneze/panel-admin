@@ -1,9 +1,9 @@
-import { Controller } from 'react-hook-form'
 import { useCreateUserForm } from '@/features/users/hooks'
-import { BaseUserFields } from '../BaseUserFields/BaseUserFields'
+import { CommonUserFields } from '../CommonUserFields/CommonUserFields'
 import { AvatarField } from '../AvatarField/AvatarField'
+import { CreatePasswordFields } from './CreatePasswordFields/CreatePasswordFields'
 import type { CreateUserFormValues } from '@/features/users/schemas'
-import styles from './CreateUserForm.module.scss'
+import styles from '../UsersModal.module.scss'
 
 type CreateUserFormProps = {
     formId: string
@@ -24,18 +24,10 @@ export const CreateUserForm = ({ formId, onSubmit }: CreateUserFormProps) => {
             id={formId}
             onSubmit={handleSubmit(onSubmit)}
         >
-            <BaseUserFields register={register} errors={errors} />
             >
-            <Controller
-                name="avatar"
-                control={control}
-                render={({ field }) => (
-                    <AvatarField
-                        onFileSelect={field.onChange}
-                        error={errors.avatar?.message}
-                    />
-                )}
-            />
-        </form>
+                <CommonUserFields />
+                <CreatePasswordFields />
+                <AvatarField />
+            </form>
     )
 }
