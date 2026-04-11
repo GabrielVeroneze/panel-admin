@@ -1,13 +1,11 @@
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useFormState } from 'react-hook-form'
 import { FormField, Input } from '@/shared/components'
 import type { BaseUserFieldsValues } from '@/features/users/schemas'
 import styles from './CommonUserFields.module.scss'
 
 export const CommonUserFields = () => {
-    const {
-        register,
-        formState: { errors },
-    } = useFormContext<BaseUserFieldsValues>()
+    const { register, control } = useFormContext<BaseUserFieldsValues>()
+    const { errors } = useFormState({ control })
 
     return (
         <>
