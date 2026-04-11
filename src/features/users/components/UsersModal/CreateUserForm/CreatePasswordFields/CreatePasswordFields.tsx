@@ -1,13 +1,11 @@
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useFormState } from 'react-hook-form'
 import { FormField, Input } from '@/shared/components'
 import type { CreateUserFormValues } from '@/features/users/schemas'
 import styles from './CreatePasswordFields.module.scss'
 
 export const CreatePasswordFields = () => {
-    const {
-        register,
-        formState: { errors },
-    } = useFormContext<CreateUserFormValues>()
+    const { register, control } = useFormContext<CreateUserFormValues>()
+    const { errors } = useFormState({ control })
 
     return (
         <>
