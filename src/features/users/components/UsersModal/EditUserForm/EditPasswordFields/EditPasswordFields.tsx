@@ -1,13 +1,11 @@
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, useFormState } from 'react-hook-form'
 import { FormField, Input } from '@/shared/components'
 import type { UpdateUserFormValues } from '@/features/users/schemas'
 import styles from './EditPasswordFields.module.scss'
 
 export const EditPasswordFields = () => {
-    const {
-        register,
-        formState: { errors },
-    } = useFormContext<UpdateUserFormValues>()
+    const { register, control } = useFormContext<UpdateUserFormValues>()
+    const { errors } = useFormState({ control })
 
     return (
         <>
