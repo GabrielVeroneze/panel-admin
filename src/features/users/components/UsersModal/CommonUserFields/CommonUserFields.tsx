@@ -1,5 +1,6 @@
 import { useFormContext, useFormState } from 'react-hook-form'
 import { FormField, Input } from '@/shared/components'
+import PhoneInput from 'react-phone-number-input/react-hook-form-input'
 import type { BaseUserFieldsValues } from '@/features/users/schemas'
 import styles from './CommonUserFields.module.scss'
 
@@ -61,12 +62,14 @@ export const CommonUserFields = () => {
                 status={errors.phone && 'error'}
                 message={errors.phone?.message}
             >
-                <Input
+                <PhoneInput
                     className={styles.input}
-                    type="text"
                     placeholder="Enter phone number +(123) 456 7890"
                     size="large"
-                    {...register('phone')}
+                    name="phone"
+                    defaultCountry="US"
+                    control={control}
+                    inputComponent={Input}
                 />
             </FormField>
             <FormField
