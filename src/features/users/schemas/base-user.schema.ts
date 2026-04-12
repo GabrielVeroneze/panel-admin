@@ -1,7 +1,7 @@
 import { z } from 'zod'
+import { isValidPhoneNumber } from 'react-phone-number-input'
 
 const nameRegex = /^[A-Za-zÀ-ÿ'-\s]+$/
-const phoneRegex = /^\+?[1-9]\d{7,14}$/
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 const ACCEPTED_IMAGE_TYPES = [
@@ -33,12 +33,15 @@ export const baseUserSchema = z.object({
             error: 'Invalid email format',
         })
         .transform((val) => val.toLowerCase()),
-    phone: z
-        .string()
-        .trim()
-        .min(8, 'Phone must have at least 8 digits')
-        .max(20, 'Phone must have at most 20 digits')
-        .regex(phoneRegex, 'Invalid phone format (use international format)'),
+    phone: z.preprocess(
+        (val) => val ?? '',
+        z
+            .string()
+            .min(1, 'Phone is required')
+            .refine((val) => isValidPhoneNumber(val), {
+                error: 'Invalid phone number',
+            }),
+    ),
     company: z
         .string()
         .trim()
