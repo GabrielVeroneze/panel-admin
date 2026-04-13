@@ -33,15 +33,12 @@ export const baseUserSchema = z.object({
             error: 'Invalid email format',
         })
         .transform((val) => val.toLowerCase()),
-    phone: z.preprocess(
-        (val) => val ?? '',
-        z
-            .string()
-            .min(1, 'Phone is required')
-            .refine((val) => isValidPhoneNumber(val), {
-                error: 'Invalid phone number',
-            }),
-    ),
+    phone: z
+        .string()
+        .min(1, 'Phone is required')
+        .refine((val) => isValidPhoneNumber(val), {
+            error: 'Invalid phone number',
+        }),
     company: z
         .string()
         .trim()
