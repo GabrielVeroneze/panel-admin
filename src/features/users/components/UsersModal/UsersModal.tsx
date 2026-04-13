@@ -6,8 +6,7 @@ import {
     ModalHeader,
 } from '@/shared/components'
 import { XSolidIcon } from '@/shared/assets/icons'
-import { EditUserForm } from './EditUserForm/EditUserForm'
-import { CreateUserForm } from './CreateUserForm/CreateUserForm'
+import { CreateUserForm, EditUserForm } from '@/features/users/components'
 import type { User } from '@/features/users/types'
 import type {
     CreateUserFormValues,
