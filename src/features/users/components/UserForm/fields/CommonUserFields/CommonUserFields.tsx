@@ -1,6 +1,6 @@
 import { useFormContext, useFormState } from 'react-hook-form'
 import { FormField, Input } from '@/shared/components'
-import { PhoneField } from '../PhoneField/PhoneField'
+import { PhoneField } from '@/features/users/components'
 import type { BaseUserFieldsValues } from '@/features/users/schemas'
 import styles from './CommonUserFields.module.scss'
 
