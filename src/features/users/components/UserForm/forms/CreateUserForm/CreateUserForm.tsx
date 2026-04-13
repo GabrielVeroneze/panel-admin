@@ -1,7 +1,6 @@
 import { FormProvider } from 'react-hook-form'
 import { useCreateUserForm } from '@/features/users/hooks'
-import { CommonUserFields } from '../CommonUserFields/CommonUserFields'
-import { AvatarField } from '../AvatarField/AvatarField'
+import { AvatarField, CommonUserFields } from '@/features/users/components'
 import { CreatePasswordFields } from './CreatePasswordFields/CreatePasswordFields'
 import type { CreateUserFormValues } from '@/features/users/schemas'
 import styles from './CreateUserForm.module.scss'

@@ -1,7 +1,6 @@
 import { FormProvider } from 'react-hook-form'
 import { useEditUserForm } from '@/features/users/hooks'
-import { CommonUserFields } from '../CommonUserFields/CommonUserFields'
-import { AvatarField } from '../AvatarField/AvatarField'
+import { AvatarField, CommonUserFields } from '@/features/users/components'
 import { EditPasswordFields } from './EditPasswordFields/EditPasswordFields'
 import type { UpdateUserFormValues } from '@/features/users/schemas'
 import type { User } from '@/features/users/types'
