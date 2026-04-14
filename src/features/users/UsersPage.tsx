@@ -1,14 +1,27 @@
 import { useState } from 'react'
-import { UsersFooter, UsersModal, UsersTable, UsersToolbar } from './components'
+import {
+    CreateUserModal,
+    EditUserModal,
+    UsersFooter,
+    UsersTable,
+    UsersToolbar,
+} from './components'
 import { useUsers } from './hooks'
 import type { User } from './types'
-import type { UserFormValues } from './schemas'
+import type { CreateUserFormValues, UpdateUserFormValues } from './schemas'
 import styles from './UsersPage.module.scss'
+
+type ModalState =
+    | { type: 'create' }
+    | {
+          type: 'edit'
+          user: User
+      }
+    | null
 
 export const UsersPage = () => {
     const [page, setPage] = useState<number>(1)
-    const [open, setOpen] = useState<boolean>(false)
-    const [selectedUser, setSelectedUser] = useState<User | null>(null)
+    const [modal, setModal] = useState<ModalState>(null)
     const [search, setSearch] = useState<string>('')
 
     const pageSize = 15
@@ -25,8 +38,7 @@ export const UsersPage = () => {
     }
 
     const handleCreate = () => {
-        setSelectedUser(null)
-        setOpen(true)
+        setModal({ type: 'create' })
     }
 
     const handleEdit = (userId: number) => {
@@ -34,14 +46,17 @@ export const UsersPage = () => {
 
         if (!user) return
 
-        setSelectedUser(user)
-        setOpen(true)
+        setModal({ type: 'edit', user: user })
     }
 
     const handleSubmit = (data: UserFormValues) => {
         if (selectedUser) {
             console.log('update user', data)
         } else {
+    const handleClose = () => {
+        setModal(null)
+    }
+
             console.log('create user', data)
         }
 
@@ -66,13 +81,22 @@ export const UsersPage = () => {
                 total={total}
                 onPageChange={setPage}
             />
-            <UsersModal
-                open={open}
-                user={selectedUser}
-                onClose={() => setOpen(false)}
-                onSubmit={handleSubmit}
-                onDelete={(user) => console.log('delete', user)}
-            />
+            {modal?.type === 'create' && (
+                <CreateUserModal
+                    open
+                    onCreate={handleCreateSubmit}
+                    onClose={handleClose}
+                />
+            )}
+            {modal?.type === 'edit' && (
+                <EditUserModal
+                    open
+                    user={modal.user}
+                    onUpdate={handleUpdateSubmit}
+                    onClose={handleClose}
+                    onDelete={() => console.log('delete', modal.user)}
+                />
+            )}
         </section>
     )
 }
