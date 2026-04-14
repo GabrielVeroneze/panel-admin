@@ -43,6 +43,7 @@ export const UsersModal = ({
             <ModalContent>
                 {isEditing ? (
                     <EditUserForm
+                        key={user?.id}
                         formId={formId}
                         user={user}
                         onSubmit={onUpdate}
