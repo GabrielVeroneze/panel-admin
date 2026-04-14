@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { mapUserToUpdateFormValues } from '../mappers'
@@ -23,14 +22,6 @@ export const useEditUserForm = (user?: User | null) => {
         defaultValues: user ? mapUserToUpdateFormValues(user) : defaultValues,
         mode: 'onTouched',
     })
-
-    const { reset } = form
-
-    useEffect(() => {
-        if (user) {
-            reset(mapUserToUpdateFormValues(user))
-        }
-    }, [user, reset])
 
     return form
 }
