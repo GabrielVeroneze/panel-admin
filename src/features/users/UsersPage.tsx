@@ -10,15 +10,12 @@ import styles from './UsersPage.module.scss'
 
 export const UsersPage = () => {
     const {
-        page,
+        filters,
         pageSize,
-        search,
         usersList,
         total,
         loading,
         modal,
-        setPage,
-        handleSearchChange,
         handleEdit,
         handleCreateSubmit,
         handleUpdateSubmit,
@@ -27,8 +24,8 @@ export const UsersPage = () => {
     return (
         <section className={styles.users}>
             <UsersToolbar
-                search={search}
-                onSearchChange={handleSearchChange}
+                search={filters.search}
+                onSearchChange={filters.handleSearchChange}
                 onCreate={modal.openCreate}
             />
             <UsersTable
@@ -37,10 +34,10 @@ export const UsersPage = () => {
                 onEdit={handleEdit}
             />
             <UsersFooter
-                page={page}
+                page={filters.page}
                 pageSize={pageSize}
                 total={total}
-                onPageChange={setPage}
+                onPageChange={filters.setPage}
             />
             {modal.isCreateOpen && (
                 <CreateUserModal
