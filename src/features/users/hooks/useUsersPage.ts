@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useAppDispatch } from '@/store'
 import { createUser, updateUser } from '../store'
 import { mapFormToCreatePayload, mapFormToUpdatePayload } from '../mappers'
@@ -7,9 +6,6 @@ import { useUsersModal } from './useUsersModal'
 import type { CreateUserFormValues, UpdateUserFormValues } from '../schemas'
 
 export const useUsersPage = () => {
-    const [page, setPage] = useState<number>(1)
-    const [search, setSearch] = useState<string>('')
-
     const dispatch = useAppDispatch()
     const pageSize = 15
 
@@ -20,11 +16,6 @@ export const useUsersPage = () => {
     )
 
     const modal = useUsersModal()
-
-    const handleSearchChange = (value: string) => {
-        setSearch(value)
-        setPage(1)
-    }
 
     const handleEdit = (userId: number) => {
         const user = users.find((user) => user.id === userId)
@@ -57,15 +48,11 @@ export const useUsersPage = () => {
     }
 
     return {
-        page,
         pageSize,
-        search,
         usersList,
         total,
         loading,
         modal,
-        setPage,
-        handleSearchChange,
         handleEdit,
         handleCreateSubmit,
         handleUpdateSubmit,
