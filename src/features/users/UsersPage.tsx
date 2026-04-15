@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useAppDispatch } from '@/store'
 import {
     CreateUserModal,
     EditUserModal,
@@ -6,6 +7,8 @@ import {
     UsersTable,
     UsersToolbar,
 } from './components'
+import { createUser, updateUser } from './store'
+import { mapFormToCreatePayload, mapFormToUpdatePayload } from './mappers'
 import { useUsers } from './hooks'
 import type { User } from './types'
 import type { CreateUserFormValues, UpdateUserFormValues } from './schemas'
@@ -23,6 +26,8 @@ export const UsersPage = () => {
     const [page, setPage] = useState<number>(1)
     const [modal, setModal] = useState<ModalState>(null)
     const [search, setSearch] = useState<string>('')
+
+    const dispatch = useAppDispatch()
 
     const pageSize = 15
 
@@ -49,18 +54,41 @@ export const UsersPage = () => {
         setModal({ type: 'edit', user: user })
     }
 
-    const handleSubmit = (data: UserFormValues) => {
-        if (selectedUser) {
-            console.log('update user', data)
-        } else {
     const handleClose = () => {
         setModal(null)
     }
 
-            console.log('create user', data)
-        }
+    const handleCreateSubmit = async (data: CreateUserFormValues) => {
+        try {
+            await dispatch(
+                createUser({
+                    payload: mapFormToCreatePayload(data),
+                }),
+            )
 
-        setOpen(false)
+            handleClose()
+        } catch (error) {
+            console.error('Error creating user', error)
+        }
+    }
+
+    const handleUpdateSubmit = async (data: UpdateUserFormValues) => {
+        if (modal?.type !== 'edit') return
+
+        const { user } = modal
+
+        try {
+            await dispatch(
+                updateUser({
+                    id: user.id,
+                    payload: mapFormToUpdatePayload(data),
+                }),
+            )
+
+            handleClose()
+        } catch (error) {
+            console.error('Error updating user', error)
+        }
     }
 
     return (
