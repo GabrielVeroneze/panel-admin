@@ -5,19 +5,31 @@ import {
     UsersTable,
     UsersToolbar,
 } from './components'
+import { useUsersPage } from './hooks'
 import styles from './UsersPage.module.scss'
 
 export const UsersPage = () => {
+    const {
         page,
         pageSize,
         search,
+        usersList,
+        total,
+        loading,
+        modal,
+        setPage,
+        handleSearchChange,
+        handleEdit,
+        handleCreateSubmit,
+        handleUpdateSubmit,
+    } = useUsersPage()
 
     return (
         <section className={styles.users}>
             <UsersToolbar
                 search={search}
                 onSearchChange={handleSearchChange}
-                onCreate={handleCreate}
+                onCreate={modal.openCreate}
             />
             <UsersTable
                 users={usersList}
@@ -30,20 +42,20 @@ export const UsersPage = () => {
                 total={total}
                 onPageChange={setPage}
             />
-            {modal?.type === 'create' && (
+            {modal.isCreateOpen && (
                 <CreateUserModal
                     open
                     onCreate={handleCreateSubmit}
-                    onClose={handleClose}
+                    onClose={modal.close}
                 />
             )}
-            {modal?.type === 'edit' && (
+            {modal.isEditOpen && modal.editingUser && (
                 <EditUserModal
                     open
-                    user={modal.user}
+                    user={modal.editingUser}
                     onUpdate={handleUpdateSubmit}
-                    onClose={handleClose}
-                    onDelete={() => console.log('delete', modal.user)}
+                    onClose={modal.close}
+                    onDelete={() => console.log('delete', modal.editingUser)}
                 />
             )}
         </section>
