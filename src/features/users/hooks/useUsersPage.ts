@@ -1,21 +1,22 @@
 import { useAppDispatch } from '@/store'
 import { createUser, updateUser } from '../store'
 import { mapFormToCreatePayload, mapFormToUpdatePayload } from '../mappers'
-import { useUsers } from '../hooks'
+import { useUsers, useUsersFilters } from '../hooks'
 import { useUsersModal } from './useUsersModal'
 import type { CreateUserFormValues, UpdateUserFormValues } from '../schemas'
 
 export const useUsersPage = () => {
     const dispatch = useAppDispatch()
+    const filters = useUsersFilters()
+    const modal = useUsersModal()
+
     const pageSize = 15
 
     const { users, usersList, total, loading } = useUsers(
-        page,
+        filters.page,
         pageSize,
-        search,
+        filters.search,
     )
-
-    const modal = useUsersModal()
 
     const handleEdit = (userId: number) => {
         const user = users.find((user) => user.id === userId)
@@ -48,6 +49,7 @@ export const useUsersPage = () => {
     }
 
     return {
+        filters,
         pageSize,
         usersList,
         total,
