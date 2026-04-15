@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import { useAppDispatch } from '@/store'
 import {
     CreateUserModal,
     EditUserModal,
@@ -7,71 +5,12 @@ import {
     UsersTable,
     UsersToolbar,
 } from './components'
-import { createUser, updateUser } from './store'
-import { mapFormToCreatePayload, mapFormToUpdatePayload } from './mappers'
-import { useUsers } from './hooks'
-import type { CreateUserFormValues, UpdateUserFormValues } from './schemas'
 import styles from './UsersPage.module.scss'
 
 export const UsersPage = () => {
-    const [page, setPage] = useState<number>(1)
-    const [search, setSearch] = useState<string>('')
-
-    const dispatch = useAppDispatch()
-
-    const pageSize = 15
-
-    const { users, usersList, total, loading } = useUsers(
         page,
         pageSize,
         search,
-    )
-
-    const handleSearchChange = (value: string) => {
-        setSearch(value)
-        setPage(1)
-    }
-
-    const handleEdit = (userId: number) => {
-        const user = users.find((user) => user.id === userId)
-
-        if (!user) return
-
-        setModal({ type: 'edit', user: user })
-    }
-
-    const handleCreateSubmit = async (data: CreateUserFormValues) => {
-        try {
-            await dispatch(
-                createUser({
-                    payload: mapFormToCreatePayload(data),
-                }),
-            )
-
-            handleClose()
-        } catch (error) {
-            console.error('Error creating user', error)
-        }
-    }
-
-    const handleUpdateSubmit = async (data: UpdateUserFormValues) => {
-        if (modal?.type !== 'edit') return
-
-        const { user } = modal
-
-        try {
-            await dispatch(
-                updateUser({
-                    id: user.id,
-                    payload: mapFormToUpdatePayload(data),
-                }),
-            )
-
-            handleClose()
-        } catch (error) {
-            console.error('Error updating user', error)
-        }
-    }
 
     return (
         <section className={styles.users}>
