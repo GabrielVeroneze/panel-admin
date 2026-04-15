@@ -10,21 +10,11 @@ import {
 import { createUser, updateUser } from './store'
 import { mapFormToCreatePayload, mapFormToUpdatePayload } from './mappers'
 import { useUsers } from './hooks'
-import type { User } from './types'
 import type { CreateUserFormValues, UpdateUserFormValues } from './schemas'
 import styles from './UsersPage.module.scss'
 
-type ModalState =
-    | { type: 'create' }
-    | {
-          type: 'edit'
-          user: User
-      }
-    | null
-
 export const UsersPage = () => {
     const [page, setPage] = useState<number>(1)
-    const [modal, setModal] = useState<ModalState>(null)
     const [search, setSearch] = useState<string>('')
 
     const dispatch = useAppDispatch()
@@ -42,20 +32,12 @@ export const UsersPage = () => {
         setPage(1)
     }
 
-    const handleCreate = () => {
-        setModal({ type: 'create' })
-    }
-
     const handleEdit = (userId: number) => {
         const user = users.find((user) => user.id === userId)
 
         if (!user) return
 
         setModal({ type: 'edit', user: user })
-    }
-
-    const handleClose = () => {
-        setModal(null)
     }
 
     const handleCreateSubmit = async (data: CreateUserFormValues) => {
