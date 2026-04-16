@@ -1,4 +1,5 @@
 import { api } from '@/services/api'
+import { toFormData } from '@/shared/utils'
 import type {
     CreateUserPayload,
     UpdateUserPayload,
@@ -21,18 +22,7 @@ export const getUsers = async (params: GetUsersParams) => {
 }
 
 export const createUser = async (payload: CreateUserPayload) => {
-    const formData = new FormData()
-
-    formData.append('name', payload.name)
-    formData.append('email', payload.email)
-    formData.append('phone', payload.phone)
-    formData.append('company', payload.company)
-    formData.append('department', payload.department)
-    formData.append('password', payload.password)
-
-    if (payload.avatar) {
-        formData.append('avatar', payload.avatar)
-    }
+    const formData = toFormData(payload)
 
     const { data } = await api.post<User>('/users', formData)
 
