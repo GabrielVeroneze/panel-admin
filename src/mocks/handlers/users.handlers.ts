@@ -958,7 +958,15 @@ export const usersHandlers = [
     http.post<never, CreateUserPayload, User>(
         '/api/users',
         async ({ request }) => {
-            const body = await request.json()
+            const formData = await request.formData()
+
+            const avatar = formData.get('avatar') as File | null
+            const name = formData.get('name') as string
+            const email = formData.get('email') as string
+            const phone = formData.get('phone') as string
+            const company = formData.get('company') as string
+            const department = formData.get('department') as string
+            const password = formData.get('password') as string
 
             const nextId =
                 allUsers.length > 0
@@ -967,19 +975,19 @@ export const usersHandlers = [
 
             const newUser: User = {
                 id: nextId,
-                name: body.name,
-                email: body.email,
-                phone: body.phone,
-                company: body.company,
-                department: body.department,
-                image: body.avatar
-                    ? URL.createObjectURL(body.avatar)
-                    : `https://ui-avatars.com/api/?name=${encodeURIComponent(body.name)}&background=random&size=150`,
+                name: name,
+                email: email,
+                phone: phone,
+                company: company,
+                department: department,
+                image: avatar
+                    ? URL.createObjectURL(avatar)
+                    : `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&size=150`,
                 country: 'United States',
                 status: 'active',
             }
 
-            allUsers.push({ ...newUser, password: body.password })
+            allUsers.push({ ...newUser, password: password })
 
             return HttpResponse.json(newUser)
         },
