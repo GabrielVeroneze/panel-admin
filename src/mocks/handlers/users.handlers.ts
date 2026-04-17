@@ -997,7 +997,15 @@ export const usersHandlers = [
         '/api/users/:id',
         async ({ params, request }) => {
             const id = Number(params.id)
-            const body = await request.json()
+            const formData = await request.formData()
+
+            const avatar = formData.get('avatar') as File | null
+            const name = formData.get('name') as string | null
+            const email = formData.get('email') as string | null
+            const phone = formData.get('phone') as string | null
+            const company = formData.get('company') as string | null
+            const department = formData.get('department') as string | null
+            const password = formData.get('password') as string | null
 
             const userIndex = allUsers.findIndex((user) => user.id === id)
 
@@ -1009,17 +1017,15 @@ export const usersHandlers = [
 
             const updatedUser: MockUser = {
                 ...existingUser,
-                name: body.name ?? existingUser.name,
-                email: body.email ?? existingUser.email,
-                phone: body.phone ?? existingUser.phone,
-                company: body.company ?? existingUser.company,
-                department: body.department ?? existingUser.department,
-                image: body.avatar
-                    ? URL.createObjectURL(body.avatar)
+                name: name ?? existingUser.name,
+                email: email ?? existingUser.email,
+                phone: phone ?? existingUser.phone,
+                company: company ?? existingUser.company,
+                department: department ?? existingUser.department,
+                image: avatar
+                    ? URL.createObjectURL(avatar)
                     : existingUser.image,
-                password: body.password
-                    ? body.password.new
-                    : existingUser.password,
+                password: password ?? existingUser.password,
             }
 
             allUsers[userIndex] = updatedUser
