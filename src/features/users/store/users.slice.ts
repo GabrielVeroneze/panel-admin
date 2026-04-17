@@ -70,6 +70,12 @@ const usersSlice = createSlice({
                 state.loading = false
                 state.data = action.payload
             })
+            .addCase(createUser.fulfilled, (state, action) => {
+                if (!state.data) return
+
+                state.data.list.unshift(action.payload)
+                state.data.total += 1
+            })
     },
 })
 
