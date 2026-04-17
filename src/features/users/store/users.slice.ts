@@ -76,6 +76,19 @@ const usersSlice = createSlice({
                 state.data.list.unshift(action.payload)
                 state.data.total += 1
             })
+            .addCase(updateUser.fulfilled, (state, action) => {
+                if (!state.data) return
+
+                const updatedUser = action.payload
+
+                const index = state.data.list.findIndex(
+                    (user) => user.id === updatedUser.id,
+                )
+
+                if (index !== -1) {
+                    state.data.list[index] = updatedUser
+                }
+            })
     },
 })
 
