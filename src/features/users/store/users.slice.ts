@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
     getUsers,
     createUser as createUserRequest,
+    deleteUser as deleteUserRequest,
     updateUser as updateUserRequest,
 } from '../api'
 import type {
@@ -31,6 +32,10 @@ type UpdateUserParams = {
     payload: UpdateUserPayload
 }
 
+type DeleteUserParams = {
+    id: number
+}
+
 const initialState: UsersState = {
     data: null,
     loading: false,
@@ -54,6 +59,13 @@ export const updateUser = createAsyncThunk<User, UpdateUserParams>(
     'users/updateUser',
     async ({ id, payload }) => {
         return await updateUserRequest(id, payload)
+    },
+)
+
+export const deleteUser = createAsyncThunk<void, DeleteUserParams>(
+    'users/deleteUser',
+    async ({ id }) => {
+        await deleteUserRequest(id)
     },
 )
 
@@ -88,6 +100,16 @@ const usersSlice = createSlice({
                 if (index !== -1) {
                     state.data.list[index] = updatedUser
                 }
+            })
+            .addCase(deleteUser.fulfilled, (state, action) => {
+                if (!state.data) return
+
+                const id = action.meta.arg.id
+
+                state.data.list = state.data.list.filter(
+                    (user) => user.id !== id,
+                )
+                state.data.total -= 1
             })
     },
 })
