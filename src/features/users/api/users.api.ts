@@ -39,3 +39,7 @@ export const updateUser = async (id: number, payload: UpdateUserPayload) => {
 
     return data
 }
+
+export const deleteUser = async (id: number) => {
+    await api.delete(`/users/${id}`)
+}
