@@ -68,6 +68,7 @@ export const UsersPage = () => {
                 selectedIds={selectedIds}
                 isSelectionMode={isSelectionMode}
                 onToggleSelect={handleToggleSelect}
+                setSelectedIds={setSelectedIds}
             />
             <UsersFooter
                 page={filters.page}
