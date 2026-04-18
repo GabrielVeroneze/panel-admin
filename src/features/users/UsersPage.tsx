@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useAppDispatch } from '@/store'
 import {
     CreateUserModal,
     EditUserModal,
@@ -6,6 +7,7 @@ import {
     UsersTable,
     UsersToolbar,
 } from './components'
+import { deleteUser } from './store'
 import { useUsersPage } from './hooks'
 import styles from './UsersPage.module.scss'
 
@@ -25,6 +27,24 @@ export const UsersPage = () => {
     const [selectedIds, setSelectedIds] = useState<number[]>([])
     const [isSelectionMode, setIsSelectionMode] = useState<boolean>(false)
 
+    const dispatch = useAppDispatch()
+
+    const handleDeleteClick = () => {
+        if (!isSelectionMode) {
+            setIsSelectionMode(true)
+            return
+        }
+
+        if (selectedIds.length === 0) return
+
+        selectedIds.forEach((id) => {
+            dispatch(deleteUser({ id }))
+        })
+
+        setSelectedIds([])
+        setIsSelectionMode(false)
+    }
+
     const handleToggleSelect = (id: number) => {
         setSelectedIds((prev) =>
             prev.includes(id)
@@ -39,6 +59,7 @@ export const UsersPage = () => {
                 search={filters.search}
                 onSearchChange={filters.handleSearchChange}
                 onCreate={modal.openCreate}
+                onDelete={handleDeleteClick}
             />
             <UsersTable
                 users={usersList}
