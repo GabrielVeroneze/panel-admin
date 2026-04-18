@@ -12,12 +12,14 @@ type UsersToolbarProps = {
     search: string
     onSearchChange: (value: string) => void
     onCreate: () => void
+    onDelete: () => void
 }
 
 export const UsersToolbar = ({
     search,
     onSearchChange,
     onCreate,
+    onDelete,
 }: UsersToolbarProps) => {
     return (
         <div className={styles.container}>
@@ -30,7 +32,7 @@ export const UsersToolbar = ({
             />
             <div className={styles.actions}>
                 <IconButton icon={<CogIcon />} />
-                <IconButton icon={<TrashSolidIcon />} />
+                <IconButton icon={<TrashSolidIcon />} onClick={onDelete} />
                 <IconButton icon={<ExclamationCircleSolidIcon />} />
                 <IconButton icon={<DotsVerticalSolidIcon />} />
             </div>
