@@ -22,9 +22,19 @@ type UsersTableProps = {
     users: UserListItem[]
     loading: boolean
     onEdit: (userId: number) => void
+    selectedIds: number[]
+    onToggleSelect: (id: number) => void
+    isSelectionMode: boolean
 }
 
-export const UsersTable = ({ users, loading, onEdit }: UsersTableProps) => {
+export const UsersTable = ({
+    users,
+    loading,
+    onEdit,
+    selectedIds,
+    onToggleSelect,
+    isSelectionMode,
+}: UsersTableProps) => {
     const isEmpty = !users || users.length === 0
 
     if (loading) return <UsersTableSkeleton />
@@ -65,7 +75,11 @@ export const UsersTable = ({ users, loading, onEdit }: UsersTableProps) => {
                     {users.map((user) => (
                         <TableRow key={user.id} size="lg">
                             <TableCell className={styles.checkbox} size="lg">
-                                <Checkbox />
+                                <Checkbox
+                                    checked={selectedIds.includes(user.id)}
+                                    onChange={() => onToggleSelect(user.id)}
+                                    disabled={!isSelectionMode}
+                                />
                             </TableCell>
                             <TableCell className={styles.name} size="lg">
                                 <UserInfo
