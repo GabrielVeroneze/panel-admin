@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
     CreateUserModal,
     EditUserModal,
@@ -21,6 +22,17 @@ export const UsersPage = () => {
         handleUpdateSubmit,
     } = useUsersPage()
 
+    const [selectedIds, setSelectedIds] = useState<number[]>([])
+    const [isSelectionMode, setIsSelectionMode] = useState<boolean>(false)
+
+    const handleToggleSelect = (id: number) => {
+        setSelectedIds((prev) =>
+            prev.includes(id)
+                ? prev.filter((selectedId) => selectedId !== id)
+                : [...prev, id],
+        )
+    }
+
     return (
         <section className={styles.users}>
             <UsersToolbar
@@ -32,6 +44,9 @@ export const UsersPage = () => {
                 users={usersList}
                 loading={loading}
                 onEdit={handleEdit}
+                selectedIds={selectedIds}
+                isSelectionMode={isSelectionMode}
+                onToggleSelect={handleToggleSelect}
             />
             <UsersFooter
                 page={filters.page}
