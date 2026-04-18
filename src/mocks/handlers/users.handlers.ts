@@ -11,6 +11,10 @@ type UpdateUserParams = {
     id: string
 }
 
+type DeleteUserParams = {
+    id: string
+}
+
 const allUsers: MockUser[] = [
     {
         id: 1,
@@ -1033,6 +1037,23 @@ export const usersHandlers = [
             const { password: _password, ...responseUser } = updatedUser
 
             return HttpResponse.json(responseUser)
+        },
+    ),
+
+    http.delete<DeleteUserParams, never, null>(
+        '/api/users/:id',
+        async ({ params }) => {
+            const id = Number(params.id)
+
+            const userIndex = allUsers.findIndex((user) => user.id === id)
+
+            if (userIndex === -1) {
+                return HttpResponse.json(null, { status: 404 })
+            }
+
+            allUsers.splice(userIndex, 1)
+
+            return HttpResponse.json(null, { status: 204 })
         },
     ),
 ]
