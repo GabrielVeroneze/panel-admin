@@ -25,6 +25,7 @@ type UsersTableProps = {
     selectedIds: number[]
     onToggleSelect: (id: number) => void
     isSelectionMode: boolean
+    setSelectedIds: (id: number[]) => void
 }
 
 export const UsersTable = ({
@@ -34,6 +35,7 @@ export const UsersTable = ({
     selectedIds,
     onToggleSelect,
     isSelectionMode,
+    setSelectedIds,
 }: UsersTableProps) => {
     const isEmpty = !users || users.length === 0
 
@@ -55,7 +57,22 @@ export const UsersTable = ({
                 <TableHead>
                     <TableRow>
                         <TableCell className={styles.checkbox} size="lg" header>
-                            <Checkbox />
+                            <Checkbox
+                                checked={
+                                    users.length > 0 &&
+                                    selectedIds.length === users.length
+                                }
+                                onChange={() => {
+                                    if (selectedIds.length === users.length) {
+                                        setSelectedIds([])
+                                    } else {
+                                        setSelectedIds(
+                                            users.map((user) => user.id),
+                                        )
+                                    }
+                                }}
+                                disabled={!isSelectionMode}
+                            />
                         </TableCell>
                         <TableCell className={styles.name} size="lg" header>
                             Name
