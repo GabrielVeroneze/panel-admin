@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import { useAppDispatch } from '@/store'
-import { deleteUser } from '../store'
 
-export const useUsersSelection = () => {
-    const dispatch = useAppDispatch()
+type UseUsersSelectionParams = {
+    onDeleteUsers: (ids: number[]) => void
+}
 
+export const useUsersSelection = ({
+    onDeleteUsers,
+}: UseUsersSelectionParams) => {
     const [selectedIds, setSelectedIds] = useState<number[]>([])
     const [isSelectionMode, setIsSelectionMode] = useState<boolean>(false)
 
@@ -34,9 +36,7 @@ export const useUsersSelection = () => {
 
         if (selectedIds.length === 0) return
 
-        selectedIds.forEach((id) => {
-            dispatch(deleteUser({ id }))
-        })
+        onDeleteUsers(selectedIds)
 
         setSelectedIds([])
         setIsSelectionMode(false)
