@@ -43,3 +43,9 @@ export const updateUser = async (id: number, payload: UpdateUserPayload) => {
 export const deleteUser = async (id: number) => {
     await api.delete(`/users/${id}`)
 }
+
+export const deleteUsers = async (ids: number[]) => {
+    await api.delete('/users', {
+        data: { ids },
+    })
+}
