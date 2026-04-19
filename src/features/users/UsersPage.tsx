@@ -1,3 +1,4 @@
+import { useAppDispatch } from '@/store'
 import {
     CreateUserModal,
     EditUserModal,
@@ -5,10 +6,13 @@ import {
     UsersTable,
     UsersToolbar,
 } from './components'
+import { deleteUsers } from './store'
 import { useUsersPage, useUsersSelection } from './hooks'
 import styles from './UsersPage.module.scss'
 
 export const UsersPage = () => {
+    const dispatch = useAppDispatch()
+
     const {
         filters,
         pageSize,
@@ -28,7 +32,11 @@ export const UsersPage = () => {
         toggleSelect,
         toggleSelectAll,
         handleDeleteClick,
-    } = useUsersSelection()
+    } = useUsersSelection({
+        onDeleteUsers: (ids) => {
+            dispatch(deleteUsers({ ids }))
+        },
+    })
 
 
     return (
