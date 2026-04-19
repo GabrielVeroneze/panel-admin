@@ -15,6 +15,10 @@ type DeleteUserParams = {
     id: string
 }
 
+type DeleteUsersPayload = {
+    ids: number[]
+}
+
 const allUsers: MockUser[] = [
     {
         id: 1,
@@ -1052,6 +1056,27 @@ export const usersHandlers = [
             }
 
             allUsers.splice(userIndex, 1)
+
+            return HttpResponse.json(null, { status: 204 })
+        },
+    ),
+
+    http.delete<never, DeleteUsersPayload, null>(
+        '/api/users',
+        async ({ request }) => {
+            const { ids } = await request.json()
+
+            if (!ids || ids.length === 0) {
+                return HttpResponse.json(null, { status: 400 })
+            }
+
+            for (const id of ids) {
+                const index = allUsers.findIndex((user) => user.id === id)
+
+                if (index !== -1) {
+                    allUsers.splice(index, 1)
+                }
+            }
 
             return HttpResponse.json(null, { status: 204 })
         },
