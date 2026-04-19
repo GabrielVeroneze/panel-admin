@@ -3,6 +3,7 @@ import {
     getUsers,
     createUser as createUserRequest,
     deleteUser as deleteUserRequest,
+    deleteUsers as deleteUsersRequest,
     updateUser as updateUserRequest,
 } from '../api'
 import type {
@@ -36,6 +37,10 @@ type DeleteUserParams = {
     id: number
 }
 
+type DeleteUsersParams = {
+    ids: number[]
+}
+
 const initialState: UsersState = {
     data: null,
     loading: false,
@@ -66,6 +71,13 @@ export const deleteUser = createAsyncThunk<void, DeleteUserParams>(
     'users/deleteUser',
     async ({ id }) => {
         await deleteUserRequest(id)
+    },
+)
+
+export const deleteUsers = createAsyncThunk<void, DeleteUsersParams>(
+    'users/deleteUsers',
+    async ({ ids }) => {
+        await deleteUsersRequest(ids)
     },
 )
 
@@ -110,6 +122,16 @@ const usersSlice = createSlice({
                     (user) => user.id !== id,
                 )
                 state.data.total -= 1
+            })
+            .addCase(deleteUsers.fulfilled, (state, action) => {
+                if (!state.data) return
+
+                const ids = action.meta.arg.ids
+
+                state.data.list = state.data.list.filter(
+                    (user) => !ids.includes(user.id),
+                )
+                state.data.total -= ids.length
             })
     },
 })
