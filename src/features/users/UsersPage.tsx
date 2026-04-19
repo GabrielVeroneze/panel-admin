@@ -38,6 +38,9 @@ export const UsersPage = () => {
         },
     })
 
+    const handleToggleSelectAll = () => {
+        toggleSelectAll(usersList.map((u) => u.id))
+    }
 
     return (
         <section className={styles.users}>
@@ -55,7 +58,7 @@ export const UsersPage = () => {
                 isSelectionMode={isSelectionMode}
                 isSelected={isSelected}
                 onToggleSelect={toggleSelect}
-                onToggleSelectAll={toggleSelectAll}
+                onToggleSelectAll={handleToggleSelectAll}
             />
             <UsersFooter
                 page={filters.page}
