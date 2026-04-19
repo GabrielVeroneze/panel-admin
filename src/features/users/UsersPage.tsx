@@ -5,7 +5,7 @@ import {
     UsersTable,
     UsersToolbar,
 } from './components'
-import { useUsersPage } from './hooks'
+import { useUsersPage, useUsersSelection } from './hooks'
 import styles from './UsersPage.module.scss'
 
 export const UsersPage = () => {
@@ -21,6 +21,14 @@ export const UsersPage = () => {
         handleUpdateSubmit,
     } = useUsersPage()
 
+    const {
+        selectedIds,
+        isSelectionMode,
+        isSelected,
+        toggleSelect,
+        toggleSelectAll,
+        handleDeleteClick,
+    } = useUsersSelection()
 
 
     return (
@@ -37,8 +45,9 @@ export const UsersPage = () => {
                 onEdit={handleEdit}
                 selectedIds={selectedIds}
                 isSelectionMode={isSelectionMode}
-                onToggleSelect={handleToggleSelect}
-                setSelectedIds={setSelectedIds}
+                isSelected={isSelected}
+                onToggleSelect={toggleSelect}
+                onToggleSelectAll={toggleSelectAll}
             />
             <UsersFooter
                 page={filters.page}
