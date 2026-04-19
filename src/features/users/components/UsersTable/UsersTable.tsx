@@ -23,9 +23,10 @@ type UsersTableProps = {
     loading: boolean
     onEdit: (userId: number) => void
     selectedIds: number[]
-    onToggleSelect: (id: number) => void
     isSelectionMode: boolean
-    setSelectedIds: (id: number[]) => void
+    isSelected: (id: number) => boolean
+    onToggleSelect: (id: number) => void
+    onToggleSelectAll: (ids: number[]) => void
 }
 
 export const UsersTable = ({
@@ -33,9 +34,10 @@ export const UsersTable = ({
     loading,
     onEdit,
     selectedIds,
-    onToggleSelect,
     isSelectionMode,
-    setSelectedIds,
+    isSelected,
+    onToggleSelect,
+    onToggleSelectAll,
 }: UsersTableProps) => {
     const isEmpty = !users || users.length === 0
 
@@ -51,6 +53,8 @@ export const UsersTable = ({
         )
     }
 
+    const allSelected = users.length > 0 && selectedIds.length === users.length
+
     return (
         <div className={styles.wrapper}>
             <Table borderedRows className={styles.table}>
@@ -58,19 +62,10 @@ export const UsersTable = ({
                     <TableRow>
                         <TableCell className={styles.checkbox} size="lg" header>
                             <Checkbox
-                                checked={
-                                    users.length > 0 &&
-                                    selectedIds.length === users.length
+                                checked={allSelected}
+                                onChange={() =>
+                                    onToggleSelectAll(users.map((u) => u.id))
                                 }
-                                onChange={() => {
-                                    if (selectedIds.length === users.length) {
-                                        setSelectedIds([])
-                                    } else {
-                                        setSelectedIds(
-                                            users.map((user) => user.id),
-                                        )
-                                    }
-                                }}
                                 disabled={!isSelectionMode}
                             />
                         </TableCell>
@@ -93,7 +88,7 @@ export const UsersTable = ({
                         <TableRow key={user.id} size="lg">
                             <TableCell className={styles.checkbox} size="lg">
                                 <Checkbox
-                                    checked={selectedIds.includes(user.id)}
+                                    checked={isSelected(user.id)}
                                     onChange={() => onToggleSelect(user.id)}
                                     disabled={!isSelectionMode}
                                 />
