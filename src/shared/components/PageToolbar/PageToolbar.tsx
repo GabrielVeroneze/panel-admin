@@ -6,27 +6,31 @@ import {
     TrashSolidIcon,
     UserAddSolidIcon,
 } from '@/shared/assets/icons'
-import styles from './UsersToolbar.module.scss'
+import styles from './PageToolbar.module.scss'
 
-type UsersToolbarProps = {
+type PageToolbarProps = {
     search: string
+    searchPlaceholder: string
+    createLabel: string
     onSearchChange: (value: string) => void
     onCreate: () => void
     onDelete: () => void
 }
 
-export const UsersToolbar = ({
+export const PageToolbar = ({
     search,
+    searchPlaceholder,
+    createLabel,
     onSearchChange,
     onCreate,
     onDelete,
-}: UsersToolbarProps) => {
+}: PageToolbarProps) => {
     return (
         <div className={styles.container}>
             <Input
                 className={styles.input}
                 size="large"
-                placeholder="Search for users"
+                placeholder={searchPlaceholder}
                 value={search}
                 onChange={(e) => onSearchChange(e.target.value)}
             />
@@ -43,7 +47,7 @@ export const UsersToolbar = ({
                 size="lg"
                 onClick={onCreate}
             >
-                Add User
+                {createLabel}
             </Button>
         </div>
     )
