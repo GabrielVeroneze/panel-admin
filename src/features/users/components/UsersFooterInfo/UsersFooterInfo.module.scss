@@ -1,0 +1,18 @@
+@use '@/styles/tokens' as *;
+
+.text {
+    color: $gray-dark;
+    font-size: $text-xl;
+    font-weight: $font-normal;
+
+    .time {
+        color: $gray-darkest;
+        font-weight: $font-semibold;
+    }
+}
+
+.icon {
+    color: $gray-base;
+    height: auto;
+    width: 18px;
+}
