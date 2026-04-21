@@ -6,9 +6,9 @@ import {
     TrashSolidIcon,
     UserAddSolidIcon,
 } from '@/shared/assets/icons'
-import styles from './PageToolbar.module.scss'
+import styles from './DataTableToolbar.module.scss'
 
-type PageToolbarProps = {
+type DataTableToolbarProps = {
     search: string
     searchPlaceholder: string
     createLabel: string
@@ -17,14 +17,14 @@ type PageToolbarProps = {
     onDelete: () => void
 }
 
-export const PageToolbar = ({
+export const DataTableToolbar = ({
     search,
     searchPlaceholder,
     createLabel,
     onSearchChange,
     onCreate,
     onDelete,
-}: PageToolbarProps) => {
+}: DataTableToolbarProps) => {
     return (
         <div className={styles.container}>
             <Input
