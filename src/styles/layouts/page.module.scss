@@ -1,7 +1,7 @@
 @use '@/styles/tokens' as *;
 @use '@/styles/mixins' as *;
 
-.users {
+.page {
     background-color: $white;
     display: flex;
     flex-direction: column;
