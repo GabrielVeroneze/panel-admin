@@ -1,14 +1,14 @@
 import { useAppDispatch } from '@/store'
+import { PageToolbar } from '@/shared/components'
 import {
     CreateUserModal,
     EditUserModal,
     UsersFooter,
     UsersTable,
-    UsersToolbar,
 } from './components'
 import { deleteUsers } from './store'
 import { useUsersPage, useUsersSelection } from './hooks'
-import styles from './UsersPage.module.scss'
+import styles from '@/styles/layouts/page.module.scss'
 
 export const UsersPage = () => {
     const dispatch = useAppDispatch()
@@ -43,9 +43,11 @@ export const UsersPage = () => {
     }
 
     return (
-        <section className={styles.users}>
-            <UsersToolbar
+        <section className={styles.page}>
+            <PageToolbar
                 search={filters.search}
+                searchPlaceholder="Search for users"
+                createLabel="Add User"
                 onSearchChange={filters.handleSearchChange}
                 onCreate={modal.openCreate}
                 onDelete={handleDeleteClick}
