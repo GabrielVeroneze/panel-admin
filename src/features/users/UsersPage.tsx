@@ -1,7 +1,11 @@
 import { useAppDispatch } from '@/store'
 import { DataTableFooter, DataTableToolbar } from '@/shared/components'
-import { EyeSolidIcon } from '@/shared/assets/icons'
-import { CreateUserModal, EditUserModal, UsersTable } from './components'
+import {
+    CreateUserModal,
+    EditUserModal,
+    UsersFooterInfo,
+    UsersTable,
+} from './components'
 import { deleteUsers } from './store'
 import { useUsersPage, useUsersSelection } from './hooks'
 import styles from '@/styles/layouts/page.module.scss'
@@ -64,15 +68,7 @@ export const UsersPage = () => {
                 pageSize={pageSize}
                 total={total}
                 onPageChange={filters.setPage}
-                info={
-                    <>
-                        <span className={styles.text}>
-                            Last account activity:{' '}
-                            <strong className={styles.time}>2 hours ago</strong>
-                        </span>
-                        <EyeSolidIcon className={styles.icon} />
-                    </>
-                }
+                info={<UsersFooterInfo />}
             />
             {modal.isCreateOpen && (
                 <CreateUserModal
