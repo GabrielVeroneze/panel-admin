@@ -1,11 +1,7 @@
 import { useAppDispatch } from '@/store'
-import { PageToolbar } from '@/shared/components'
-import {
-    CreateUserModal,
-    EditUserModal,
-    UsersFooter,
-    UsersTable,
-} from './components'
+import { DataTableFooter, DataTableToolbar } from '@/shared/components'
+import { EyeSolidIcon } from '@/shared/assets/icons'
+import { CreateUserModal, EditUserModal, UsersTable } from './components'
 import { deleteUsers } from './store'
 import { useUsersPage, useUsersSelection } from './hooks'
 import styles from '@/styles/layouts/page.module.scss'
@@ -44,7 +40,7 @@ export const UsersPage = () => {
 
     return (
         <section className={styles.page}>
-            <PageToolbar
+            <DataTableToolbar
                 search={filters.search}
                 searchPlaceholder="Search for users"
                 createLabel="Add User"
@@ -62,11 +58,21 @@ export const UsersPage = () => {
                 onToggleSelect={toggleSelect}
                 onToggleSelectAll={handleToggleSelectAll}
             />
-            <UsersFooter
+            <DataTableFooter
+                label="users"
                 page={filters.page}
                 pageSize={pageSize}
                 total={total}
                 onPageChange={filters.setPage}
+                info={
+                    <>
+                        <span className={styles.text}>
+                            Last account activity:{' '}
+                            <strong className={styles.time}>2 hours ago</strong>
+                        </span>
+                        <EyeSolidIcon className={styles.icon} />
+                    </>
+                }
             />
             {modal.isCreateOpen && (
                 <CreateUserModal
