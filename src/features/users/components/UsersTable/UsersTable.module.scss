@@ -4,125 +4,28 @@
 .wrapper {
     flex-grow: 1;
     overflow-x: auto;
+}
 
-    .table {
-        --table-columns: 0.5fr minmax(210px, 2.5fr) 2.5fr 2fr 2fr
-            minmax(110px, 1fr);
-    }
-
-    &.skeleton {
-        .tableSkeleton {
-            display: flex;
-            flex-direction: column;
-            gap: $space-0-5;
-        }
-
-        .rowSkeleton {
-            display: flex;
-            gap: $space-0-5;
-        }
-
-        .checkboxSkeleton {
-            height: 64px;
-            width: 4%;
-        }
-
-        .nameSkeleton {
-            height: 64px;
-            width: 24%;
-        }
-
-        .positionSkeleton {
-            height: 64px;
-            width: 24%;
-        }
-
-        .countrySkeleton {
-            height: 64px;
-            width: 19%;
-        }
-
-        .statusSkeleton {
-            height: 64px;
-            width: 19%;
-        }
-
-        .actionsSkeleton {
-            height: 64px;
-            width: 10%;
-        }
-    }
+.table {
+    --table-columns: 0.5fr minmax(210px, 2.5fr) 2.5fr 2fr 2fr minmax(110px, 1fr);
 
     @include media-down(lg) {
-        .table {
-            --table-columns: 0.5fr minmax(210px, 3fr) 2fr 1.5fr
-                minmax(100px, 1fr);
+        --table-columns: 0.5fr minmax(210px, 3fr) 2fr 1.5fr minmax(100px, 1fr);
 
-            min-width: 485px;
+        min-width: 485px;
 
-            .country {
-                display: none;
-            }
-        }
-
-        &.skeleton {
-            .checkboxSkeleton {
-                width: 6%;
-            }
-
-            .nameSkeleton {
-                width: 37%;
-            }
-
-            .positionSkeleton {
-                width: 25%;
-            }
-
-            .countrySkeleton {
-                display: none;
-            }
-
-            .statusSkeleton {
-                width: 19%;
-            }
-
-            .actionsSkeleton {
-                width: 13%;
-            }
+        .country {
+            display: none;
         }
     }
 
     @include media-down(sm) {
-        .table {
-            --table-columns: 0.5fr minmax(210px, 3fr) 1fr minmax(120px, 1fr);
+        --table-columns: 0.5fr minmax(210px, 3fr) 1fr minmax(120px, 1fr);
 
-            min-width: 535px;
+        min-width: 535px;
 
-            .position {
-                display: none;
-            }
-        }
-
-        &.skeleton {
-            .checkboxSkeleton {
-                width: 9%;
-            }
-
-            .nameSkeleton {
-                width: 47%;
-            }
-
-            .positionSkeleton {
-                display: none;
-            }
-
-            .statusSkeleton {
-                width: 20%;
-            }
-
-            .actionsSkeleton {
-                width: 24%;
-            }
+        .position {
+            display: none;
         }
     }
 }
