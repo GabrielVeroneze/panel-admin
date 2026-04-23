@@ -1,6 +1,7 @@
 import {
     Button,
     Checkbox,
+    DataTableSkeleton,
     EmptyState,
     StatusBadge,
     Table,
@@ -14,7 +15,6 @@ import {
     ExclamationCircleIcon,
     PencilAltSolidIcon,
 } from '@/shared/assets/icons'
-import { UsersTableSkeleton } from './UsersTableSkeleton'
 import type { UserListItem } from '@/features/users/types'
 import styles from './UsersTable.module.scss'
 
@@ -41,7 +41,7 @@ export const UsersTable = ({
 }: UsersTableProps) => {
     const isEmpty = !users || users.length === 0
 
-    if (loading) return <UsersTableSkeleton />
+    if (loading) return <DataTableSkeleton className={styles.table} />
 
     if (isEmpty) {
         return (
