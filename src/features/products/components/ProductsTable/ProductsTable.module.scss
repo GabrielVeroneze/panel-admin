@@ -1,0 +1,31 @@
+@use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
+
+.wrapper {
+    flex-grow: 1;
+    overflow-x: auto;
+}
+
+.table {
+    --table-columns: 0.5fr minmax(210px, 2.5fr) 2.5fr 2fr 2fr minmax(110px, 1fr);
+
+    @include media-down(lg) {
+        --table-columns: 0.5fr minmax(210px, 3fr) 2fr 1.5fr minmax(100px, 1fr);
+
+        min-width: 485px;
+
+        .brand {
+            display: none;
+        }
+    }
+
+    @include media-down(sm) {
+        --table-columns: 0.5fr minmax(210px, 3fr) 1fr minmax(120px, 1fr);
+
+        min-width: 535px;
+
+        .category {
+            display: none;
+        }
+    }
+}
