@@ -1,4 +1,5 @@
 import { useAppDispatch } from '@/store'
+import { useDataSelection } from '@/shared/hooks'
 import { DataTableFooter, DataTableToolbar } from '@/shared/components'
 import {
     CreateUserModal,
@@ -7,7 +8,7 @@ import {
     UsersTable,
 } from './components'
 import { deleteUsers } from './store'
-import { useUsersPage, useUsersSelection } from './hooks'
+import { useUsersPage } from './hooks'
 import styles from '@/styles/layouts/page.module.scss'
 
 export const UsersPage = () => {
@@ -26,21 +27,17 @@ export const UsersPage = () => {
     } = useUsersPage()
 
     const {
-        selectedIds,
-        isSelectionMode,
         isSelected,
         toggleSelect,
         toggleSelectAll,
-        handleDeleteClick,
-    } = useUsersSelection({
-        onDeleteUsers: (ids) => {
-            dispatch(deleteUsers({ ids }))
-        },
+        handleDelete,
+        allSelected,
+        hasSelection,
+    } = useDataSelection({
+        items: usersList,
+        getId: (user) => user.id,
+        onDelete: (ids) => dispatch(deleteUsers({ ids })),
     })
-
-    const handleToggleSelectAll = () => {
-        toggleSelectAll(usersList.map((u) => u.id))
-    }
 
     return (
         <section className={styles.page}>
@@ -48,19 +45,19 @@ export const UsersPage = () => {
                 search={filters.search}
                 searchPlaceholder="Search for users"
                 createLabel="Add User"
+                hasSelection={hasSelection}
                 onSearchChange={filters.handleSearchChange}
                 onCreate={modal.openCreate}
-                onDelete={handleDeleteClick}
+                onDelete={handleDelete}
             />
             <UsersTable
                 users={usersList}
                 loading={loading}
                 onEdit={handleEdit}
-                selectedIds={selectedIds}
-                isSelectionMode={isSelectionMode}
                 isSelected={isSelected}
                 onToggleSelect={toggleSelect}
-                onToggleSelectAll={handleToggleSelectAll}
+                onToggleSelectAll={toggleSelectAll}
+                allSelected={allSelected}
             />
             <DataTableFooter
                 label="users"
