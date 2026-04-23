@@ -1,0 +1,30 @@
+@use '@/styles/tokens' as *;
+
+.container {
+    align-items: center;
+    display: flex;
+    gap: $space-2-5;
+    min-width: 0;
+
+    .image {
+        border-radius: $rounded;
+        display: block;
+        height: 50px;
+        object-fit: cover;
+        width: 50px;
+    }
+
+    .text {
+        display: flex;
+        min-width: 0;
+
+        .name {
+            color: $gray-darkest;
+            font-size: $text-2xl;
+            font-weight: $font-medium;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
