@@ -22,22 +22,20 @@ type UsersTableProps = {
     users: UserListItem[]
     loading: boolean
     onEdit: (userId: number) => void
-    selectedIds: number[]
-    isSelectionMode: boolean
     isSelected: (id: number) => boolean
     onToggleSelect: (id: number) => void
     onToggleSelectAll: () => void
+    allSelected: boolean
 }
 
 export const UsersTable = ({
     users,
     loading,
     onEdit,
-    selectedIds,
-    isSelectionMode,
     isSelected,
     onToggleSelect,
     onToggleSelectAll,
+    allSelected,
 }: UsersTableProps) => {
     const isEmpty = !users || users.length === 0
 
@@ -53,8 +51,6 @@ export const UsersTable = ({
         )
     }
 
-    const allSelected = users.length > 0 && selectedIds.length === users.length
-
     return (
         <div className={styles.wrapper}>
             <Table borderedRows className={styles.table}>
@@ -64,7 +60,6 @@ export const UsersTable = ({
                             <Checkbox
                                 checked={allSelected}
                                 onChange={onToggleSelectAll}
-                                disabled={!isSelectionMode}
                             />
                         </TableCell>
                         <TableCell className={styles.name} size="lg" header>
@@ -88,7 +83,6 @@ export const UsersTable = ({
                                 <Checkbox
                                     checked={isSelected(user.id)}
                                     onChange={() => onToggleSelect(user.id)}
-                                    disabled={!isSelectionMode}
                                 />
                             </TableCell>
                             <TableCell className={styles.name} size="lg">
