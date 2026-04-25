@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { dashboardReducer } from '@/features/dashboard/store'
 import { usersReducer } from '@/features/users/store'
+import { productsReducer } from '@/features/products/store'
 
 export const store = configureStore({
     reducer: {
         dashboard: dashboardReducer,
         users: usersReducer,
+        products: productsReducer,
     },
 })
 
