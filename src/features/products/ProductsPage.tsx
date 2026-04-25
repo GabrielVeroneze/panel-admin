@@ -1,20 +1,21 @@
-import { useState } from 'react'
 import { DataTableFooter, DataTableToolbar } from '@/shared/components'
 import { ProductsTable } from './components'
-import { useProducts } from './hooks'
+import { useProducts, useProductsFilters } from './hooks'
 import styles from '@/styles/layouts/page.module.scss'
 
 export const ProductsPage = () => {
-    const [page, setPage] = useState<number>(1)
     const pageSize = 15
 
-    const { productsList, total, loading } = useProducts(page, pageSize)
+    const { page, search, setPage, handleSearchChange } = useProductsFilters()
+    const { productsList, total, loading } = useProducts(page, pageSize, search)
 
     return (
         <section className={styles.page}>
             <DataTableToolbar
+                search={search}
                 searchPlaceholder="Search for products"
                 createLabel="Add Product"
+                onSearchChange={handleSearchChange}
             />
             <ProductsTable products={productsList} loading={loading} />
             <DataTableFooter
