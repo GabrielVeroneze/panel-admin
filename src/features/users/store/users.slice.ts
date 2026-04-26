@@ -13,11 +13,6 @@ import type {
     User,
 } from '../types'
 
-type UsersState = {
-    data: PaginatedUsers | null
-    loading: boolean
-}
-
 type FetchUsersParams = {
     page: number
     pageSize: number
