@@ -1,5 +1,6 @@
 import { api } from '@/services/api'
 import { toFormData } from '@/shared/utils'
+import type { PaginationParams } from '@/shared/types'
 import type {
     CreateUserPayload,
     UpdateUserPayload,
@@ -7,7 +8,7 @@ import type {
     PaginatedUsers,
 } from '../types'
 
-export const getUsers = async (params: GetUsersParams) => {
+export const getUsers = async (params: PaginationParams) => {
     const { data } = await api.get<PaginatedUsers>('/users', {
         params,
     })
