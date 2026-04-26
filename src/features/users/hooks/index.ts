@@ -1,6 +1,5 @@
 export { useCreateUserForm } from './useCreateUserForm'
 export { useEditUserForm } from './useEditUserForm'
 export { useUsers } from './useUsers'
-export { useUsersFilters } from './useUsersFilters'
 export { useUsersModal } from './useUsersModal'
 export { useUsersPage } from './useUsersPage'
