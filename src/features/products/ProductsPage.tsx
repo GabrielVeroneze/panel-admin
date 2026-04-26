@@ -1,12 +1,13 @@
 import { DataTableFooter, DataTableToolbar } from '@/shared/components'
+import { usePaginationFilters } from '@/shared/hooks'
 import { ProductsTable } from './components'
-import { useProducts, useProductsFilters } from './hooks'
+import { useProducts } from './hooks'
 import styles from '@/styles/layouts/page.module.scss'
 
 export const ProductsPage = () => {
     const pageSize = 15
 
-    const { page, search, setPage, handleSearchChange } = useProductsFilters()
+    const { page, search, setPage, handleSearchChange } = usePaginationFilters()
     const { productsList, total, loading } = useProducts(page, pageSize, search)
 
     return (

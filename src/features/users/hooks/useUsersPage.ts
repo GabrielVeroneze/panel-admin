@@ -1,13 +1,14 @@
 import { useAppDispatch } from '@/store'
+import { usePaginationFilters } from '@/shared/hooks'
 import { createUser, updateUser } from '../store'
 import { mapFormToCreatePayload, mapFormToUpdatePayload } from '../mappers'
-import { useUsers, useUsersFilters } from '../hooks'
+import { useUsers } from '../hooks'
 import { useUsersModal } from './useUsersModal'
 import type { CreateUserFormValues, UpdateUserFormValues } from '../schemas'
 
 export const useUsersPage = () => {
     const dispatch = useAppDispatch()
-    const filters = useUsersFilters()
+    const filters = usePaginationFilters()
     const modal = useUsersModal()
 
     const pageSize = 15
