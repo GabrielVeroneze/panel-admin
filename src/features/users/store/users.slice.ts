@@ -6,6 +6,7 @@ import {
     deleteUsers as deleteUsersRequest,
     updateUser as updateUserRequest,
 } from '../api'
+import type { AsyncState, PaginationParams } from '@/shared/types'
 import type {
     CreateUserPayload,
     PaginatedUsers,
@@ -13,11 +14,7 @@ import type {
     User,
 } from '../types'
 
-type FetchUsersParams = {
-    page: number
-    pageSize: number
-    search?: string
-}
+type UsersState = AsyncState<PaginatedUsers>
 
 type CreateUserParams = {
     payload: CreateUserPayload
@@ -41,7 +38,7 @@ const initialState: UsersState = {
     loading: false,
 }
 
-export const fetchUsers = createAsyncThunk<PaginatedUsers, FetchUsersParams>(
+export const fetchUsers = createAsyncThunk<PaginatedUsers, PaginationParams>(
     'users/fetchUsers',
     async ({ page, pageSize, search }) => {
         return await getUsers({ page, pageSize, search })

@@ -1,12 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getProducts } from '../api'
+import type { AsyncState, PaginationParams } from '@/shared/types'
 import type { PaginatedProducts } from '../types'
 
-type FetchProductsParams = {
-    page: number
-    pageSize: number
-    search?: string
-}
+type ProductsState = AsyncState<PaginatedProducts>
 
 const initialState: ProductsState = {
     data: null,
@@ -15,7 +12,7 @@ const initialState: ProductsState = {
 
 export const fetchProducts = createAsyncThunk<
     PaginatedProducts,
-    FetchProductsParams
+    PaginationParams
 >('products/fetchProducts', async ({ page, pageSize, search }) => {
     return await getProducts({ page, pageSize, search })
 })
