@@ -1,7 +1,9 @@
 @use '@/styles/mixins' as *;
 
-@include media-down(lg) {
-    .button {
+.button {
+    flex-grow: 0;
+
+    @include media-down(lg) {
         flex-grow: 1;
     }
 }
