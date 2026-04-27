@@ -7,7 +7,7 @@ import {
 } from '@/shared/components'
 import { CreateUserForm } from '@/features/users/components'
 import type { CreateUserFormValues } from '@/features/users/schemas'
-import styles from './CreateUserModal.module.scss'
+import styles from '@/styles/modules/modal.module.scss'
 
 type CreateUserModalProps = {
     open: boolean

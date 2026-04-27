@@ -9,7 +9,7 @@ import { XSolidIcon } from '@/shared/assets/icons'
 import { EditUserForm } from '@/features/users/components'
 import type { User } from '@/features/users/types'
 import type { UpdateUserFormValues } from '@/features/users/schemas'
-import styles from './EditUserModal.module.scss'
+import styles from '@/styles/modules/modal.module.scss'
 
 type EditUserModalProps = {
     open: boolean
