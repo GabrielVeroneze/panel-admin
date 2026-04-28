@@ -1,4 +1,3 @@
-@use '@/styles/tokens' as *;
 @use '@/styles/mixins' as *;
 @use '@/styles/patterns' as *;
 
@@ -16,29 +15,5 @@
 
     @include media-down(sm) {
         grid-column: auto;
-    }
-}
-
-.dropzoneField {
-    grid-column: span 2;
-
-    .icon {
-        color: $gray-dark;
-        height: 36px;
-        width: 36px;
-    }
-
-    .text {
-        color: $gray-darkest;
-        font-size: $text-2xl;
-        font-weight: $font-normal;
-    }
-
-    @include media-down(sm) {
-        grid-column: auto;
-
-        .text {
-            font-size: $text-xl;
-        }
     }
 }
