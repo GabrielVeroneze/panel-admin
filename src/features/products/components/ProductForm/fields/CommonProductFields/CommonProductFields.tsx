@@ -1,3 +1,5 @@
+import { FormField, Input, Textarea } from '@/shared/components'
+import { ImagesField } from '@/features/products/components'
 import styles from './CommonProductFields.module.scss'
 
 export const CommonProductFields = () => {
@@ -44,8 +46,10 @@ export const CommonProductFields = () => {
                 <Textarea
                     className={styles.textarea}
                     placeholder="Enter product details"
+                    size="large"
                 />
             </FormField>
+            <ImagesField />
         </>
     )
 }
