@@ -9,7 +9,7 @@ export const CommonProductFields = () => {
                 <Input
                     className={styles.input}
                     type="text"
-                    placeholder="Apple Imac 27”"
+                    placeholder="Enter product name"
                     size="large"
                 />
             </FormField>
@@ -17,7 +17,7 @@ export const CommonProductFields = () => {
                 <Input
                     className={styles.input}
                     type="text"
-                    placeholder="Electronics"
+                    placeholder="Enter category"
                     size="large"
                 />
             </FormField>
@@ -25,7 +25,7 @@ export const CommonProductFields = () => {
                 <Input
                     className={styles.input}
                     type="text"
-                    placeholder="Apple"
+                    placeholder="Enter brand"
                     size="large"
                 />
             </FormField>
@@ -33,7 +33,7 @@ export const CommonProductFields = () => {
                 <Input
                     className={styles.input}
                     type="number"
-                    placeholder="$2999"
+                    placeholder="Enter price"
                     size="large"
                 />
             </FormField>
@@ -45,16 +45,7 @@ export const CommonProductFields = () => {
             >
                 <Textarea
                     className={styles.textarea}
-                    placeholder="
-                        Standart Glass
-                        3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz
-                        8GB 2666MHz DDR4 memory
-                        Radeon Pro 5500 XT with 8GB of GDDR6 memory
-                        512GB SSD storage
-                        Gigabit Ethernet
-                        Magic Mouse 2
-                        Magic Keyboard - US
-                    "
+                    placeholder="Enter product details"
                 />
             </FormField>
             <FormField
