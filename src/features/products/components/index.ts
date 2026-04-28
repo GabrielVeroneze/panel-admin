@@ -1,3 +1,6 @@
 export * from './CreateProductModal/CreateProductModal'
 export * from './EditProductModal/EditProductModal'
+export * from './ProductForm/fields/CommonProductFields/CommonProductFields'
+export * from './ProductForm/forms/CreateProductForm/CreateProductForm'
+export * from './ProductForm/forms/EditProductForm/EditProductForm'
 export * from './ProductsTable/ProductsTable'
