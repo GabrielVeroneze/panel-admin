@@ -16,9 +16,40 @@
 
     &::placeholder {
         color: $gray-base;
-        font-weight: $font-normal;
     }
 
+    &:focus-within {
+        border-color: $blue-dark;
+    }
+
+    /* Status */
+    &.success {
+        background-color: $green-light;
+        border-color: $green-base;
+
+        &::placeholder {
+            color: $green-base;
+        }
+
+        &:focus-within {
+            border-color: $green-dark;
+        }
+    }
+
+    &.error {
+        background-color: $red-light;
+        border-color: $red-base;
+
+        &::placeholder {
+            color: $red-base;
+        }
+
+        &:focus-within {
+            border-color: $red-dark;
+        }
+    }
+
+    /* Sizes */
     &.small {
         font-size: $text-xl;
         padding: $space-3;
@@ -33,5 +64,11 @@
         border-radius: $rounded-md;
         font-size: $text-2xl;
         padding: $space-3-5 $space-5;
+    }
+
+    /* Disabled */
+    &.disabled {
+        opacity: 0.55;
+        pointer-events: none;
     }
 }
