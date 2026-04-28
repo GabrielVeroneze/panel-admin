@@ -1,5 +1,3 @@
-import { FormField, Input, Textarea, UploadDropzone } from '@/shared/components'
-import { PhotographIcon } from '@/shared/assets/icons'
 import styles from './CommonProductFields.module.scss'
 
 export const CommonProductFields = () => {
@@ -47,16 +45,6 @@ export const CommonProductFields = () => {
                     className={styles.textarea}
                     placeholder="Enter product details"
                 />
-            </FormField>
-            <FormField
-                className={styles.dropzoneField}
-                id="images"
-                size="large"
-            >
-                <UploadDropzone accept="image/*" onFileSelect={() => {}}>
-                    <PhotographIcon className={styles.icon} />
-                    <span className={styles.text}>Drop files to upload</span>
-                </UploadDropzone>
             </FormField>
         </>
     )
