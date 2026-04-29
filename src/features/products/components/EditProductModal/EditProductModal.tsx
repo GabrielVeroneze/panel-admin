@@ -8,12 +8,13 @@ import {
 import { XSolidIcon } from '@/shared/assets/icons'
 import { EditProductForm } from '@/features/products/components'
 import type { Product } from '@/features/products/types'
+import type { UpdateProductFormValues } from '@/features/products/schemas'
 import styles from '@/styles/modules/modal.module.scss'
 
 type EditProductModalProps = {
     open: boolean
     product?: Product | null
-    onUpdate: (data: any) => void
+    onUpdate: (data: UpdateProductFormValues) => void
     onClose: () => void
     onDelete?: () => void
 }

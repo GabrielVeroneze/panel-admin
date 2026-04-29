@@ -6,11 +6,12 @@ import {
     ModalHeader,
 } from '@/shared/components'
 import { CreateProductForm } from '@/features/products/components'
+import type { CreateProductFormValues } from '@/features/products/schemas'
 import styles from '@/styles/modules/modal.module.scss'
 
 type CreateProductModalProps = {
     open: boolean
-    onCreate: (data: any) => void
+    onCreate: (data: CreateProductFormValues) => void
     onClose: () => void
 }
 
