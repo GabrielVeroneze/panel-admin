@@ -1,0 +1,6 @@
+export { baseProductSchema } from './base-product.schema'
+export type { BaseProductFieldsValues } from './base-product.schema'
+export { createProductSchema } from './create-product.schema'
+export type { CreateProductFormValues } from './create-product.schema'
+export { updateProductSchema } from './update-product.schema'
+export type { UpdateProductFormValues } from './update-product.schema'
