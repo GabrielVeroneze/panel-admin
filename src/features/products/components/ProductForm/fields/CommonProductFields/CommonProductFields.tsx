@@ -1,5 +1,5 @@
 import { FormField, Input, Textarea } from '@/shared/components'
-import { ImagesField } from '@/features/products/components'
+import { ImagesField, PriceField } from '@/features/products/components'
 import styles from './CommonProductFields.module.scss'
 
 export const CommonProductFields = () => {
@@ -29,6 +29,7 @@ export const CommonProductFields = () => {
                     size="large"
                 />
             </FormField>
+            <PriceField />
             <FormField
                 className={styles.textareaField}
                 id="details"
