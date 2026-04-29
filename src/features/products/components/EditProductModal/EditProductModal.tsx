@@ -6,6 +6,7 @@ import {
     ModalHeader,
 } from '@/shared/components'
 import { XSolidIcon } from '@/shared/assets/icons'
+import { EditProductForm } from '@/features/products/components'
 import type { Product } from '@/features/products/types'
 import styles from '@/styles/modules/modal.module.scss'
 
@@ -29,7 +30,13 @@ export const EditProductModal = ({
     return (
         <Modal open={open} onClose={onClose}>
             <ModalHeader title="Edit product" onClose={onClose} />
-            <ModalContent>FormComponent</ModalContent>
+            <ModalContent>
+                <EditProductForm
+                    formId={formId}
+                    product={product}
+                    onSubmit={onUpdate}
+                />
+            </ModalContent>
             <ModalFooter>
                 <Button
                     className={styles.button}
