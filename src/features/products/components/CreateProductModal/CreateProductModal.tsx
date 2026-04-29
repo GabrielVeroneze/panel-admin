@@ -5,6 +5,7 @@ import {
     ModalFooter,
     ModalHeader,
 } from '@/shared/components'
+import { CreateProductForm } from '@/features/products/components'
 import styles from '@/styles/modules/modal.module.scss'
 
 type CreateProductModalProps = {
@@ -23,7 +24,9 @@ export const CreateProductModal = ({
     return (
         <Modal open={open} onClose={onClose}>
             <ModalHeader title="Create product" onClose={onClose} />
-            <ModalContent>FormComponent</ModalContent>
+            <ModalContent>
+                <CreateProductForm formId={formId} onSubmit={onCreate} />
+            </ModalContent>
             <ModalFooter>
                 <Button
                     className={styles.button}
