@@ -1,9 +1,10 @@
 import { CommonProductFields } from '@/features/products/components'
+import type { CreateProductFormValues } from '@/features/products/schemas'
 import styles from './CreateProductForm.module.scss'
 
 type CreateProductFormProps = {
     formId: string
-    onSubmit: (data: any) => void
+    onSubmit: (data: CreateProductFormValues) => void
 }
 
 export const CreateProductForm = ({
