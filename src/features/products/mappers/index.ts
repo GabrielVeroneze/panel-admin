@@ -1,1 +1,4 @@
-export { mapProductToListItem } from './product.mapper'
+export {
+    mapProductToListItem,
+    mapProductToUpdateFormValues,
+} from './product.mapper'
