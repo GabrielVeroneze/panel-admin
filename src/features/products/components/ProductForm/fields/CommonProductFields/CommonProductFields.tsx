@@ -29,14 +29,6 @@ export const CommonProductFields = () => {
                     size="large"
                 />
             </FormField>
-            <FormField id="price" label="Price" size="large">
-                <Input
-                    className={styles.input}
-                    type="number"
-                    placeholder="Enter price"
-                    size="large"
-                />
-            </FormField>
             <FormField
                 className={styles.textareaField}
                 id="details"
