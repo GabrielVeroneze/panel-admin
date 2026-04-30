@@ -21,9 +21,15 @@ export const ImagesField = () => {
                     message={errors.images?.message}
                 >
                     <UploadDropzone
+                        multiple
                         accept="image/*"
-                        onFileSelect={(file) => {
-                            field.onChange(file)
+                        onFileSelect={(files) => {
+                            const current = field.value || []
+                            const newFiles = Array.isArray(files)
+                                ? files
+                                : [files]
+
+                            field.onChange([...current, ...newFiles])
                             field.onBlur()
                         }}
                     >
