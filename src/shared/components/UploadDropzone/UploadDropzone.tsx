@@ -10,8 +10,9 @@ import clsx from 'clsx'
 import styles from './UploadDropzone.module.scss'
 
 type UploadDropzoneProps = {
-    onFileSelect?: (file: File) => void
+    onFileSelect?: (files: File | File[]) => void
     accept?: string
+    multiple?: boolean
     children?: ReactNode
     className?: string
 } & FieldControlProps
@@ -21,27 +22,36 @@ export const UploadDropzone = ({
     status,
     onFileSelect,
     accept,
+    multiple,
     children,
     className,
 }: UploadDropzoneProps) => {
     const inputRef = useRef<HTMLInputElement>(null)
     const [isDragging, setIsDragging] = useState<boolean>(false)
 
-    const handleFile = (file: File) => {
-        onFileSelect?.(file)
+    const handleFile = (files: File[]) => {
+        if (!onFileSelect) return
+
+        if (multiple) {
+            onFileSelect(files)
+        } else {
+            onFileSelect(files[0])
+        }
     }
 
     const handleDrop = (event: DragEvent<HTMLDivElement>) => {
         event.preventDefault()
         setIsDragging(false)
 
-        const file = event.dataTransfer.files?.[0]
-        if (file) handleFile(file)
+        const files = Array.from(event.dataTransfer.files || [])
+
+        if (files.length) handleFile(files)
     }
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0]
-        if (file) handleFile(file)
+        const files = Array.from(event.target.files || [])
+
+        if (files.length) handleFile(files)
     }
 
     return (
@@ -67,6 +77,7 @@ export const UploadDropzone = ({
                 type="file"
                 accept={accept}
                 onChange={handleChange}
+                multiple={multiple}
             />
             {children}
         </div>
