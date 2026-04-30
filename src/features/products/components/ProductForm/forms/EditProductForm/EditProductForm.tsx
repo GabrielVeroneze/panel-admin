@@ -1,3 +1,5 @@
+import { FormProvider } from 'react-hook-form'
+import { useEditProductForm } from '@/features/products/hooks'
 import { CommonProductFields } from '@/features/products/components'
 import type { UpdateProductFormValues } from '@/features/products/schemas'
 import type { Product } from '@/features/products/types'
@@ -14,9 +16,17 @@ export const EditProductForm = ({
     product,
     onSubmit,
 }: EditProductFormProps) => {
+    const methods = useEditProductForm(product)
+
     return (
-        <form className={styles.form} id={formId}>
-            <CommonProductFields />
-        </form>
+        <FormProvider {...methods}>
+            <form
+                className={styles.form}
+                id={formId}
+                onSubmit={methods.handleSubmit(onSubmit)}
+            >
+                <CommonProductFields />
+            </form>
+        </FormProvider>
     )
 }
