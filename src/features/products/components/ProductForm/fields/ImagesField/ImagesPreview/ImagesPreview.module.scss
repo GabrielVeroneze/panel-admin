@@ -1,0 +1,25 @@
+@use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
+
+.container {
+    display: flex;
+    gap: $space-5;
+
+    .item {
+        position: relative;
+
+        .image {
+            border-radius: $rounded-sm;
+            display: block;
+            height: 115px;
+            width: 115px;
+        }
+
+        .button {
+            bottom: 0;
+            color: $red-dark;
+            left: 0;
+            position: absolute;
+        }
+    }
+}
