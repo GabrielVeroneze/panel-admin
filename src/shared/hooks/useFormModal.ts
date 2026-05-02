@@ -1,26 +1,25 @@
 import { useState } from 'react'
-import type { User } from '../types'
 
-type CreateModalState = {
+type CreateState = {
     type: 'create'
 }
 
-type EditModalState = {
+type EditState<T> = {
     type: 'edit'
-    user: User
+    item: T
 }
 
-type ModalState = CreateModalState | EditModalState | null
+type ModalState<T> = CreateState | EditState<T> | null
 
-export const useUsersModal = () => {
-    const [modal, setModal] = useState<ModalState>(null)
+export const useFormModal = <T>() => {
+    const [modal, setModal] = useState<ModalState<T>>(null)
 
     const openCreate = () => {
         setModal({ type: 'create' })
     }
 
-    const openEdit = (user: User) => {
-        setModal({ type: 'edit', user: user })
+    const openEdit = (item: T) => {
+        setModal({ type: 'edit', item })
     }
 
     const close = () => {
@@ -29,13 +28,13 @@ export const useUsersModal = () => {
 
     const isCreateOpen = modal?.type === 'create'
     const isEditOpen = modal?.type === 'edit'
-    const editingUser = modal?.type === 'edit' ? modal.user : null
+    const editingItem = modal?.type === 'edit' ? modal.item : null
 
     return {
         modal,
         isCreateOpen,
         isEditOpen,
-        editingUser,
+        editingItem,
         openCreate,
         openEdit,
         close,
