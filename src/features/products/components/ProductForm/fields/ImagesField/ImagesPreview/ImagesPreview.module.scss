@@ -35,4 +35,14 @@
         }
     }
 
+    @include media-down(sm) {
+        gap: $space-3;
+
+        .item {
+            .image {
+                height: 88px;
+                width: 88px;
+            }
+        }
+    }
 }
