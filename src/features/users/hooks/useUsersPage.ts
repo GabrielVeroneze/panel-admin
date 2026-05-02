@@ -1,15 +1,15 @@
 import { useAppDispatch } from '@/store'
-import { usePaginationFilters } from '@/shared/hooks'
+import { useFormModal, usePaginationFilters } from '@/shared/hooks'
 import { createUser, updateUser } from '../store'
 import { mapFormToCreatePayload, mapFormToUpdatePayload } from '../mappers'
 import { useUsers } from '../hooks'
-import { useUsersModal } from './useUsersModal'
 import type { CreateUserFormValues, UpdateUserFormValues } from '../schemas'
+import type { User } from '../types'
 
 export const useUsersPage = () => {
     const dispatch = useAppDispatch()
     const filters = usePaginationFilters()
-    const modal = useUsersModal()
+    const modal = useFormModal<User>()
 
     const pageSize = 15
 
@@ -37,11 +37,11 @@ export const useUsersPage = () => {
     }
 
     const handleUpdateSubmit = async (data: UpdateUserFormValues) => {
-        if (!modal.editingUser) return
+        if (!modal.editingItem) return
 
         await dispatch(
             updateUser({
-                id: modal.editingUser.id,
+                id: modal.editingItem.id,
                 payload: mapFormToUpdatePayload(data),
             }),
         )
