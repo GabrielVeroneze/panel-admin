@@ -74,13 +74,13 @@ export const UsersPage = () => {
                     onClose={modal.close}
                 />
             )}
-            {modal.isEditOpen && modal.editingUser && (
+            {modal.isEditOpen && modal.editingItem && (
                 <EditUserModal
                     open
-                    user={modal.editingUser}
+                    user={modal.editingItem}
                     onUpdate={handleUpdateSubmit}
                     onClose={modal.close}
-                    onDelete={() => console.log('delete', modal.editingUser)}
+                    onDelete={() => console.log('delete', modal.editingItem)}
                 />
             )}
         </section>
