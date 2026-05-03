@@ -1,6 +1,10 @@
 import { delay, http, HttpResponse } from 'msw'
 import type { MockProduct } from '../types'
-import type { PaginatedProducts } from '@/features/products/types'
+import type {
+    CreateProductPayload,
+    PaginatedProducts,
+    Product,
+} from '@/features/products/types'
 
 export const allProducts: MockProduct[] = [
     {
@@ -751,6 +755,41 @@ export const productsHandlers = [
                 page,
                 pageSize,
             })
+        },
+    ),
+
+    http.post<never, CreateProductPayload, Product>(
+        '/api/products',
+        async ({ request }) => {
+            const formData = await request.formData()
+
+            const name = formData.get('name') as string
+            const category = formData.get('category') as string
+            const brand = formData.get('brand') as string
+            const price = Number(formData.get('price'))
+            const description = formData.get('description') as string
+            const images = formData.getAll('images') as File[]
+
+            const nextId =
+                allProducts.length > 0
+                    ? Math.max(...allProducts.map((p) => p.id)) + 1
+                    : 1
+
+            const imageUrls = images.map((file) => URL.createObjectURL(file))
+
+            const newProduct: Product = {
+                id: nextId,
+                name: name,
+                category: category,
+                brand: brand,
+                price: price,
+                description: description,
+                images: imageUrls,
+            }
+
+            allProducts.push(newProduct)
+
+            return HttpResponse.json(newProduct)
         },
     ),
 ]
