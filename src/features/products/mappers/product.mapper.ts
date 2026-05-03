@@ -1,6 +1,9 @@
 import { formatCurrency } from '@/shared/utils'
-import type { UpdateProductFormValues } from '../schemas'
-import type { Product, ProductListItem } from '../types'
+import type {
+    CreateProductFormValues,
+    UpdateProductFormValues,
+} from '../schemas'
+import type { CreateProductPayload, Product, ProductListItem } from '../types'
 
 export const mapProductToUpdateFormValues = (
     product: Product,
@@ -20,4 +23,15 @@ export const mapProductToListItem = (product: Product): ProductListItem => ({
     brand: product.brand,
     price: formatCurrency(product.price),
     image: product.images[0] ?? '',
+})
+
+export const mapFormToCreatePayload = (
+    data: CreateProductFormValues,
+): CreateProductPayload => ({
+    name: data.name,
+    category: data.category,
+    brand: data.brand,
+    price: Number(data.price),
+    description: data.details,
+    images: data.images,
 })
