@@ -28,4 +28,13 @@ export type CreateProductPayload = {
     images: File[]
 }
 
+export type UpdateProductPayload = {
+    name?: string
+    category?: string
+    brand?: string
+    price?: number
+    description?: string
+    images?: File[]
+}
+
 export type PaginatedProducts = PaginatedResponse<Product>
