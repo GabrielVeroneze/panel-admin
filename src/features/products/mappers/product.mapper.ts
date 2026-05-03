@@ -3,7 +3,12 @@ import type {
     CreateProductFormValues,
     UpdateProductFormValues,
 } from '../schemas'
-import type { CreateProductPayload, Product, ProductListItem } from '../types'
+import type {
+    CreateProductPayload,
+    Product,
+    ProductListItem,
+    UpdateProductPayload,
+} from '../types'
 
 export const mapProductToUpdateFormValues = (
     product: Product,
@@ -34,4 +39,15 @@ export const mapFormToCreatePayload = (
     price: Number(data.price),
     description: data.details,
     images: data.images,
+})
+
+export const mapFormToUpdatePayload = (
+    data: UpdateProductFormValues,
+): UpdateProductPayload => ({
+    name: data.name || undefined,
+    category: data.category || undefined,
+    brand: data.brand || undefined,
+    price: data.price ? Number(data.price) : undefined,
+    description: data.details || undefined,
+    images: data.images?.length ? data.images : undefined,
 })
