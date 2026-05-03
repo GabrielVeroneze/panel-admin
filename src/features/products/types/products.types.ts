@@ -19,4 +19,13 @@ export type ProductListItem = {
     image: string
 }
 
+export type CreateProductPayload = {
+    name: string
+    category: string
+    brand: string
+    price: number
+    description: string
+    images: File[]
+}
+
 export type PaginatedProducts = PaginatedResponse<Product>
