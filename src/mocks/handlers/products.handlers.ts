@@ -4,6 +4,7 @@ import type {
     CreateProductPayload,
     PaginatedProducts,
     Product,
+    UpdateProductPayload,
 } from '@/features/products/types'
 
 export const allProducts: MockProduct[] = [
@@ -723,6 +724,10 @@ export const allProducts: MockProduct[] = [
     },
 ]
 
+type UpdateProductParams = {
+    id: string
+}
+
 export const productsHandlers = [
     http.get<never, never, PaginatedProducts>(
         '/api/products',
@@ -790,6 +795,48 @@ export const productsHandlers = [
             allProducts.push(newProduct)
 
             return HttpResponse.json(newProduct)
+        },
+    ),
+
+    http.put<UpdateProductParams, UpdateProductPayload, Product>(
+        '/api/products/:id',
+        async ({ params, request }) => {
+            const id = Number(params.id)
+            const formData = await request.formData()
+
+            const name = formData.get('name') as string | null
+            const category = formData.get('category') as string | null
+            const brand = formData.get('brand') as string | null
+            const price = formData.get('price') as number | null
+            const description = formData.get('description') as string | null
+            const images = formData.getAll('images') as File[]
+
+            const productIndex = allProducts.findIndex(
+                (product) => product.id === id,
+            )
+
+            if (productIndex === -1) {
+                return HttpResponse.json(null, { status: 404 })
+            }
+
+            const existingProduct = allProducts[productIndex]
+
+            const updatedProduct: MockProduct = {
+                ...existingProduct,
+                name: name ?? existingProduct.name,
+                category: category ?? existingProduct.category,
+                brand: brand ?? existingProduct.brand,
+                price: price ?? existingProduct.price,
+                description: description ?? existingProduct.description,
+                images:
+                    images.length > 0
+                        ? images.map((file) => URL.createObjectURL(file))
+                        : existingProduct.images,
+            }
+
+            allProducts[productIndex] = updatedProduct
+
+            return HttpResponse.json(updatedProduct)
         },
     ),
 ]
