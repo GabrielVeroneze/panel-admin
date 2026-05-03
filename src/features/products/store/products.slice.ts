@@ -1,9 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getProducts } from '../api'
+import { getProducts, createProduct as createProductRequest } from '../api'
 import type { AsyncState, PaginationParams } from '@/shared/types'
-import type { PaginatedProducts } from '../types'
+import type { CreateProductPayload, PaginatedProducts, Product } from '../types'
 
 type ProductsState = AsyncState<PaginatedProducts>
+
+type CreateProductParams = {
+    payload: CreateProductPayload
+}
 
 const initialState: ProductsState = {
     data: null,
@@ -17,6 +21,13 @@ export const fetchProducts = createAsyncThunk<
     return await getProducts({ page, pageSize, search })
 })
 
+export const createProduct = createAsyncThunk<Product, CreateProductParams>(
+    'products/createProduct',
+    async ({ payload }) => {
+        return await createProductRequest(payload)
+    },
+)
+
 const productsSlice = createSlice({
     name: 'products',
     initialState,
@@ -29,6 +40,12 @@ const productsSlice = createSlice({
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.loading = false
                 state.data = action.payload
+            })
+            .addCase(createProduct.fulfilled, (state, action) => {
+                if (!state.data) return
+
+                state.data.list.unshift(action.payload)
+                state.data.total += 1
             })
     },
 })
