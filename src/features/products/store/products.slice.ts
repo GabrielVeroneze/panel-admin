@@ -3,6 +3,7 @@ import {
     getProducts,
     createProduct as createProductRequest,
     deleteProduct as deleteProductRequest,
+    deleteProducts as deleteProductsRequest,
     updateProduct as updateProductRequest,
 } from '../api'
 import type { AsyncState, PaginationParams } from '@/shared/types'
@@ -26,6 +27,10 @@ type UpdateProductParams = {
 
 type DeleteProductParams = {
     id: number
+}
+
+type DeleteProductsParams = {
+    ids: number[]
 }
 
 const initialState: ProductsState = {
@@ -58,6 +63,13 @@ export const deleteProduct = createAsyncThunk<void, DeleteProductParams>(
     'products/deleteProduct',
     async ({ id }) => {
         await deleteProductRequest(id)
+    },
+)
+
+export const deleteProducts = createAsyncThunk<void, DeleteProductsParams>(
+    'products/deleteProducts',
+    async ({ ids }) => {
+        await deleteProductsRequest(ids)
     },
 )
 
@@ -102,6 +114,16 @@ const productsSlice = createSlice({
                     (product) => product.id !== id,
                 )
                 state.data.total -= 1
+            })
+            .addCase(deleteProducts.fulfilled, (state, action) => {
+                if (!state.data) return
+
+                const ids = action.meta.arg.ids
+
+                state.data.list = state.data.list.filter(
+                    (product) => !ids.includes(product.id),
+                )
+                state.data.total -= ids.length
             })
     },
 })
