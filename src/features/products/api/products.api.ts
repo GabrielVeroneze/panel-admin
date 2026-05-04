@@ -34,3 +34,7 @@ export const updateProduct = async (
 
     return data
 }
+
+export const deleteProduct = async (id: number) => {
+    await api.delete(`/products/${id}`)
+}
