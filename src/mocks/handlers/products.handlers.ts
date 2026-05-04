@@ -732,6 +732,10 @@ type DeleteProductParams = {
     id: string
 }
 
+type DeleteProductsPayload = {
+    ids: number[]
+}
+
 export const productsHandlers = [
     http.get<never, never, PaginatedProducts>(
         '/api/products',
@@ -858,6 +862,29 @@ export const productsHandlers = [
             }
 
             allProducts.splice(productIndex, 1)
+
+            return HttpResponse.json(null, { status: 204 })
+        },
+    ),
+
+    http.delete<never, DeleteProductsPayload, null>(
+        '/api/products',
+        async ({ request }) => {
+            const { ids } = await request.json()
+
+            if (!ids || ids.length === 0) {
+                return HttpResponse.json(null, { status: 400 })
+            }
+
+            for (const id of ids) {
+                const index = allProducts.findIndex(
+                    (product) => product.id === id,
+                )
+
+                if (index !== -1) {
+                    allProducts.splice(index, 1)
+                }
+            }
 
             return HttpResponse.json(null, { status: 204 })
         },
