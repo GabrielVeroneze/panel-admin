@@ -38,3 +38,9 @@ export const updateProduct = async (
 export const deleteProduct = async (id: number) => {
     await api.delete(`/products/${id}`)
 }
+
+export const deleteProducts = async (ids: number[]) => {
+    await api.delete('/products', {
+        data: { ids },
+    })
+}
