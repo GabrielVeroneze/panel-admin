@@ -1,1 +1,6 @@
-export { createProduct, getProducts, updateProduct } from './products.api'
+export {
+    createProduct,
+    deleteProduct,
+    getProducts,
+    updateProduct,
+} from './products.api'
