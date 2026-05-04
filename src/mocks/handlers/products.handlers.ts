@@ -728,6 +728,10 @@ type UpdateProductParams = {
     id: string
 }
 
+type DeleteProductParams = {
+    id: string
+}
+
 export const productsHandlers = [
     http.get<never, never, PaginatedProducts>(
         '/api/products',
@@ -837,6 +841,25 @@ export const productsHandlers = [
             allProducts[productIndex] = updatedProduct
 
             return HttpResponse.json(updatedProduct)
+        },
+    ),
+
+    http.delete<DeleteProductParams, never, null>(
+        '/api/products/:id',
+        async ({ params }) => {
+            const id = Number(params.id)
+
+            const productIndex = allProducts.findIndex(
+                (product) => product.id === id,
+            )
+
+            if (productIndex === -1) {
+                return HttpResponse.json(null, { status: 404 })
+            }
+
+            allProducts.splice(productIndex, 1)
+
+            return HttpResponse.json(null, { status: 204 })
         },
     ),
 ]
