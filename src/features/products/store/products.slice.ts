@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
     getProducts,
     createProduct as createProductRequest,
+    deleteProduct as deleteProductRequest,
     updateProduct as updateProductRequest,
 } from '../api'
 import type { AsyncState, PaginationParams } from '@/shared/types'
@@ -21,6 +22,10 @@ type CreateProductParams = {
 type UpdateProductParams = {
     id: number
     payload: UpdateProductPayload
+}
+
+type DeleteProductParams = {
+    id: number
 }
 
 const initialState: ProductsState = {
@@ -46,6 +51,13 @@ export const updateProduct = createAsyncThunk<Product, UpdateProductParams>(
     'products/updateProduct',
     async ({ id, payload }) => {
         return await updateProductRequest(id, payload)
+    },
+)
+
+export const deleteProduct = createAsyncThunk<void, DeleteProductParams>(
+    'products/deleteProduct',
+    async ({ id }) => {
+        await deleteProductRequest(id)
     },
 )
 
@@ -80,6 +92,16 @@ const productsSlice = createSlice({
                 if (index !== -1) {
                     state.data.list[index] = updatedProduct
                 }
+            })
+            .addCase(deleteProduct.fulfilled, (state, action) => {
+                if (!state.data) return
+
+                const id = action.meta.arg.id
+
+                state.data.list = state.data.list.filter(
+                    (product) => product.id !== id,
+                )
+                state.data.total -= 1
             })
     },
 })
