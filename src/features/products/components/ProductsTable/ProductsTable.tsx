@@ -20,11 +20,21 @@ import styles from './ProductsTable.module.scss'
 type ProductsTableProps = {
     products: ProductListItem[]
     loading: boolean
+    onEdit: (productId: number) => void
+    isSelected: (id: number) => boolean
+    onToggleSelect: (id: number) => void
+    onToggleSelectAll: () => void
+    allSelected: boolean
 }
 
 export const ProductsTable = ({
     products,
     loading,
+    onEdit,
+    isSelected,
+    onToggleSelect,
+    onToggleSelectAll,
+    allSelected,
 }: ProductsTableProps) => {
     const isEmpty = !products || products.length === 0
 
@@ -46,7 +56,10 @@ export const ProductsTable = ({
                 <TableHead>
                     <TableRow>
                         <TableCell className={styles.checkbox} size="lg" header>
-                            <Checkbox />
+                            <Checkbox
+                                checked={allSelected}
+                                onChange={onToggleSelectAll}
+                            />
                         </TableCell>
                         <TableCell className={styles.name} size="lg" header>
                             Name
@@ -66,7 +79,10 @@ export const ProductsTable = ({
                     {products.map((product) => (
                         <TableRow key={product.id} size="lg">
                             <TableCell className={styles.checkbox} size="lg">
-                                <Checkbox />
+                                <Checkbox
+                                    checked={isSelected(product.id)}
+                                    onChange={() => onToggleSelect(product.id)}
+                                />
                             </TableCell>
                             <TableCell className={styles.name} size="lg">
                                 <ProductInfo
@@ -89,6 +105,7 @@ export const ProductsTable = ({
                                     variant="primary"
                                     iconPosition="left"
                                     icon={<PencilAltSolidIcon />}
+                                    onClick={() => onEdit(product.id)}
                                 >
                                     Edit Item
                                 </Button>
