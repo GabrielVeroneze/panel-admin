@@ -7,6 +7,18 @@ import type {
     UpdateProductPayload,
 } from '@/features/products/types'
 
+type UpdateProductParams = {
+    id: string
+}
+
+type DeleteProductParams = {
+    id: string
+}
+
+type DeleteProductsPayload = {
+    ids: number[]
+}
+
 export const allProducts: MockProduct[] = [
     {
         id: 1,
@@ -723,18 +735,6 @@ export const allProducts: MockProduct[] = [
             'Reliable Wrist Watch with a digital display and water resistance.',
     },
 ]
-
-type UpdateProductParams = {
-    id: string
-}
-
-type DeleteProductParams = {
-    id: string
-}
-
-type DeleteProductsPayload = {
-    ids: number[]
-}
 
 export const productsHandlers = [
     http.get<never, never, PaginatedProducts>(
