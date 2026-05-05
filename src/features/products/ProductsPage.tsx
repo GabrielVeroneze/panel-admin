@@ -1,46 +1,58 @@
 import { DataTableFooter, DataTableToolbar } from '@/shared/components'
-import { useFormModal, usePaginationFilters } from '@/shared/hooks'
 import {
     CreateProductModal,
     EditProductModal,
     ProductsTable,
 } from './components'
-import { useProducts } from './hooks'
-import type { Product } from './types'
+import { useProductsPage } from './hooks'
 import styles from '@/styles/layouts/page.module.scss'
 
 export const ProductsPage = () => {
-    const pageSize = 15
-
-    const { page, search, setPage, handleSearchChange } = usePaginationFilters()
-    const { productsList, total, loading } = useProducts(page, pageSize, search)
-
-    const modal = useFormModal<Product>()
+    const {
+        filters,
+        pageSize,
+        productsList,
+        total,
+        loading,
+        modal,
+        handleEdit,
+        handleCreateSubmit,
+        handleUpdateSubmit,
+    } = useProductsPage()
 
     return (
         <section className={styles.page}>
             <DataTableToolbar
-                search={search}
+                search={filters.search}
                 searchPlaceholder="Search for products"
                 createLabel="Add Product"
-                onSearchChange={handleSearchChange}
+                onSearchChange={filters.handleSearchChange}
                 onCreate={modal.openCreate}
             />
-            <ProductsTable products={productsList} loading={loading} />
+            <ProductsTable
+                products={productsList}
+                loading={loading}
+                onEdit={handleEdit}
+            />
             <DataTableFooter
                 label="products"
-                page={page}
+                page={filters.page}
                 pageSize={pageSize}
                 total={total}
-                onPageChange={setPage}
+                onPageChange={filters.setPage}
             />
             {modal.isCreateOpen && (
-                <CreateProductModal open onClose={modal.close} />
+                <CreateProductModal
+                    open
+                    onCreate={handleCreateSubmit}
+                    onClose={modal.close}
+                />
             )}
             {modal.isEditOpen && modal.editingItem && (
                 <EditProductModal
                     open
                     product={modal.editingItem}
+                    onUpdate={handleUpdateSubmit}
                     onClose={modal.close}
                     onDelete={() => console.log('delete', modal.editingItem)}
                 />
