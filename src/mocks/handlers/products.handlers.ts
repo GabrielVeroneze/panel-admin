@@ -815,7 +815,7 @@ export const productsHandlers = [
             const name = formData.get('name') as string | null
             const category = formData.get('category') as string | null
             const brand = formData.get('brand') as string | null
-            const price = formData.get('price') as number | null
+            const price = Number(formData.get('price')) as number | null
             const description = formData.get('description') as string | null
             const images = formData.getAll('images') as File[]
 
