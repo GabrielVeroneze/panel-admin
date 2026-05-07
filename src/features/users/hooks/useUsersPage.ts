@@ -1,6 +1,6 @@
 import { useAppDispatch } from '@/store'
 import { useFormModal, usePaginationFilters } from '@/shared/hooks'
-import { createUser, updateUser } from '../store'
+import { createUser, deleteUser, updateUser } from '../store'
 import { mapFormToCreatePayload, mapFormToUpdatePayload } from '../mappers'
 import { useUsers } from '../hooks'
 import type { CreateUserFormValues, UpdateUserFormValues } from '../schemas'
@@ -49,6 +49,18 @@ export const useUsersPage = () => {
         modal.close()
     }
 
+    const handleDeleteUser = async () => {
+        if (!modal.editingItem) return
+
+        await dispatch(
+            deleteUser({
+                id: modal.editingItem.id,
+            }),
+        )
+
+        modal.close()
+    }
+
     return {
         filters,
         pageSize,
@@ -59,5 +71,6 @@ export const useUsersPage = () => {
         handleEdit,
         handleCreateSubmit,
         handleUpdateSubmit,
+        handleDeleteUser,
     }
 }
