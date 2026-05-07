@@ -23,6 +23,7 @@ export const ProductsPage = () => {
         handleEdit,
         handleCreateSubmit,
         handleUpdateSubmit,
+        handleDeleteProduct,
     } = useProductsPage()
 
     const {
@@ -77,8 +78,8 @@ export const ProductsPage = () => {
                     open
                     product={modal.editingItem}
                     onUpdate={handleUpdateSubmit}
+                    onDelete={handleDeleteProduct}
                     onClose={modal.close}
-                    onDelete={() => console.log('delete', modal.editingItem)}
                 />
             )}
         </section>
