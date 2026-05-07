@@ -36,7 +36,6 @@ export const baseProductSchema = z.object({
         .max(1000, 'Details must have at most 1000 characters'),
     images: z
         .array(z.instanceof(File))
-        .min(1, 'At least one image is required')
         .max(5, 'You can upload up to 5 images')
         .refine((files) => files.every((file) => file.size <= MAX_FILE_SIZE), {
             message: 'Image must be smaller than 5MB',
