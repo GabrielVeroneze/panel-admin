@@ -24,6 +24,7 @@ export const UsersPage = () => {
         handleEdit,
         handleCreateSubmit,
         handleUpdateSubmit,
+        handleDeleteUser,
     } = useUsersPage()
 
     const {
@@ -79,8 +80,8 @@ export const UsersPage = () => {
                     open
                     user={modal.editingItem}
                     onUpdate={handleUpdateSubmit}
+                    onDelete={handleDeleteUser}
                     onClose={modal.close}
-                    onDelete={() => console.log('delete', modal.editingItem)}
                 />
             )}
         </section>
