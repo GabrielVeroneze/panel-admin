@@ -1,6 +1,6 @@
 import { useAppDispatch } from '@/store'
 import { useFormModal, usePaginationFilters } from '@/shared/hooks'
-import { createProduct, updateProduct } from '../store'
+import { createProduct, deleteProduct, updateProduct } from '../store'
 import { mapFormToCreatePayload, mapFormToUpdatePayload } from '../mappers'
 import { useProducts } from '../hooks'
 import type {
@@ -52,6 +52,18 @@ export const useProductsPage = () => {
         modal.close()
     }
 
+    const handleDeleteProduct = async () => {
+        if (!modal.editingItem) return
+
+        await dispatch(
+            deleteProduct({
+                id: modal.editingItem.id,
+            }),
+        )
+
+        modal.close()
+    }
+
     return {
         filters,
         pageSize,
@@ -62,5 +74,6 @@ export const useProductsPage = () => {
         handleEdit,
         handleCreateSubmit,
         handleUpdateSubmit,
+        handleDeleteProduct,
     }
 }
