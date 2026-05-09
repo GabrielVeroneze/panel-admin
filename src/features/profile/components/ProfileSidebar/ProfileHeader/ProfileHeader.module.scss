@@ -1,0 +1,40 @@
+@use '@/styles/tokens' as *;
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    .avatar {
+        border-radius: $rounded-sm;
+        height: 90px;
+        width: 90px;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        gap: $space-2-5;
+
+        .name {
+            color: $gray-darkest;
+            font-size: $text-3xl;
+            font-weight: $font-bold;
+        }
+
+        .role,
+        .country {
+            align-items: center;
+            color: $gray-dark;
+            display: flex;
+            font-size: $text-xl;
+            font-weight: $font-normal;
+            gap: $space-1-5;
+        }
+
+        .icon {
+            height: 20px;
+            width: 20px;
+        }
+    }
+}
