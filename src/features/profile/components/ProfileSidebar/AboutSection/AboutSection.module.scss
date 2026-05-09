@@ -1,0 +1,19 @@
+@use '@/styles/tokens' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+
+    .title {
+        color: $gray-darkest;
+        font-size: $text-2xl;
+        font-weight: $font-bold;
+    }
+
+    .description {
+        color: $gray-dark;
+        font-size: $text-xl;
+        font-weight: $font-normal;
+    }
+}
