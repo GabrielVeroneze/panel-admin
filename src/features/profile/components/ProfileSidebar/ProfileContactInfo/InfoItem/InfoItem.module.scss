@@ -1,0 +1,19 @@
+@use '@/styles/tokens' as *;
+
+.item {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    .label {
+        color: $gray-dark;
+        font-size: $text-2xl;
+        font-weight: $font-normal;
+    }
+
+    .value {
+        color: $gray-darkest;
+        font-size: $text-xl;
+        font-weight: $font-medium;
+    }
+}
