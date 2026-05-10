@@ -1,0 +1,9 @@
+@use '@/styles/tokens' as *;
+
+.sidebar {
+    border-right: $border solid $gray-light;
+    display: flex;
+    flex-direction: column;
+    gap: $space-7;
+    padding-right: $space-3;
+}
