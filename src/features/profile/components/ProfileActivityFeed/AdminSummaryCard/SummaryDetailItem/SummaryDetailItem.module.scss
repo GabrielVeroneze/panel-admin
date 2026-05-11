@@ -1,0 +1,38 @@
+@use '@/styles/tokens' as *;
+
+.item {
+    align-items: center;
+    border: $border solid $gray-light;
+    border-radius: $rounded-md;
+    display: flex;
+    gap: $space-4;
+    justify-content: space-between;
+    padding: $space-3-5;
+
+    .header {
+        align-items: center;
+        display: flex;
+        gap: $space-4;
+
+        .icon {
+            display: flex;
+
+            svg {
+                height: 28px;
+                width: 28px;
+            }
+        }
+
+        .detailLabel {
+            color: $gray-dark;
+            font-size: $text-xl;
+            font-weight: $font-medium;
+        }
+    }
+
+    .detailValue {
+        color: $gray-dark;
+        font-size: $text-xl;
+        font-weight: $font-medium;
+    }
+}
