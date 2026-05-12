@@ -38,5 +38,9 @@
     .details {
         display: flex;
         flex-direction: column;
+
+        .highlightValue {
+            color: $blue-dark;
+        }
     }
 }
