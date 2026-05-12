@@ -19,7 +19,6 @@
 
     .icon {
         align-items: center;
-        background-color: $blue-light;
         border-radius: $rounded-lg;
         display: flex;
         height: 80px;
@@ -44,7 +43,6 @@
         }
 
         .value {
-            color: $green-dark;
             font-size: $text-5xl;
             font-weight: $font-semibold;
         }
@@ -61,6 +59,39 @@
                 height: 14px;
                 width: 14px;
             }
+        }
+    }
+
+    &.blue {
+        .value {
+            color: $blue-dark;
+        }
+
+        .icon {
+            background-color: $blue-light;
+            color: $blue-dark;
+        }
+    }
+
+    &.purple {
+        .value {
+            color: $purple-dark;
+        }
+
+        .icon {
+            background-color: $purple-light;
+            color: $purple-dark;
+        }
+    }
+
+    &.green {
+        .value {
+            color: $green-dark;
+        }
+
+        .icon {
+            background-color: $green-light;
+            color: $green-dark;
         }
     }
 }
