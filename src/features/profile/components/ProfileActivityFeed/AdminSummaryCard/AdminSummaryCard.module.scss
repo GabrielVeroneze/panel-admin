@@ -1,0 +1,43 @@
+@use '@/styles/tokens' as *;
+
+.card {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        align-items: center;
+        border-bottom: $border solid $gray-light;
+        display: flex;
+        gap: $space-4;
+        margin-inline: -$space-5;
+        padding-bottom: $space-4;
+        padding-inline: $space-5;
+
+        .icon {
+            background-color: $purple-light;
+            border-radius: $rounded-sm;
+            color: $purple-darkest;
+            height: 32px;
+            padding: $space-1;
+            width: 32px;
+        }
+
+        .title {
+            color: $gray-darkest;
+            font-size: $text-3xl;
+            font-weight: $font-semibold;
+        }
+    }
+
+    .stats {
+        display: grid;
+        gap: $space-4;
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: $space-4;
+    }
+
+    .details {
+        display: flex;
+        flex-direction: column;
+    }
+}
