@@ -41,12 +41,14 @@ export const AdminSummaryCard = ({
                     value={totalProducts}
                     icon={<CubeIcon />}
                     variation={12}
+                    color="purple"
                 />
                 <SummaryStat
                     label="Total Users"
                     value={totalUsers}
                     icon={<UsersIcon />}
                     variation={5}
+                    color="green"
                 />
             </div>
             <div className={styles.details}>
@@ -54,6 +56,7 @@ export const AdminSummaryCard = ({
                     icon={<ShieldExclamationIcon />}
                     label="Role"
                     value={role}
+                    color="blue"
                 />
                 <SummaryDetailItem
                     icon={<StatusOnlineIcon />}
@@ -63,16 +66,19 @@ export const AdminSummaryCard = ({
                             {status}
                         </Badge>
                     }
+                    color="green"
                 />
                 <SummaryDetailItem
                     icon={<ClockIcon />}
                     label="Last Login"
                     value={lastLogin}
+                    color="orange"
                 />
                 <SummaryDetailItem
                     icon={<CalendarIcon />}
                     label="Member since"
                     value={memberSince}
+                    color="purple"
                 />
             </div>
         </Card>
