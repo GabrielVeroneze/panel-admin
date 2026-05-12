@@ -23,16 +23,16 @@
             }
         }
 
-        .detailLabel {
+        .label {
             color: $gray-dark;
-            font-size: $text-xl;
+            font-size: $text-2xl;
             font-weight: $font-medium;
         }
     }
 
-    .detailValue {
+    .value {
         color: $gray-dark;
-        font-size: $text-xl;
+        font-size: $text-2xl;
         font-weight: $font-medium;
     }
 }
