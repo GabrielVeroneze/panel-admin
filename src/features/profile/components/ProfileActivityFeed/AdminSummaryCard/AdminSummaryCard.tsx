@@ -55,7 +55,9 @@ export const AdminSummaryCard = ({
                 <SummaryDetailItem
                     icon={<ShieldExclamationIcon />}
                     label="Role"
-                    value={role}
+                    value={
+                        <span className={styles.highlightValue}>{role}</span>
+                    }
                     color="blue"
                 />
                 <SummaryDetailItem
