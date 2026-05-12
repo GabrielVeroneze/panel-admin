@@ -16,10 +16,10 @@
         .icon {
             background-color: $purple-light;
             border-radius: $rounded-sm;
-            color: $purple-darkest;
-            height: 32px;
+            color: $purple-dark;
+            height: 36px;
             padding: $space-1;
-            width: 32px;
+            width: 36px;
         }
 
         .title {
@@ -31,7 +31,6 @@
 
     .stats {
         display: grid;
-        gap: $space-4;
         grid-template-columns: repeat(2, 1fr);
         margin-bottom: $space-4;
     }
