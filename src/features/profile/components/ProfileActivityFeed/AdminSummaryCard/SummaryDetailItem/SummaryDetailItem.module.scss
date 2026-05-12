@@ -30,6 +30,22 @@
                 height: 28px;
                 width: 28px;
             }
+
+            &.purple {
+                color: $purple-dark;
+            }
+
+            &.green {
+                color: $green-base;
+            }
+
+            &.blue {
+                color: $blue-dark;
+            }
+
+            &.orange {
+                color: $orange-base;
+            }
         }
 
         .label {
