@@ -1,5 +1,6 @@
 import { ArrowDownSolidIcon, ArrowUpSolidIcon } from '@/shared/assets/icons'
 import type { ReactNode } from 'react'
+import clsx from 'clsx'
 import styles from './SummaryStat.module.scss'
 
 type SummaryStatProps = {
@@ -7,6 +8,7 @@ type SummaryStatProps = {
     label: string
     value: string | number
     variation: number
+    color?: 'blue' | 'purple' | 'green'
 }
 
 export const SummaryStat = ({
@@ -14,11 +16,12 @@ export const SummaryStat = ({
     label,
     value,
     variation,
+    color = 'blue',
 }: SummaryStatProps) => {
     const isPositive = variation !== undefined && variation >= 0
 
     return (
-        <article className={styles.stat}>
+        <article className={clsx(styles.stat, styles[color])}>
             <div className={styles.icon}>{icon}</div>
             <div className={styles.content}>
                 <span className={styles.label}>{label}</span>
