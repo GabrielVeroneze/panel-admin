@@ -1,4 +1,4 @@
-import { Badge, Card } from '@/shared/components'
+import { Badge } from '@/shared/components'
 import {
     CalendarIcon,
     ChartBarIcon,
@@ -8,6 +8,7 @@ import {
     StatusOnlineIcon,
     UsersIcon,
 } from '@/shared/assets/icons'
+import { ProfileSectionCard } from '@/features/profile/components'
 import { SummaryStat } from './SummaryStat/SummaryStat'
 import { SummaryDetailItem } from './SummaryDetailItem/SummaryDetailItem'
 import styles from './AdminSummaryCard.module.scss'
@@ -36,11 +37,7 @@ export const AdminSummaryCard = ({
     profile,
 }: AdminSummaryCardProps) => {
     return (
-        <Card className={styles.card}>
-            <header className={styles.header}>
-                <ChartBarIcon className={styles.icon} />
-                <h3 className={styles.title}>Admin Summary</h3>
-            </header>
+        <ProfileSectionCard icon={<ChartBarIcon />} title="Admin Summary">
             <div className={styles.stats}>
                 <SummaryStat
                     label="Total Products"
@@ -95,6 +92,6 @@ export const AdminSummaryCard = ({
                     color="purple"
                 />
             </div>
-        </Card>
+        </ProfileSectionCard>
     )
 }
