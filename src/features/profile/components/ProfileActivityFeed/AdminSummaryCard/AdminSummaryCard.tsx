@@ -12,22 +12,28 @@ import { SummaryStat } from './SummaryStat/SummaryStat'
 import { SummaryDetailItem } from './SummaryDetailItem/SummaryDetailItem'
 import styles from './AdminSummaryCard.module.scss'
 
-type AdminSummaryCardProps = {
-    totalProducts: number
-    totalUsers: number
+type StatValue = {
+    count: number
+    variation: number
+}
+
+type ProfileSummary = {
     role: string
     status: 'active' | 'inactive'
     lastLogin: string
     memberSince: string
 }
 
+type AdminSummaryCardProps = {
+    products: StatValue
+    users: StatValue
+    profile: ProfileSummary
+}
+
 export const AdminSummaryCard = ({
-    totalProducts,
-    totalUsers,
-    role,
-    status,
-    lastLogin,
-    memberSince,
+    products,
+    users,
+    profile,
 }: AdminSummaryCardProps) => {
     return (
         <Card className={styles.card}>
@@ -38,16 +44,16 @@ export const AdminSummaryCard = ({
             <div className={styles.stats}>
                 <SummaryStat
                     label="Total Products"
-                    value={totalProducts}
+                    value={products.count}
                     icon={<CubeIcon />}
-                    variation={12}
+                    variation={products.variation}
                     color="purple"
                 />
                 <SummaryStat
                     label="Total Users"
-                    value={totalUsers}
+                    value={users.count}
                     icon={<UsersIcon />}
-                    variation={5}
+                    variation={users.variation}
                     color="green"
                 />
             </div>
@@ -56,7 +62,9 @@ export const AdminSummaryCard = ({
                     icon={<ShieldExclamationIcon />}
                     label="Role"
                     value={
-                        <span className={styles.highlightValue}>{role}</span>
+                        <span className={styles.highlightValue}>
+                            {profile.role}
+                        </span>
                     }
                     color="blue"
                 />
@@ -64,8 +72,12 @@ export const AdminSummaryCard = ({
                     icon={<StatusOnlineIcon />}
                     label="Status"
                     value={
-                        <Badge color={status === 'active' ? 'green' : 'red'}>
-                            {status}
+                        <Badge
+                            color={
+                                profile.status === 'active' ? 'green' : 'red'
+                            }
+                        >
+                            {profile.status}
                         </Badge>
                     }
                     color="green"
@@ -73,13 +85,13 @@ export const AdminSummaryCard = ({
                 <SummaryDetailItem
                     icon={<ClockIcon />}
                     label="Last Login"
-                    value={lastLogin}
+                    value={profile.lastLogin}
                     color="orange"
                 />
                 <SummaryDetailItem
                     icon={<CalendarIcon />}
                     label="Member since"
-                    value={memberSince}
+                    value={profile.memberSince}
                     color="purple"
                 />
             </div>
