@@ -1,0 +1,8 @@
+@use '@/styles/tokens' as *;
+
+.activities {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+    margin-top: $space-4;
+}
