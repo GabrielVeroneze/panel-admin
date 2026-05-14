@@ -1,0 +1,55 @@
+@use '@/styles/tokens' as *;
+
+.item {
+    align-items: flex-start;
+    display: flex;
+    gap: $space-5;
+
+    .icon {
+        align-items: center;
+        background-color: $red-light;
+        border-radius: $rounded-full;
+        color: $red-dark;
+        display: flex;
+        height: 60px;
+        justify-content: center;
+        width: 60px;
+
+        svg {
+            height: 28px;
+            width: 28px;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: $space-1-5;
+
+        .title {
+            color: $gray-darkest;
+            font-size: $text-2xl;
+            font-weight: $font-semibold;
+        }
+
+        .target {
+            color: $blue-dark;
+            font-size: $text-xl;
+            font-weight: $font-normal;
+        }
+
+        .date {
+            align-items: center;
+            color: $gray-base;
+            display: flex;
+            font-size: $text-lg;
+            font-weight: $font-medium;
+            gap: $space-1;
+
+            svg {
+                height: 16px;
+                width: 16px;
+            }
+        }
+    }
+}
