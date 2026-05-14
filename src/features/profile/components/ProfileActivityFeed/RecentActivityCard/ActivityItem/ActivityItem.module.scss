@@ -7,9 +7,7 @@
 
     .icon {
         align-items: center;
-        background-color: $red-light;
         border-radius: $rounded-full;
-        color: $red-dark;
         display: flex;
         height: 60px;
         justify-content: center;
@@ -18,6 +16,31 @@
         svg {
             height: 28px;
             width: 28px;
+        }
+
+        &.red {
+            background-color: $red-light;
+            color: $red-dark;
+        }
+
+        &.blue {
+            background-color: $blue-light;
+            color: $blue-dark;
+        }
+
+        &.green {
+            background-color: $green-light;
+            color: $green-dark;
+        }
+
+        &.orange {
+            background-color: $orange-light;
+            color: $orange-dark;
+        }
+
+        &.purple {
+            background-color: $purple-light;
+            color: $purple-dark;
         }
     }
 
