@@ -11,11 +11,23 @@
         display: flex;
         height: 60px;
         justify-content: center;
+        position: relative;
         width: 60px;
 
         .icon {
             height: 28px;
             width: 28px;
+        }
+
+        &::after {
+            background-color: $gray-light;
+            content: '';
+            height: 100%;
+            left: 50%;
+            position: absolute;
+            top: 100%;
+            transform: translateX(-50%);
+            width: 2px;
         }
 
         &.red {
@@ -73,6 +85,12 @@
                 height: 16px;
                 width: 16px;
             }
+        }
+    }
+
+    &:last-child {
+        .iconWrapper::after {
+            display: none;
         }
     }
 }
