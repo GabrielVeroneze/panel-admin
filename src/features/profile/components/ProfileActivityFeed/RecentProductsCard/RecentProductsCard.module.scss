@@ -1,0 +1,8 @@
+@use '@/styles/tokens' as *;
+
+.products {
+    display: flex;
+    flex-direction: column;
+    gap: $space-5;
+    margin-top: $space-4;
+}
