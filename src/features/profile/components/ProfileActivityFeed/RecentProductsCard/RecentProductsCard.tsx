@@ -9,6 +9,7 @@ type Product = {
     name: string
     category: string
     price: string
+    stockQuantity: number
 }
 
 type RecentProductsCardProps = {
