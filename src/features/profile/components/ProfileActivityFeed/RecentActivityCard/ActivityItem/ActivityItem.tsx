@@ -1,28 +1,30 @@
 import { ClockIcon } from '@/shared/assets/icons'
-import type { ReactNode } from 'react'
+import { activityConfig } from './ActivityItem.config'
+import type { ActivityType } from '@/features/profile/types'
 import clsx from 'clsx'
 import styles from './ActivityItem.module.scss'
 
 type ActivityItemProps = {
-    icon?: ReactNode
-    title: string
+    type: ActivityType
     target: string
     createdAt: string
-    color?: 'red' | 'blue' | 'green' | 'orange' | 'purple'
 }
 
 export const ActivityItem = ({
-    icon,
-    title,
+    type,
     target,
     createdAt,
-    color = 'blue',
 }: ActivityItemProps) => {
+    const activity = activityConfig[type]
+    const Icon = activity.icon
+
     return (
         <div className={styles.item}>
-            <div className={clsx(styles.icon, styles[color])}>{icon}</div>
+            <div className={clsx(styles.iconWrapper, styles[activity.variant])}>
+                <Icon className={styles.icon} />
+            </div>
             <div className={styles.content}>
-                <h4 className={styles.title}>{title}</h4>
+                <h4 className={styles.title}>{activity.title}</h4>
                 <p className={styles.target}>{target}</p>
                 <span className={styles.date}>
                     <ClockIcon />
