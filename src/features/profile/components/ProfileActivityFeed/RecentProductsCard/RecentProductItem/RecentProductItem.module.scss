@@ -2,8 +2,15 @@
 
 .item {
     align-items: center;
+    border-bottom: $border solid $gray-light;
     display: flex;
     gap: $space-5;
+    padding-bottom: $space-3;
+
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
 
     .image {
         border-radius: $rounded;
