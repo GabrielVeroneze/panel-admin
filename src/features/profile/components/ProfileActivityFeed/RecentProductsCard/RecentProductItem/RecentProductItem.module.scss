@@ -1,0 +1,39 @@
+@use '@/styles/tokens' as *;
+
+.item {
+    align-items: center;
+    display: flex;
+    gap: $space-5;
+
+    .image {
+        border-radius: $rounded;
+        height: 80px;
+        object-fit: cover;
+        width: 112px;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        gap: $space-1-5;
+
+        .name {
+            color: $gray-darkest;
+            font-size: $text-2xl;
+            font-weight: $font-semibold;
+        }
+
+        .category {
+            color: $gray-dark;
+            font-size: $text-xl;
+            font-weight: $font-medium;
+        }
+
+        .price {
+            color: $green-dark;
+            font-size: $text-2xl;
+            font-weight: $font-semibold;
+        }
+    }
+}
