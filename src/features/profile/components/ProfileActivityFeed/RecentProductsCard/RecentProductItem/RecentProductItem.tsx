@@ -6,6 +6,7 @@ type RecentProductItemProps = {
     name: string
     category: string
     price: string
+    stockQuantity: number
 }
 
 export const RecentProductItem = ({
@@ -13,7 +14,12 @@ export const RecentProductItem = ({
     name,
     category,
     price,
+    stockQuantity,
 }: RecentProductItemProps) => {
+    const isInStock = stockQuantity > 0
+    const badgeColor = isInStock ? 'green' : 'red'
+    const badgeText = isInStock ? 'In Stock' : 'Out of Stock'
+
     return (
         <div className={styles.item}>
             <img className={styles.image} src={image} alt={name} />
@@ -22,7 +28,7 @@ export const RecentProductItem = ({
                 <span className={styles.category}>{category}</span>
                 <strong className={styles.price}>{price}</strong>
             </div>
-            <Badge color="green">In Stock</Badge>
+            <Badge color={badgeColor}>{badgeText}</Badge>
         </div>
     )
 }
