@@ -1,14 +1,10 @@
 import { ClockIcon } from '@/shared/assets/icons'
 import { activityConfig } from './ActivityItem.config'
-import type { ActivityType } from '@/features/profile/types'
+import type { Activity } from '@/features/profile/types'
 import clsx from 'clsx'
 import styles from './ActivityItem.module.scss'
 
-type ActivityItemProps = {
-    type: ActivityType
-    target: string
-    createdAt: string
-}
+type ActivityItemProps = Activity
 
 export const ActivityItem = ({
     type,
