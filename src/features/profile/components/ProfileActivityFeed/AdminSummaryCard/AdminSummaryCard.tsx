@@ -11,19 +11,8 @@ import {
 import { ProfileSectionCard } from '@/features/profile/components'
 import { SummaryStat } from './SummaryStat/SummaryStat'
 import { SummaryDetailItem } from './SummaryDetailItem/SummaryDetailItem'
+import type { ProfileSummary, StatValue } from '@/features/profile/types'
 import styles from './AdminSummaryCard.module.scss'
-
-type StatValue = {
-    count: number
-    variation: number
-}
-
-type ProfileSummary = {
-    role: string
-    status: 'active' | 'inactive'
-    lastLogin: string
-    memberSince: string
-}
 
 type AdminSummaryCardProps = {
     products: StatValue
