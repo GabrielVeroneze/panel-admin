@@ -1,19 +1,11 @@
 import { ShoppingBagIcon } from '@/shared/assets/icons'
 import { ProfileSectionCard } from '@/features/profile/components'
 import { RecentProductItem } from './RecentProductItem/RecentProductItem'
+import type { RecentProduct } from '@/features/profile/types'
 import styles from './RecentProductsCard.module.scss'
 
-type Product = {
-    id: number
-    image: string
-    name: string
-    category: string
-    price: string
-    stockQuantity: number
-}
-
 type RecentProductsCardProps = {
-    products: Product[]
+    products: RecentProduct[]
 }
 
 export const RecentProductsCard = ({ products }: RecentProductsCardProps) => {
