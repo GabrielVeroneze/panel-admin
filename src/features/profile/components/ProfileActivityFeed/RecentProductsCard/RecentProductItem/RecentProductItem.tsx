@@ -1,13 +1,8 @@
 import { Badge } from '@/shared/components'
+import type { RecentProduct } from '@/features/profile/types'
 import styles from './RecentProductItem.module.scss'
 
-type RecentProductItemProps = {
-    image: string
-    name: string
-    category: string
-    price: string
-    stockQuantity: number
-}
+type RecentProductItemProps = RecentProduct
 
 export const RecentProductItem = ({
     image,
