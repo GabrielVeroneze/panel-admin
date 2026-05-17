@@ -1,0 +1,8 @@
+@use '@/styles/tokens' as *;
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+    padding-left: $space-3;
+}
