@@ -1,0 +1,39 @@
+@use '@/styles/tokens' as *;
+
+.item {
+    align-items: flex-start;
+    border-bottom: $border solid $gray-light;
+    display: flex;
+    gap: $space-3;
+    padding-bottom: $space-4;
+
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: $space-0;
+    }
+
+    .image {
+        border-radius: $rounded;
+        height: 40px;
+        object-fit: cover;
+        width: 40px;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: $space-1-5;
+
+        .title {
+            color: $gray-darkest;
+            font-size: $text-2xl;
+            font-weight: $font-semibold;
+        }
+
+        .subtitle {
+            color: $gray-dark;
+            font-size: $text-xl;
+            font-weight: $font-normal;
+        }
+    }
+}
