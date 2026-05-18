@@ -7,7 +7,6 @@
     border-radius: $rounded-md;
     box-shadow: $shadow;
     padding: $space-5;
-    width: max-content;
 
     @include media-down(lg) {
         padding: $space-4;
