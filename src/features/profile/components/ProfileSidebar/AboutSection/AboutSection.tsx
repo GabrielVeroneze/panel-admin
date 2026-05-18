@@ -1,4 +1,5 @@
-import { Card } from '@/shared/components'
+import { UserIcon } from '@/shared/assets/icons'
+import { ProfileSectionCard } from '@/features/profile/components'
 import styles from './AboutSection.module.scss'
 
 type AboutSectionProps = {
@@ -7,9 +8,12 @@ type AboutSectionProps = {
 
 export const AboutSection = ({ about }: AboutSectionProps) => {
     return (
-        <Card className={styles.container}>
-            <h3 className={styles.title}>About me</h3>
+        <ProfileSectionCard
+            variant="compact"
+            icon={<UserIcon />}
+            title="About me"
+        >
             <p className={styles.description}>{about}</p>
-        </Card>
+        </ProfileSectionCard>
     )
 }
