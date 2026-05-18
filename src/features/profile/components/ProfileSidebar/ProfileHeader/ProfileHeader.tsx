@@ -1,5 +1,5 @@
 import { Card } from '@/shared/components'
-import { BriefcaseSolidIcon, LocationMarkerIcon } from '@/shared/assets/icons'
+import { LocationMarkerIcon } from '@/shared/assets/icons'
 import styles from './ProfileHeader.module.scss'
 
 type ProfileHeaderProps = {
@@ -24,10 +24,7 @@ export const ProfileHeader = ({
             />
             <div className={styles.info}>
                 <h2 className={styles.name}>{name}</h2>
-                <p className={styles.role}>
-                    <BriefcaseSolidIcon className={styles.icon} />
-                    {role}
-                </p>
+                <p className={styles.role}>{role}</p>
                 <p className={styles.country}>
                     <LocationMarkerIcon className={styles.icon} />
                     {country}
