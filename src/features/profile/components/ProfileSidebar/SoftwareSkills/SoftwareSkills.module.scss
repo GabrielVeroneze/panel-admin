@@ -1,18 +1,6 @@
 @use '@/styles/tokens' as *;
 
-.container {
+.skills {
     display: flex;
-    flex-direction: column;
-    gap: $space-3;
-
-    .title {
-        color: $gray-darkest;
-        font-size: $text-2xl;
-        font-weight: $font-semibold;
-    }
-
-    .skills {
-        display: flex;
-        gap: $space-3-5;
-    }
+    gap: $space-3-5;
 }
