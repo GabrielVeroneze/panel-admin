@@ -1,6 +1,6 @@
 @use '@/styles/tokens' as *;
 
-.container {
+.infoList {
     display: flex;
     flex-direction: column;
     gap: $space-5;
