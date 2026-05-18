@@ -7,28 +7,53 @@
 
     .header {
         align-items: center;
-        border-bottom: $border solid $gray-light;
         display: flex;
-        gap: $space-4;
-        margin-inline: -$space-5;
-        padding-bottom: $space-4;
-        padding-inline: $space-5;
 
-        .icon {
-            svg {
-                background-color: $purple-light;
-                border-radius: $rounded-sm;
-                color: $purple-dark;
-                height: 36px;
-                padding: $space-1;
-                width: 36px;
-            }
+        .icon svg {
+            background-color: $purple-light;
+            border-radius: $rounded-sm;
+            color: $purple-dark;
+            padding: $space-1;
         }
 
         .title {
             color: $gray-darkest;
-            font-size: $text-3xl;
-            font-weight: $font-semibold;
+            font-weight: $font-bold;
+        }
+    }
+
+    &.default {
+        .header {
+            border-bottom: $border solid $gray-light;
+            gap: $space-4;
+            margin-inline: -$space-5;
+            padding-bottom: $space-4;
+            padding-inline: $space-5;
+
+            .icon svg {
+                height: 36px;
+                width: 36px;
+            }
+
+            .title {
+                font-size: $text-3xl;
+            }
+        }
+    }
+
+    &.compact {
+        .header {
+            gap: $space-3;
+            padding-bottom: $space-3;
+
+            .icon svg {
+                height: 32px;
+                width: 32px;
+            }
+
+            .title {
+                font-size: $text-2xl;
+            }
         }
     }
 }
