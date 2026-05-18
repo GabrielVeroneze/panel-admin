@@ -1,3 +1,4 @@
+import { Card } from '@/shared/components'
 import { SkillBadge } from './SkillBadge/SkillBadge'
 import styles from './SoftwareSkills.module.scss'
 
@@ -12,7 +13,7 @@ type SoftwareSkillsProps = {
 
 export const SoftwareSkills = ({ skills }: SoftwareSkillsProps) => {
     return (
-        <div className={styles.container}>
+        <Card className={styles.container}>
             <h3 className={styles.title}>Software Skills</h3>
             <div className={styles.skills}>
                 {skills.map((skill) => (
@@ -23,6 +24,6 @@ export const SoftwareSkills = ({ skills }: SoftwareSkillsProps) => {
                     />
                 ))}
             </div>
-        </div>
+        </Card>
     )
 }

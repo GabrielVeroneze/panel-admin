@@ -1,3 +1,4 @@
+import { Card } from '@/shared/components'
 import { InfoItem } from './InfoItem/InfoItem'
 import styles from './ProfileContactInfo.module.scss'
 
@@ -13,10 +14,10 @@ export const ProfileContactInfo = ({
     phone,
 }: ProfileContactInfoProps) => {
     return (
-        <div className={styles.container}>
+        <Card className={styles.container}>
             <InfoItem label="Email Address" value={email} />
             <InfoItem label="Home Address" value={address} />
             <InfoItem label="Phone Number" value={phone} />
-        </div>
+        </Card>
     )
 }

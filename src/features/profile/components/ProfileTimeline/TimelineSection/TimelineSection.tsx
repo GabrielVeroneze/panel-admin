@@ -1,3 +1,4 @@
+import { Card } from '@/shared/components'
 import { TimelineItem } from '../TimelineItem/TimelineItem'
 import styles from './TimelineSection.module.scss'
 
@@ -15,7 +16,7 @@ type TimelineSectionProps = {
 
 export const TimelineSection = ({ title, items }: TimelineSectionProps) => {
     return (
-        <div className={styles.container}>
+        <Card className={styles.container}>
             <h3 className={styles.title}>{title}</h3>
             <div className={styles.list}>
                 {items.map((item) => (
@@ -27,6 +28,6 @@ export const TimelineSection = ({ title, items }: TimelineSectionProps) => {
                     />
                 ))}
             </div>
-        </div>
+        </Card>
     )
 }
