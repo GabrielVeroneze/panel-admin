@@ -1,40 +1,48 @@
 @use '@/styles/tokens' as *;
 
 .header {
+    align-items: center;
     display: flex;
     flex-direction: column;
     gap: $space-2;
 
     .avatar {
-        border-radius: $rounded-sm;
-        height: 90px;
-        width: 90px;
+        border-radius: $rounded-full;
+        height: 128px;
+        width: 128px;
     }
 
     .info {
+        align-items: center;
         display: flex;
         flex-direction: column;
-        gap: $space-2-5;
+        gap: $space-1;
 
         .name {
             color: $gray-darkest;
-            font-size: $text-3xl;
+            font-size: $text-4xl;
             font-weight: $font-bold;
         }
 
-        .role,
+        .role {
+            color: $purple-dark;
+            font-size: $text-xl;
+            font-weight: $font-medium;
+            margin-bottom: $space-2;
+        }
+
         .country {
             align-items: center;
             color: $gray-dark;
             display: flex;
-            font-size: $text-xl;
-            font-weight: $font-normal;
-            gap: $space-1-5;
+            font-size: $text-lg;
+            font-weight: $font-medium;
+            gap: $space-1;
         }
 
         .icon {
-            height: 20px;
-            width: 20px;
+            height: 16px;
+            width: 16px;
         }
     }
 }
