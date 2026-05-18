@@ -1,4 +1,5 @@
-import { Card } from '@/shared/components'
+import { CodeIcon } from '@/shared/assets/icons'
+import { ProfileSectionCard } from '@/features/profile/components'
 import { SkillBadge } from './SkillBadge/SkillBadge'
 import styles from './SoftwareSkills.module.scss'
 
@@ -13,8 +14,11 @@ type SoftwareSkillsProps = {
 
 export const SoftwareSkills = ({ skills }: SoftwareSkillsProps) => {
     return (
-        <Card className={styles.container}>
-            <h3 className={styles.title}>Software Skills</h3>
+        <ProfileSectionCard
+            variant="compact"
+            icon={<CodeIcon />}
+            title="Software Skills"
+        >
             <div className={styles.skills}>
                 {skills.map((skill) => (
                     <SkillBadge
@@ -24,6 +28,6 @@ export const SoftwareSkills = ({ skills }: SoftwareSkillsProps) => {
                     />
                 ))}
             </div>
-        </Card>
+        </ProfileSectionCard>
     )
 }
