@@ -1,6 +1,22 @@
+@use '@/styles/tokens' as *;
+
 .badge {
+    align-items: center;
+    border: $border solid $gray-light;
+    border-radius: $rounded;
+    display: flex;
+    gap: $space-2;
+    padding: $space-2;
+
     .icon {
-        height: 32px;
-        width: 32px;
+        flex-shrink: 0;
+        height: 24px;
+        width: 24px;
+    }
+
+    .label {
+        color: $gray-dark;
+        font-size: $text-xl;
+        font-weight: $font-medium;
     }
 }
