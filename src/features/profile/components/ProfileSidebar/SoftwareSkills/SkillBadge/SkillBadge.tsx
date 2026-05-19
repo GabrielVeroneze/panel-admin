@@ -12,8 +12,9 @@ export const SkillBadge = ({ id, label }: SkillBadgeProps) => {
     if (!Icon) return null
 
     return (
-        <div className={styles.badge} aria-label={label} title={label}>
+        <div className={styles.badge}>
             <Icon className={styles.icon} />
+            <span className={styles.label}>{label}</span>
         </div>
     )
 }
