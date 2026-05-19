@@ -1,19 +1,41 @@
 @use '@/styles/tokens' as *;
 
 .item {
+    align-items: flex-start;
+    border-bottom: $border solid $gray-light;
     display: flex;
-    flex-direction: column;
-    gap: $space-2;
+    gap: $space-4;
+    padding-bottom: $space-3;
 
-    .label {
-        color: $gray-dark;
-        font-size: $text-2xl;
-        font-weight: $font-normal;
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: $space-0;
     }
 
-    .value {
-        color: $gray-darkest;
-        font-size: $text-xl;
-        font-weight: $font-medium;
+    .icon svg {
+        background-color: $purple-light;
+        border-radius: $rounded;
+        color: $purple-dark;
+        height: 38px;
+        padding: $space-2;
+        width: 38px;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: $space-1;
+
+        .label {
+            color: $gray-darkest;
+            font-size: $text-xl;
+            font-weight: $font-semibold;
+        }
+
+        .value {
+            color: $gray-dark;
+            font-size: $text-xl;
+            font-weight: $font-medium;
+        }
     }
 }
