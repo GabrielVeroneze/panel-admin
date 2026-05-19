@@ -1,6 +1,7 @@
 @use '@/styles/tokens' as *;
 
 .skills {
-    display: flex;
-    gap: $space-3-5;
+    display: grid;
+    gap: $space-2;
+    grid-template-columns: repeat(2, 1fr);
 }
