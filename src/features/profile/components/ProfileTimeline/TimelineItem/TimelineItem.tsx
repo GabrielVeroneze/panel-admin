@@ -1,18 +1,29 @@
 import styles from './TimelineItem.module.scss'
 
 type TimelineItemProps = {
-    image: string
+    period: string
     title: string
-    subtitle: string
+    organization: string
+    description: string
 }
 
-export const TimelineItem = ({ image, title, subtitle }: TimelineItemProps) => {
+export const TimelineItem = ({
+    period,
+    title,
+    organization,
+    description,
+}: TimelineItemProps) => {
     return (
         <div className={styles.item}>
-            <img className={styles.image} src={image} alt={title} />
+            <div className={styles.indicator}>
+                <span className={styles.dot} />
+                <span className={styles.line} />
+            </div>
             <div className={styles.content}>
+                <span className={styles.period}>{period}</span>
                 <h4 className={styles.title}>{title}</h4>
-                <p className={styles.subtitle}>{subtitle}</p>
+                <p className={styles.organization}>{organization}</p>
+                <p className={styles.description}>{description}</p>
             </div>
         </div>
     )
