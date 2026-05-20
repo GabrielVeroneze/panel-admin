@@ -1,28 +1,43 @@
 @use '@/styles/tokens' as *;
 
 .item {
-    align-items: flex-start;
-    border-bottom: $border solid $gray-light;
-    display: flex;
-    gap: $space-3;
-    padding-bottom: $space-4;
+    display: grid;
+    gap: $space-4;
+    grid-template-columns: auto 1fr;
 
-    &:last-child {
-        border-bottom: none;
-        padding-bottom: $space-0;
-    }
+    .indicator {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
 
-    .image {
-        border-radius: $rounded;
-        height: 40px;
-        object-fit: cover;
-        width: 40px;
+        .dot {
+            background-color: $purple-dark;
+            border-radius: $rounded-full;
+            height: 10px;
+            margin-top: $space-1;
+            width: 10px;
+        }
+
+        .line {
+            background-color: $gray-light;
+            flex: 1;
+            margin-bottom: -$space-1;
+            width: 2px;
+        }
     }
 
     .content {
         display: flex;
         flex-direction: column;
         gap: $space-1-5;
+        padding-bottom: $space-7;
+
+        .period {
+            color: $gray-dark;
+            font-size: $text-xl;
+            font-weight: $font-medium;
+            margin-bottom: $space-1-5;
+        }
 
         .title {
             color: $gray-darkest;
@@ -30,10 +45,28 @@
             font-weight: $font-semibold;
         }
 
-        .subtitle {
+        .organization {
+            color: $purple-dark;
+            font-size: $text-2xl;
+            font-weight: $font-medium;
+        }
+
+        .description {
             color: $gray-dark;
             font-size: $text-xl;
             font-weight: $font-normal;
+        }
+    }
+
+    &:last-child {
+        .indicator {
+            .line {
+                display: none;
+            }
+        }
+
+        .content {
+            padding-bottom: $space-0;
         }
     }
 }
