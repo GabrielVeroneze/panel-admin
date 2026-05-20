@@ -1,11 +1,13 @@
-import { TimelineSection } from './TimelineSection/TimelineSection'
+import { ExperienceSection } from './ExperienceSection/ExperienceSection'
+import { EducationSection } from './EducationSection/EducationSection'
 import styles from './ProfileTimeline.module.scss'
 
 type TimelineItem = {
     id: number
-    image: string
+    period: string
     title: string
-    subtitle: string
+    organization: string
+    description: string
 }
 
 type ProfileTimelineProps = {
@@ -19,8 +21,8 @@ export const ProfileTimeline = ({
 }: ProfileTimelineProps) => {
     return (
         <section className={styles.timeline}>
-            <TimelineSection title="Experience" items={experienceList} />
-            <TimelineSection title="Education" items={educationList} />
+            <ExperienceSection experienceList={experienceList} />
+            <EducationSection educationList={educationList} />
         </section>
     )
 }
