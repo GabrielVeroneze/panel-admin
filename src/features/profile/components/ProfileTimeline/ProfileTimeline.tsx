@@ -1,18 +1,11 @@
 import { ExperienceSection } from './ExperienceSection/ExperienceSection'
 import { EducationSection } from './EducationSection/EducationSection'
+import type { TimelineEntry } from '@/features/profile/types'
 import styles from './ProfileTimeline.module.scss'
 
-type TimelineItem = {
-    id: number
-    period: string
-    title: string
-    organization: string
-    description: string
-}
-
 type ProfileTimelineProps = {
-    experienceList: TimelineItem[]
-    educationList: TimelineItem[]
+    experienceList: TimelineEntry[]
+    educationList: TimelineEntry[]
 }
 
 export const ProfileTimeline = ({
