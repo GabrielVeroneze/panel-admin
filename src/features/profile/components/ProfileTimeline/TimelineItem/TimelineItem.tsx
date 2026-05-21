@@ -1,11 +1,7 @@
+import type { TimelineEntry } from '@/features/profile/types'
 import styles from './TimelineItem.module.scss'
 
-type TimelineItemProps = {
-    period: string
-    title: string
-    organization: string
-    description: string
-}
+type TimelineItemProps = TimelineEntry
 
 export const TimelineItem = ({
     period,
