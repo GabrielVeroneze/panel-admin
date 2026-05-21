@@ -1,17 +1,10 @@
 import { AcademicCapIcon } from '@/shared/assets/icons'
 import { ProfileSectionCard } from '@/features/profile/components'
 import { TimelineItem } from '../TimelineItem/TimelineItem'
-
-type Education = {
-    id: number
-    period: string
-    title: string
-    organization: string
-    description: string
-}
+import type { TimelineEntry } from '@/features/profile/types'
 
 type EducationSectionProps = {
-    educationList: Education[]
+    educationList: TimelineEntry[]
 }
 
 export const EducationSection = ({ educationList }: EducationSectionProps) => {
@@ -22,13 +15,7 @@ export const EducationSection = ({ educationList }: EducationSectionProps) => {
             title="Education"
         >
             {educationList.map((education) => (
-                <TimelineItem
-                    key={education.id}
-                    period={education.period}
-                    title={education.title}
-                    organization={education.organization}
-                    description={education.description}
-                />
+                <TimelineItem key={education.id} {...education} />
             ))}
         </ProfileSectionCard>
     )
