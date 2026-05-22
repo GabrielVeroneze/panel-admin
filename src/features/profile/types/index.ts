@@ -1,4 +1,6 @@
 export * from './activity.types'
-export * from './recent-product.types'
+export * from './product.types'
+export * from './profile.types'
+export * from './sidebar.types'
 export * from './summary.types'
 export * from './timeline.types'
