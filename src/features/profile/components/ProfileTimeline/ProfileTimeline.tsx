@@ -1,21 +1,17 @@
 import { ExperienceSection } from './ExperienceSection/ExperienceSection'
 import { EducationSection } from './EducationSection/EducationSection'
-import type { TimelineEntry } from '@/features/profile/types'
+import type { ProfileTimelineData } from '@/features/profile/types'
 import styles from './ProfileTimeline.module.scss'
 
 type ProfileTimelineProps = {
-    experienceList: TimelineEntry[]
-    educationList: TimelineEntry[]
+    timeline: ProfileTimelineData
 }
 
-export const ProfileTimeline = ({
-    experienceList,
-    educationList,
-}: ProfileTimelineProps) => {
+export const ProfileTimeline = ({ timeline }: ProfileTimelineProps) => {
     return (
         <section className={styles.timeline}>
-            <ExperienceSection experienceList={experienceList} />
-            <EducationSection educationList={educationList} />
+            <ExperienceSection experienceList={timeline.experience} />
+            <EducationSection educationList={timeline.education} />
         </section>
     )
 }
