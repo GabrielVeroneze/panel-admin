@@ -1,0 +1,8 @@
+@use '@/styles/tokens' as *;
+
+.layout {
+    display: grid;
+    gap: $space-3;
+    grid-template-areas: 'sidebar feed timeline';
+    grid-template-columns: 1fr 2fr 1fr;
+}
