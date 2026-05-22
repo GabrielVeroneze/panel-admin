@@ -1,12 +1,8 @@
 import { CodeIcon } from '@/shared/assets/icons'
 import { ProfileSectionCard } from '@/features/profile/components'
 import { SkillBadge } from './SkillBadge/SkillBadge'
+import type { Skill } from '@/features/profile/types'
 import styles from './SoftwareSkills.module.scss'
-
-type Skill = {
-    id: string
-    label: string
-}
 
 type SoftwareSkillsProps = {
     skills: Skill[]

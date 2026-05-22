@@ -1,10 +1,8 @@
 import { softwareIcons } from '@/shared/assets/software-icons/registry'
+import type { Skill } from '@/features/profile/types'
 import styles from './SkillBadge.module.scss'
 
-type SkillBadgeProps = {
-    id: string
-    label: string
-}
+type SkillBadgeProps = Skill
 
 export const SkillBadge = ({ id, label }: SkillBadgeProps) => {
     const Icon = softwareIcons[id]
