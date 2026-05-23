@@ -13,7 +13,7 @@ export const RecentProductItem = ({
 }: RecentProductItemProps) => {
     const isInStock = stockQuantity > 0
     const badgeColor = isInStock ? 'green' : 'red'
-    const badgeText = isInStock ? 'In Stock' : 'Out of Stock'
+    const badgeText = isInStock ? 'In Stock' : 'Sold Out'
 
     return (
         <div className={styles.item}>
