@@ -2,6 +2,6 @@
 
 .skills {
     display: grid;
-    gap: $space-2;
-    grid-template-columns: repeat(2, 1fr);
+    gap: $space-1;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr))
 }
