@@ -5,12 +5,13 @@
     border: $border solid $gray-light;
     border-top: 0;
     display: flex;
+    flex-wrap: wrap;
     gap: $space-4;
     padding: $space-4;
 
     &:first-child {
-        border-right: 0;
         border-bottom-left-radius: $rounded-md;
+        border-right-color: transparent;
     }
 
     &:last-child {
@@ -33,6 +34,7 @@
 
     .content {
         display: flex;
+        flex-basis: 115px;
         flex-direction: column;
         gap: $space-1;
 
