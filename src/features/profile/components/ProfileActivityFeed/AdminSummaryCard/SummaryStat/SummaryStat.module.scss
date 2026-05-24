@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .stat {
     align-items: center;
@@ -94,6 +95,38 @@
         .icon {
             background-color: $green-light;
             color: $green-dark;
+        }
+    }
+
+    @include media-down(lg) {
+        gap: $space-3;
+        padding: $space-3;
+
+        .icon {
+            border-radius: $rounded-md;
+            height: 56px;
+            width: 56px;
+
+            svg {
+                height: 28px;
+                width: 28px;
+            }
+        }
+
+        .content {
+            flex-basis: 105px;
+
+            .label {
+                font-size: $text-xl;
+            }
+
+            .value {
+                font-size: $text-4xl;
+            }
+
+            .variation {
+                font-size: $text-lg;
+            }
         }
     }
 }
