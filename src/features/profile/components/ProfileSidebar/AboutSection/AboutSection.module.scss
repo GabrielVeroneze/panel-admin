@@ -1,7 +1,12 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .description {
     color: $gray-dark;
     font-size: $text-xl;
     font-weight: $font-normal;
+
+    @include media-down(lg) {
+        font-size: $text-lg;
+    }
 }
