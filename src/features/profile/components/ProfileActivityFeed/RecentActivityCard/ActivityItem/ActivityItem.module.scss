@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .item {
     align-items: flex-start;
@@ -91,6 +92,41 @@
     &:last-child {
         .iconWrapper::after {
             display: none;
+        }
+    }
+
+    @include media-down(lg) {
+        gap: $space-3;
+
+        .iconWrapper {
+            height: 48px;
+            width: 48px;
+
+            .icon {
+                height: 22px;
+                width: 22px;
+            }
+        }
+
+        .content {
+            gap: $space-1;
+
+            .title {
+                font-size: $text-xl;
+            }
+
+            .target {
+                font-size: $text-lg;
+            }
+
+            .date {
+                font-size: $text-base;
+
+                svg {
+                    height: 14px;
+                    width: 14px;
+                }
+            }
         }
     }
 }
