@@ -1,9 +1,13 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .sidebar {
-    border-right: $border solid $gray-light;
     display: flex;
     flex-direction: column;
     gap: $space-3;
     grid-area: sidebar;
+
+    @include media-down(lg) {
+        gap: $space-1-5;
+    }
 }
