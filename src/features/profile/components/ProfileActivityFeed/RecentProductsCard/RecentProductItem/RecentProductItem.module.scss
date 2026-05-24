@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .item {
     align-items: center;
@@ -42,6 +43,32 @@
             color: $green-dark;
             font-size: $text-2xl;
             font-weight: $font-semibold;
+        }
+    }
+
+    @include media-down(lg) {
+        gap: $space-3;
+        padding-bottom: $space-2;
+
+        .image {
+            height: 64px;
+            width: 88px;
+        }
+
+        .content {
+            gap: $space-1;
+
+            .name {
+                font-size: $text-xl;
+            }
+
+            .category {
+                font-size: $text-lg;
+            }
+
+            .price {
+                font-size: $text-xl;
+            }
         }
     }
 }
