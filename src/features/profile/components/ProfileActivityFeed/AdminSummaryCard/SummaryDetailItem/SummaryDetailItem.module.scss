@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .item {
     align-items: center;
@@ -59,5 +60,29 @@
         color: $gray-dark;
         font-size: $text-2xl;
         font-weight: $font-medium;
+    }
+
+    @include media-down(lg) {
+        gap: $space-2;
+        padding: $space-3;
+
+        .header {
+            gap: $space-2-5;
+
+            .icon {
+                svg {
+                    height: 22px;
+                    width: 22px;
+                }
+            }
+
+            .label {
+                font-size: $text-xl;
+            }
+        }
+
+        .value {
+            font-size: $text-xl;
+        }
     }
 }
