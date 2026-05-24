@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .stats {
     display: grid;
@@ -12,5 +13,11 @@
 
     .highlightValue {
         color: $blue-dark;
+    }
+}
+
+@include media-down(lg) {
+    .stats {
+        margin-bottom: $space-3;
     }
 }
