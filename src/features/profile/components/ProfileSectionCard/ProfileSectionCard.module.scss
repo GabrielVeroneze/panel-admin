@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .card {
     display: flex;
@@ -54,6 +55,42 @@
 
             .title {
                 font-size: $text-2xl;
+            }
+        }
+    }
+
+    @include media-down(lg) {
+        &.default {
+            .header {
+                gap: $space-2;
+                margin-inline: -$space-4;
+                padding-bottom: $space-3;
+                padding-inline: $space-4;
+
+                .icon svg {
+                    height: 30px;
+                    width: 30px;
+                }
+
+                .title {
+                    font-size: $text-2xl;
+                }
+            }
+        }
+
+        &.compact {
+            .header {
+                gap: $space-2;
+                padding-bottom: $space-2;
+
+                .icon svg {
+                    height: 28px;
+                    width: 28px;
+                }
+
+                .title {
+                    font-size: $text-xl;
+                }
             }
         }
     }
