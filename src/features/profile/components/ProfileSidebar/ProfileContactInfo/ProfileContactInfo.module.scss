@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .infoList {
     border-top: $border solid $gray-light;
@@ -8,4 +9,10 @@
     margin-inline: -$space-5;
     padding-inline: $space-5;
     padding-top: $space-3;
+
+    @include media-down(lg) {
+        gap: $space-2;
+        margin-inline: -$space-4;
+        padding-inline: $space-4;
+    }
 }
