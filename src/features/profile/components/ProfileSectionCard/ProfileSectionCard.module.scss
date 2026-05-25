@@ -94,4 +94,38 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        &.default {
+            .header {
+                margin-inline: -$space-5;
+                padding-bottom: $space-2;
+                padding-inline: $space-5;
+
+                .icon svg {
+                    height: 26px;
+                    width: 26px;
+                }
+
+                .title {
+                    font-size: $text-xl;
+                }
+            }
+        }
+
+        &.compact {
+            .header {
+                gap: $space-1-5;
+
+                .icon svg {
+                    height: 24px;
+                    width: 24px;
+                }
+
+                .title {
+                    font-size: $text-lg;
+                }
+            }
+        }
+    }
 }
