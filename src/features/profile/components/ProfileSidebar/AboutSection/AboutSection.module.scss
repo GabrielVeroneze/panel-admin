@@ -9,4 +9,8 @@
     @include media-down(lg) {
         font-size: $text-lg;
     }
+
+    @include media-down(sm) {
+        font-size: $text-base;
+    }
 }
