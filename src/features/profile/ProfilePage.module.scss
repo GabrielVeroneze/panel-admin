@@ -14,4 +14,13 @@
             'timeline feed';
         grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
     }
+
+    @include media-down(sm) {
+        gap: $space-3;
+        grid-template-areas:
+            'sidebar'
+            'feed'
+            'timeline';
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
