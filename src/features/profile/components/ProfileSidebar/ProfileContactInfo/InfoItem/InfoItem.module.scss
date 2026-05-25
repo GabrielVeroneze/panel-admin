@@ -61,4 +61,26 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        gap: $space-1-5;
+        padding-bottom: $space-1-5;
+
+        .icon svg {
+            height: 28px;
+            width: 28px;
+        }
+
+        .content {
+            gap: $space-0-5;
+
+            .label {
+                font-size: $text-base;
+            }
+
+            .value {
+                font-size: $text-base;
+            }
+        }
+    }
 }
