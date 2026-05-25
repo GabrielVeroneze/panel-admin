@@ -34,4 +34,18 @@
             font-size: $text-lg;
         }
     }
+
+    @include media-down(sm) {
+        gap: $space-1;
+        padding: $space-1;
+
+        .icon {
+            height: 16px;
+            width: 16px;
+        }
+
+        .label {
+            font-size: $text-base;
+        }
+    }
 }
