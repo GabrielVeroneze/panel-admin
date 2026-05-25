@@ -71,4 +71,35 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        gap: $space-2;
+
+        .avatar {
+            height: 80px;
+            width: 80px;
+        }
+
+        .info {
+            gap: $space-0-5;
+
+            .name {
+                font-size: $text-2xl;
+            }
+
+            .role {
+                font-size: $text-base;
+                margin-bottom: $space-0-5;
+            }
+
+            .country {
+                font-size: $text-sm;
+            }
+
+            .icon {
+                height: 14px;
+                width: 14px;
+            }
+        }
+    }
 }
