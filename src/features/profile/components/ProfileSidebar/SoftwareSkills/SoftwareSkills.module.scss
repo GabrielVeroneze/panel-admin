@@ -9,4 +9,8 @@
     @include media-down(lg) {
         grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
     }
+
+    @include media-down(sm) {
+        grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+    }
 }
