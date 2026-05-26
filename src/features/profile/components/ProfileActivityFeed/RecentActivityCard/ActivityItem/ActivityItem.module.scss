@@ -129,4 +129,39 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        gap: $space-2;
+
+        .iconWrapper {
+            height: 40px;
+            width: 40px;
+
+            .icon {
+                height: 18px;
+                width: 18px;
+            }
+        }
+
+        .content {
+            gap: $space-0-5;
+
+            .title {
+                font-size: $text-lg;
+            }
+
+            .target {
+                font-size: $text-base;
+            }
+
+            .date {
+                font-size: $text-sm;
+
+                svg {
+                    height: 12px;
+                    width: 12px;
+                }
+            }
+        }
+    }
 }
