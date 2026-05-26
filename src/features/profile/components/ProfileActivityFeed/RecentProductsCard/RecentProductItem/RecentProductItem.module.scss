@@ -71,4 +71,28 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        gap: $space-2;
+        padding-bottom: $space-1-5;
+
+        .image {
+            height: 56px;
+            width: 72px;
+        }
+
+        .content {
+            .name {
+                font-size: $text-lg;
+            }
+
+            .category {
+                font-size: $text-base;
+            }
+
+            .price {
+                font-size: $text-lg;
+            }
+        }
+    }
 }
