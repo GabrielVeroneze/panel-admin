@@ -85,4 +85,28 @@
             font-size: $text-xl;
         }
     }
+
+    @include media-down(sm) {
+        gap: $space-1;
+        padding: $space-2;
+
+        .header {
+            gap: $space-1-5;
+
+            .icon {
+                svg {
+                    height: 18px;
+                    width: 18px;
+                }
+            }
+
+            .label {
+                font-size: $text-lg;
+            }
+        }
+
+        .value {
+            font-size: $text-lg;
+        }
+    }
 }
