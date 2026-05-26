@@ -21,3 +21,10 @@
         margin-bottom: $space-3;
     }
 }
+
+@include media-down(sm) {
+    .stats {
+        grid-template-columns: 1fr;
+        margin-bottom: $space-2;
+    }
+}
