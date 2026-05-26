@@ -103,4 +103,34 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        gap: $space-2;
+
+        .indicator {
+            .dot {
+                margin-top: $space-0-5;
+            }
+        }
+
+        .content {
+            padding-bottom: $space-4;
+
+            .period {
+                font-size: $text-base;
+            }
+
+            .title {
+                font-size: $text-lg;
+            }
+
+            .organization {
+                font-size: $text-lg;
+            }
+
+            .description {
+                font-size: $text-base;
+            }
+        }
+    }
 }
