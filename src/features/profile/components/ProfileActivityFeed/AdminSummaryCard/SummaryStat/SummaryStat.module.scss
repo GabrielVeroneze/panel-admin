@@ -129,4 +129,51 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        gap: $space-2;
+        padding: $space-2;
+
+        &:first-child {
+            border-bottom-left-radius: 0;
+            border-right-color: $gray-light;
+        }
+
+        &:last-child {
+            border-bottom-left-radius: $rounded-md;
+        }
+
+        .icon {
+            border-radius: $rounded;
+            height: 44px;
+            width: 44px;
+
+            svg {
+                height: 22px;
+                width: 22px;
+            }
+        }
+
+        .content {
+            flex-basis: auto;
+            gap: $space-0-5;
+
+            .label {
+                font-size: $text-lg;
+            }
+
+            .value {
+                font-size: $text-3xl;
+            }
+
+            .variation {
+                font-size: $text-base;
+
+                svg {
+                    height: 12px;
+                    width: 12px;
+                }
+            }
+        }
+    }
 }
