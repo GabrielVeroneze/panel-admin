@@ -11,4 +11,9 @@
         gap: $space-4;
         margin-top: $space-3;
     }
+
+    @include media-down(sm) {
+        gap: $space-3;
+        margin-top: $space-2;
+    }
 }
