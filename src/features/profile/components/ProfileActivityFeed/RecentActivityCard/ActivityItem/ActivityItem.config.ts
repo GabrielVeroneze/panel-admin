@@ -6,7 +6,9 @@ import {
     UserAddIcon,
 } from '@/shared/assets/icons'
 import type { ComponentType, SVGProps } from 'react'
-import type { ActivityType, ActivityVariant } from '@/features/profile/types'
+import type { ActivityType } from '@/features/profile/types'
+
+type ActivityVariant = 'blue' | 'green' | 'red' | 'orange' | 'purple'
 
 type ActivityConfigItem = {
     title: string
