@@ -11,12 +11,12 @@ import {
 import { ProfileSectionCard } from '@/features/profile/components'
 import { SummaryStat } from './SummaryStat/SummaryStat'
 import { SummaryDetailItem } from './SummaryDetailItem/SummaryDetailItem'
-import type { ProfileSummary, StatValue } from '@/features/profile/types'
+import type { ProfileSummary, SummaryMetric } from '@/features/profile/types'
 import styles from './AdminSummaryCard.module.scss'
 
 type AdminSummaryCardProps = {
-    products: StatValue
-    users: StatValue
+    products: SummaryMetric
+    users: SummaryMetric
     profile: ProfileSummary
 }
 
