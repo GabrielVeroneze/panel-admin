@@ -1,13 +1,12 @@
 import { Card } from '@/shared/components'
 import { LocationMarkerIcon } from '@/shared/assets/icons'
+import type { UserProfile } from '@/features/profile/types'
 import styles from './ProfileHeader.module.scss'
 
-type ProfileHeaderProps = {
-    avatar: string
-    name: string
-    role: string
-    country: string
-}
+type ProfileHeaderProps = Pick<
+    UserProfile,
+    'avatar' | 'name' | 'role' | 'country'
+>
 
 export const ProfileHeader = ({
     avatar,
