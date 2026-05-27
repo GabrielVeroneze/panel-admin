@@ -2,11 +2,11 @@ import { ProfileHeader } from './ProfileHeader/ProfileHeader'
 import { ProfileContactInfo } from './ProfileContactInfo/ProfileContactInfo'
 import { AboutSection } from './AboutSection/AboutSection'
 import { SoftwareSkills } from './SoftwareSkills/SoftwareSkills'
-import type { ProfileSidebarData } from '@/features/profile/types'
+import type { UserProfile } from '@/features/profile/types'
 import styles from './ProfileSidebar.module.scss'
 
 type ProfileSidebarProps = {
-    profile: ProfileSidebarData
+    profile: UserProfile
 }
 
 export const ProfileSidebar = ({ profile }: ProfileSidebarProps) => {
@@ -18,11 +18,7 @@ export const ProfileSidebar = ({ profile }: ProfileSidebarProps) => {
                 role={profile.role}
                 country={profile.country}
             />
-            <ProfileContactInfo
-                email={profile.email}
-                address={profile.address}
-                phone={profile.phone}
-            />
+            <ProfileContactInfo contact={profile.contact} />
             <AboutSection about={profile.about} />
             <SoftwareSkills skills={profile.skills} />
         </aside>
