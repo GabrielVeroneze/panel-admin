@@ -6,19 +6,14 @@ import {
 } from '@/shared/assets/icons'
 import { ProfileSectionCard } from '@/features/profile/components'
 import { InfoItem } from './InfoItem/InfoItem'
+import type { UserProfile } from '@/features/profile/types'
 import styles from './ProfileContactInfo.module.scss'
 
 type ProfileContactInfoProps = {
-    email: string
-    address: string
-    phone: string
+    contact: UserProfile['contact']
 }
 
-export const ProfileContactInfo = ({
-    email,
-    address,
-    phone,
-}: ProfileContactInfoProps) => {
+export const ProfileContactInfo = ({ contact }: ProfileContactInfoProps) => {
     return (
         <ProfileSectionCard
             variant="compact"
@@ -29,17 +24,17 @@ export const ProfileContactInfo = ({
                 <InfoItem
                     icon={<MailIcon />}
                     label="Email Address"
-                    value={email}
+                    value={contact.email}
                 />
                 <InfoItem
                     icon={<LocationMarkerIcon />}
                     label="Home Address"
-                    value={address}
+                    value={contact.address}
                 />
                 <InfoItem
                     icon={<PhoneIcon />}
                     label="Phone Number"
-                    value={phone}
+                    value={contact.phone}
                 />
             </div>
         </ProfileSectionCard>
