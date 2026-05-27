@@ -1,23 +1,23 @@
 import { AdminSummaryCard } from './AdminSummaryCard/AdminSummaryCard'
 import { RecentActivityCard } from './RecentActivityCard/RecentActivityCard'
 import { RecentProductsCard } from './RecentProductsCard/RecentProductsCard'
-import type { ProfileActivityFeedData } from '@/features/profile/types'
+import type { UserProfile } from '@/features/profile/types'
 import styles from './ProfileActivityFeed.module.scss'
 
 type ProfileActivityFeedProps = {
-    feed: ProfileActivityFeedData
+    profile: UserProfile
 }
 
-export const ProfileActivityFeed = ({ feed }: ProfileActivityFeedProps) => {
+export const ProfileActivityFeed = ({ profile }: ProfileActivityFeedProps) => {
     return (
         <section className={styles.feed}>
             <AdminSummaryCard
-                products={feed.products}
-                users={feed.users}
-                profile={feed.profile}
+                products={profile.summary.products}
+                users={profile.summary.users}
+                profile={profile.summary.profile}
             />
-            <RecentActivityCard activities={feed.activities} />
-            <RecentProductsCard products={feed.recentProducts} />
+            <RecentActivityCard activities={profile.activities} />
+            <RecentProductsCard products={profile.recentProducts} />
         </section>
     )
 }
