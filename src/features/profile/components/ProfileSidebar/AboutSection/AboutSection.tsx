@@ -1,9 +1,10 @@
 import { UserIcon } from '@/shared/assets/icons'
 import { ProfileSectionCard } from '@/features/profile/components'
+import type { UserProfile } from '@/features/profile/types'
 import styles from './AboutSection.module.scss'
 
 type AboutSectionProps = {
-    about: string
+    about: UserProfile['about']
 }
 
 export const AboutSection = ({ about }: AboutSectionProps) => {
