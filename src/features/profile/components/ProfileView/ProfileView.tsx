@@ -2,10 +2,10 @@ import {
     ProfileActivityFeed,
     ProfileSidebar,
     ProfileTimeline,
-} from './components'
-import styles from './ProfilePage.module.scss'
+} from '@/features/profile/components'
+import styles from './ProfileView.module.scss'
 
-export const ProfilePage = () => {
+export const ProfileView = () => {
     return (
         <section className={styles.layout}>
             <ProfileSidebar
