@@ -1,4 +1,4 @@
-export type StatValue = {
+export type SummaryMetric = {
     count: number
     variation: number
 }
