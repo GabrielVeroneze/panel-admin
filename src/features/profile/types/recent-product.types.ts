@@ -3,6 +3,6 @@ export type RecentProduct = {
     image: string
     name: string
     category: string
-    price: string
+    price: number
     stockQuantity: number
 }
