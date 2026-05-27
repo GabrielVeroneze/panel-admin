@@ -5,8 +5,6 @@ export type ActivityType =
     | 'stock-updated'
     | 'password-changed'
 
-export type ActivityVariant = 'blue' | 'green' | 'red' | 'orange' | 'purple'
-
 export type Activity = {
     id: number
     type: ActivityType
