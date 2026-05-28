@@ -1,1 +1,2 @@
-export { ProfilePage } from './ProfilePage'
+export { MyProfilePage } from './pages/MyProfilePage/MyProfilePage'
+export { UserProfilePage } from './pages/UserProfilePage/UserProfilePage'
