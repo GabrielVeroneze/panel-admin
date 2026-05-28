@@ -1,5 +1,5 @@
-import { ExperienceSection } from './ExperienceSection/ExperienceSection'
-import { EducationSection } from './EducationSection/EducationSection'
+import { AcademicCapIcon, BriefcaseIcon } from '@/shared/assets/icons'
+import { TimelineSection } from './TimelineSection/TimelineSection'
 import type { UserProfile } from '@/features/profile/types'
 import styles from './ProfileTimeline.module.scss'
 
@@ -10,8 +10,16 @@ type ProfileTimelineProps = {
 export const ProfileTimeline = ({ profile }: ProfileTimelineProps) => {
     return (
         <section className={styles.timeline}>
-            <ExperienceSection experienceList={profile.experience} />
-            <EducationSection educationList={profile.education} />
+            <TimelineSection
+                icon={<BriefcaseIcon />}
+                title="Experience"
+                items={profile.experience}
+            />
+            <TimelineSection
+                icon={<AcademicCapIcon />}
+                title="Education"
+                items={profile.education}
+            />
         </section>
     )
 }
