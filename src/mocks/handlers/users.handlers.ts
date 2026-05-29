@@ -1,4 +1,5 @@
 import { delay, http, HttpResponse } from 'msw'
+import { usersDatabase, type DatabaseUser } from '../database'
 import type {
     CreateUserPayload,
     PaginatedUsers,
@@ -31,13 +32,13 @@ export const usersHandlers = [
             const search = url.searchParams.get('search')?.toLowerCase() ?? ''
 
             const filteredUsers = search
-                ? allUsers.filter(
+                ? usersDatabase.filter(
                       (user) =>
                           user.name.toLowerCase().includes(search) ||
                           user.email.toLowerCase().includes(search) ||
                           user.company.toLowerCase().includes(search),
                   )
-                : allUsers
+                : usersDatabase
 
             const start = (page - 1) * pageSize
             const end = start + pageSize
@@ -73,8 +74,8 @@ export const usersHandlers = [
             const password = formData.get('password') as string
 
             const nextId =
-                allUsers.length > 0
-                    ? Math.max(...allUsers.map((u) => u.id)) + 1
+                usersDatabase.length > 0
+                    ? Math.max(...usersDatabase.map((u) => u.id)) + 1
                     : 1
 
             const newUser: User = {
@@ -91,7 +92,7 @@ export const usersHandlers = [
                 status: 'active',
             }
 
-            allUsers.push({ ...newUser, password: password })
+            usersDatabase.push({ ...newUser, password: password })
 
             return HttpResponse.json(newUser)
         },
@@ -111,15 +112,15 @@ export const usersHandlers = [
             const department = formData.get('department') as string | null
             const password = formData.get('password') as string | null
 
-            const userIndex = allUsers.findIndex((user) => user.id === id)
+            const userIndex = usersDatabase.findIndex((user) => user.id === id)
 
             if (userIndex === -1) {
                 return HttpResponse.json(null, { status: 404 })
             }
 
-            const existingUser = allUsers[userIndex]
+            const existingUser = usersDatabase[userIndex]
 
-            const updatedUser: MockUser = {
+            const updatedUser: DatabaseUser = {
                 ...existingUser,
                 name: name ?? existingUser.name,
                 email: email ?? existingUser.email,
@@ -132,7 +133,7 @@ export const usersHandlers = [
                 password: password ?? existingUser.password,
             }
 
-            allUsers[userIndex] = updatedUser
+            usersDatabase[userIndex] = updatedUser
 
             const { password: _password, ...responseUser } = updatedUser
 
@@ -145,13 +146,13 @@ export const usersHandlers = [
         async ({ params }) => {
             const id = Number(params.id)
 
-            const userIndex = allUsers.findIndex((user) => user.id === id)
+            const userIndex = usersDatabase.findIndex((user) => user.id === id)
 
             if (userIndex === -1) {
                 return HttpResponse.json(null, { status: 404 })
             }
 
-            allUsers.splice(userIndex, 1)
+            usersDatabase.splice(userIndex, 1)
 
             return HttpResponse.json(null, { status: 204 })
         },
@@ -167,10 +168,10 @@ export const usersHandlers = [
             }
 
             for (const id of ids) {
-                const index = allUsers.findIndex((user) => user.id === id)
+                const index = usersDatabase.findIndex((user) => user.id === id)
 
                 if (index !== -1) {
-                    allUsers.splice(index, 1)
+                    usersDatabase.splice(index, 1)
                 }
             }
 
