@@ -1,4 +1,5 @@
 import { delay, http, HttpResponse } from 'msw'
+import { productsDatabase } from '../database'
 import type {
     CreateProductPayload,
     PaginatedProducts,
@@ -31,13 +32,13 @@ export const productsHandlers = [
             const search = url.searchParams.get('search')?.toLowerCase() ?? ''
 
             const filteredProducts = search
-                ? allProducts.filter(
+                ? productsDatabase.filter(
                       (product) =>
                           product.name.toLowerCase().includes(search) ||
                           product.category.toLowerCase().includes(search) ||
                           product.brand.toLowerCase().includes(search),
                   )
-                : allProducts
+                : productsDatabase
 
             const start = (page - 1) * pageSize
             const end = start + pageSize
@@ -66,8 +67,8 @@ export const productsHandlers = [
             const images = formData.getAll('images') as File[]
 
             const nextId =
-                allProducts.length > 0
-                    ? Math.max(...allProducts.map((p) => p.id)) + 1
+                productsDatabase.length > 0
+                    ? Math.max(...productsDatabase.map((p) => p.id)) + 1
                     : 1
 
             const imageUrls = images.map((file) => URL.createObjectURL(file))
@@ -82,7 +83,7 @@ export const productsHandlers = [
                 images: imageUrls,
             }
 
-            allProducts.push(newProduct)
+            productsDatabase.push(newProduct)
 
             return HttpResponse.json(newProduct)
         },
@@ -101,7 +102,7 @@ export const productsHandlers = [
             const description = formData.get('description') as string | null
             const images = formData.getAll('images') as File[]
 
-            const productIndex = allProducts.findIndex(
+            const productIndex = productsDatabase.findIndex(
                 (product) => product.id === id,
             )
 
@@ -109,9 +110,9 @@ export const productsHandlers = [
                 return HttpResponse.json(null, { status: 404 })
             }
 
-            const existingProduct = allProducts[productIndex]
+            const existingProduct = productsDatabase[productIndex]
 
-            const updatedProduct: MockProduct = {
+            const updatedProduct: Product = {
                 ...existingProduct,
                 name: name ?? existingProduct.name,
                 category: category ?? existingProduct.category,
@@ -124,7 +125,7 @@ export const productsHandlers = [
                         : existingProduct.images,
             }
 
-            allProducts[productIndex] = updatedProduct
+            productsDatabase[productIndex] = updatedProduct
 
             return HttpResponse.json(updatedProduct)
         },
@@ -135,7 +136,7 @@ export const productsHandlers = [
         async ({ params }) => {
             const id = Number(params.id)
 
-            const productIndex = allProducts.findIndex(
+            const productIndex = productsDatabase.findIndex(
                 (product) => product.id === id,
             )
 
@@ -143,7 +144,7 @@ export const productsHandlers = [
                 return HttpResponse.json(null, { status: 404 })
             }
 
-            allProducts.splice(productIndex, 1)
+            productsDatabase.splice(productIndex, 1)
 
             return HttpResponse.json(null, { status: 204 })
         },
@@ -159,12 +160,12 @@ export const productsHandlers = [
             }
 
             for (const id of ids) {
-                const index = allProducts.findIndex(
+                const index = productsDatabase.findIndex(
                     (product) => product.id === id,
                 )
 
                 if (index !== -1) {
-                    allProducts.splice(index, 1)
+                    productsDatabase.splice(index, 1)
                 }
             }
 
