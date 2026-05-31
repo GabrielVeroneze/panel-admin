@@ -10,6 +10,13 @@
     padding-inline: $space-5;
     padding-top: $space-3;
 
+    &.skeleton {
+        .itemSkeleton {
+            height: 42px;
+            width: 100%;
+        }
+    }
+
     @include media-down(lg) {
         gap: $space-2;
         margin-inline: -$space-4;
