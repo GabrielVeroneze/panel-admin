@@ -6,6 +6,13 @@
     gap: $space-1;
     grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
 
+    &.skeleton {
+        .skillSkeleton {
+            height: 42px;
+            width: 100%;
+        }
+    }
+
     @include media-down(lg) {
         grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
     }
