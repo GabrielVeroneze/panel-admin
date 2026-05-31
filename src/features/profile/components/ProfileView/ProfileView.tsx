@@ -7,15 +7,16 @@ import type { UserProfile } from '@/features/profile/types'
 import styles from './ProfileView.module.scss'
 
 type ProfileViewProps = {
-    profile: UserProfile
+    profile: UserProfile | null
+    loading: boolean
 }
 
-export const ProfileView = ({ profile }: ProfileViewProps) => {
+export const ProfileView = ({ profile, loading }: ProfileViewProps) => {
     return (
         <section className={styles.layout}>
-            <ProfileSidebar profile={profile} />
-            <ProfileActivityFeed profile={profile} />
-            <ProfileTimeline profile={profile} />
+            <ProfileSidebar profile={profile} loading={loading} />
+            <ProfileActivityFeed profile={profile} loading={loading} />
+            <ProfileTimeline profile={profile} loading={loading} />
         </section>
     )
 }
