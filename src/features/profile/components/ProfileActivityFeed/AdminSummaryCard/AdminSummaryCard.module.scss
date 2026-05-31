@@ -16,6 +16,18 @@
     }
 }
 
+.skeleton {
+    .statSkeleton {
+        height: 115px;
+        width: 100%;
+    }
+
+    .itemSkeleton {
+        height: 60px;
+        width: 100%;
+    }
+}
+
 @include media-down(lg) {
     .stats {
         margin-bottom: $space-3;
