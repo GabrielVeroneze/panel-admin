@@ -7,6 +7,13 @@
     gap: $space-6;
     margin-top: $space-4;
 
+    &.skeleton {
+        .activitySkeleton {
+            height: 70px;
+            width: 250px;
+        }
+    }
+
     @include media-down(lg) {
         gap: $space-4;
         margin-top: $space-3;
