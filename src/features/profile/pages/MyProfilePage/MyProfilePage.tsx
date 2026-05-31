@@ -1,5 +1,8 @@
+import { useMyProfile } from '@/features/profile/hooks'
 import { ProfileView } from '@/features/profile/components'
 
 export const MyProfilePage = () => {
-    return <ProfileView profile={profile} />
+    const { profile, loading } = useMyProfile()
+
+    return <ProfileView profile={profile} loading={loading} />
 }
