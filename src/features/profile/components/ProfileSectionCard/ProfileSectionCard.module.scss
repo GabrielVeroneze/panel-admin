@@ -59,6 +59,18 @@
         }
     }
 
+    &.skeleton {
+        .iconSkeleton {
+            height: 36px;
+            width: 36px;
+        }
+
+        .titleSkeleton {
+            height: 25px;
+            width: 225px;
+        }
+    }
+
     @include media-down(lg) {
         &.default {
             .header {
