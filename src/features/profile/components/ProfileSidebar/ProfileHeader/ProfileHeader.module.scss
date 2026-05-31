@@ -48,6 +48,29 @@
         }
     }
 
+    &.skeleton {
+        .avatarSkeleton {
+            border-radius: $rounded-full;
+            height: 128px;
+            width: 128px;
+        }
+
+        .nameSkeleton {
+            height: 28px;
+            width: 145px;
+        }
+
+        .roleSkeleton {
+            height: 18px;
+            width: 140px;
+        }
+
+        .countrySkeleton {
+            height: 16px;
+            width: 165px;
+        }
+    }
+
     @include media-down(lg) {
         gap: $space-1;
 
