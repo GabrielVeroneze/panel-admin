@@ -106,6 +106,18 @@
                 }
             }
         }
+
+        &.skeleton {
+            .iconSkeleton {
+                height: 30px;
+                width: 30px;
+            }
+
+            .titleSkeleton {
+                height: 20px;
+                width: 175px;
+            }
+        }
     }
 
     @include media-down(sm) {
