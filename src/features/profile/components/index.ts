@@ -1,5 +1,6 @@
 export * from './ProfileActivityFeed/ProfileActivityFeed'
 export * from './ProfileSectionCard/ProfileSectionCard'
+export * from './ProfileSectionCard/ProfileSectionCardSkeleton'
 export * from './ProfileSidebar/ProfileSidebar'
 export * from './ProfileTimeline/ProfileTimeline'
 export * from './ProfileView/ProfileView'
