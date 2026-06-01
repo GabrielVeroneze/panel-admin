@@ -21,6 +21,13 @@
         gap: $space-2;
         margin-inline: -$space-4;
         padding-inline: $space-4;
+
+        &.skeleton {
+            .itemSkeleton {
+                height: 36px;
+                width: 100%;
+            }
+        }
     }
 
     @include media-down(sm) {
