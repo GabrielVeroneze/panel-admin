@@ -93,6 +93,28 @@
                 font-size: $text-base;
             }
         }
+
+        &.skeleton {
+            .avatarSkeleton {
+                height: 96px;
+                width: 96px;
+            }
+
+            .nameSkeleton {
+                height: 25px;
+                width: 130px;
+            }
+
+            .roleSkeleton {
+                height: 15px;
+                width: 120px;
+            }
+
+            .countrySkeleton {
+                height: 16px;
+                width: 140px;
+            }
+        }
     }
 
     @include media-down(sm) {
