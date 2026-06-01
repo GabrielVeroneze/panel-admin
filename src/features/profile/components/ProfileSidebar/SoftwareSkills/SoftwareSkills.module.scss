@@ -15,6 +15,13 @@
 
     @include media-down(lg) {
         grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+
+        &.skeleton {
+            .skillSkeleton {
+                height: 34px;
+                width: 100%;
+            }
+        }
     }
 
     @include media-down(sm) {
