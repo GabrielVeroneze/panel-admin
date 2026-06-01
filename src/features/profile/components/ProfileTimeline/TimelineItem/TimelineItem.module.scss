@@ -71,6 +71,28 @@
         }
     }
 
+    &.skeleton {
+        .periodSkeleton {
+            height: 18px;
+            width: 100px;
+        }
+
+        .titleSkeleton {
+            height: 20px;
+            width: 150px;
+        }
+
+        .organizationSkeleton {
+            height: 20px;
+            width: 100px;
+        }
+
+        .descriptionSkeleton {
+            height: 70px;
+            width: 100%;
+        }
+    }
+
     @include media-down(lg) {
         gap: $space-3;
 
