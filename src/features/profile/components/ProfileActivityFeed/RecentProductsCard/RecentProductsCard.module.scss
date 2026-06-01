@@ -7,6 +7,13 @@
     gap: $space-3;
     margin-top: $space-4;
 
+    &.skeleton {
+        .productSkeleton {
+            height: 80px;
+            width: 100%;
+        }
+    }
+
     @include media-down(lg) {
         gap: $space-2;
         margin-top: $space-3;
