@@ -51,4 +51,16 @@
         grid-template-columns: 1fr;
         margin-bottom: $space-2;
     }
+
+    .skeleton {
+        .statSkeleton {
+            height: 74px;
+            width: 100%;
+        }
+
+        .itemSkeleton {
+            height: 40px;
+            width: 100%;
+        }
+    }
 }
