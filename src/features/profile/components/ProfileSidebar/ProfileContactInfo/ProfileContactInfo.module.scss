@@ -35,5 +35,12 @@
         margin-inline: -$space-5;
         padding-inline: $space-5;
         padding-top: $space-2;
+
+        &.skeleton {
+            .itemSkeleton {
+                height: 32px;
+                width: 100%;
+            }
+        }
     }
 }
