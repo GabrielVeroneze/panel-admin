@@ -26,5 +26,12 @@
 
     @include media-down(sm) {
         grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+
+        &.skeleton {
+            .skillSkeleton {
+                height: 26px;
+                width: 100%;
+            }
+        }
     }
 }
