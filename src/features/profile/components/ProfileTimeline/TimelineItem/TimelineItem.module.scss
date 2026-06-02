@@ -124,6 +124,28 @@
                 font-size: $text-lg;
             }
         }
+
+        &.skeleton {
+            .periodSkeleton {
+                height: 15px;
+                width: 85px;
+            }
+
+            .titleSkeleton {
+                height: 18px;
+                max-width: 135px;
+            }
+
+            .organizationSkeleton {
+                height: 18px;
+                width: 95px;
+            }
+
+            .descriptionSkeleton {
+                height: 45px;
+                width: 100%;
+            }
+        }
     }
 
     @include media-down(sm) {
