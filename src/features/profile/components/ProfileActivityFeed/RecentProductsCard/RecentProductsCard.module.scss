@@ -17,6 +17,13 @@
     @include media-down(lg) {
         gap: $space-2;
         margin-top: $space-3;
+
+        &.skeleton {
+            .productSkeleton {
+                height: 64px;
+                width: 100%;
+            }
+        }
     }
 
     @include media-down(sm) {
