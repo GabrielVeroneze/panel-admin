@@ -146,5 +146,27 @@
                 width: 14px;
             }
         }
+
+        &.skeleton {
+            .avatarSkeleton {
+                height: 80px;
+                width: 80px;
+            }
+
+            .nameSkeleton {
+                height: 20px;
+                width: 105px;
+            }
+
+            .roleSkeleton {
+                height: 13px;
+                width: 100px;
+            }
+
+            .countrySkeleton {
+                height: 14px;
+                width: 115px;
+            }
+        }
     }
 }
