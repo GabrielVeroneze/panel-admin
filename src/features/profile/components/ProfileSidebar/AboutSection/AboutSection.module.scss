@@ -26,5 +26,12 @@
 
     @include media-down(sm) {
         font-size: $text-base;
+
+        &.skeleton {
+            .descriptionSkeleton {
+                height: 40px;
+                width: 100%;
+            }
+        }
     }
 }
