@@ -1,4 +1,5 @@
 import { Badge } from '@/shared/components'
+import { formatCurrency } from '@/shared/utils'
 import type { RecentProduct } from '@/features/profile/types'
 import styles from './RecentProductItem.module.scss'
 
@@ -21,7 +22,9 @@ export const RecentProductItem = ({
             <div className={styles.content}>
                 <h4 className={styles.name}>{name}</h4>
                 <span className={styles.category}>{category}</span>
-                <strong className={styles.price}>{price}</strong>
+                <strong className={styles.price}>
+                    {formatCurrency(price, { decimals: 2 })}
+                </strong>
             </div>
             <Badge color={badgeColor}>{badgeText}</Badge>
         </div>
