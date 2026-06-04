@@ -1,5 +1,8 @@
-import { Card } from '@/shared/components'
-import { LocationMarkerIcon } from '@/shared/assets/icons'
+import { Card, EmptyState } from '@/shared/components'
+import {
+    ExclamationCircleIcon,
+    LocationMarkerIcon,
+} from '@/shared/assets/icons'
 import type { UserProfile } from '@/features/profile/types'
 import styles from './ProfileHeader.module.scss'
 
@@ -14,6 +17,18 @@ export const ProfileHeader = ({
     role,
     country,
 }: ProfileHeaderProps) => {
+    if (!avatar || !name || !role || !country) {
+        return (
+            <Card>
+                <EmptyState
+                    icon={<ExclamationCircleIcon />}
+                    title="Profile information unavailable"
+                    description="Basic profile details such as avatar, name, role, or location could not be loaded."
+                />
+            </Card>
+        )
+    }
+
     return (
         <Card className={styles.header} as="header">
             <img
