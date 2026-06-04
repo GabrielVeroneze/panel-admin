@@ -3,6 +3,7 @@
 
 .layout {
     display: grid;
+    flex-grow: 1;
     gap: $space-3;
     grid-template-areas: 'sidebar feed timeline';
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.75fr) minmax(0, 1fr);
