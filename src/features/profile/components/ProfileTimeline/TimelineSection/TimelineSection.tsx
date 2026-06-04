@@ -1,3 +1,5 @@
+import { Card, EmptyState } from '@/shared/components'
+import { ExclamationCircleIcon } from '@/shared/assets/icons'
 import { ProfileSectionCard } from '@/features/profile/components'
 import { TimelineItem } from '../TimelineItem/TimelineItem'
 import type { ReactNode } from 'react'
@@ -14,6 +16,18 @@ export const TimelineSection = ({
     title,
     items,
 }: TimelineSectionProps) => {
+    if (!items || items.length === 0) {
+        return (
+            <Card>
+                <EmptyState
+                    icon={<ExclamationCircleIcon />}
+                    title="Timeline information unavailable"
+                    description="Career and education history could not be loaded."
+                />
+            </Card>
+        )
+    }
+
     return (
         <ProfileSectionCard variant="compact" icon={icon} title={title}>
             {items.map((item) => (
