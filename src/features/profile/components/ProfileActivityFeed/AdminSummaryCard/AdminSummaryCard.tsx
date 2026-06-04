@@ -1,9 +1,10 @@
-import { Badge } from '@/shared/components'
+import { Badge, Card, EmptyState } from '@/shared/components'
 import {
     CalendarIcon,
     ChartBarIcon,
     ClockIcon,
     CubeIcon,
+    ExclamationCircleIcon,
     ShieldExclamationIcon,
     StatusOnlineIcon,
     UsersIcon,
@@ -25,6 +26,18 @@ export const AdminSummaryCard = ({
     users,
     profile,
 }: AdminSummaryCardProps) => {
+    if (!products || !users || !profile) {
+        return (
+            <Card>
+                <EmptyState
+                    icon={<ExclamationCircleIcon />}
+                    title="Admin summary unavailable"
+                    description="Administrative statistics and account summary information could not be loaded."
+                />
+            </Card>
+        )
+    }
+
     return (
         <ProfileSectionCard icon={<ChartBarIcon />} title="Admin Summary">
             <div className={styles.stats}>
