@@ -1,4 +1,6 @@
+import { Card, EmptyState } from '@/shared/components'
 import {
+    ExclamationCircleIcon,
     InformationCircleIcon,
     LocationMarkerIcon,
     MailIcon,
@@ -14,6 +16,18 @@ type ProfileContactInfoProps = {
 }
 
 export const ProfileContactInfo = ({ contact }: ProfileContactInfoProps) => {
+    if (!contact) {
+        return (
+            <Card>
+                <EmptyState
+                    icon={<ExclamationCircleIcon />}
+                    title="Contact information unavailable"
+                    description="Email address, phone number, and location details are currently unavailable."
+                />
+            </Card>
+        )
+    }
+
     return (
         <ProfileSectionCard
             variant="compact"
