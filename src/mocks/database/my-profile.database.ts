@@ -72,7 +72,7 @@ export const myProfileDatabase: UserProfile = {
         },
         {
             id: 4,
-            type: 'stock-updated',
+            type: 'product-image-uploaded',
             target: 'Airpods Max',
             createdAt: '2 days ago',
         },
