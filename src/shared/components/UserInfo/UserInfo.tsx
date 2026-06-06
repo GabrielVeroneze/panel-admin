@@ -7,6 +7,7 @@ type UserInfoProps = {
     email: string
     avatarUrl: string
     variant?: 'sm' | 'md'
+    onClick?: () => void
 }
 
 const avatarSizeByVariant = {
@@ -19,12 +20,18 @@ export const UserInfo = ({
     email,
     avatarUrl,
     variant = 'md',
+    onClick,
 }: UserInfoProps) => {
     const avatarSize = avatarSizeByVariant[variant]
 
     return (
         <div className={clsx(styles.container, styles[variant])}>
-            <UserAvatar src={avatarUrl} size={avatarSize} alt={name} />
+            <UserAvatar
+                src={avatarUrl}
+                size={avatarSize}
+                alt={name}
+                onClick={onClick}
+            />
             <div className={styles.text}>
                 <span className={styles.name}>{name}</span>
                 <span className={styles.email}>{email}</span>
