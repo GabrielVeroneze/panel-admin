@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router'
 import {
     Button,
     Checkbox,
@@ -37,6 +38,7 @@ export const UsersTable = ({
     onToggleSelectAll,
     allSelected,
 }: UsersTableProps) => {
+    const navigate = useNavigate()
     const isEmpty = !users || users.length === 0
 
     if (loading) return <DataTableSkeleton className={styles.table} />
@@ -91,6 +93,9 @@ export const UsersTable = ({
                                     avatarUrl={user.image}
                                     name={user.name}
                                     email={user.email}
+                                    onClick={() =>
+                                        navigate(`/users/${user.id}`)
+                                    }
                                 />
                             </TableCell>
                             <TableCell className={styles.position} size="lg">
