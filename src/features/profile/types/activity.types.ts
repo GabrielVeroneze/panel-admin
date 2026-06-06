@@ -1,9 +1,14 @@
 export type ActivityType =
+    | 'user-created'
+    | 'user-updated'
+    | 'user-deleted'
+    | 'product-created'
     | 'product-updated'
     | 'product-deleted'
-    | 'user-created'
-    | 'stock-updated'
+    | 'product-image-uploaded'
+    | 'profile-avatar-updated'
     | 'password-changed'
+    | 'admin-login'
 
 export type Activity = {
     id: number
