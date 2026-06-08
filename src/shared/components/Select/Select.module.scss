@@ -2,20 +2,34 @@
 
 .select {
     appearance: none;
-    background: url('@/shared/assets/icons/outline/chevron-down.svg') right $space-3
-        center / 14px no-repeat;
+    background: url('@/shared/assets/icons/outline/chevron-down.svg') right
+        $space-4 center / 14px no-repeat;
     background-color: $gray-light;
     border: $border solid $gray-base;
-    border-radius: $rounded;
     color: $gray-dark;
     cursor: pointer;
-    font-size: $text-xl;
     font-weight: $font-normal;
-    max-width: 240px;
-    padding: $space-2 $space-3;
     width: 100%;
 
     &:focus {
         outline: none;
+    }
+
+    &.small {
+        border-radius: $rounded;
+        font-size: $text-xl;
+        padding: $space-2 $space-3;
+    }
+
+    &.medium {
+        border-radius: $rounded-md;
+        font-size: $text-2xl;
+        padding: $space-3 $space-4;
+    }
+
+    &.large {
+        border-radius: $rounded-lg;
+        font-size: $text-3xl;
+        padding: $space-4 $space-5;
     }
 }
