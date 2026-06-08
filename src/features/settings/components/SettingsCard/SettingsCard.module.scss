@@ -1,0 +1,28 @@
+@use '@/styles/tokens' as *;
+
+.card {
+    .header {
+        display: flex;
+        flex-direction: column;
+        gap: $space-2;
+        padding-bottom: $space-4;
+
+        .title {
+            color: $gray-darkest;
+            font-size: $text-3xl;
+            font-weight: $font-bold;
+        }
+
+        .description {
+            color: $gray-dark;
+            font-size: $text-xl;
+            font-weight: $font-normal;
+        }
+    }
+
+    &.divider {
+        .header {
+            border-bottom: $border solid $gray-light;
+        }
+    }
+}
