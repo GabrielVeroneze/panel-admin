@@ -1,0 +1,32 @@
+@use '@/styles/tokens' as *;
+
+.card {
+    align-items: center;
+    display: flex;
+    gap: $space-4;
+    grid-area: profile;
+
+    .avatar {
+        border-radius: $rounded-sm;
+        height: 90px;
+        width: 90px;
+    }
+
+    .info {
+        .name {
+            color: $gray-darkest;
+            font-size: $text-4xl;
+            font-weight: $font-bold;
+        }
+
+        .role {
+            color: $gray-dark;
+            font-size: $text-2xl;
+            font-weight: $font-normal;
+        }
+
+        .button {
+            margin-top: $space-3-5;
+        }
+    }
+}
