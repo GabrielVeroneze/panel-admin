@@ -1,0 +1,38 @@
+import { Button, Card } from '@/shared/components'
+import { CogSolidIcon } from '@/shared/assets/icons'
+import type { SettingsProfile } from '@/features/settings/types'
+import styles from './ProfileSettings.module.scss'
+
+type ProfileSettingsProps = {
+    profile: SettingsProfile | null
+    loading: boolean
+}
+
+export const ProfileSettings = ({ profile, loading }: ProfileSettingsProps) => {
+    if (loading) return null
+
+    if (!profile) {
+        return null
+    }
+
+    return (
+        <Card className={styles.card}>
+            <img
+                className={styles.avatar}
+                src={profile.avatar}
+                alt={profile.name}
+            />
+            <div className={styles.info}>
+                <h3 className={styles.name}>{profile.name}</h3>
+                <p className={styles.role}>{profile.role}</p>
+                <Button
+                    className={styles.button}
+                    icon={<CogSolidIcon />}
+                    iconPosition="left"
+                >
+                    Change Picture
+                </Button>
+            </div>
+        </Card>
+    )
+}
