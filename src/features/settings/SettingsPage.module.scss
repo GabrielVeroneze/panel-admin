@@ -1,0 +1,15 @@
+@use '@/styles/tokens' as *;
+
+.settings {
+    display: grid;
+    flex-grow: 1;
+    gap: $space-3;
+    grid-template-areas:
+        'profile general'
+        'language general'
+        'social general'
+        'connected password'
+        'notifications email'
+        'devices devices';
+    grid-template-columns: repeat(2, 1fr);
+}
