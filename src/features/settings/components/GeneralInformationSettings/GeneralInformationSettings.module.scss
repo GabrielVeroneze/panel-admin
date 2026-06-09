@@ -1,0 +1,16 @@
+@use '@/styles/tokens' as *;
+
+.card {
+    grid-area: general;
+
+    .form {
+        display: grid;
+        gap: $space-5 $space-4;
+        grid-template-columns: repeat(2, 1fr);
+
+        .button {
+            grid-column: 1 / 2;
+            width: max-content;
+        }
+    }
+}
