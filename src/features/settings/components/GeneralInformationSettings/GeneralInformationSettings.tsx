@@ -6,9 +6,24 @@ import {
     SelectOption,
 } from '@/shared/components'
 import { SettingsCard } from '@/features/settings/components'
+import type { GeneralInformation } from '@/features/settings/types'
 import styles from './GeneralInformationSettings.module.scss'
 
-export const GeneralInformationSettings = () => {
+type GeneralInformationSettingsProps = {
+    data: GeneralInformation | null
+    loading: boolean
+}
+
+export const GeneralInformationSettings = ({
+    data,
+    loading,
+}: GeneralInformationSettingsProps) => {
+    if (loading) return null
+
+    if (!data) {
+        return null
+    }
+
     return (
         <SettingsCard className={styles.card} title="General information">
             <form className={styles.form}>
