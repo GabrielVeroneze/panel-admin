@@ -1,3 +1,5 @@
+import type { SocialAccount } from '@/features/settings/types'
+
 export type Settings = {
     profile: SettingsProfile
     preferences: SettingsPreferences
@@ -23,21 +25,16 @@ export type SettingsPreferences = {
 export type GeneralInformation = {
     firstName: string
     lastName: string
+    email: string
+    role: string
+    phone: string
+    birthDate: string
     organization: string
     department: string
-    email: string
-    phoneNumber: string
-    birthday: string
     address: string
     city: string
     country: string
-    postalCode: string
-}
-
-export type SocialAccount = {
-    id: number
-    platform: string
-    connected: boolean
+    zipCode: string
 }
 
 export type ConnectedAccount = {
