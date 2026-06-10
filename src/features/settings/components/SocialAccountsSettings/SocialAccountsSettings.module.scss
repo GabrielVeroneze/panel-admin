@@ -1,8 +1,9 @@
-@use '@/styles/tokens' as *;
+@use '@/styles/patterns' as *;
 
 .card {
     grid-area: social;
 
     .list {
+        @include settings-list;
     }
 }
