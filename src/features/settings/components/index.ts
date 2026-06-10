@@ -1,3 +1,4 @@
+export * from './ConnectedAccountsSettings/ConnectedAccountsSettings'
 export * from './GeneralInformationSettings/GeneralInformationSettings'
 export * from './LanguageTimeSettings/LanguageTimeSettings'
 export * from './ProfileSettings/ProfileSettings'
