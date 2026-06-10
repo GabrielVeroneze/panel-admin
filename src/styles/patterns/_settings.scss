@@ -1,0 +1,32 @@
+@use '@/styles/tokens' as *;
+
+@mixin settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+}
+
+@mixin settings-list-item {
+    align-items: center;
+    border-bottom: $border solid $gray-light;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: $space-4;
+
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: $space-0;
+    }
+}
+
+@mixin settings-list-info {
+    align-items: center;
+    display: flex;
+    gap: $space-2;
+}
+
+@mixin settings-list-content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+}
