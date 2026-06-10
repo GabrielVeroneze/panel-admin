@@ -1,0 +1,9 @@
+@use '@/styles/patterns' as *;
+
+.card {
+    grid-area: connected;
+
+    .list {
+        @include settings-list;
+    }
+}
