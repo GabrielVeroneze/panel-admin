@@ -1,4 +1,4 @@
-import type { SocialAccount } from '@/features/settings/types'
+import type { ConnectedAccount, SocialAccount } from '@/features/settings/types'
 
 export type Settings = {
     profile: SettingsProfile
@@ -35,13 +35,6 @@ export type GeneralInformation = {
     city: string
     country: string
     zipCode: string
-}
-
-export type ConnectedAccount = {
-    id: number
-    name: string
-    city: string
-    lastSeen: string
 }
 
 export type NotificationSettings = {
