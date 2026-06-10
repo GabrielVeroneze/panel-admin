@@ -1,6 +1,7 @@
 export * from './ConnectedAccountsSettings/ConnectedAccountsSettings'
 export * from './GeneralInformationSettings/GeneralInformationSettings'
 export * from './LanguageTimeSettings/LanguageTimeSettings'
+export * from './PasswordSettings/PasswordSettings'
 export * from './ProfileSettings/ProfileSettings'
 export * from './SettingsCard/SettingsCard'
 export * from './SocialAccountsSettings/SocialAccountsSettings'
