@@ -1,8 +1,11 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/patterns' as *;
 
 .item {
+    @include settings-list-item;
 
     .info {
+        @include settings-list-info;
 
         .icon {
             height: 32px;
@@ -10,6 +13,7 @@
         }
 
         .content {
+            @include settings-list-content;
 
             .title {
                 color: $gray-darkest;
