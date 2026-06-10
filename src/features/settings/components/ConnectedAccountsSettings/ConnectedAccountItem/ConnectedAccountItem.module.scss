@@ -1,0 +1,32 @@
+@use '@/styles/tokens' as *;
+@use '@/styles/patterns' as *;
+
+.item {
+    @include settings-list-item;
+
+    .info {
+        @include settings-list-info;
+
+        .content {
+            @include settings-list-content;
+
+            .name {
+                color: $gray-darkest;
+                font-size: $text-2xl;
+                font-weight: $font-semibold;
+            }
+
+            .city {
+                color: $blue-dark;
+                font-size: $text-xl;
+                font-weight: $font-medium;
+            }
+
+            .lastSeen {
+                color: $gray-dark;
+                font-size: $text-lg;
+                font-weight: $font-normal;
+            }
+        }
+    }
+}
