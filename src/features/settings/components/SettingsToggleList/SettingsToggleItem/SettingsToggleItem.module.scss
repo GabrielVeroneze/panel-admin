@@ -1,0 +1,33 @@
+@use '@/styles/tokens' as *;
+
+.item {
+    align-items: center;
+    border-bottom: $border solid $gray-light;
+    display: flex;
+    gap: $space-4;
+    justify-content: space-between;
+    padding-bottom: $space-4;
+
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: $space-0;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: $space-1-5;
+
+        .label {
+            color: $gray-darkest;
+            font-size: $text-2xl;
+            font-weight: $font-semibold;
+        }
+
+        .description {
+            color: $gray-dark;
+            font-size: $text-xl;
+            font-weight: $font-normal;
+        }
+    }
+}
