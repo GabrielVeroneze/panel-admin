@@ -14,10 +14,6 @@
 
         &:checked + .track {
             background-color: $blue-dark;
-
-            .thumb {
-                transform: translateX(12px);
-            }
         }
 
         &:focus + .track {
@@ -30,23 +26,90 @@
         background-color: $gray-base;
         border-radius: $rounded;
         display: flex;
-        height: 14px;
         padding: $space-px;
         transition: background-color 120ms ease-in-out;
-        width: 26px;
 
         .thumb {
             background-color: $white;
             border-radius: $rounded-full;
-            height: 12px;
             transition: transform 120ms ease-in-out;
-            width: 12px;
         }
     }
 
     .label {
         color: $gray-dark;
-        font-size: $text-xl;
         font-weight: $font-normal;
+    }
+
+    &.small {
+        .input {
+            &:checked + .track {
+                .thumb {
+                    transform: translateX(10px);
+                }
+            }
+        }
+
+        .track {
+            height: 12px;
+            width: 22px;
+
+            .thumb {
+                height: 10px;
+                width: 10px;
+            }
+        }
+
+        .label {
+            font-size: $text-lg;
+        }
+    }
+
+    &.medium {
+        .input {
+            &:checked + .track {
+                .thumb {
+                    transform: translateX(12px);
+                }
+            }
+        }
+
+        .track {
+            height: 14px;
+            width: 26px;
+
+            .thumb {
+                height: 12px;
+                width: 12px;
+            }
+        }
+
+        .label {
+            font-size: $text-xl;
+        }
+    }
+
+    &.large {
+        .input {
+            &:checked + .track {
+                .thumb {
+                    transform: translateX(18px);
+                }
+            }
+        }
+
+        .track {
+            height: 20px;
+            width: 38px;
+
+            .thumb {
+                height: 18px;
+                width: 18px;
+            }
+        }
+
+        .label {
+            font-size: $text-2xl;
+        }
     }
 }
