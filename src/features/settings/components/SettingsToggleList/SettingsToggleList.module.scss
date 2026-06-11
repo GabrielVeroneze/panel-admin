@@ -1,0 +1,9 @@
+@use '@/styles/tokens' as *;
+
+.list {
+    border-top: $border solid $gray-light;
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    padding-top: $space-4;
+}
