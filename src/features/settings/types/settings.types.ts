@@ -1,4 +1,8 @@
-import type { ConnectedAccount, SocialAccount } from '@/features/settings/types'
+import type {
+    ConnectedAccount,
+    DeviceSession,
+    SocialAccount,
+} from '@/features/settings/types'
 
 export type Settings = {
     profile: SettingsProfile
@@ -49,12 +53,4 @@ export type EmailSettings = {
     itemUpdateNotifications: boolean
     itemCommentNotifications: boolean
     buyerReviewNotifications: boolean
-}
-
-export type DeviceSession = {
-    id: number
-    browser: string
-    device: string
-    location: string
-    lastAccessed: string
 }
