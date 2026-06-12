@@ -1,0 +1,13 @@
+@use '@/styles/tokens' as *;
+
+.card {
+    grid-area: devices;
+
+    .table {
+        --table-columns: 2.5fr 3fr 3.5fr 2fr minmax(50px, 1fr);
+
+        .browser {
+            font-weight: $font-semibold;
+        }
+    }
+}
