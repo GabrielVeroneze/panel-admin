@@ -1,4 +1,5 @@
 export * from './connected-account.types'
+export * from './device-session.types'
 export * from './forms.types'
 export * from './settings.types'
 export * from './settings-toggle.types'
