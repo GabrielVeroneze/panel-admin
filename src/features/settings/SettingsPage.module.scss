@@ -4,13 +4,31 @@
     display: grid;
     flex-grow: 1;
     gap: $space-3;
-    grid-template-areas:
-        'profile general'
-        'language general'
-        'social general'
-        'connected password'
-        'notifications email'
-        'devices devices';
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, max-content);
+
+    .topSection,
+    .middleSection,
+    .bottomSection {
+        display: grid;
+        gap: $space-3;
+    }
+
+    .topSection {
+        grid-template-areas:
+            'profile general'
+            'language general'
+            'social general';
+        grid-template-columns: 3fr 5fr;
+    }
+
+    .middleSection {
+        grid-template-areas: 'connected password';
+        grid-template-columns: 3fr 5fr;
+    }
+
+    .bottomSection {
+        grid-template-areas:
+            'notifications email'
+            'devices devices';
+        grid-template-columns: 1fr 1fr;
+    }
 }
