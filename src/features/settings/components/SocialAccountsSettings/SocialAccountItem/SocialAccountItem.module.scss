@@ -8,6 +8,7 @@
         @include settings-list-info;
 
         .icon {
+            flex-shrink: 0;
             height: 32px;
             width: 32px;
         }
@@ -25,6 +26,7 @@
                 color: $blue-dark;
                 font-size: $text-xl;
                 font-weight: $font-medium;
+                word-break: break-all;
             }
 
             .text {
