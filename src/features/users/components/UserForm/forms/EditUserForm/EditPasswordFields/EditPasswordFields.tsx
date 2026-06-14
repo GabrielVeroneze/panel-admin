@@ -1,7 +1,6 @@
 import { useFormContext, useFormState } from 'react-hook-form'
 import { FormField, Input } from '@/shared/components'
 import type { UpdateUserFormValues } from '@/features/users/schemas'
-import styles from './EditPasswordFields.module.scss'
 
 export const EditPasswordFields = () => {
     const { register, control } = useFormContext<UpdateUserFormValues>()
@@ -17,7 +16,6 @@ export const EditPasswordFields = () => {
                 message={errors.currentPassword?.message}
             >
                 <Input
-                    className={styles.input}
                     type="password"
                     placeholder="Enter current password"
                     size="large"
@@ -32,7 +30,6 @@ export const EditPasswordFields = () => {
                 message={errors.newPassword?.message}
             >
                 <Input
-                    className={styles.input}
                     type="password"
                     placeholder="Enter new password"
                     size="large"

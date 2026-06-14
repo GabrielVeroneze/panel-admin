@@ -2,7 +2,6 @@ import { useFormContext, useFormState } from 'react-hook-form'
 import { FormField, Input } from '@/shared/components'
 import { PhoneField } from '@/features/users/components'
 import type { BaseUserFieldsValues } from '@/features/users/schemas'
-import styles from './CommonUserFields.module.scss'
 
 export const CommonUserFields = () => {
     const { register, control } = useFormContext<BaseUserFieldsValues>()
@@ -18,7 +17,6 @@ export const CommonUserFields = () => {
                 message={errors.firstName?.message}
             >
                 <Input
-                    className={styles.input}
                     type="text"
                     placeholder="Enter first name"
                     size="large"
@@ -33,7 +31,6 @@ export const CommonUserFields = () => {
                 message={errors.lastName?.message}
             >
                 <Input
-                    className={styles.input}
                     type="text"
                     placeholder="Enter last name"
                     size="large"
@@ -48,7 +45,6 @@ export const CommonUserFields = () => {
                 message={errors.email?.message}
             >
                 <Input
-                    className={styles.input}
                     type="email"
                     placeholder="Enter email address"
                     size="large"
@@ -64,7 +60,6 @@ export const CommonUserFields = () => {
                 message={errors.company?.message}
             >
                 <Input
-                    className={styles.input}
                     type="text"
                     placeholder="Enter company name"
                     size="large"
@@ -79,7 +74,6 @@ export const CommonUserFields = () => {
                 message={errors.department?.message}
             >
                 <Input
-                    className={styles.input}
                     type="text"
                     placeholder="Enter department name"
                     size="large"
