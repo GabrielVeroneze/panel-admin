@@ -1,10 +1,6 @@
 @use '@/styles/mixins' as *;
 @use '@/styles/patterns' as *;
 
-.input {
-    @include input-full;
-}
-
 .textareaField {
     grid-column: span 2;
 
