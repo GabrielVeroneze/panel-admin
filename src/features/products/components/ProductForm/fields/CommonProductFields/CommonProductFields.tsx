@@ -18,7 +18,6 @@ export const CommonProductFields = () => {
                 message={errors.name?.message}
             >
                 <Input
-                    className={styles.input}
                     type="text"
                     placeholder="Enter product name"
                     size="large"
@@ -33,7 +32,6 @@ export const CommonProductFields = () => {
                 message={errors.category?.message}
             >
                 <Input
-                    className={styles.input}
                     type="text"
                     placeholder="Enter category"
                     size="large"
@@ -48,7 +46,6 @@ export const CommonProductFields = () => {
                 message={errors.brand?.message}
             >
                 <Input
-                    className={styles.input}
                     type="text"
                     placeholder="Enter brand"
                     size="large"
