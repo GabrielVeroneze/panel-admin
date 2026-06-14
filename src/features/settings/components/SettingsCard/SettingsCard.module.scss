@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .card {
     .header {
@@ -23,6 +24,21 @@
     &.divider {
         .header {
             border-bottom: $border solid $gray-light;
+        }
+    }
+
+    @include media-down(lg) {
+        .header {
+            gap: $space-1-5;
+            padding-bottom: $space-3;
+
+            .title {
+                font-size: $text-2xl;
+            }
+
+            .description {
+                font-size: $text-lg;
+            }
         }
     }
 }
