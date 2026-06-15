@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .card {
     grid-area: language;
@@ -7,5 +8,16 @@
         display: flex;
         flex-direction: column;
         gap: $space-5;
+    }
+
+    @include media-down(lg) {
+        .form {
+            flex-direction: row;
+            gap: $space-3-5;
+
+            .field {
+                flex-grow: 1;
+            }
+        }
     }
 }
