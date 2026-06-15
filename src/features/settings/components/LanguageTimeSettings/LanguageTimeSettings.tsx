@@ -21,12 +21,22 @@ export const LanguageTimeSettings = ({
     return (
         <SettingsCard className={styles.card} title="Language & Time">
             <form className={styles.form}>
-                <FormField id="language" label="Select Language" size="large">
+                <FormField
+                    className={styles.field}
+                    id="language"
+                    label="Select Language"
+                    size="large"
+                >
                     <Select size="medium">
                         <SelectOption>English (UK)</SelectOption>
                     </Select>
                 </FormField>
-                <FormField id="timezone" label="Select Timezone" size="large">
+                <FormField
+                    className={styles.field}
+                    id="timezone"
+                    label="Select Timezone"
+                    size="large"
+                >
                     <Select size="medium">
                         <SelectOption>GMT+01:00</SelectOption>
                     </Select>
