@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .item {
     align-items: center;
@@ -28,6 +29,18 @@
             color: $gray-dark;
             font-size: $text-xl;
             font-weight: $font-normal;
+        }
+    }
+
+    @include media-down(lg) {
+        .content {
+            .label {
+                font-size: $text-xl;
+            }
+
+            .description {
+                font-size: $text-lg;
+            }
         }
     }
 }
