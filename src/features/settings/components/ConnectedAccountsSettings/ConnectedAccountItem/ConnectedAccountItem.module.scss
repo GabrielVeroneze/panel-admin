@@ -1,5 +1,6 @@
 @use '@/styles/tokens' as *;
 @use '@/styles/patterns' as *;
+@use '@/styles/mixins' as *;
 
 .item {
     @include settings-list-item;
@@ -26,6 +27,24 @@
                 color: $gray-dark;
                 font-size: $text-lg;
                 font-weight: $font-normal;
+            }
+        }
+    }
+
+    @include media-down(lg) {
+        .info {
+            .content {
+                .name {
+                    font-size: $text-xl;
+                }
+
+                .city {
+                    font-size: $text-lg;
+                }
+
+                .lastSeen {
+                    font-size: $text-base;
+                }
             }
         }
     }
