@@ -1,9 +1,14 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 @mixin settings-list {
     display: flex;
     flex-direction: column;
     gap: $space-4;
+
+    @include media-down(sm) {
+        gap: $space-3;
+    }
 }
 
 @mixin settings-list-item {
@@ -17,6 +22,14 @@
     &:last-child {
         border-bottom: none;
         padding-bottom: $space-0;
+    }
+
+    @include media-down(sm) {
+        align-items: start;
+        flex-direction: column;
+        gap: $space-3;
+        justify-content: start;
+        padding-bottom: $space-3;
     }
 }
 
