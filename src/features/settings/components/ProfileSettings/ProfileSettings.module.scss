@@ -46,4 +46,18 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        flex-direction: column;
+        gap: $space-3;
+
+        .avatar {
+            height: 80px;
+            width: 80px;
+        }
+
+        .info {
+            text-align: center;
+        }
+    }
 }
