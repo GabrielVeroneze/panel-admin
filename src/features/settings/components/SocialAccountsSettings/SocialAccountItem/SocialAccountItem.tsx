@@ -32,6 +32,7 @@ export const SocialAccountItem = ({ account }: SocialAccountItemProps) => {
                 </div>
             </div>
             <Button
+                className={styles.button}
                 size="lg"
                 variant={account.connected ? 'transparent' : 'primary'}
             >
