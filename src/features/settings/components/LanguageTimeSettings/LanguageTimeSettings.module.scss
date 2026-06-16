@@ -20,4 +20,10 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        .form {
+            flex-direction: column;
+        }
+    }
 }
