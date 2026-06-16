@@ -60,4 +60,31 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        .info {
+            .icon {
+                height: 32px;
+                width: 32px;
+            }
+
+            .content {
+                .title {
+                    font-size: $text-2xl;
+                }
+
+                .link {
+                    font-size: $text-xl;
+                }
+
+                .text {
+                    font-size: $text-xl;
+                }
+            }
+        }
+
+        .button {
+            width: 100%;
+        }
+    }
 }
