@@ -21,4 +21,14 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        .table {
+            --table-columns: 3fr 3fr minmax(45px, 1fr);
+
+            .lastAccessed {
+                display: none;
+            }
+        }
+    }
 }
