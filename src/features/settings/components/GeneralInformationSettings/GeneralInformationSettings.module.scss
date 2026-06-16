@@ -25,4 +25,15 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        .form {
+            gap: $space-5;
+            grid-template-columns: 1fr;
+
+            .button {
+                grid-column: 1 / 2;
+            }
+        }
+    }
 }
