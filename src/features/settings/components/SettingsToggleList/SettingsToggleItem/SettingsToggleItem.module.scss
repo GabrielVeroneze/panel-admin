@@ -43,4 +43,18 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        padding-bottom: $space-5;
+
+        .content {
+            .label {
+                font-size: $text-2xl;
+            }
+
+            .description {
+                font-size: $text-xl;
+            }
+        }
+    }
 }
