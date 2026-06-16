@@ -48,4 +48,26 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        .info {
+            .content {
+                .name {
+                    font-size: $text-2xl;
+                }
+
+                .city {
+                    font-size: $text-xl;
+                }
+
+                .lastSeen {
+                    font-size: $text-lg;
+                }
+            }
+        }
+
+        .button {
+            width: 100%;
+        }
+    }
 }
