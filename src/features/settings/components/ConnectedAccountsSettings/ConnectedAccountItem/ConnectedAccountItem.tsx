@@ -21,7 +21,7 @@ export const ConnectedAccountItem = ({
                     </span>
                 </div>
             </div>
-            <Button size="lg" variant="transparent">
+            <Button className={styles.button} size="lg" variant="transparent">
                 Disconnect
             </Button>
         </div>
