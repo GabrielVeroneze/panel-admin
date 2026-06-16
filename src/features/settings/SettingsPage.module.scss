@@ -64,4 +64,14 @@
                 'devices';
         }
     }
+
+    @include media-down(sm) {
+        gap: $space-3;
+
+        .topSection,
+        .middleSection,
+        .bottomSection {
+            gap: $space-3;
+        }
+    }
 }
