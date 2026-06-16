@@ -1,4 +1,5 @@
 @use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
 
 .list {
     border-top: $border solid $gray-light;
@@ -6,4 +7,9 @@
     flex-direction: column;
     gap: $space-4;
     padding-top: $space-4;
+
+    @include media-down(sm) {
+        gap: $space-5;
+        padding-top: $space-5;
+    }
 }
