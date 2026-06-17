@@ -1,22 +1,23 @@
 import {
     SettingsCard,
+    SettingsToggleItem,
     SettingsToggleList,
 } from '@/features/settings/components'
-import type { SettingsToggle } from '@/features/settings/types'
+import type { NotificationPreferences } from '@/features/settings/types'
 import styles from './NotificationSettings.module.scss'
 
 type NotificationSettingsProps = {
-    notifications: SettingsToggle[] | null
+    notificationPreferences: NotificationPreferences | null
     loading: boolean
 }
 
 export const NotificationSettings = ({
-    notifications,
+    notificationPreferences,
     loading,
 }: NotificationSettingsProps) => {
     if (loading) return null
 
-    if (!notifications || notifications.length === 0) {
+    if (!notificationPreferences) {
         return null
     }
 
@@ -26,7 +27,28 @@ export const NotificationSettings = ({
             title="Alerts & Notifications"
             description="Manage how and when you receive notifications"
         >
-            <SettingsToggleList items={notifications} />
+            <SettingsToggleList>
+                <SettingsToggleItem
+                    label="Company News"
+                    description="Receive news, announcements, and updates about the platform"
+                    enabled={notificationPreferences.companyNews}
+                />
+                <SettingsToggleItem
+                    label="Account Activity"
+                    description="Receive important notifications about your account and recent activity"
+                    enabled={notificationPreferences.accountActivity}
+                />
+                <SettingsToggleItem
+                    label="Meetups Near You"
+                    description="Receive notifications about events and meetups happening near your location"
+                    enabled={notificationPreferences.meetupsNearYou}
+                />
+                <SettingsToggleItem
+                    label="New Messages"
+                    description="Receive notifications when you get new messages or conversations"
+                    enabled={notificationPreferences.newMessages}
+                />
+            </SettingsToggleList>
         </SettingsCard>
     )
 }
