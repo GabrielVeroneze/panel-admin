@@ -2,18 +2,20 @@ import { Switch } from '@/shared/components'
 import type { SettingsToggle } from '@/features/settings/types'
 import styles from './SettingsToggleItem.module.scss'
 
-type SettingsToggleItemProps = {
-    setting: SettingsToggle
-}
+type SettingsToggleItemProps = SettingsToggle
 
-export const SettingsToggleItem = ({ setting }: SettingsToggleItemProps) => {
+export const SettingsToggleItem = ({
+    label,
+    description,
+    enabled,
+}: SettingsToggleItemProps) => {
     return (
         <div className={styles.item}>
             <div className={styles.content}>
-                <h4 className={styles.label}>{setting.label}</h4>
-                <p className={styles.description}>{setting.description}</p>
+                <h4 className={styles.label}>{label}</h4>
+                <p className={styles.description}>{description}</p>
             </div>
-            <Switch checked={setting.enabled} size="large" />
+            <Switch checked={enabled} size="large" />
         </div>
     )
 }
