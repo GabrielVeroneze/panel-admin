@@ -1,6 +1,7 @@
 export { dashboardDatabase } from './dashboard.database'
 export { myProfileDatabase } from './my-profile.database'
 export { productsDatabase } from './products.database'
+export { settingsDatabase } from './settings.database'
 export { usersProfilesDatabase } from './users-profiles.database'
 export { usersDatabase } from './users.database'
 export type { DatabaseUser } from './users.database'
