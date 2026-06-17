@@ -10,8 +10,8 @@ export type Settings = {
     generalInformation: GeneralInformation
     socialAccounts: SocialAccount[]
     connectedAccounts: ConnectedAccount[]
-    notifications: NotificationSettings
-    emailSettings: EmailSettings
+    notifications: NotificationPreferences
+    emailSettings: EmailPreferences
     recentDevices: DeviceSession[]
 }
 
@@ -41,14 +41,14 @@ export type GeneralInformation = {
     zipCode: string
 }
 
-export type NotificationSettings = {
+export type NotificationPreferences = {
     companyNews: boolean
     accountActivity: boolean
     meetupsNearYou: boolean
     newMessages: boolean
 }
 
-export type EmailSettings = {
+export type EmailPreferences = {
     ratingReminders: boolean
     itemUpdateNotifications: boolean
     itemCommentNotifications: boolean
