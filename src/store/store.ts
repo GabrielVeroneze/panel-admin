@@ -3,6 +3,7 @@ import { dashboardReducer } from '@/features/dashboard/store'
 import { usersReducer } from '@/features/users/store'
 import { productsReducer } from '@/features/products/store'
 import { profileReducer } from '@/features/profile/store'
+import { settingsReducer } from '@/features/settings/store'
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
         users: usersReducer,
         products: productsReducer,
         profile: profileReducer,
+        settings: settingsReducer,
     },
 })
 
