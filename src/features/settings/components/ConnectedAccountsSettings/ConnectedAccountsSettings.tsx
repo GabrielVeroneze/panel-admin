@@ -4,7 +4,7 @@ import type { ConnectedAccount } from '@/features/settings/types'
 import styles from './ConnectedAccountsSettings.module.scss'
 
 type ConnectedAccountsSettingsProps = {
-    accounts: ConnectedAccount[] | null
+    accounts?: ConnectedAccount[]
     loading: boolean
 }
 

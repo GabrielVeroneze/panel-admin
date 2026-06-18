@@ -7,7 +7,7 @@ import type { EmailPreferences } from '@/features/settings/types'
 import styles from './EmailSettings.module.scss'
 
 type EmailSettingsProps = {
-    emailPreferences: EmailPreferences | null
+    emailPreferences?: EmailPreferences
     loading: boolean
 }
 

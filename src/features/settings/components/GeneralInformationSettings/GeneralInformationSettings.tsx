@@ -10,7 +10,7 @@ import type { GeneralInformation } from '@/features/settings/types'
 import styles from './GeneralInformationSettings.module.scss'
 
 type GeneralInformationSettingsProps = {
-    data: GeneralInformation | null
+    data?: GeneralInformation
     loading: boolean
 }
 

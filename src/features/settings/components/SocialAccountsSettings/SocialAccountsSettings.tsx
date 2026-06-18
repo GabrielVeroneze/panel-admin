@@ -4,7 +4,7 @@ import type { SocialAccount } from '@/features/settings/types'
 import styles from './SocialAccountsSettings.module.scss'
 
 type SocialAccountsSettingsProps = {
-    accounts: SocialAccount[] | null
+    accounts?: SocialAccount[]
     loading: boolean
 }
 

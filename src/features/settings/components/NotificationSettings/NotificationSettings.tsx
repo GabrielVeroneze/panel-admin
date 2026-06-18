@@ -7,7 +7,7 @@ import type { NotificationPreferences } from '@/features/settings/types'
 import styles from './NotificationSettings.module.scss'
 
 type NotificationSettingsProps = {
-    notificationPreferences: NotificationPreferences | null
+    notificationPreferences?: NotificationPreferences
     loading: boolean
 }
 

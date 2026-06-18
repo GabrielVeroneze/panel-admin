@@ -4,7 +4,7 @@ import type { SettingsPreferences } from '@/features/settings/types'
 import styles from './LanguageTimeSettings.module.scss'
 
 type LanguageTimeSettingsProps = {
-    preferences: SettingsPreferences | null
+    preferences?: SettingsPreferences
     loading: boolean
 }
 

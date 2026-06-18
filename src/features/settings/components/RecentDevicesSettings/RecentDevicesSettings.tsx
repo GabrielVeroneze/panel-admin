@@ -11,7 +11,7 @@ import type { DeviceSession } from '@/features/settings/types'
 import styles from './RecentDevicesSettings.module.scss'
 
 type RecentDevicesSettingsProps = {
-    devices: DeviceSession[] | null
+    devices?: DeviceSession[]
     loading: boolean
 }
 

@@ -4,7 +4,7 @@ import type { SettingsProfile } from '@/features/settings/types'
 import styles from './ProfileSettings.module.scss'
 
 type ProfileSettingsProps = {
-    profile: SettingsProfile | null
+    profile?: SettingsProfile
     loading: boolean
 }
 
