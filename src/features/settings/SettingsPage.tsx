@@ -1,3 +1,4 @@
+import { useSettings } from './hooks'
 import {
     ConnectedAccountsSettings,
     EmailSettings,
@@ -12,37 +13,48 @@ import {
 import styles from './SettingsPage.module.scss'
 
 export const SettingsPage = () => {
+    const { settings, loading } = useSettings()
+
     return (
         <section className={styles.settings}>
             <div className={styles.topSection}>
-                <ProfileSettings profile={profile} loading={false} />
+                <ProfileSettings
+                    profile={settings?.profile}
+                    loading={loading}
+                />
                 <LanguageTimeSettings
-                    preferences={preferences}
-                    loading={false}
+                    preferences={settings?.preferences}
+                    loading={loading}
                 />
                 <SocialAccountsSettings
-                    accounts={socialAccounts}
-                    loading={false}
+                    accounts={settings?.socialAccounts}
+                    loading={loading}
                 />
                 <GeneralInformationSettings
-                    data={generalInformation}
-                    loading={false}
+                    data={settings?.generalInformation}
+                    loading={loading}
                 />
             </div>
             <div className={styles.middleSection}>
                 <ConnectedAccountsSettings
-                    accounts={connectedAccounts}
-                    loading={false}
+                    accounts={settings?.connectedAccounts}
+                    loading={loading}
                 />
-                <PasswordSettings loading={false} />
+                <PasswordSettings loading={loading} />
             </div>
             <div className={styles.bottomSection}>
                 <NotificationSettings
-                    notifications={notifications}
-                    loading={false}
+                    notificationPreferences={settings?.notifications}
+                    loading={loading}
                 />
-                <EmailSettings emailSettings={emailSettings} loading={false} />
-                <RecentDevicesSettings devices={devices} loading={false} />
+                <EmailSettings
+                    emailPreferences={settings?.emailSettings}
+                    loading={loading}
+                />
+                <RecentDevicesSettings
+                    devices={settings?.recentDevices}
+                    loading={loading}
+                />
             </div>
         </section>
     )
