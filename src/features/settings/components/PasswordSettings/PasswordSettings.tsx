@@ -67,14 +67,14 @@ export const PasswordSettings = ({ loading }: PasswordSettingsProps) => {
                     </p>
                     <ul className={styles.list}>
                         <li className={styles.item}>
-                            At least 10 characters (and up to 100 characters)
+                            Between 8 and 100 characters long
                         </li>
                         <li className={styles.item}>
-                            At least one lowercase character
+                            Include both uppercase and lowercase letters
                         </li>
                         <li className={styles.item}>
-                            Inclusion of at least one special character, e.g. !
-                            @ # ?
+                            Include at least one number and one special
+                            character
                         </li>
                     </ul>
                 </div>
