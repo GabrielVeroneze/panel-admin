@@ -1,4 +1,5 @@
 import { FormField, Select, SelectOption } from '@/shared/components'
+import { useLanguageTimeForm } from '@/features/settings/hooks'
 import { SettingsCard } from '@/features/settings/components'
 import { languageOptions, timezoneOptions } from './languageTimeOptions'
 import type { SettingsPreferences } from '@/features/settings/types'
@@ -13,6 +14,11 @@ export const LanguageTimeSettings = ({
     preferences,
     loading,
 }: LanguageTimeSettingsProps) => {
+    const {
+        register,
+        formState: { errors },
+    } = useLanguageTimeForm(preferences)
+
     if (loading) return null
 
     if (!preferences) {
@@ -27,8 +33,10 @@ export const LanguageTimeSettings = ({
                     id="language"
                     label="Select Language"
                     size="large"
+                    status={errors.language && 'error'}
+                    message={errors.language?.message}
                 >
-                    <Select size="medium">
+                    <Select size="medium" {...register('language')}>
                         {languageOptions.map((language) => (
                             <SelectOption
                                 key={language.value}
@@ -44,8 +52,10 @@ export const LanguageTimeSettings = ({
                     id="timezone"
                     label="Select Timezone"
                     size="large"
+                    status={errors.timezone && 'error'}
+                    message={errors.timezone?.message}
                 >
-                    <Select size="medium">
+                    <Select size="medium" {...register('timezone')}>
                         {timezoneOptions.map((timezone) => (
                             <SelectOption
                                 key={timezone.value}
