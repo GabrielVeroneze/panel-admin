@@ -1,4 +1,5 @@
 import { Button, FormField, Input } from '@/shared/components'
+import { usePasswordForm } from '@/features/settings/hooks'
 import { SettingsCard } from '@/features/settings/components'
 import styles from './PasswordSettings.module.scss'
 
@@ -7,6 +8,11 @@ type PasswordSettingsProps = {
 }
 
 export const PasswordSettings = ({ loading }: PasswordSettingsProps) => {
+    const {
+        register,
+        formState: { errors },
+    } = usePasswordForm()
+
     if (loading) return null
 
     return (
@@ -16,29 +22,42 @@ export const PasswordSettings = ({ loading }: PasswordSettingsProps) => {
                     id="current-password"
                     label="Current Password"
                     size="large"
+                    status={errors.currentPassword && 'error'}
+                    message={errors.currentPassword?.message}
                 >
                     <Input
                         type="password"
                         placeholder="Enter your current password"
                         size="large"
+                        {...register('currentPassword')}
                     />
                 </FormField>
-                <FormField id="new-password" label="New Password" size="large">
+                <FormField
+                    id="new-password"
+                    label="New Password"
+                    size="large"
+                    status={errors.newPassword && 'error'}
+                    message={errors.newPassword?.message}
+                >
                     <Input
                         type="password"
                         placeholder="Enter your new password"
                         size="large"
+                        {...register('newPassword')}
                     />
                 </FormField>
                 <FormField
                     id="confirm-password"
                     label="Confirm Password"
                     size="large"
+                    status={errors.confirmPassword && 'error'}
+                    message={errors.confirmPassword?.message}
                 >
                     <Input
                         type="password"
                         placeholder="Confirm your new password"
                         size="large"
+                        {...register('confirmPassword')}
                     />
                 </FormField>
                 <div className={styles.requirements}>
