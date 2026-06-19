@@ -6,6 +6,7 @@ import {
     SelectOption,
 } from '@/shared/components'
 import { SettingsCard } from '@/features/settings/components'
+import { countryOptions } from './countryOptions'
 import type { GeneralInformation } from '@/features/settings/types'
 import styles from './GeneralInformationSettings.module.scss'
 
@@ -87,7 +88,14 @@ export const GeneralInformationSettings = ({
                 </FormField>
                 <FormField id="country" label="Country" size="large">
                     <Select size="medium">
-                        <SelectOption>United States</SelectOption>
+                        {countryOptions.map((country) => (
+                            <SelectOption
+                                key={country.value}
+                                value={country.value}
+                            >
+                                {country.label}
+                            </SelectOption>
+                        ))}
                     </Select>
                 </FormField>
                 <FormField id="zip-code" label="Zip Code" size="large">
