@@ -1,5 +1,6 @@
 import { FormField, Select, SelectOption } from '@/shared/components'
 import { SettingsCard } from '@/features/settings/components'
+import { languageOptions, timezoneOptions } from './languageTimeOptions'
 import type { SettingsPreferences } from '@/features/settings/types'
 import styles from './LanguageTimeSettings.module.scss'
 
@@ -28,7 +29,14 @@ export const LanguageTimeSettings = ({
                     size="large"
                 >
                     <Select size="medium">
-                        <SelectOption>English (UK)</SelectOption>
+                        {languageOptions.map((language) => (
+                            <SelectOption
+                                key={language.value}
+                                value={language.value}
+                            >
+                                {language.label}
+                            </SelectOption>
+                        ))}
                     </Select>
                 </FormField>
                 <FormField
@@ -38,7 +46,14 @@ export const LanguageTimeSettings = ({
                     size="large"
                 >
                     <Select size="medium">
-                        <SelectOption>GMT+01:00</SelectOption>
+                        {timezoneOptions.map((timezone) => (
+                            <SelectOption
+                                key={timezone.value}
+                                value={timezone.value}
+                            >
+                                {timezone.label}
+                            </SelectOption>
+                        ))}
                     </Select>
                 </FormField>
             </form>
