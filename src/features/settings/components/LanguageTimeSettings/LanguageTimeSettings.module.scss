@@ -8,15 +8,24 @@
         display: flex;
         flex-direction: column;
         gap: $space-5;
+
+        .button {
+            width: max-content;
+        }
     }
 
     @include media-down(lg) {
         .form {
             flex-direction: row;
+            flex-wrap: wrap;
             gap: $space-3-5;
 
             .field {
                 flex-grow: 1;
+            }
+
+            .button {
+                width: 100%;
             }
         }
     }
