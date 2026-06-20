@@ -22,6 +22,7 @@ export const GeneralInformationSettings = ({
 }: GeneralInformationSettingsProps) => {
     const {
         register,
+        onSubmit,
         formState: { errors },
     } = useGeneralInformationForm(data)
 
@@ -33,7 +34,7 @@ export const GeneralInformationSettings = ({
 
     return (
         <SettingsCard className={styles.card} title="General information">
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={onSubmit}>
                 <FormField
                     id="first-name"
                     label="First Name"
@@ -205,7 +206,7 @@ export const GeneralInformationSettings = ({
                         {...register('zipCode')}
                     />
                 </FormField>
-                <Button className={styles.button} size="lg">
+                <Button className={styles.button} type="submit" size="lg">
                     Update
                 </Button>
             </form>
