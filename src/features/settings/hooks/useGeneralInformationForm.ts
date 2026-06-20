@@ -1,5 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useAppDispatch } from '@/store'
+import { saveGeneralInformation } from '../store'
 import {
     generalInformationSchema,
     type GeneralInformationFormValues,
@@ -22,11 +24,22 @@ const defaultValues: GeneralInformationFormValues = {
 }
 
 export const useGeneralInformationForm = (data?: GeneralInformation) => {
+    const dispatch = useAppDispatch()
+
     const form = useForm<GeneralInformationFormValues>({
         resolver: zodResolver(generalInformationSchema),
         defaultValues: data ?? defaultValues,
         mode: 'onTouched',
     })
 
-    return form
+    const { handleSubmit } = form
+
+    const onSubmit = handleSubmit(async (values) => {
+        await dispatch(saveGeneralInformation(values))
+    })
+
+    return {
+        ...form,
+        onSubmit,
+    }
 }
