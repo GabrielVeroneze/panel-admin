@@ -1,5 +1,6 @@
 import { Button, Card } from '@/shared/components'
 import { CogSolidIcon } from '@/shared/assets/icons'
+import { useProfileAvatar } from '@/features/settings/hooks'
 import type { SettingsProfile } from '@/features/settings/types'
 import styles from './ProfileSettings.module.scss'
 
@@ -9,6 +10,8 @@ type ProfileSettingsProps = {
 }
 
 export const ProfileSettings = ({ profile, loading }: ProfileSettingsProps) => {
+    const { inputRef, handleFileChange, openFilePicker } = useProfileAvatar()
+
     if (loading) return null
 
     if (!profile) {
@@ -29,9 +32,17 @@ export const ProfileSettings = ({ profile, loading }: ProfileSettingsProps) => {
                     className={styles.button}
                     icon={<CogSolidIcon />}
                     iconPosition="left"
+                    onClick={openFilePicker}
                 >
                     Change Picture
                 </Button>
+                <input
+                    ref={inputRef}
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    onChange={handleFileChange}
+                />
             </div>
         </Card>
     )
