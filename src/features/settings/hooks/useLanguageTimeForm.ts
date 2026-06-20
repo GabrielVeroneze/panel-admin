@@ -1,5 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useAppDispatch } from '@/store'
+import { savePreferences } from '../store'
 import { languageTimeSchema, type LanguageTimeFormValues } from '../schemas'
 import type { SettingsPreferences } from '../types'
 
@@ -9,16 +11,22 @@ const defaultValues: LanguageTimeFormValues = {
 }
 
 export const useLanguageTimeForm = (preferences?: SettingsPreferences) => {
-    const form = useForm({
+    const dispatch = useAppDispatch()
+
+    const form = useForm<LanguageTimeFormValues>({
         resolver: zodResolver(languageTimeSchema),
-        defaultValues: preferences
-            ? {
-                  language: preferences.language,
-                  timezone: preferences.timezone,
-              }
-            : defaultValues,
+        defaultValues: preferences ? preferences : defaultValues,
         mode: 'onTouched',
     })
 
-    return form
+    const { handleSubmit } = form
+
+    const onSubmit = handleSubmit(async (data) => {
+        await dispatch(savePreferences(data))
+    })
+
+    return {
+        ...form,
+        onSubmit,
+    }
 }
