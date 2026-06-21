@@ -1,3 +1,4 @@
+import { useNotificationPreferences } from '@/features/settings/hooks'
 import {
     SettingsCard,
     SettingsToggleItem,
@@ -15,6 +16,10 @@ export const NotificationSettings = ({
     notificationPreferences,
     loading,
 }: NotificationSettingsProps) => {
+    const { updateNotification } = useNotificationPreferences(
+        notificationPreferences,
+    )
+
     if (loading) return null
 
     if (!notificationPreferences) {
@@ -32,21 +37,25 @@ export const NotificationSettings = ({
                     label="Company News"
                     description="Receive news, announcements, and updates about the platform"
                     enabled={notificationPreferences.companyNews}
+                    onChange={() => updateNotification('companyNews')}
                 />
                 <SettingsToggleItem
                     label="Account Activity"
                     description="Receive important notifications about your account and recent activity"
                     enabled={notificationPreferences.accountActivity}
+                    onChange={() => updateNotification('accountActivity')}
                 />
                 <SettingsToggleItem
                     label="Meetups Near You"
                     description="Receive notifications about events and meetups happening near your location"
                     enabled={notificationPreferences.meetupsNearYou}
+                    onChange={() => updateNotification('meetupsNearYou')}
                 />
                 <SettingsToggleItem
                     label="New Messages"
                     description="Receive notifications when you get new messages or conversations"
                     enabled={notificationPreferences.newMessages}
+                    onChange={() => updateNotification('newMessages')}
                 />
             </SettingsToggleList>
         </SettingsCard>
