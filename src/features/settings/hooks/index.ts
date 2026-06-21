@@ -1,3 +1,4 @@
+export { useEmailPreferences } from './useEmailPreferences'
 export { useGeneralInformationForm } from './useGeneralInformationForm'
 export { useLanguageTimeForm } from './useLanguageTimeForm'
 export { useNotificationPreferences } from './useNotificationPreferences'
