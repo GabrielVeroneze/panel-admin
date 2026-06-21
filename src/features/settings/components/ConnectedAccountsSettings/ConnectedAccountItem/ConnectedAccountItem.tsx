@@ -1,4 +1,5 @@
 import { Button, UserAvatar } from '@/shared/components'
+import { useConnectedAccount } from '@/features/settings/hooks'
 import type { ConnectedAccount } from '@/features/settings/types'
 import styles from './ConnectedAccountItem.module.scss'
 
@@ -9,6 +10,8 @@ type ConnectedAccountItemProps = {
 export const ConnectedAccountItem = ({
     account,
 }: ConnectedAccountItemProps) => {
+    const { handleDisconnect } = useConnectedAccount(account)
+
     return (
         <div className={styles.item}>
             <div className={styles.info}>
@@ -21,7 +24,12 @@ export const ConnectedAccountItem = ({
                     </span>
                 </div>
             </div>
-            <Button className={styles.button} size="lg" variant="transparent">
+            <Button
+                className={styles.button}
+                size="lg"
+                variant="transparent"
+                onClick={handleDisconnect}
+            >
                 Disconnect
             </Button>
         </div>
