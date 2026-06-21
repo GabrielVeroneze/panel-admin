@@ -1,3 +1,4 @@
+import { useEmailPreferences } from '@/features/settings/hooks'
 import {
     SettingsCard,
     SettingsToggleItem,
@@ -15,6 +16,8 @@ export const EmailSettings = ({
     emailPreferences,
     loading,
 }: EmailSettingsProps) => {
+    const { updateEmailPreference } = useEmailPreferences(emailPreferences)
+
     if (loading) return null
 
     if (!emailPreferences) {
@@ -32,21 +35,31 @@ export const EmailSettings = ({
                     label="Rating reminders"
                     description="Send an email reminding me to rate an item a week after purchase"
                     enabled={emailPreferences.ratingReminders}
+                    onChange={() => updateEmailPreference('ratingReminders')}
                 />
                 <SettingsToggleItem
                     label="Item update notifications"
                     description="Send an email when an item I've purchased is updated"
                     enabled={emailPreferences.itemUpdateNotifications}
+                    onChange={() =>
+                        updateEmailPreference('itemUpdateNotifications')
+                    }
                 />
                 <SettingsToggleItem
                     label="Item comment notifications"
                     description="Send me an email when someone comments on one of my items"
                     enabled={emailPreferences.itemCommentNotifications}
+                    onChange={() =>
+                        updateEmailPreference('itemCommentNotifications')
+                    }
                 />
                 <SettingsToggleItem
                     label="Buyer review notifications"
                     description="Send me an email when someone leaves a review with their rating"
                     enabled={emailPreferences.buyerReviewNotifications}
+                    onChange={() =>
+                        updateEmailPreference('buyerReviewNotifications')
+                    }
                 />
             </SettingsToggleList>
         </SettingsCard>
