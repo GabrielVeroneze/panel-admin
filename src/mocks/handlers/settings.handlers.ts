@@ -87,4 +87,44 @@ export const settingsHandlers = [
             return HttpResponse.json(payload)
         },
     ),
+
+    http.put(
+        '/api/settings/social-accounts/:platform/connect',
+        async ({ params }) => {
+            const account = settingsDatabase.socialAccounts.find(
+                (item) => item.platform === params.platform,
+            )
+
+            if (!account) {
+                return HttpResponse.json(
+                    { message: 'Account not found' },
+                    { status: 404 },
+                )
+            }
+
+            account.connected = true
+
+            return HttpResponse.json(account)
+        },
+    ),
+
+    http.put(
+        '/api/settings/social-accounts/:platform/disconnect',
+        async ({ params }) => {
+            const account = settingsDatabase.socialAccounts.find(
+                (item) => item.platform === params.platform,
+            )
+
+            if (!account) {
+                return HttpResponse.json(
+                    { message: 'Account not found' },
+                    { status: 404 },
+                )
+            }
+
+            account.connected = false
+
+            return HttpResponse.json(account)
+        },
+    ),
 ]
