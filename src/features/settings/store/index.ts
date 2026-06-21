@@ -3,6 +3,7 @@ export {
     connectAccount,
     disconnectAccount,
     fetchSettings,
+    removeConnectedAccount,
     saveEmailSettings,
     saveGeneralInformation,
     saveNotifications,
