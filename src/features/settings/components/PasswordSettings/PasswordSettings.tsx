@@ -10,6 +10,7 @@ type PasswordSettingsProps = {
 export const PasswordSettings = ({ loading }: PasswordSettingsProps) => {
     const {
         register,
+        onSubmit,
         formState: { errors },
     } = usePasswordForm()
 
@@ -17,7 +18,7 @@ export const PasswordSettings = ({ loading }: PasswordSettingsProps) => {
 
     return (
         <SettingsCard className={styles.card} title="Password information">
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={onSubmit}>
                 <FormField
                     id="current-password"
                     label="Current Password"
