@@ -72,3 +72,11 @@ export const disconnectSocialAccount = async (platform: SocialPlatform) => {
 
     return data
 }
+
+export const disconnectConnectedAccount = async (accountId: number) => {
+    const { data } = await api.delete(
+        `/settings/connected-accounts/${accountId}`,
+    )
+
+    return data
+}
