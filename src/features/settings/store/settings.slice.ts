@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
+    connectSocialAccount,
+    disconnectSocialAccount,
     getSettings,
     updateEmailSettings,
     updateGeneralInformation,
@@ -15,6 +17,8 @@ import type {
     Settings,
     SettingsPreferences,
     SettingsProfile,
+    SocialAccount,
+    SocialPlatform,
     UpdatePasswordPayload,
     UpdateProfileAvatarPayload,
 } from '../types'
@@ -78,6 +82,20 @@ export const savePassword = createAsyncThunk<void, UpdatePasswordPayload>(
     },
 )
 
+export const connectAccount = createAsyncThunk<SocialAccount, SocialPlatform>(
+    'settings/connectAccount',
+    async (platform) => {
+        return await connectSocialAccount(platform)
+    },
+)
+
+export const disconnectAccount = createAsyncThunk<
+    SocialAccount,
+    SocialPlatform
+>('settings/disconnectAccount', async (platform) => {
+    return await disconnectSocialAccount(platform)
+})
+
 const settingsSlice = createSlice({
     name: 'settings',
     initialState,
@@ -118,6 +136,28 @@ const settingsSlice = createSlice({
                 if (!state.settings) return
 
                 state.settings.emailSettings = action.payload
+            })
+            .addCase(connectAccount.fulfilled, (state, action) => {
+                if (!state.settings) return
+
+                const index = state.settings.socialAccounts.findIndex(
+                    (account) => account.id === action.payload.id,
+                )
+
+                if (index === -1) return
+
+                state.settings.socialAccounts[index] = action.payload
+            })
+            .addCase(disconnectAccount.fulfilled, (state, action) => {
+                if (!state.settings) return
+
+                const index = state.settings.socialAccounts.findIndex(
+                    (account) => account.id === action.payload.id,
+                )
+
+                if (index === -1) return
+
+                state.settings.socialAccounts[index] = action.payload
             })
     },
 })
