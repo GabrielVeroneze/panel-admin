@@ -1,4 +1,6 @@
 export {
+    connectSocialAccount,
+    disconnectSocialAccount,
     getSettings,
     updateEmailSettings,
     updateGeneralInformation,
