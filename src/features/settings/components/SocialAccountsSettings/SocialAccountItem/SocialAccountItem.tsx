@@ -1,4 +1,5 @@
 import { Button } from '@/shared/components'
+import { useSocialAccount } from '@/features/settings/hooks'
 import { socialAccountConfig } from './SocialAccountItem.config'
 import type { SocialAccount } from '@/features/settings/types'
 import styles from './SocialAccountItem.module.scss'
@@ -8,6 +9,8 @@ type SocialAccountItemProps = {
 }
 
 export const SocialAccountItem = ({ account }: SocialAccountItemProps) => {
+    const { handleToggleConnection } = useSocialAccount(account)
+
     const config = socialAccountConfig[account.platform]
     const Icon = config.icon
 
@@ -35,6 +38,7 @@ export const SocialAccountItem = ({ account }: SocialAccountItemProps) => {
                 className={styles.button}
                 size="lg"
                 variant={account.connected ? 'transparent' : 'primary'}
+                onClick={handleToggleConnection}
             >
                 {account.connected ? 'Disconnect' : 'Connect'}
             </Button>
