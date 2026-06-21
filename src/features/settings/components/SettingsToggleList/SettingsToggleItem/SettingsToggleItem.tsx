@@ -8,6 +8,7 @@ export const SettingsToggleItem = ({
     label,
     description,
     enabled,
+    onChange,
 }: SettingsToggleItemProps) => {
     return (
         <div className={styles.item}>
@@ -15,7 +16,7 @@ export const SettingsToggleItem = ({
                 <h4 className={styles.label}>{label}</h4>
                 <p className={styles.description}>{description}</p>
             </div>
-            <Switch checked={enabled} size="large" />
+            <Switch size="large" checked={enabled} onChange={onChange} />
         </div>
     )
 }
