@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import {
     connectSocialAccount,
+    disconnectConnectedAccount,
     disconnectSocialAccount,
     getSettings,
     updateEmailSettings,
@@ -11,6 +12,7 @@ import {
     updateProfileAvatar,
 } from '../api'
 import type {
+    ConnectedAccount,
     EmailPreferences,
     GeneralInformation,
     NotificationPreferences,
@@ -96,6 +98,15 @@ export const disconnectAccount = createAsyncThunk<
     return await disconnectSocialAccount(platform)
 })
 
+export const removeConnectedAccount = createAsyncThunk<
+    ConnectedAccount['id'],
+    ConnectedAccount['id']
+>('settings/removeConnectedAccount', async (accountId) => {
+    await disconnectConnectedAccount(accountId)
+
+    return accountId
+})
+
 const settingsSlice = createSlice({
     name: 'settings',
     initialState,
@@ -158,6 +169,16 @@ const settingsSlice = createSlice({
                 if (index === -1) return
 
                 state.settings.socialAccounts[index] = action.payload
+            })
+            .addCase(removeConnectedAccount.fulfilled, (state, action) => {
+                if (!state.settings) return
+
+                const remainingConnectedAccounts =
+                    state.settings.connectedAccounts.filter(
+                        (account) => account.id !== action.payload,
+                    )
+
+                state.settings.connectedAccounts = remainingConnectedAccounts
             })
     },
 })
