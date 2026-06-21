@@ -127,4 +127,19 @@ export const settingsHandlers = [
             return HttpResponse.json(account)
         },
     ),
+
+    http.delete('/api/settings/connected-accounts/:id', async ({ params }) => {
+        const id = Number(params.id)
+
+        const remainingConnectedAccounts =
+            settingsDatabase.connectedAccounts.filter(
+                (account) => account.id !== id,
+            )
+
+        settingsDatabase.connectedAccounts = remainingConnectedAccounts
+
+        return HttpResponse.json(null, {
+            status: 204,
+        })
+    }),
 ]
