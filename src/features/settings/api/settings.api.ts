@@ -6,6 +6,7 @@ import type {
     NotificationPreferences,
     Settings,
     SettingsPreferences,
+    SocialPlatform,
     UpdatePasswordPayload,
     UpdateProfileAvatarPayload,
 } from '../types'
@@ -52,6 +53,22 @@ export const updateNotifications = async (payload: NotificationPreferences) => {
 
 export const updateEmailSettings = async (payload: EmailPreferences) => {
     const { data } = await api.put('/settings/email-settings', payload)
+
+    return data
+}
+
+export const connectSocialAccount = async (platform: SocialPlatform) => {
+    const { data } = await api.put(
+        `/settings/social-accounts/${platform}/connect`,
+    )
+
+    return data
+}
+
+export const disconnectSocialAccount = async (platform: SocialPlatform) => {
+    const { data } = await api.put(
+        `/settings/social-accounts/${platform}/disconnect`,
+    )
 
     return data
 }
