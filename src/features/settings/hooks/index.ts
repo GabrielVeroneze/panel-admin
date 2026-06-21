@@ -1,5 +1,6 @@
 export { useGeneralInformationForm } from './useGeneralInformationForm'
 export { useLanguageTimeForm } from './useLanguageTimeForm'
+export { useNotificationPreferences } from './useNotificationPreferences'
 export { usePasswordForm } from './usePasswordForm'
 export { useProfileAvatar } from './useProfileAvatar'
 export { useSettings } from './useSettings'
