@@ -1,3 +1,4 @@
+export { useConnectedAccount } from './useConnectedAccount'
 export { useEmailPreferences } from './useEmailPreferences'
 export { useGeneralInformationForm } from './useGeneralInformationForm'
 export { useLanguageTimeForm } from './useLanguageTimeForm'
