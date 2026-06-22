@@ -3,6 +3,7 @@ export {
     disconnectConnectedAccount,
     disconnectSocialAccount,
     getSettings,
+    revokeDeviceSession,
     updateEmailSettings,
     updateGeneralInformation,
     updateNotifications,
