@@ -1,4 +1,5 @@
 export { useConnectedAccount } from './useConnectedAccount'
+export { useDeviceSessions } from './useDeviceSessions'
 export { useEmailPreferences } from './useEmailPreferences'
 export { useGeneralInformationForm } from './useGeneralInformationForm'
 export { useLanguageTimeForm } from './useLanguageTimeForm'
