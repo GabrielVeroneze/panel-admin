@@ -80,3 +80,7 @@ export const disconnectConnectedAccount = async (accountId: number) => {
 
     return data
 }
+
+export const revokeDeviceSession = async (deviceId: number) => {
+    await api.delete(`/settings/devices/${deviceId}`)
+}
