@@ -52,7 +52,7 @@ export const updateNotifications = async (payload: NotificationPreferences) => {
 }
 
 export const updateEmailSettings = async (payload: EmailPreferences) => {
-    const { data } = await api.put('/settings/email-settings', payload)
+    const { data } = await api.put('/settings/email-notifications', payload)
 
     return data
 }
