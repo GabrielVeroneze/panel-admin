@@ -4,6 +4,7 @@ import {
     disconnectConnectedAccount,
     disconnectSocialAccount,
     getSettings,
+    revokeDeviceSession,
     updateEmailSettings,
     updateGeneralInformation,
     updateNotifications,
@@ -13,6 +14,7 @@ import {
 } from '../api'
 import type {
     ConnectedAccount,
+    DeviceSession,
     EmailPreferences,
     GeneralInformation,
     NotificationPreferences,
@@ -107,6 +109,15 @@ export const removeConnectedAccount = createAsyncThunk<
     return accountId
 })
 
+export const removeDeviceSession = createAsyncThunk<
+    DeviceSession['id'],
+    DeviceSession['id']
+>('settings/removeDeviceSession', async (deviceId) => {
+    await revokeDeviceSession(deviceId)
+
+    return deviceId
+})
+
 const settingsSlice = createSlice({
     name: 'settings',
     initialState,
@@ -179,6 +190,16 @@ const settingsSlice = createSlice({
                     )
 
                 state.settings.connectedAccounts = remainingConnectedAccounts
+            })
+            .addCase(removeDeviceSession.fulfilled, (state, action) => {
+                if (!state.settings) return
+
+                const remainingDeviceSessions =
+                    state.settings.recentDevices.filter(
+                        (device) => device.id !== action.payload,
+                    )
+
+                state.settings.recentDevices = remainingDeviceSessions
             })
     },
 })
