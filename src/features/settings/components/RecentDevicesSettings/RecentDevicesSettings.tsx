@@ -1,3 +1,4 @@
+import { useDeviceSessions } from '@/features/settings/hooks'
 import {
     Button,
     Table,
@@ -19,6 +20,8 @@ export const RecentDevicesSettings = ({
     devices,
     loading,
 }: RecentDevicesSettingsProps) => {
+    const { disconnectSession } = useDeviceSessions()
+
     if (loading) return null
 
     if (!devices || devices.length === 0) {
@@ -64,8 +67,12 @@ export const RecentDevicesSettings = ({
                                 {device.lastAccessed}
                             </TableCell>
                             <TableCell className={styles.actions}>
-                                <Button size="md" variant="primary">
-                                    Edit
+                                <Button
+                                    size="md"
+                                    variant="primary"
+                                    onClick={() => disconnectSession(device.id)}
+                                >
+                                    Disconnect
                                 </Button>
                             </TableCell>
                         </TableRow>
