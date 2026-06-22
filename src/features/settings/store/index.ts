@@ -4,6 +4,7 @@ export {
     disconnectAccount,
     fetchSettings,
     removeConnectedAccount,
+    removeDeviceSession,
     saveEmailSettings,
     saveGeneralInformation,
     saveNotifications,
