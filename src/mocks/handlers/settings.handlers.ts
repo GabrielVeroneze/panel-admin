@@ -142,4 +142,25 @@ export const settingsHandlers = [
             status: 204,
         })
     }),
+
+    http.delete('/api/settings/devices/:id', async ({ params }) => {
+        const deviceId = Number(params.id)
+
+        const deviceExists = settingsDatabase.recentDevices.some(
+            (device) => device.id === deviceId,
+        )
+
+        if (!deviceExists) {
+            return HttpResponse.json(
+                { message: 'Device not found' },
+                { status: 404 },
+            )
+        }
+
+        settingsDatabase.recentDevices = settingsDatabase.recentDevices.filter(
+            (device) => device.id !== deviceId,
+        )
+
+        return HttpResponse.json({ success: true }, { status: 200 })
+    }),
 ]
