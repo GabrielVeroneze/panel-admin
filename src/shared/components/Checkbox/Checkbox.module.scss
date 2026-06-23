@@ -37,8 +37,8 @@
         }
 
         &::before {
-            background: url('@/shared/assets/icons/solid/check.svg') center / 12px
-                no-repeat;
+            background: url('@/shared/assets/icons/solid/check.svg') center /
+                12px no-repeat;
             background-color: $blue-dark;
             border-radius: inherit;
             content: '';
