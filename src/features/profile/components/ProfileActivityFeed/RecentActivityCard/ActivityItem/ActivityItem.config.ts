@@ -20,7 +20,7 @@ type ActivityConfigItem = {
 }
 
 export const activityConfig: Record<ActivityType, ActivityConfigItem> = {
-   'user-created': {
+    'user-created': {
         title: 'Created User',
         icon: UserAddIcon,
         variant: 'green',
