@@ -6,4 +6,11 @@
     .list {
         @include settings-list;
     }
+
+    &.skeleton {
+        .itemSkeleton {
+            height: 50px;
+            width: 100%;
+        }
+    }
 }
