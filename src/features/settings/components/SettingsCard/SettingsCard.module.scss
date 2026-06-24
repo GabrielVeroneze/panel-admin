@@ -27,6 +27,18 @@
         }
     }
 
+    &.skeleton {
+        .titleSkeleton {
+            height: 25px;
+            width: 200px;
+        }
+
+        .descriptionSkeleton {
+            height: 18px;
+            width: 300px;
+        }
+    }
+
     @include media-down(lg) {
         .header {
             gap: $space-1-5;
