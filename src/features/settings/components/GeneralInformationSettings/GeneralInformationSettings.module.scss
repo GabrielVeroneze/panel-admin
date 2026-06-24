@@ -15,6 +15,24 @@
         }
     }
 
+    &.skeleton {
+        .labelSkeleton {
+            height: 20px;
+            margin-bottom: $space-4;
+            width: 100px;
+        }
+
+        .inputSkeleton {
+            height: 44px;
+            width: 100%;
+        }
+
+        .buttonSkeleton {
+            height: 40px;
+            width: 80px;
+        }
+    }
+
     @include media-down(lg) {
         .form {
             gap: $space-4 $space-3;
