@@ -1,3 +1,10 @@
 .card {
     grid-area: email;
+
+    &.skeleton {
+        .itemSkeleton {
+            height: 55px;
+            width: 100%;
+        }
+    }
 }
