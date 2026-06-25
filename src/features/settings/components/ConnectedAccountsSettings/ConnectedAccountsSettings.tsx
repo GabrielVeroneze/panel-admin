@@ -1,5 +1,6 @@
 import { SettingsCard } from '@/features/settings/components'
 import { ConnectedAccountItem } from './ConnectedAccountItem/ConnectedAccountItem'
+import { ConnectedAccountsSettingsSkeleton } from './ConnectedAccountsSettingsSkeleton'
 import type { ConnectedAccount } from '@/features/settings/types'
 import styles from './ConnectedAccountsSettings.module.scss'
 
@@ -12,7 +13,7 @@ export const ConnectedAccountsSettings = ({
     accounts,
     loading,
 }: ConnectedAccountsSettingsProps) => {
-    if (loading) return null
+    if (loading) return <ConnectedAccountsSettingsSkeleton />
 
     if (!accounts || accounts.length === 0) {
         return null
