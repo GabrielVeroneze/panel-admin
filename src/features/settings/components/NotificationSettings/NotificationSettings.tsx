@@ -4,6 +4,7 @@ import {
     SettingsToggleItem,
     SettingsToggleList,
 } from '@/features/settings/components'
+import { NotificationSettingsSkeleton } from './NotificationSettingsSkeleton'
 import type { NotificationPreferences } from '@/features/settings/types'
 import styles from './NotificationSettings.module.scss'
 
@@ -20,7 +21,7 @@ export const NotificationSettings = ({
         notificationPreferences,
     )
 
-    if (loading) return null
+    if (loading) return <NotificationSettingsSkeleton />
 
     if (!notificationPreferences) {
         return null
