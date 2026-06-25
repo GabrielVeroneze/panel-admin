@@ -1,6 +1,7 @@
 import { Button, Card } from '@/shared/components'
 import { CogSolidIcon } from '@/shared/assets/icons'
 import { useProfileAvatar } from '@/features/settings/hooks'
+import { ProfileSettingsSkeleton } from './ProfileSettingsSkeleton'
 import type { SettingsProfile } from '@/features/settings/types'
 import styles from './ProfileSettings.module.scss'
 
@@ -12,7 +13,7 @@ type ProfileSettingsProps = {
 export const ProfileSettings = ({ profile, loading }: ProfileSettingsProps) => {
     const { inputRef, handleFileChange, openFilePicker } = useProfileAvatar()
 
-    if (loading) return null
+    if (loading) return <ProfileSettingsSkeleton />
 
     if (!profile) {
         return null
