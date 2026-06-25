@@ -8,6 +8,7 @@ import {
     TableRow,
 } from '@/shared/components'
 import { SettingsCard } from '@/features/settings/components'
+import { RecentDevicesSettingsSkeleton } from './RecentDevicesSettingsSkeleton'
 import type { DeviceSession } from '@/features/settings/types'
 import styles from './RecentDevicesSettings.module.scss'
 
@@ -22,7 +23,7 @@ export const RecentDevicesSettings = ({
 }: RecentDevicesSettingsProps) => {
     const { disconnectSession } = useDeviceSessions()
 
-    if (loading) return null
+    if (loading) return <RecentDevicesSettingsSkeleton />
 
     if (!devices || devices.length === 0) {
         return null
