@@ -1,5 +1,6 @@
 import { SettingsCard } from '@/features/settings/components'
 import { SocialAccountItem } from './SocialAccountItem/SocialAccountItem'
+import { SocialAccountsSettingsSkeleton } from './SocialAccountsSettingsSkeleton'
 import type { SocialAccount } from '@/features/settings/types'
 import styles from './SocialAccountsSettings.module.scss'
 
@@ -12,7 +13,7 @@ export const SocialAccountsSettings = ({
     accounts,
     loading,
 }: SocialAccountsSettingsProps) => {
-    if (loading) return null
+    if (loading) return <SocialAccountsSettingsSkeleton />
 
     if (!accounts || accounts.length === 0) {
         return null
