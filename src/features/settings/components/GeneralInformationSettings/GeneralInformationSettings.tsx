@@ -8,6 +8,7 @@ import {
 import { useGeneralInformationForm } from '@/features/settings/hooks'
 import { SettingsCard } from '@/features/settings/components'
 import { countryOptions } from './countryOptions'
+import { GeneralInformationSettingsSkeleton } from './GeneralInformationSettingsSkeleton'
 import type { GeneralInformation } from '@/features/settings/types'
 import styles from './GeneralInformationSettings.module.scss'
 
@@ -26,7 +27,7 @@ export const GeneralInformationSettings = ({
         formState: { errors },
     } = useGeneralInformationForm(data)
 
-    if (loading) return null
+    if (loading) return <GeneralInformationSettingsSkeleton />
 
     if (!data) {
         return null
