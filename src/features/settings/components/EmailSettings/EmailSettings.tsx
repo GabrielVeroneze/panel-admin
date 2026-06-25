@@ -4,6 +4,7 @@ import {
     SettingsToggleItem,
     SettingsToggleList,
 } from '@/features/settings/components'
+import { EmailSettingsSkeleton } from './EmailSettingsSkeleton'
 import type { EmailPreferences } from '@/features/settings/types'
 import styles from './EmailSettings.module.scss'
 
@@ -18,7 +19,7 @@ export const EmailSettings = ({
 }: EmailSettingsProps) => {
     const { updateEmailPreference } = useEmailPreferences(emailPreferences)
 
-    if (loading) return null
+    if (loading) return <EmailSettingsSkeleton />
 
     if (!emailPreferences) {
         return null
