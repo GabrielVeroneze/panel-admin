@@ -2,6 +2,7 @@ import { Button, FormField, Select, SelectOption } from '@/shared/components'
 import { useLanguageTimeForm } from '@/features/settings/hooks'
 import { SettingsCard } from '@/features/settings/components'
 import { languageOptions, timezoneOptions } from './languageTimeOptions'
+import { LanguageTimeSettingsSkeleton } from './LanguageTimeSettingsSkeleton'
 import type { SettingsPreferences } from '@/features/settings/types'
 import styles from './LanguageTimeSettings.module.scss'
 
@@ -20,7 +21,7 @@ export const LanguageTimeSettings = ({
         formState: { errors },
     } = useLanguageTimeForm(preferences)
 
-    if (loading) return null
+    if (loading) return <LanguageTimeSettingsSkeleton />
 
     if (!preferences) {
         return null
