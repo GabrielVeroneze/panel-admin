@@ -1,6 +1,7 @@
 import { Button, FormField, Input } from '@/shared/components'
 import { usePasswordForm } from '@/features/settings/hooks'
 import { SettingsCard } from '@/features/settings/components'
+import { PasswordSettingsSkeleton } from './PasswordSettingsSkeleton'
 import styles from './PasswordSettings.module.scss'
 
 type PasswordSettingsProps = {
@@ -14,7 +15,7 @@ export const PasswordSettings = ({ loading }: PasswordSettingsProps) => {
         formState: { errors },
     } = usePasswordForm()
 
-    if (loading) return null
+    if (loading) return <PasswordSettingsSkeleton />
 
     return (
         <SettingsCard className={styles.card} title="Password information">
