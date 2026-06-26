@@ -35,6 +35,16 @@
                 display: none;
             }
         }
+
+        &.skeleton {
+            .cellSkeleton {
+                height: 38px;
+            }
+
+            .cellSkeleton:nth-child(3) {
+                display: none;
+            }
+        }
     }
 
     @include media-down(sm) {
