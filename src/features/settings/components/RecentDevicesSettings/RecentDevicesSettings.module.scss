@@ -5,7 +5,7 @@
     grid-area: devices;
 
     .table {
-        --table-columns: 2.5fr 3fr 3.5fr 2fr minmax(50px, 1fr);
+        --table-columns: 2.5fr 3fr 3.5fr 2fr minmax(100px, 1fr);
 
         .browser {
             font-weight: $font-semibold;
@@ -29,7 +29,7 @@
 
     @include media-down(lg) {
         .table {
-            --table-columns: 3fr 4fr 2fr minmax(45px, 1fr);
+            --table-columns: 3fr 4fr 2fr minmax(85px, 1fr);
 
             .location {
                 display: none;
@@ -49,7 +49,7 @@
 
     @include media-down(sm) {
         .table {
-            --table-columns: 3fr 3fr minmax(45px, 1fr);
+            --table-columns: 3fr 3fr minmax(110px, 1fr);
 
             .lastAccessed {
                 display: none;
