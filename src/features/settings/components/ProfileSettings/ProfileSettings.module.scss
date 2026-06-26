@@ -64,6 +64,23 @@
                 margin-top: $space-3;
             }
         }
+
+        &.skeleton {
+            .nameSkeleton {
+                height: 25px;
+                width: 115px;
+            }
+
+            .roleSkeleton {
+                height: 18px;
+                margin-bottom: $space-3;
+                width: 90px;
+            }
+
+            .buttonSkeleton {
+                width: 135px;
+            }
+        }
     }
 
     @include media-down(sm) {
