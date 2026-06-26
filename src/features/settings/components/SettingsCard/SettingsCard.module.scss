@@ -52,6 +52,18 @@
                 font-size: $text-lg;
             }
         }
+
+        &.skeleton {
+            .titleSkeleton {
+                height: 20px;
+                width: 170px;
+            }
+
+            .descriptionSkeleton {
+                height: 15px;
+                width: 250px;
+            }
+        }
     }
 
     @include media-down(sm) {
