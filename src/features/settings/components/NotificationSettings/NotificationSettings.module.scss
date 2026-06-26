@@ -1,3 +1,5 @@
+@use '@/styles/mixins' as *;
+
 .card {
     grid-area: notifications;
 
@@ -5,6 +7,14 @@
         .itemSkeleton {
             height: 55px;
             width: 100%;
+        }
+    }
+
+    @include media-down(lg) {
+        &.skeleton {
+            .itemSkeleton {
+                height: 50px;
+            }
         }
     }
 }
