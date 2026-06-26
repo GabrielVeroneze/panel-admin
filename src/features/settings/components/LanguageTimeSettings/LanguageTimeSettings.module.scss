@@ -46,6 +46,16 @@
                 width: 100%;
             }
         }
+
+        &.skeleton {
+            .labelSkeleton {
+                margin-bottom: $space-2-5;
+            }
+
+            .buttonSkeleton {
+                width: 100%;
+            }
+        }
     }
 
     @include media-down(sm) {
