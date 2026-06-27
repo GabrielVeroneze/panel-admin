@@ -95,5 +95,18 @@
         .info {
             text-align: center;
         }
+
+        &.skeleton {
+            .nameSkeleton,
+            .roleSkeleton {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttonSkeleton {
+                height: 40px;
+                width: 170px;
+            }
+        }
     }
 }
