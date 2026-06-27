@@ -64,5 +64,15 @@
                 grid-column: 1 / 2;
             }
         }
+
+        &.skeleton {
+            .labelSkeleton {
+                width: 115px;
+            }
+
+            .buttonSkeleton {
+                grid-column: 1 / 2;
+            }
+        }
     }
 }
