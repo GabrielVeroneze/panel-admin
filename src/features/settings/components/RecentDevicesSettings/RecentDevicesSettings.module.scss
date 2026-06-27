@@ -55,5 +55,15 @@
                 display: none;
             }
         }
+
+        &.skeleton {
+            .cellSkeleton {
+                height: 54px;
+            }
+
+            .cellSkeleton:nth-child(4) {
+                display: none;
+            }
+        }
     }
 }
