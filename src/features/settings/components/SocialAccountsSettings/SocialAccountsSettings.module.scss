@@ -22,4 +22,12 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        &.skeleton {
+            .itemSkeleton {
+                height: 100px;
+            }
+        }
+    }
 }
