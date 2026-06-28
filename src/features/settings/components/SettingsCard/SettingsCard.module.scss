@@ -83,12 +83,12 @@
         &.skeleton {
             .titleSkeleton {
                 height: 25px;
-                width: 210px;
+                max-width: 210px;
             }
 
             .descriptionSkeleton {
                 height: 18px;
-                width: 300px;
+                max-width: 300px;
             }
         }
     }
