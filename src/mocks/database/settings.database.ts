@@ -7,8 +7,8 @@ export const settingsDatabase: Settings = {
         role: 'Administrator',
     },
     preferences: {
-        language: 'English',
-        timezone: 'UTC-5',
+        language: 'en',
+        timezone: 'America/New_York',
     },
     generalInformation: {
         firstName: 'Neil',
