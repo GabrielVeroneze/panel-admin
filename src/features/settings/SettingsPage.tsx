@@ -1,4 +1,6 @@
 import { useSettings } from './hooks'
+import { EmptyState } from '@/shared/components'
+import { CogSolidIcon } from '@/shared/assets/icons'
 import {
     ConnectedAccountsSettings,
     EmailSettings,
@@ -14,6 +16,16 @@ import styles from './SettingsPage.module.scss'
 
 export const SettingsPage = () => {
     const { settings, loading } = useSettings()
+
+    if (!settings) {
+        return (
+            <EmptyState
+                icon={<CogSolidIcon />}
+                title="Settings unavailable"
+                description="We couldn't load your account settings. Please try again later."
+            />
+        )
+    }
 
     return (
         <section className={styles.settings}>
