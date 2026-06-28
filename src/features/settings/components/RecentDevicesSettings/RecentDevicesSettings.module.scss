@@ -51,6 +51,11 @@
         .table {
             --table-columns: 3fr 3fr minmax(110px, 1fr);
 
+            .browser,
+            .device {
+                word-break: break-all;
+            }
+
             .lastAccessed {
                 display: none;
             }
