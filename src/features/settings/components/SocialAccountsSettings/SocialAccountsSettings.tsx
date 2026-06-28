@@ -1,3 +1,5 @@
+import { Card, EmptyState } from '@/shared/components'
+import { ShareIcon } from '@/shared/assets/icons'
 import { SettingsCard } from '@/features/settings/components'
 import { SocialAccountItem } from './SocialAccountItem/SocialAccountItem'
 import { SocialAccountsSettingsSkeleton } from './SocialAccountsSettingsSkeleton'
@@ -16,7 +18,15 @@ export const SocialAccountsSettings = ({
     if (loading) return <SocialAccountsSettingsSkeleton />
 
     if (!accounts || accounts.length === 0) {
-        return null
+        return (
+            <Card className={styles.card}>
+                <EmptyState
+                    icon={<ShareIcon />}
+                    title="No social accounts"
+                    description="There are no social accounts available."
+                />
+            </Card>
+        )
     }
 
     return (
