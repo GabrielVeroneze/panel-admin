@@ -1,3 +1,5 @@
+import { Card, EmptyState } from '@/shared/components'
+import { UsersIcon } from '@/shared/assets/icons'
 import { SettingsCard } from '@/features/settings/components'
 import { ConnectedAccountItem } from './ConnectedAccountItem/ConnectedAccountItem'
 import { ConnectedAccountsSettingsSkeleton } from './ConnectedAccountsSettingsSkeleton'
@@ -16,7 +18,15 @@ export const ConnectedAccountsSettings = ({
     if (loading) return <ConnectedAccountsSettingsSkeleton />
 
     if (!accounts || accounts.length === 0) {
-        return null
+        return (
+            <Card className={styles.card}>
+                <EmptyState
+                    icon={<UsersIcon />}
+                    title="No connected accounts"
+                    description="There are no connected accounts to display."
+                />
+            </Card>
+        )
     }
 
     return (
