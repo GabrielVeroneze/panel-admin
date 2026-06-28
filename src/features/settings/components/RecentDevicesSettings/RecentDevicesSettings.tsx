@@ -1,12 +1,15 @@
 import { useDeviceSessions } from '@/features/settings/hooks'
 import {
     Button,
+    Card,
+    EmptyState,
     Table,
     TableBody,
     TableCell,
     TableHead,
     TableRow,
 } from '@/shared/components'
+import { DesktopComputerIcon } from '@/shared/assets/icons'
 import { SettingsCard } from '@/features/settings/components'
 import { RecentDevicesSettingsSkeleton } from './RecentDevicesSettingsSkeleton'
 import type { DeviceSession } from '@/features/settings/types'
@@ -26,7 +29,15 @@ export const RecentDevicesSettings = ({
     if (loading) return <RecentDevicesSettingsSkeleton />
 
     if (!devices || devices.length === 0) {
-        return null
+        return (
+            <Card className={styles.card}>
+                <EmptyState
+                    icon={<DesktopComputerIcon />}
+                    title="No recent devices"
+                    description="No recent device sessions were found."
+                />
+            </Card>
+        )
     }
 
     return (
