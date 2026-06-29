@@ -30,41 +30,38 @@ export const SettingsPage = () => {
     return (
         <section className={styles.settings}>
             <div className={styles.topSection}>
-                <ProfileSettings
-                    profile={settings?.profile}
-                    loading={loading}
-                />
+                <ProfileSettings profile={settings.profile} loading={loading} />
                 <LanguageTimeSettings
-                    preferences={settings?.preferences}
+                    preferences={settings.preferences}
                     loading={loading}
                 />
                 <SocialAccountsSettings
-                    accounts={settings?.socialAccounts}
+                    accounts={settings.socialAccounts}
                     loading={loading}
                 />
                 <GeneralInformationSettings
-                    data={settings?.generalInformation}
+                    data={settings.generalInformation}
                     loading={loading}
                 />
             </div>
             <div className={styles.middleSection}>
                 <ConnectedAccountsSettings
-                    accounts={settings?.connectedAccounts}
+                    accounts={settings.connectedAccounts}
                     loading={loading}
                 />
                 <PasswordSettings loading={loading} />
             </div>
             <div className={styles.bottomSection}>
                 <NotificationSettings
-                    notificationPreferences={settings?.notifications}
+                    notificationPreferences={settings.notifications}
                     loading={loading}
                 />
                 <EmailSettings
-                    emailPreferences={settings?.emailSettings}
+                    emailPreferences={settings.emailSettings}
                     loading={loading}
                 />
                 <RecentDevicesSettings
-                    devices={settings?.recentDevices}
+                    devices={settings.recentDevices}
                     loading={loading}
                 />
             </div>
