@@ -6,7 +6,7 @@ import type { SettingsProfile } from '@/features/settings/types'
 import styles from './ProfileSettings.module.scss'
 
 type ProfileSettingsProps = {
-    profile?: SettingsProfile
+    profile: SettingsProfile
     loading: boolean
 }
 
@@ -14,10 +14,6 @@ export const ProfileSettings = ({ profile, loading }: ProfileSettingsProps) => {
     const { inputRef, handleFileChange, openFilePicker } = useProfileAvatar()
 
     if (loading) return <ProfileSettingsSkeleton />
-
-    if (!profile) {
-        return null
-    }
 
     return (
         <Card className={styles.card}>

@@ -9,7 +9,7 @@ import type { NotificationPreferences } from '@/features/settings/types'
 import styles from './NotificationSettings.module.scss'
 
 type NotificationSettingsProps = {
-    notificationPreferences?: NotificationPreferences
+    notificationPreferences: NotificationPreferences
     loading: boolean
 }
 
@@ -22,10 +22,6 @@ export const NotificationSettings = ({
     )
 
     if (loading) return <NotificationSettingsSkeleton />
-
-    if (!notificationPreferences) {
-        return null
-    }
 
     return (
         <SettingsCard

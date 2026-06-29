@@ -13,7 +13,7 @@ import type { GeneralInformation } from '@/features/settings/types'
 import styles from './GeneralInformationSettings.module.scss'
 
 type GeneralInformationSettingsProps = {
-    data?: GeneralInformation
+    data: GeneralInformation
     loading: boolean
 }
 
@@ -28,10 +28,6 @@ export const GeneralInformationSettings = ({
     } = useGeneralInformationForm(data)
 
     if (loading) return <GeneralInformationSettingsSkeleton />
-
-    if (!data) {
-        return null
-    }
 
     return (
         <SettingsCard className={styles.card} title="General information">

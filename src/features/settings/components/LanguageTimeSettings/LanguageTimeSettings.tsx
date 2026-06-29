@@ -7,7 +7,7 @@ import type { SettingsPreferences } from '@/features/settings/types'
 import styles from './LanguageTimeSettings.module.scss'
 
 type LanguageTimeSettingsProps = {
-    preferences?: SettingsPreferences
+    preferences: SettingsPreferences
     loading: boolean
 }
 
@@ -22,10 +22,6 @@ export const LanguageTimeSettings = ({
     } = useLanguageTimeForm(preferences)
 
     if (loading) return <LanguageTimeSettingsSkeleton />
-
-    if (!preferences) {
-        return null
-    }
 
     return (
         <SettingsCard className={styles.card} title="Language & Time">

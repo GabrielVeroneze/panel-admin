@@ -9,7 +9,7 @@ import type { EmailPreferences } from '@/features/settings/types'
 import styles from './EmailSettings.module.scss'
 
 type EmailSettingsProps = {
-    emailPreferences?: EmailPreferences
+    emailPreferences: EmailPreferences
     loading: boolean
 }
 
@@ -20,10 +20,6 @@ export const EmailSettings = ({
     const { updateEmailPreference } = useEmailPreferences(emailPreferences)
 
     if (loading) return <EmailSettingsSkeleton />
-
-    if (!emailPreferences) {
-        return null
-    }
 
     return (
         <SettingsCard
