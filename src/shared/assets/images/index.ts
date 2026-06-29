@@ -1,1 +1,6 @@
 export { default as LogoImage } from './logo.svg?react'
+export { default as MaintenanceImage } from './maintenance.svg'
+export { default as NotFoundImage } from './not-found.svg'
+export { default as ServerErrorImage } from './server-error.svg'
+export { default as SignInImage } from './sign-in.svg'
+export { default as SignUpImage } from './sign-up.svg'
