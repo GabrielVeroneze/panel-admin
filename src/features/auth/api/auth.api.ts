@@ -13,9 +13,7 @@ export const signIn = async (payload: SignInPayload) => {
 }
 
 export const signUp = async (payload: SignUpPayload) => {
-    const { confirmPassword: _confirmPassword, ...body } = payload
-
-    const { data } = await api.post<AuthResponse>('/auth/sign-up', body)
+    const { data } = await api.post<AuthResponse>('/auth/sign-up', payload)
 
     return data
 }
