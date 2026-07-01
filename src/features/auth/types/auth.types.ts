@@ -4,10 +4,8 @@ export type SignInPayload = {
 }
 
 export type SignUpPayload = {
-    name: string
     email: string
     password: string
-    confirmPassword: string
 }
 
 export type UserRole = 'admin' | 'manager' | 'user'
