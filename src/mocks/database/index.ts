@@ -1,3 +1,4 @@
+export { authToken, authUser } from './auth.database'
 export { dashboardDatabase } from './dashboard.database'
 export { myProfileDatabase } from './my-profile.database'
 export { productsDatabase } from './products.database'
