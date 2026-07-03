@@ -52,4 +52,24 @@
             }
         }
     }
+
+    @include media-down(sm) {
+        gap: $space-6;
+        margin: $space-3;
+        padding: $space-4;
+
+        .content {
+            gap: $space-5;
+
+            .title {
+                font-size: $text-4xl;
+            }
+        }
+
+        .illustration {
+            .image {
+                height: 150px;
+            }
+        }
+    }
 }
