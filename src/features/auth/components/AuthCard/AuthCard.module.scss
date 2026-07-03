@@ -4,6 +4,7 @@
     display: grid;
     gap: $space-12;
     grid-template-columns: repeat(2, 1fr);
+    margin: $space-3;
     max-width: 1082px;
     padding: $space-20 $space-16;
     width: 100%;
