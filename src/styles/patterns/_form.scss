@@ -12,6 +12,12 @@
     }
 }
 
+@mixin auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+}
+
 @mixin input-full {
     max-width: 100%;
 }
