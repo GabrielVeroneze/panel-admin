@@ -1,0 +1,32 @@
+@use '@/styles/tokens' as *;
+
+.card {
+    display: grid;
+    gap: $space-12;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1082px;
+    padding: $space-20 $space-16;
+    width: 100%;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: $space-8;
+
+        .title {
+            color: $gray-darkest;
+            font-size: $text-6xl;
+            font-weight: $font-bold;
+        }
+    }
+
+    .illustration {
+        align-self: center;
+        justify-self: center;
+
+        .image {
+            height: 350px;
+            width: auto;
+        }
+    }
+}
