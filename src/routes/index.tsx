@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 import { AppLayout, AuthLayout, PageLayout } from '@/shared/layout'
+import { ProtectedRoute } from '@/shared/auth'
 import { ErrorPage, NotFoundPage } from '@/shared/pages'
 import { DashboardPage } from '@/features/dashboard'
 import { UsersPage } from '@/features/users'
@@ -10,34 +11,63 @@ import { SignInPage, SignUpPage } from '@/features/auth'
 
 export const router = createBrowserRouter([
     {
-        path: '/',
-        element: <AppLayout />,
-        errorElement: <ErrorPage />,
+        path: '/auth',
+        element: <AuthLayout />,
         children: [
             {
-                element: <PageLayout />,
-                children: [
-                    { index: true, element: <DashboardPage /> },
-                    { path: 'profile', element: <MyProfilePage /> },
-                    { path: 'users/:userId', element: <UserProfilePage /> },
-                    { path: 'settings', element: <SettingsPage /> },
-                ],
+                path: 'sign-in',
+                element: <SignInPage />,
             },
             {
-                element: <PageLayout variant="plain" />,
-                children: [
-                    { path: 'users', element: <UsersPage /> },
-                    { path: 'products', element: <ProductsPage /> },
-                ],
+                path: 'sign-up',
+                element: <SignUpPage />,
             },
         ],
     },
     {
-        path: '/auth',
-        element: <AuthLayout />,
+        element: <ProtectedRoute />,
         children: [
-            { path: 'sign-in', element: <SignInPage /> },
-            { path: 'sign-up', element: <SignUpPage /> },
+            {
+                path: '/',
+                element: <AppLayout />,
+                errorElement: <ErrorPage />,
+                children: [
+                    {
+                        element: <PageLayout />,
+                        children: [
+                            {
+                                index: true,
+                                element: <DashboardPage />,
+                            },
+                            {
+                                path: 'profile',
+                                element: <MyProfilePage />,
+                            },
+                            {
+                                path: 'users/:userId',
+                                element: <UserProfilePage />,
+                            },
+                            {
+                                path: 'settings',
+                                element: <SettingsPage />,
+                            },
+                        ],
+                    },
+                    {
+                        element: <PageLayout variant="plain" />,
+                        children: [
+                            {
+                                path: 'users',
+                                element: <UsersPage />,
+                            },
+                            {
+                                path: 'products',
+                                element: <ProductsPage />,
+                            },
+                        ],
+                    },
+                ],
+            },
         ],
     },
     {
