@@ -1,0 +1,66 @@
+import { Button, Checkbox, FormField, Input } from '@/shared/components'
+import { useSignUpForm } from '@/features/auth/hooks'
+import styles from './SignUpForm.module.scss'
+
+export const SignUpForm = () => {
+    const {
+        register,
+        handleSubmit,
+        onSubmit,
+        formState: { errors },
+    } = useSignUpForm()
+
+    return (
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <FormField
+                id="email"
+                label="Your Email"
+                size="large"
+                status={errors.email && 'error'}
+                message={errors.email?.message}
+            >
+                <Input
+                    type="email"
+                    size="large"
+                    placeholder="Enter your email"
+                    {...register('email')}
+                />
+            </FormField>
+            <FormField
+                id="password"
+                label="Password"
+                size="large"
+                status={errors.password && 'error'}
+                message={errors.password?.message}
+            >
+                <Input
+                    type="password"
+                    size="large"
+                    placeholder="Enter your password"
+                    {...register('password')}
+                />
+            </FormField>
+            <FormField
+                id="confirm-password"
+                label="Confirm Password"
+                size="large"
+                status={errors.confirmPassword && 'error'}
+                message={errors.confirmPassword?.message}
+            >
+                <Input
+                    type="password"
+                    size="large"
+                    placeholder="Confirm your password"
+                    {...register('confirmPassword')}
+                />
+            </FormField>
+            <Checkbox
+                label="I accept the Terms & Conditions"
+                {...register('terms')}
+            />
+            <Button type="submit" size="lg">
+                Create account
+            </Button>
+        </form>
+    )
+}
