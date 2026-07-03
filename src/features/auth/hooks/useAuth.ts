@@ -15,19 +15,19 @@ export const useAuth = () => {
     )
 
     const signIn = (data: SignInFormValues) => {
-        return dispatch(signInThunk(data))
+        return dispatch(signInThunk(data)).unwrap()
     }
 
     const signUp = (data: SignUpFormValues) => {
-        return dispatch(signUpThunk(data))
+        return dispatch(signUpThunk(data)).unwrap()
     }
 
     const logout = () => {
-        return dispatch(logoutThunk())
+        return dispatch(logoutThunk()).unwrap()
     }
 
     const fetchCurrentUser = () => {
-        return dispatch(fetchCurrentUserThunk())
+        return dispatch(fetchCurrentUserThunk()).unwrap()
     }
 
     return {
