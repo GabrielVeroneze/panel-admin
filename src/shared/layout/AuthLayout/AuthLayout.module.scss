@@ -13,7 +13,10 @@ $header-height-tablet: 63px;
     min-height: 100vh;
 
     .main {
+        align-items: center;
+        display: flex;
         grid-area: main;
+        justify-content: center;
         overflow-y: auto;
     }
 
