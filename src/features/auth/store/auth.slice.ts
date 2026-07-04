@@ -54,11 +54,20 @@ export const authSlice = createSlice({
                 state.loading = false
                 state.error = action.payload ?? null
             })
+            .addCase(logoutThunk.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
             .addCase(logoutThunk.fulfilled, (state) => {
+                state.loading = false
                 state.user = null
                 state.token = null
                 state.authenticated = false
                 state.error = null
+            })
+            .addCase(logoutThunk.rejected, (state, action) => {
+                state.loading = false
+                state.error = action.payload ?? null
             })
             .addCase(fetchCurrentUserThunk.pending, (state) => {
                 state.loading = true
