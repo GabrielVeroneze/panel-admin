@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router'
+import { useAuth } from '@/features/auth/hooks'
 import {
     Dropdown,
     DropdownDivider,
@@ -17,6 +19,15 @@ import {
 import styles from './AuthenticatedHeader.module.scss'
 
 export const AuthenticatedHeader = () => {
+    const navigate = useNavigate()
+    const { logout } = useAuth()
+
+    const handleLogout = async () => {
+        await logout()
+
+        navigate('/auth/sign-in')
+    }
+
     return (
         <div className={styles.container}>
             <Input
@@ -48,7 +59,9 @@ export const AuthenticatedHeader = () => {
                     <DropdownItem icon={<CogSolidIcon />}>
                         Settings
                     </DropdownItem>
-                    <DropdownItem icon={<LogoutIcon />}>Sign out</DropdownItem>
+                    <DropdownItem icon={<LogoutIcon />} onClick={handleLogout}>
+                        Sign out
+                    </DropdownItem>
                     <DropdownDivider />
                     <DropdownItem icon={<TrashSolidIcon />} variant="danger">
                         Delete
