@@ -41,10 +41,14 @@ export const signUpThunk = createAsyncThunk<
 
 export const logoutThunk = createAsyncThunk<void, void, ThunkConfig>(
     'auth/logout',
-    async () => {
-        await logout()
+    async (_, { rejectWithValue }) => {
+        try {
+            await logout()
 
-        removeToken()
+            removeToken()
+        } catch {
+            return rejectWithValue('Unable to logout')
+        }
     },
 )
 
