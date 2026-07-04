@@ -1,4 +1,5 @@
 export { default as authReducer } from './auth.slice'
+export { clearSession } from './auth.slice'
 export {
     fetchCurrentUserThunk,
     logoutThunk,
