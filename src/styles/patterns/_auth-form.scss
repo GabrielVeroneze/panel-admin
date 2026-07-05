@@ -1,0 +1,18 @@
+@use '@/styles/tokens' as *;
+@use '@/styles/mixins' as *;
+
+@mixin auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+
+    .error {
+        color: $red-dark;
+        font-size: $text-xl;
+        font-weight: $font-normal;
+    }
+
+    @include media-down(lg) {
+        gap: $space-5;
+    }
+}
