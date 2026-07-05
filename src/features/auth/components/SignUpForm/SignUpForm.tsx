@@ -8,6 +8,7 @@ export const SignUpForm = () => {
         handleSubmit,
         onSubmit,
         loading,
+        error,
         formState: { errors },
     } = useSignUpForm()
 
@@ -59,6 +60,7 @@ export const SignUpForm = () => {
                 label="I accept the Terms & Conditions"
                 {...register('terms')}
             />
+            {error && <p className={styles.error}>{error}</p>}
             <Button type="submit" size="lg" loading={loading}>
                 Create account
             </Button>
