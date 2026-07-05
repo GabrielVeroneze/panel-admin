@@ -1,0 +1,16 @@
+@use '@/styles/tokens' as *;
+
+.spinner {
+    animation: spin 0.8s linear infinite;
+    border: $border-2 solid currentColor;
+    border-radius: 50%;
+    border-top-color: transparent;
+    height: 20px;
+    width: 20px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
