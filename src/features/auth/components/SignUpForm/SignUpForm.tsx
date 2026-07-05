@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { Button, Checkbox, FormField, Input } from '@/shared/components'
 import { useSignUpForm } from '@/features/auth/hooks'
 import styles from './SignUpForm.module.scss'
@@ -64,6 +65,12 @@ export const SignUpForm = () => {
             <Button type="submit" size="lg" loading={loading}>
                 Create account
             </Button>
+            <p className={styles.footer}>
+                Already have an account?{' '}
+                <Link className={styles.link} to="/auth/sign-in">
+                    Sign In
+                </Link>
+            </p>
         </form>
     )
 }
