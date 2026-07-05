@@ -13,7 +13,7 @@ const defaultValues: SignInFormValues = {
 export const useSignInForm = () => {
     const navigate = useNavigate()
 
-    const { signIn } = useAuth()
+    const { signIn, loading, error } = useAuth()
 
     const form = useForm<SignInFormValues>({
         resolver: zodResolver(signInSchema),
@@ -29,6 +29,8 @@ export const useSignInForm = () => {
 
     return {
         ...form,
+        loading,
+        error,
         onSubmit,
     }
 }

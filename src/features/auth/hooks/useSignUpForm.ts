@@ -14,7 +14,7 @@ const defaultValues: SignUpFormValues = {
 export const useSignUpForm = () => {
     const navigate = useNavigate()
 
-    const { signUp } = useAuth()
+    const { signUp, loading, error } = useAuth()
 
     const form = useForm<SignUpFormValues>({
         resolver: zodResolver(signUpSchema),
@@ -30,6 +30,8 @@ export const useSignUpForm = () => {
 
     return {
         ...form,
+        loading,
+        error,
         onSubmit,
     }
 }
