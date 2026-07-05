@@ -7,6 +7,7 @@ export const SignInForm = () => {
         register,
         handleSubmit,
         onSubmit,
+        loading,
         formState: { errors },
     } = useSignInForm()
 
@@ -41,7 +42,7 @@ export const SignInForm = () => {
                 />
             </FormField>
             <Checkbox label="Remember me" {...register('rememberMe')} />
-            <Button type="submit" size="lg">
+            <Button type="submit" size="lg" loading={loading}>
                 Sign In
             </Button>
         </form>

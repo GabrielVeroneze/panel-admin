@@ -7,6 +7,7 @@ export const SignUpForm = () => {
         register,
         handleSubmit,
         onSubmit,
+        loading,
         formState: { errors },
     } = useSignUpForm()
 
@@ -58,7 +59,7 @@ export const SignUpForm = () => {
                 label="I accept the Terms & Conditions"
                 {...register('terms')}
             />
-            <Button type="submit" size="lg">
+            <Button type="submit" size="lg" loading={loading}>
                 Create account
             </Button>
         </form>
