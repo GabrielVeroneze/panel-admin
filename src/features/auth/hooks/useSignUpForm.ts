@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Toast } from '@/shared/lib'
 import { useAuth } from './useAuth'
 import { signUpSchema, type SignUpFormValues } from '../schemas'
 
@@ -24,6 +25,8 @@ export const useSignUpForm = () => {
 
     const onSubmit = async (data: SignUpFormValues) => {
         await signUp(data)
+
+        Toast.success('Account successfully created')
 
         navigate('/auth/sign-in')
     }
