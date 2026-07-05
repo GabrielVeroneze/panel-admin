@@ -1,3 +1,4 @@
+import { Spinner } from '@/shared/components'
 import type { ComponentProps, ReactNode } from 'react'
 import type {
     ButtonIconPosition,
@@ -12,6 +13,7 @@ export type ButtonProps = {
     size?: ButtonSize
     icon?: ReactNode
     iconPosition?: ButtonIconPosition
+    loading?: boolean
 } & ComponentProps<'button'>
 
 export const Button = ({
@@ -20,6 +22,8 @@ export const Button = ({
     size = 'md',
     icon,
     iconPosition = 'none',
+    loading = false,
+    disabled,
     className,
     ...props
 }: ButtonProps) => {
@@ -27,6 +31,7 @@ export const Button = ({
     const showLeftIcon = icon && iconPosition === 'left'
     const showRightIcon = icon && iconPosition === 'right'
     const showChildren = !isIconOnly
+    const isDisabled = disabled || loading
 
     return (
         <button
@@ -36,12 +41,19 @@ export const Button = ({
                 styles[size],
                 className,
             )}
+            disabled={isDisabled}
             {...props}
         >
-            {showLeftIcon && icon}
-            {showChildren && children}
-            {showRightIcon && icon}
-            {isIconOnly && icon}
+            {loading ? (
+                <Spinner />
+            ) : (
+                <>
+                    {showLeftIcon && icon}
+                    {showChildren && children}
+                    {showRightIcon && icon}
+                    {isIconOnly && icon}
+                </>
+            )}
         </button>
     )
 }
