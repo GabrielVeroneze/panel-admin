@@ -12,6 +12,17 @@
         font-weight: $font-normal;
     }
 
+    .footer {
+        color: $gray-dark;
+        font-size: $text-xl;
+        font-weight: $font-normal;
+
+        .link {
+            color: $blue-dark;
+            font-weight: $font-medium;
+        }
+    }
+
     @include media-down(lg) {
         gap: $space-5;
     }
