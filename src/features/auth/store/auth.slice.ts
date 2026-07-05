@@ -49,7 +49,7 @@ export const authSlice = createSlice({
             })
             .addCase(signInThunk.rejected, (state, action) => {
                 state.loading = false
-                state.error = action.payload ?? null
+                state.error = action.payload ?? 'Unexpected error'
             })
             .addCase(signUpThunk.pending, (state) => {
                 state.loading = true
@@ -60,7 +60,7 @@ export const authSlice = createSlice({
             })
             .addCase(signUpThunk.rejected, (state, action) => {
                 state.loading = false
-                state.error = action.payload ?? null
+                state.error = action.payload ?? 'Unexpected error'
             })
             .addCase(logoutThunk.pending, (state) => {
                 state.loading = true
