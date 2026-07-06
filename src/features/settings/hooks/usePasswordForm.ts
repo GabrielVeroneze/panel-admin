@@ -26,7 +26,7 @@ export const usePasswordForm = () => {
     })
 
     return {
-        ...form,
+        form,
         onSubmit,
     }
 }
