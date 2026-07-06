@@ -28,7 +28,7 @@ export const useSignInForm = () => {
     }
 
     return {
-        ...form,
+        form,
         loading,
         error,
         onSubmit,
