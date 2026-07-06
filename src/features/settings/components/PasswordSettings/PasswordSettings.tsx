@@ -9,11 +9,12 @@ type PasswordSettingsProps = {
 }
 
 export const PasswordSettings = ({ loading }: PasswordSettingsProps) => {
+    const { form, onSubmit } = usePasswordForm()
+
     const {
         register,
-        onSubmit,
         formState: { errors },
-    } = usePasswordForm()
+    } = form
 
     if (loading) return <PasswordSettingsSkeleton />
 
