@@ -39,7 +39,7 @@ export const useGeneralInformationForm = (data?: GeneralInformation) => {
     })
 
     return {
-        ...form,
+        form,
         onSubmit,
     }
 }
