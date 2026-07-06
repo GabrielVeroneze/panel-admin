@@ -21,11 +21,12 @@ export const GeneralInformationSettings = ({
     data,
     loading,
 }: GeneralInformationSettingsProps) => {
+    const { form, onSubmit } = useGeneralInformationForm(data)
+
     const {
         register,
-        onSubmit,
         formState: { errors },
-    } = useGeneralInformationForm(data)
+    } = form
 
     if (loading) return <GeneralInformationSettingsSkeleton />
 
