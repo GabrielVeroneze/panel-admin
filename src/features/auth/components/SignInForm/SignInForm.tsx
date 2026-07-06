@@ -4,14 +4,13 @@ import { useSignInForm } from '@/features/auth/hooks'
 import styles from './SignInForm.module.scss'
 
 export const SignInForm = () => {
+    const { form, loading, error, onSubmit } = useSignInForm()
+
     const {
         register,
         handleSubmit,
-        onSubmit,
-        loading,
-        error,
         formState: { errors },
-    } = useSignInForm()
+    } = form
 
     return (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
