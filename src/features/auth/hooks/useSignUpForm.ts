@@ -32,7 +32,7 @@ export const useSignUpForm = () => {
     }
 
     return {
-        ...form,
+        form,
         loading,
         error,
         onSubmit,
