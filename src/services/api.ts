@@ -32,14 +32,16 @@ api.interceptors.response.use(
     },
     (error: AxiosError) => {
         if (error.response) {
-            const { status } = error.response
+            const status = error.response?.status
+            const url = error.config?.url
 
-            if (status === 401) {
+            const isAuthRequest =
+                url === '/auth/sign-in' || url === '/auth/sign-up'
+
+            if (status === 401 && !isAuthRequest) {
                 removeToken()
 
                 store.dispatch(clearSession())
-
-                window.location.replace('/auth/sign-in')
             }
         }
 
