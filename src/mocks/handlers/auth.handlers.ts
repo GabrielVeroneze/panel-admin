@@ -19,13 +19,13 @@ type MessageResponse = {
 
 export const authHandlers = [
     http.post<never, SignInPayload, LoginResponse>(
-        '/auth/login',
+        '/api/auth/sign-in',
         async ({ request }) => {
             const body = await request.json()
 
             const { email, password } = body
 
-            await delay(800)
+            await delay(1000)
 
             if (email !== 'bonnie@example.com' || password !== '123456') {
                 return HttpResponse.json(
@@ -46,9 +46,9 @@ export const authHandlers = [
     ),
 
     http.post<never, SignUpPayload, RegisterResponse>(
-        '/auth/register',
+        '/api/auth/sign-up',
         async () => {
-            await delay(800)
+            await delay(1000)
 
             return HttpResponse.json(
                 {
@@ -61,7 +61,7 @@ export const authHandlers = [
         },
     ),
 
-    http.get<never, never, MeResponse>('/auth/me', async ({ request }) => {
+    http.get<never, never, MeResponse>('/api/auth/me', async ({ request }) => {
         const authorization = request.headers.get('Authorization')
 
         await delay(500)
