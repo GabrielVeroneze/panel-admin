@@ -1,5 +1,13 @@
 import { delay, http, HttpResponse } from 'msw'
-import { authToken, authUser } from '../database'
+import {
+    clearSession,
+    createSession,
+    createUser,
+    emailAlreadyExists,
+    findUserByCredentials,
+    getCurrentUser,
+    validateToken,
+} from '../database/'
 import type {
     AuthResponse,
     AuthUser,
@@ -23,11 +31,11 @@ export const authHandlers = [
         async ({ request }) => {
             const body = await request.json()
 
-            const { email, password } = body
-
             await delay(1000)
 
-            if (email !== 'bonnie@example.com' || password !== '123456') {
+            const user = findUserByCredentials(body)
+
+            if (!user) {
                 return HttpResponse.json(
                     {
                         message: 'Invalid credentials',
@@ -38,17 +46,34 @@ export const authHandlers = [
                 )
             }
 
+            const token = createSession(user)
+
             return HttpResponse.json({
-                token: authToken,
-                user: authUser,
+                token,
+                user,
             })
         },
     ),
 
     http.post<never, SignUpPayload, RegisterResponse>(
         '/api/auth/sign-up',
-        async () => {
+        async ({ request }) => {
+            const body = await request.json()
+
             await delay(1000)
+
+            if (emailAlreadyExists(body.email)) {
+                return HttpResponse.json(
+                    {
+                        message: 'Email already registered',
+                    },
+                    {
+                        status: 409,
+                    },
+                )
+            }
+
+            createUser(body)
 
             return HttpResponse.json(
                 {
@@ -62,9 +87,9 @@ export const authHandlers = [
     ),
 
     http.get<never, never, MeResponse>('/api/auth/me', async ({ request }) => {
-        const authorization = request.headers.get('Authorization')
-
         await delay(500)
+
+        const authorization = request.headers.get('Authorization')
 
         if (!authorization) {
             return HttpResponse.json(
@@ -77,6 +102,47 @@ export const authHandlers = [
             )
         }
 
-        return HttpResponse.json(authUser)
+        const token = authorization.replace('Bearer ', '')
+
+        if (!validateToken(token)) {
+            return HttpResponse.json(
+                {
+                    message: 'Unauthorized',
+                },
+                {
+                    status: 401,
+                },
+            )
+        }
+
+        const user = getCurrentUser()
+
+        if (!user) {
+            return HttpResponse.json(
+                {
+                    message: 'Unauthorized',
+                },
+                {
+                    status: 401,
+                },
+            )
+        }
+
+        return HttpResponse.json(user)
+    }),
+
+    http.post('/api/auth/sign-out', async () => {
+        await delay(300)
+
+        clearSession()
+
+        return HttpResponse.json(
+            {
+                message: 'Signed out successfully',
+            },
+            {
+                status: 200,
+            },
+        )
     }),
 ]
