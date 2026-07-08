@@ -1,4 +1,12 @@
-export { authToken, authUser } from './auth.database'
+export {
+    clearSession,
+    createSession,
+    createUser,
+    emailAlreadyExists,
+    findUserByCredentials,
+    getCurrentUser,
+    validateToken,
+} from './auth.database'
 export { dashboardDatabase } from './dashboard.database'
 export { myProfileDatabase } from './my-profile.database'
 export { productsDatabase } from './products.database'
