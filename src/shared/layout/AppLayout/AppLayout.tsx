@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router'
 import { Header, Sidebar } from '@/shared/layout'
+import { useAuth } from '@/features/auth/hooks'
 import styles from './AppLayout.module.scss'
 
 export const AppLayout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
-    const isAuth = false
+    const { authenticated } = useAuth()
 
     const toggleSidebar = () => {
         setIsSidebarOpen((prev) => !prev)
@@ -13,7 +14,10 @@ export const AppLayout = () => {
 
     return (
         <div className={styles.layout}>
-            <Header isAuthenticated={isAuth} onToggleSidebar={toggleSidebar} />
+            <Header
+                isAuthenticated={authenticated}
+                onToggleSidebar={toggleSidebar}
+            />
             <Sidebar isOpen={isSidebarOpen} />
             <main className={styles.main}>
                 <Outlet />
