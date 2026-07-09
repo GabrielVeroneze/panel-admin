@@ -4,6 +4,7 @@ type UserAvatarProps = {
     src: string
     alt?: string
     size?: number
+    asButton?: boolean
     onClick?: () => void
 }
 
@@ -11,12 +12,14 @@ export const UserAvatar = ({
     src,
     alt = 'Avatar do usuário',
     size = 32,
+    asButton = true,
     onClick,
 }: UserAvatarProps) => {
+    const Tag = asButton ? 'button' : 'div'
+
     return (
-        <button
+        <Tag
             className={styles.button}
-            type="button"
             aria-label={alt}
             onClick={onClick}
             style={{ height: size, width: size }}
@@ -28,6 +31,6 @@ export const UserAvatar = ({
                 height={size}
                 width={size}
             />
-        </button>
+        </Tag>
     )
 }
