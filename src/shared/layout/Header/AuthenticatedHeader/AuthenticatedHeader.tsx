@@ -43,7 +43,10 @@ export const AuthenticatedHeader = () => {
                 />
                 <Dropdown
                     trigger={
-                        <UserAvatar src="https://i.pravatar.cc/300?u=a04258213sdfg40fw2" />
+                        <UserAvatar
+                            src="https://i.pravatar.cc/300?u=a04258213sdfg40fw2"
+                            asButton={false}
+                        />
                     }
                 >
                     <DropdownItem disabled>
