@@ -13,7 +13,7 @@ export const Dropdown = ({
     trigger,
     align = 'right',
 }: DropdownProps) => {
-    const [open, setOpen] = useState<boolean>(true)
+    const [open, setOpen] = useState<boolean>(false)
 
     const toggle = () => setOpen((prev) => !prev)
 
