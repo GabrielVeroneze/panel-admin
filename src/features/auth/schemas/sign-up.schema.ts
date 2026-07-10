@@ -1,7 +1,15 @@
 import { z } from 'zod'
 
+const nameRegex = /^[A-Za-zÀ-ÿ'-\s]+$/
+
 export const signUpSchema = z
     .object({
+        name: z
+            .string()
+            .trim()
+            .min(2, 'Name must have at least 2 characters')
+            .max(50, 'Name must have at most 50 characters')
+            .regex(nameRegex, 'Name contains invalid characters'),
         email: z
             .string()
             .trim()
