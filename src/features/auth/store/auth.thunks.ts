@@ -31,9 +31,9 @@ export const signUpThunk = createAsyncThunk<
     void,
     SignUpFormValues,
     ThunkConfig
->('auth/signUp', async ({ email, password }, { rejectWithValue }) => {
+>('auth/signUp', async ({ name, email, password }, { rejectWithValue }) => {
     try {
-        await signUp({ email, password })
+        await signUp({ name, email, password })
     } catch {
         return rejectWithValue('Unable to create account')
     }
