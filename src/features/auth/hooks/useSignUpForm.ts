@@ -6,6 +6,7 @@ import { useAuth } from './useAuth'
 import { signUpSchema, type SignUpFormValues } from '../schemas'
 
 const defaultValues: SignUpFormValues = {
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
