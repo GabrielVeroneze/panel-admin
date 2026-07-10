@@ -34,11 +34,11 @@ const generateToken = () => {
 export const createUser = (data: SignUpPayload): AuthUser => {
     const user: StoredUser = {
         id: generateId(),
-        name: '',
+        name: data.name,
         email: data.email,
         password: data.password,
         role: 'user',
-        avatar: '',
+        avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(data.name)}&background=random&size=150`,
     }
 
     users.push(user)
