@@ -15,6 +15,19 @@ export const SignUpForm = () => {
     return (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <FormField
+                id="name"
+                label="Full Name"
+                size="large"
+                status={errors.name && 'error'}
+                message={errors.name?.message}
+            >
+                <Input
+                    placeholder="Enter your full name"
+                    size="large"
+                    {...register('name')}
+                />
+            </FormField>
+            <FormField
                 id="email"
                 label="Your Email"
                 size="large"
