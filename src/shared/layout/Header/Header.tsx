@@ -4,14 +4,15 @@ import { IconButton } from '@/shared/components'
 import { MenuAlt1SolidIcon } from '@/shared/assets/icons'
 import { LogoImage } from '@/shared/assets/images'
 import { useBreakpoint } from '@/shared/hooks'
+import { useAuth } from '@/features/auth/hooks'
 import styles from './Header.module.scss'
 
 type HeaderProps = {
-    isAuthenticated: boolean
     onToggleSidebar?: () => void
 }
 
-export const Header = ({ isAuthenticated, onToggleSidebar }: HeaderProps) => {
+export const Header = ({ onToggleSidebar }: HeaderProps) => {
+    const { user, authenticated } = useAuth()
     const { isMobile, isTablet } = useBreakpoint()
     const showMenuButton = isMobile || isTablet
 
@@ -26,7 +27,11 @@ export const Header = ({ isAuthenticated, onToggleSidebar }: HeaderProps) => {
                     onClick={onToggleSidebar}
                 />
             )}
-            {isAuthenticated ? <AuthenticatedHeader /> : <GuestHeader />}
+            {authenticated && user ? (
+                <AuthenticatedHeader user={user} />
+            ) : (
+                <GuestHeader />
+            )}
         </header>
     )
 }
