@@ -16,9 +16,14 @@ import {
     TrashSolidIcon,
     UserSolidIcon,
 } from '@/shared/assets/icons'
+import type { AuthUser } from '@/features/auth/types'
 import styles from './AuthenticatedHeader.module.scss'
 
-export const AuthenticatedHeader = () => {
+type AuthenticatedHeaderProps = {
+    user: AuthUser
+}
+
+export const AuthenticatedHeader = ({ user }: AuthenticatedHeaderProps) => {
     const navigate = useNavigate()
     const { logout } = useAuth()
 
@@ -42,17 +47,12 @@ export const AuthenticatedHeader = () => {
                     aria-label="Notificações"
                 />
                 <Dropdown
-                    trigger={
-                        <UserAvatar
-                            src="https://i.pravatar.cc/300?u=a04258213sdfg40fw2"
-                            asButton={false}
-                        />
-                    }
+                    trigger={<UserAvatar src={user.avatar} asButton={false} />}
                 >
                     <DropdownItem disabled>
                         <div className={styles.userInfo}>
-                            <strong>Gabriel Veroneze</strong>
-                            <span>gabriel@email.com</span>
+                            <strong>{user.name}</strong>
+                            <span>{user.email}</span>
                         </div>
                     </DropdownItem>
                     <DropdownDivider />
