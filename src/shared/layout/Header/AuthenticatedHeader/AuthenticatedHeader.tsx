@@ -56,10 +56,16 @@ export const AuthenticatedHeader = ({ user }: AuthenticatedHeaderProps) => {
                         </div>
                     </DropdownItem>
                     <DropdownDivider />
-                    <DropdownItem icon={<UserSolidIcon />}>
+                    <DropdownItem
+                        icon={<UserSolidIcon />}
+                        onClick={() => navigate('/profile')}
+                    >
                         Your Profile
                     </DropdownItem>
-                    <DropdownItem icon={<CogSolidIcon />}>
+                    <DropdownItem
+                        icon={<CogSolidIcon />}
+                        onClick={() => navigate('/settings')}
+                    >
                         Settings
                     </DropdownItem>
                     <DropdownItem icon={<LogoutIcon />} onClick={handleLogout}>
