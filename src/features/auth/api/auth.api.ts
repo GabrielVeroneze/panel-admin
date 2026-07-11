@@ -19,7 +19,7 @@ export const signUp = async (payload: SignUpPayload) => {
 }
 
 export const logout = async () => {
-    await api.post('/auth/logout')
+    await api.post('/auth/sign-out')
 }
 
 export const me = async () => {
