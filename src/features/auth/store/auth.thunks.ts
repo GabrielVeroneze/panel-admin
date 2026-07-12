@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { getToken, removeToken, saveToken } from '@/shared/utils'
+import { clearSessionStorage, getSession } from '@/shared/utils'
 import { signIn, signUp, logout, me } from '../api'
 import type { SignInFormValues, SignUpFormValues } from '../schemas'
 import type { AuthResponse, AuthUser } from '../types'
@@ -12,20 +12,13 @@ export const signInThunk = createAsyncThunk<
     AuthResponse,
     SignInFormValues,
     ThunkConfig
->(
-    'auth/signIn',
-    async ({ rememberMe, ...credentials }, { rejectWithValue }) => {
-        try {
-            const response = await signIn(credentials)
-
-            saveToken(response.token, rememberMe)
-
-            return response
-        } catch {
-            return rejectWithValue('Invalid credentials')
-        }
-    },
-)
+>('auth/signIn', async (credentials, { rejectWithValue }) => {
+    try {
+        return await signIn(credentials)
+    } catch {
+        return rejectWithValue('Invalid credentials')
+    }
+})
 
 export const signUpThunk = createAsyncThunk<
     void,
@@ -45,7 +38,7 @@ export const logoutThunk = createAsyncThunk<void, void, ThunkConfig>(
         try {
             await logout()
 
-            removeToken()
+            clearSessionStorage()
         } catch {
             return rejectWithValue('Unable to logout')
         }
@@ -58,15 +51,13 @@ export const fetchCurrentUserThunk = createAsyncThunk<
     ThunkConfig
 >('auth/fetchCurrentUser', async (_, { rejectWithValue }) => {
     try {
-        const token = getToken()
-
-        if (!token) {
+        if (!getSession()) {
             return rejectWithValue('No active session')
         }
 
         return await me()
     } catch {
-        removeToken()
+        clearSessionStorage()
 
         return rejectWithValue('Session expired')
     }
