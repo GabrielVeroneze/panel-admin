@@ -1,21 +1,30 @@
-const TOKEN_KEY = 'auth-token'
+export type Session = {
+    token: string
+    userId: number
+}
 
-export const saveToken = (token: string, rememberMe: boolean) => {
-    removeToken()
+const SESSION_KEY = 'auth-session'
+
+export const saveSession = (session: Session, rememberMe: boolean) => {
+    clearSessionStorage()
 
     const storage = rememberMe ? localStorage : sessionStorage
 
-    storage.setItem(TOKEN_KEY, token)
+    storage.setItem(SESSION_KEY, JSON.stringify(session))
 }
 
-export const getToken = () => {
-    const persistentToken = localStorage.getItem(TOKEN_KEY)
-    const sessionToken = sessionStorage.getItem(TOKEN_KEY)
+export const getSession = (): Session | null => {
+    const data =
+        localStorage.getItem(SESSION_KEY) ?? sessionStorage.getItem(SESSION_KEY)
 
-    return persistentToken ?? sessionToken
+    if (!data) {
+        return null
+    }
+
+    return JSON.parse(data)
 }
 
-export const removeToken = () => {
-    localStorage.removeItem(TOKEN_KEY)
-    sessionStorage.removeItem(TOKEN_KEY)
+export const clearSessionStorage = () => {
+    localStorage.removeItem(SESSION_KEY)
+    sessionStorage.removeItem(SESSION_KEY)
 }
