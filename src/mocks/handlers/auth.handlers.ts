@@ -46,7 +46,7 @@ export const authHandlers = [
                 )
             }
 
-            const token = createSession(user)
+            const token = createSession(user, body.rememberMe)
 
             return HttpResponse.json({
                 token,
