@@ -8,6 +8,13 @@ type StoredUser = AuthUser & {
     password: string
 }
 
+type Session = {
+    token: string
+    userId: number
+}
+
+const SESSION_KEY = 'auth-session'
+
 const users: StoredUser[] = [
     {
         id: 1,
@@ -19,16 +26,26 @@ const users: StoredUser[] = [
     },
 ]
 
-let currentToken: string | null = null
-
-let currentUserId: number | null = null
-
 const generateId = () => {
     return users.length + 1
 }
 
 const generateToken = () => {
     return crypto.randomUUID()
+}
+
+const saveSession = (session: Session) => {
+    localStorage.setItem(SESSION_KEY, JSON.stringify(session))
+}
+
+const getSession = (): Session | null => {
+    const session = localStorage.getItem(SESSION_KEY)
+
+    return session ? JSON.parse(session) : null
+}
+
+export const clearSession = () => {
+    localStorage.removeItem(SESSION_KEY)
 }
 
 export const createUser = (data: SignUpPayload): AuthUser => {
@@ -43,7 +60,9 @@ export const createUser = (data: SignUpPayload): AuthUser => {
 
     users.push(user)
 
-    return user
+    const { password: _password, ...authUser } = user
+
+    return authUser
 }
 
 export const emailAlreadyExists = (email: string) => {
@@ -59,35 +78,46 @@ export const findUserByCredentials = (data: SignInPayload): AuthUser | null => {
         return null
     }
 
-    return user
+    const { password: _password, ...authUser } = user
+
+    return authUser
 }
 
 export const createSession = (user: AuthUser) => {
-    currentUserId = user.id
-    currentToken = generateToken()
+    const token = generateToken()
 
-    return currentToken
+    saveSession({
+        token,
+        userId: user.id,
+    })
+
+    return token
 }
 
-export const getCurrentUser = () => {
-    if (!currentUserId) {
+export const getCurrentUser = (): AuthUser | null => {
+    const session = getSession()
+
+    if (!session) {
         return null
     }
 
-    const user = users.find((user) => user.id === currentUserId)
+    const user = users.find((user) => user.id === session.userId)
 
     if (!user) {
         return null
     }
 
-    return user
+    const { password: _password, ...authUser } = user
+
+    return authUser
 }
 
 export const validateToken = (token: string) => {
-    return token === currentToken
-}
+    const session = getSession()
 
-export const clearSession = () => {
-    currentToken = null
-    currentUserId = null
+    if (!session) {
+        return false
+    }
+
+    return session.token === token
 }
