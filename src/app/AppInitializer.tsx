@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { getToken } from '@/shared/utils'
+import { getSession } from '@/shared/utils'
 import { useAuth } from '@/features/auth/hooks'
 import type { PropsWithChildren } from 'react'
 
@@ -9,7 +9,7 @@ export const AppInitializer = ({ children }: AppInitializerProps) => {
     const { fetchCurrentUser } = useAuth()
 
     useEffect(() => {
-        if (!getToken()) {
+        if (!getSession()) {
             return
         }
 
