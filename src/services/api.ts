@@ -1,6 +1,6 @@
 import axios, { type AxiosError, type AxiosResponse } from 'axios'
 import { store } from '@/store'
-import { getToken, removeToken } from '@/shared/utils'
+import { getSession, clearSessionStorage } from '@/shared/utils'
 import { clearSession } from '@/features/auth/store'
 
 export const api = axios.create({
@@ -13,33 +13,29 @@ export const api = axios.create({
 
 api.interceptors.request.use(
     (config) => {
-        const token = getToken()
+        const session = getSession()
 
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`
+        if (session) {
+            config.headers.Authorization = `Bearer ${session.token}`
         }
 
         return config
     },
-    (error: AxiosError) => {
-        return Promise.reject(error)
-    },
+    (error: AxiosError) => Promise.reject(error),
 )
 
 api.interceptors.response.use(
-    (response: AxiosResponse) => {
-        return response
-    },
+    (response: AxiosResponse) => response,
     (error: AxiosError) => {
         if (error.response) {
-            const status = error.response?.status
+            const status = error.response.status
             const url = error.config?.url
 
             const isAuthRequest =
                 url === '/auth/sign-in' || url === '/auth/sign-up'
 
             if (status === 401 && !isAuthRequest) {
-                removeToken()
+                clearSessionStorage()
 
                 store.dispatch(clearSession())
             }
