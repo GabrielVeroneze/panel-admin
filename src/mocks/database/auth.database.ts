@@ -34,18 +34,29 @@ const generateToken = () => {
     return crypto.randomUUID()
 }
 
-const saveSession = (session: Session) => {
-    localStorage.setItem(SESSION_KEY, JSON.stringify(session))
+const saveSession = (session: Session, rememberMe: boolean) => {
+    localStorage.removeItem(SESSION_KEY)
+    sessionStorage.removeItem(SESSION_KEY)
+
+    const storage = rememberMe ? localStorage : sessionStorage
+
+    storage.setItem(SESSION_KEY, JSON.stringify(session))
 }
 
 const getSession = (): Session | null => {
-    const session = localStorage.getItem(SESSION_KEY)
+    const session =
+        localStorage.getItem(SESSION_KEY) ?? sessionStorage.getItem(SESSION_KEY)
 
-    return session ? JSON.parse(session) : null
+    if (!session) {
+        return null
+    }
+
+    return JSON.parse(session)
 }
 
 export const clearSession = () => {
     localStorage.removeItem(SESSION_KEY)
+    sessionStorage.removeItem(SESSION_KEY)
 }
 
 export const createUser = (data: SignUpPayload): AuthUser => {
@@ -83,13 +94,16 @@ export const findUserByCredentials = (data: SignInPayload): AuthUser | null => {
     return authUser
 }
 
-export const createSession = (user: AuthUser) => {
+export const createSession = (user: AuthUser, rememberMe: boolean) => {
     const token = generateToken()
 
-    saveSession({
-        token,
-        userId: user.id,
-    })
+    saveSession(
+        {
+            token,
+            userId: user.id,
+        },
+        rememberMe,
+    )
 
     return token
 }
