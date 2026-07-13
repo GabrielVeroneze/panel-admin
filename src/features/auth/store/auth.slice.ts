@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getSession } from '@/shared/utils'
 import {
     fetchCurrentUserThunk,
     logoutThunk,
@@ -15,11 +16,13 @@ export type AuthState = {
     error: string | null
 }
 
+const session = getSession()
+
 const initialState: AuthState = {
     user: null,
-    token: null,
-    authenticated: false,
-    loading: false,
+    token: session?.token ?? null,
+    authenticated: !!session,
+    loading: !!session,
     error: null,
 }
 
