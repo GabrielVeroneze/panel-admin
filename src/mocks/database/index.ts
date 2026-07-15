@@ -5,10 +5,10 @@ export {
     emailAlreadyExists,
     findUserByCredentials,
     getCurrentUser,
+    getCurrentUserId,
     validateToken,
 } from './auth.database'
 export { dashboardDatabase } from './dashboard.database'
-export { myProfileDatabase } from './my-profile.database'
 export { productsDatabase } from './products.database'
 export { settingsDatabase } from './settings.database'
 export { usersProfilesDatabase } from './users-profiles.database'
