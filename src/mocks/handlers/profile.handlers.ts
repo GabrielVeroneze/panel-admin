@@ -1,5 +1,5 @@
 import { delay, http, HttpResponse } from 'msw'
-import { myProfileDatabase, usersProfilesDatabase } from '../database'
+import { getCurrentUserId, usersProfilesDatabase } from '../database'
 import type { UserProfile } from '@/features/profile/types'
 
 type GetUserProfileParams = {
@@ -10,7 +10,25 @@ export const profileHandlers = [
     http.get<never, never, UserProfile>('/api/me', async () => {
         await delay(1000)
 
-        return HttpResponse.json(myProfileDatabase)
+        const currentUserId = getCurrentUserId()
+
+        if (!currentUserId) {
+            return HttpResponse.json(null, {
+                status: 401,
+            })
+        }
+
+        const profile = usersProfilesDatabase.find(
+            (profile) => profile.id === currentUserId,
+        )
+
+        if (!profile) {
+            return HttpResponse.json(null, {
+                status: 404,
+            })
+        }
+
+        return HttpResponse.json(profile)
     }),
 
     http.get<GetUserProfileParams, never, UserProfile>(
