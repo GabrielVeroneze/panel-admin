@@ -1,3 +1,4 @@
+import { usersProfilesDatabase } from './'
 import type {
     AuthUser,
     SignUpPayload,
@@ -17,10 +18,10 @@ const SESSION_KEY = 'auth-session'
 
 const users: StoredUser[] = [
     {
-        id: 1,
+        id: 5,
         name: 'Bonnie Green',
         email: 'bonnie@example.com',
-        password: '123456',
+        password: 'Password123*',
         role: 'user',
         avatar: 'https://i.pravatar.cc/150?img=5',
     },
@@ -48,6 +49,12 @@ export const clearSession = () => {
     localStorage.removeItem(SESSION_KEY)
 }
 
+export const getCurrentUserId = () => {
+    const session = getSession()
+
+    return session?.userId ?? null
+}
+
 export const createUser = (data: SignUpPayload): AuthUser => {
     const user: StoredUser = {
         id: generateId(),
@@ -59,6 +66,41 @@ export const createUser = (data: SignUpPayload): AuthUser => {
     }
 
     users.push(user)
+
+    usersProfilesDatabase.push({
+        id: user.id,
+        avatar: user.avatar,
+        name: user.name,
+        role: 'user',
+        country: '',
+        contact: {
+            email: user.email,
+            address: '',
+            phone: '',
+        },
+        about: '',
+        skills: [],
+        summary: {
+            products: {
+                count: 0,
+                variation: 0,
+            },
+            users: {
+                count: 0,
+                variation: 0,
+            },
+            profile: {
+                role: 'user',
+                status: 'active',
+                lastLogin: 'Just now',
+                memberSince: 'Today',
+            },
+        },
+        activities: [],
+        recentProducts: [],
+        experience: [],
+        education: [],
+    })
 
     const { password: _password, ...authUser } = user
 
