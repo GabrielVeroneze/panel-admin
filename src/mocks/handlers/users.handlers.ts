@@ -1,5 +1,12 @@
 import { delay, http, HttpResponse } from 'msw'
-import { usersDatabase, type DatabaseUser } from '../database'
+import {
+    createUser,
+    deleteUsers,
+    deleteUser,
+    getUserById,
+    getUsers,
+    updateUser,
+} from '../repositories'
 import type {
     CreateUserPayload,
     PaginatedUsers,
@@ -9,6 +16,10 @@ import type {
 
 type UpdateUserParams = {
     id: string
+}
+
+type UserUpdatedPayload = Omit<UpdateUserPayload, 'password'> & {
+    password?: string
 }
 
 type DeleteUserParams = {
@@ -31,28 +42,28 @@ export const usersHandlers = [
             const pageSize = Number(url.searchParams.get('pageSize') ?? 15)
             const search = url.searchParams.get('search')?.toLowerCase() ?? ''
 
+            const users = getUsers()
+
             const filteredUsers = search
-                ? usersDatabase.filter(
+                ? users.filter(
                       (user) =>
                           user.name.toLowerCase().includes(search) ||
                           user.email.toLowerCase().includes(search) ||
                           user.company.toLowerCase().includes(search),
                   )
-                : usersDatabase
+                : users
 
             const start = (page - 1) * pageSize
             const end = start + pageSize
 
             const paginatedUsers = filteredUsers.slice(start, end)
 
-            const usersResponse = paginatedUsers.map(
-                ({ password: _password, ...userWithoutPassword }) => {
-                    return userWithoutPassword
-                },
+            const response = paginatedUsers.map(
+                ({ password: _password, ...user }) => user,
             )
 
             return HttpResponse.json({
-                list: usersResponse,
+                list: response,
                 total: filteredUsers.length,
                 page,
                 pageSize,
@@ -63,119 +74,110 @@ export const usersHandlers = [
     http.post<never, CreateUserPayload, User>(
         '/api/users',
         async ({ request }) => {
+            await delay(1000)
+
             const formData = await request.formData()
 
             const avatar = formData.get('avatar') as File | null
-            const name = formData.get('name') as string
-            const email = formData.get('email') as string
-            const phone = formData.get('phone') as string
-            const company = formData.get('company') as string
-            const department = formData.get('department') as string
-            const password = formData.get('password') as string
 
-            const nextId =
-                usersDatabase.length > 0
-                    ? Math.max(...usersDatabase.map((u) => u.id)) + 1
-                    : 1
-
-            const newUser: User = {
-                id: nextId,
-                name: name,
-                email: email,
-                phone: phone,
-                company: company,
-                department: department,
-                image: avatar
-                    ? URL.createObjectURL(avatar)
-                    : `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&size=150`,
-                country: 'United States',
-                status: 'active',
+            const payload: CreateUserPayload = {
+                name: formData.get('name') as string,
+                email: formData.get('email') as string,
+                phone: formData.get('phone') as string,
+                company: formData.get('company') as string,
+                department: formData.get('department') as string,
+                password: formData.get('password') as string,
+                avatar: avatar ?? undefined,
             }
 
-            usersDatabase.push({ ...newUser, password: password })
+            const createdUser = createUser(payload)
 
-            return HttpResponse.json(newUser)
+            const { password: _password, ...response } = createdUser
+
+            return HttpResponse.json(response)
         },
     ),
 
-    http.put<UpdateUserParams, UpdateUserPayload, User>(
+    http.put<UpdateUserParams, UserUpdatedPayload, User>(
         '/api/users/:id',
         async ({ params, request }) => {
+            await delay(1000)
+
             const id = Number(params.id)
+
+            if (!getUserById(id)) {
+                return HttpResponse.json(null, {
+                    status: 404,
+                })
+            }
+
             const formData = await request.formData()
 
             const avatar = formData.get('avatar') as File | null
-            const name = formData.get('name') as string | null
-            const email = formData.get('email') as string | null
-            const phone = formData.get('phone') as string | null
-            const company = formData.get('company') as string | null
-            const department = formData.get('department') as string | null
-            const password = formData.get('password') as string | null
 
-            const userIndex = usersDatabase.findIndex((user) => user.id === id)
-
-            if (userIndex === -1) {
-                return HttpResponse.json(null, { status: 404 })
+            const payload: UserUpdatedPayload = {
+                name: (formData.get('name') as string) || undefined,
+                email: (formData.get('email') as string) || undefined,
+                phone: (formData.get('phone') as string) || undefined,
+                company: (formData.get('company') as string) || undefined,
+                department: (formData.get('department') as string) || undefined,
+                password: (formData.get('password') as string) || undefined,
+                avatar: avatar ?? undefined,
             }
 
-            const existingUser = usersDatabase[userIndex]
+            const updatedUser = updateUser(id, payload)
 
-            const updatedUser: DatabaseUser = {
-                ...existingUser,
-                name: name ?? existingUser.name,
-                email: email ?? existingUser.email,
-                phone: phone ?? existingUser.phone,
-                company: company ?? existingUser.company,
-                department: department ?? existingUser.department,
-                image: avatar
-                    ? URL.createObjectURL(avatar)
-                    : existingUser.image,
-                password: password ?? existingUser.password,
+            if (!updatedUser) {
+                return HttpResponse.json(null, {
+                    status: 404,
+                })
             }
 
-            usersDatabase[userIndex] = updatedUser
+            const { password: _password, ...response } = updatedUser
 
-            const { password: _password, ...responseUser } = updatedUser
-
-            return HttpResponse.json(responseUser)
+            return HttpResponse.json(response)
         },
     ),
 
     http.delete<DeleteUserParams, never, null>(
         '/api/users/:id',
         async ({ params }) => {
+            await delay(1000)
+
             const id = Number(params.id)
 
-            const userIndex = usersDatabase.findIndex((user) => user.id === id)
+            const deleted = deleteUser(id)
 
-            if (userIndex === -1) {
-                return HttpResponse.json(null, { status: 404 })
+            if (!deleted) {
+                return HttpResponse.json(null, {
+                    status: 404,
+                })
             }
 
-            usersDatabase.splice(userIndex, 1)
-
-            return HttpResponse.json(null, { status: 204 })
+            return HttpResponse.json(null, {
+                status: 204,
+            })
         },
     ),
 
     http.delete<never, DeleteUsersPayload, null>(
         '/api/users',
         async ({ request }) => {
+            await delay(1000)
+
             const { ids } = await request.json()
 
             if (!ids || ids.length === 0) {
-                return HttpResponse.json(null, { status: 400 })
+                return HttpResponse.json(null, {
+                    status: 400,
+                })
             }
 
-            for (const id of ids) {
-                const index = usersDatabase.findIndex((user) => user.id === id)
+            deleteUsers(ids)
 
-                if (index !== -1) {
-                    usersDatabase.splice(index, 1)
-                }
-            }
-
-            return HttpResponse.json(null, { status: 204 })
+            return HttpResponse.json(null, {
+                status: 204,
+            })
         },
     ),
 ]
