@@ -1,5 +1,5 @@
 import { delay, http, HttpResponse } from 'msw'
-import { getCurrentUserId, usersProfilesDatabase } from '../database'
+import { findProfileByUserId, getCurrentUser } from '../repositories'
 import type { UserProfile } from '@/features/profile/types'
 
 type GetUserProfileParams = {
@@ -7,20 +7,26 @@ type GetUserProfileParams = {
 }
 
 export const profileHandlers = [
-    http.get<never, never, UserProfile>('/api/me', async () => {
+    http.get<never, never, UserProfile>('/api/me', async ({ request }) => {
         await delay(1000)
 
-        const currentUserId = getCurrentUserId()
+        const authorization = request.headers.get('Authorization')
 
-        if (!currentUserId) {
+        if (!authorization) {
             return HttpResponse.json(null, {
                 status: 401,
             })
         }
 
-        const profile = usersProfilesDatabase.find(
-            (profile) => profile.id === currentUserId,
-        )
+        const user = getCurrentUser()
+
+        if (!user) {
+            return HttpResponse.json(null, {
+                status: 401,
+            })
+        }
+
+        const profile = findProfileByUserId(user.id)
 
         if (!profile) {
             return HttpResponse.json(null, {
@@ -36,19 +42,15 @@ export const profileHandlers = [
         async ({ params }) => {
             await delay(1000)
 
-            const userId = Number(params.id)
+            const profile = findProfileByUserId(Number(params.id))
 
-            const userProfile = usersProfilesDatabase.find(
-                (profile) => profile.id === userId,
-            )
-
-            if (!userProfile) {
+            if (!profile) {
                 return HttpResponse.json(null, {
                     status: 404,
                 })
             }
 
-            return HttpResponse.json(userProfile)
+            return HttpResponse.json(profile)
         },
     ),
 ]
