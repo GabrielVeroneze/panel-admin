@@ -1,13 +1,5 @@
-export {
-    clearSession,
-    createSession,
-    createUser,
-    emailAlreadyExists,
-    findUserByCredentials,
-    getCurrentUser,
-    getCurrentUserId,
-    validateToken,
-} from './auth.database'
+export { SESSION_KEY, authUsersDatabase } from './auth.database'
+export type { Session, StoredUser } from './auth.database'
 export { dashboardDatabase } from './dashboard.database'
 export { productsDatabase } from './products.database'
 export { settingsDatabase } from './settings.database'
