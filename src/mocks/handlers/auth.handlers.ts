@@ -1,13 +1,13 @@
 import { delay, http, HttpResponse } from 'msw'
 import {
     clearSession,
+    createAuthUser,
     createSession,
-    createUser,
     emailAlreadyExists,
     findUserByCredentials,
     getCurrentUser,
     validateToken,
-} from '../database/'
+} from '../repositories'
 import type {
     AuthResponse,
     AuthUser,
@@ -16,9 +16,7 @@ import type {
 } from '@/features/auth/types'
 
 type LoginResponse = AuthResponse | MessageResponse
-
 type RegisterResponse = MessageResponse
-
 type MeResponse = AuthUser | MessageResponse
 
 type MessageResponse = {
@@ -29,9 +27,9 @@ export const authHandlers = [
     http.post<never, SignInPayload, LoginResponse>(
         '/api/auth/sign-in',
         async ({ request }) => {
-            const body = await request.json()
-
             await delay(1000)
+
+            const body = await request.json()
 
             const user = findUserByCredentials(body)
 
@@ -58,9 +56,9 @@ export const authHandlers = [
     http.post<never, SignUpPayload, RegisterResponse>(
         '/api/auth/sign-up',
         async ({ request }) => {
-            const body = await request.json()
-
             await delay(1000)
+
+            const body = await request.json()
 
             if (emailAlreadyExists(body.email)) {
                 return HttpResponse.json(
@@ -73,7 +71,7 @@ export const authHandlers = [
                 )
             }
 
-            createUser(body)
+            createAuthUser(body)
 
             return HttpResponse.json(
                 {
