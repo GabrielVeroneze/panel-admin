@@ -1,10 +1,9 @@
 export {
-    clearSession,
+    clearMockSession,
     createAuthUser,
-    createSession,
+    createMockSession,
     emailAlreadyExists,
     findUserByCredentials,
-    findUserById,
     getCurrentUser,
     validateToken,
 } from './auth.repository'
