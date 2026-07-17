@@ -4,12 +4,12 @@ export type StoredUser = AuthUser & {
     password: string
 }
 
-export type Session = {
+export type MockSession = {
     token: string
-    userId: number
+    user: AuthUser
 }
 
-export const SESSION_KEY = 'auth-session'
+export const MOCK_SESSION_KEY = 'mock-auth-session'
 
 export const authUsersDatabase: StoredUser[] = [
     {
