@@ -1,7 +1,7 @@
 import {
-    SESSION_KEY,
+    MOCK_SESSION_KEY,
     authUsersDatabase,
-    type Session,
+    type MockSession,
     type StoredUser,
 } from '../database'
 import type {
@@ -18,18 +18,18 @@ const generateToken = () => {
     return crypto.randomUUID()
 }
 
-const saveSession = (session: Session) => {
-    localStorage.setItem(SESSION_KEY, JSON.stringify(session))
+const saveMockSession = (session: MockSession) => {
+    localStorage.setItem(MOCK_SESSION_KEY, JSON.stringify(session))
 }
 
-const getSession = (): Session | null => {
-    const session = localStorage.getItem(SESSION_KEY)
+const getMockSession = (): MockSession | null => {
+    const session = localStorage.getItem(MOCK_SESSION_KEY)
 
     return session ? JSON.parse(session) : null
 }
 
-export const clearSession = () => {
-    localStorage.removeItem(SESSION_KEY)
+export const clearMockSession = () => {
+    localStorage.removeItem(MOCK_SESSION_KEY)
 }
 
 export const emailAlreadyExists = (email: string) => {
@@ -53,18 +53,6 @@ export const createAuthUser = (data: SignUpPayload): AuthUser => {
     return authUser
 }
 
-export const findUserById = (id: number): AuthUser | null => {
-    const user = authUsersDatabase.find((user) => user.id === id)
-
-    if (!user) {
-        return null
-    }
-
-    const { password: _, ...authUser } = user
-
-    return authUser
-}
-
 export const findUserByCredentials = (data: SignInPayload): AuthUser | null => {
     const user = authUsersDatabase.find(
         (user) => user.email === data.email && user.password === data.password,
@@ -79,29 +67,29 @@ export const findUserByCredentials = (data: SignInPayload): AuthUser | null => {
     return authUser
 }
 
-export const createSession = (user: AuthUser) => {
+export const createMockSession = (user: AuthUser) => {
     const token = generateToken()
 
-    saveSession({
+    saveMockSession({
         token,
-        userId: user.id,
+        user,
     })
 
     return token
 }
 
 export const getCurrentUser = (): AuthUser | null => {
-    const session = getSession()
+    const session = getMockSession()
 
     if (!session) {
         return null
     }
 
-    return findUserById(session.userId)
+    return session.user
 }
 
 export const validateToken = (token: string) => {
-    const session = getSession()
+    const session = getMockSession()
 
     if (!session) {
         return false
