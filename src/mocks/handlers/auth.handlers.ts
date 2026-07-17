@@ -1,8 +1,8 @@
 import { delay, http, HttpResponse } from 'msw'
 import {
-    clearSession,
+    clearMockSession,
     createAuthUser,
-    createSession,
+    createMockSession,
     emailAlreadyExists,
     findUserByCredentials,
     getCurrentUser,
@@ -44,7 +44,7 @@ export const authHandlers = [
                 )
             }
 
-            const token = createSession(user)
+            const token = createMockSession(user)
 
             return HttpResponse.json({
                 token,
@@ -132,7 +132,7 @@ export const authHandlers = [
     http.post('/api/auth/sign-out', async () => {
         await delay(300)
 
-        clearSession()
+        clearMockSession()
 
         return HttpResponse.json(
             {
