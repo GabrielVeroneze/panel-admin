@@ -1,5 +1,5 @@
-export { SESSION_KEY, authUsersDatabase } from './auth.database'
-export type { Session, StoredUser } from './auth.database'
+export { MOCK_SESSION_KEY, authUsersDatabase } from './auth.database'
+export type { MockSession, StoredUser } from './auth.database'
 export { dashboardDatabase } from './dashboard.database'
 export { productsDatabase } from './products.database'
 export { settingsDatabase } from './settings.database'
