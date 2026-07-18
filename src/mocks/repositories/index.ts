@@ -7,7 +7,11 @@ export {
     getCurrentUser,
     validateToken,
 } from './auth.repository'
-export { findProfileByUserId, getCurrentProfile } from './profile.repository'
+export {
+    createProfile,
+    findProfileByUserId,
+    getCurrentProfile,
+} from './profile.repository'
 export {
     createUser,
     deleteUser,
