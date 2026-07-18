@@ -3,6 +3,7 @@ import {
     clearMockSession,
     createAuthUser,
     createMockSession,
+    createProfile,
     emailAlreadyExists,
     findUserByCredentials,
     getCurrentUser,
@@ -71,7 +72,9 @@ export const authHandlers = [
                 )
             }
 
-            createAuthUser(body)
+            const user = createAuthUser(body)
+
+            createProfile(user)
 
             return HttpResponse.json(
                 {
