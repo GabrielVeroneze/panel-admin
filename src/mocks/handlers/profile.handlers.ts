@@ -1,5 +1,5 @@
 import { delay, http, HttpResponse } from 'msw'
-import { findProfileByUserId, getCurrentUser } from '../repositories'
+import { findProfileByUserId, getCurrentProfile } from '../repositories'
 import type { UserProfile } from '@/features/profile/types'
 
 type GetUserProfileParams = {
@@ -7,26 +7,10 @@ type GetUserProfileParams = {
 }
 
 export const profileHandlers = [
-    http.get<never, never, UserProfile>('/api/me', async ({ request }) => {
+    http.get<never, never, UserProfile>('/api/me', async () => {
         await delay(1000)
 
-        const authorization = request.headers.get('Authorization')
-
-        if (!authorization) {
-            return HttpResponse.json(null, {
-                status: 401,
-            })
-        }
-
-        const user = getCurrentUser()
-
-        if (!user) {
-            return HttpResponse.json(null, {
-                status: 401,
-            })
-        }
-
-        const profile = findProfileByUserId(user.id)
+        const profile = getCurrentProfile()
 
         if (!profile) {
             return HttpResponse.json(null, {
