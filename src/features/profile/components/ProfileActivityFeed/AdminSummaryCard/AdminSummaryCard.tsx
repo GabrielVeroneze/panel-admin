@@ -1,4 +1,5 @@
 import { Badge, Card, EmptyState } from '@/shared/components'
+import { formatDate, formatRelativeTime } from '@/shared/utils'
 import {
     CalendarIcon,
     ChartBarIcon,
@@ -84,13 +85,13 @@ export const AdminSummaryCard = ({
                 <SummaryDetailItem
                     icon={<ClockIcon />}
                     label="Last Login"
-                    value={profile.lastLogin}
+                    value={formatRelativeTime(profile.lastLogin)}
                     color="orange"
                 />
                 <SummaryDetailItem
                     icon={<CalendarIcon />}
                     label="Member since"
-                    value={profile.memberSince}
+                    value={formatDate(profile.memberSince)}
                     color="purple"
                 />
             </div>
