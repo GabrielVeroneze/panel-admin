@@ -1,3 +1,4 @@
+import { formatRelativeTime } from '@/shared/utils'
 import { ClockIcon } from '@/shared/assets/icons'
 import { activityConfig } from './ActivityItem.config'
 import type { Activity } from '@/features/profile/types'
@@ -24,7 +25,7 @@ export const ActivityItem = ({
                 <p className={styles.target}>{target}</p>
                 <span className={styles.date}>
                     <ClockIcon />
-                    {createdAt}
+                     {formatRelativeTime(createdAt)}
                 </span>
             </div>
         </div>
