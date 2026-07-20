@@ -1,3 +1,5 @@
 export * from './authStorage'
+export * from './formatDate'
+export * from './formatRelativeTime'
 export * from './numberFormat'
 export * from './toFormData'
