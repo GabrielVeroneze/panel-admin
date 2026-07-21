@@ -25,10 +25,7 @@ export const createUser = async (payload: CreateUserPayload) => {
 }
 
 export const updateUser = async (id: number, payload: UpdateUserPayload) => {
-    const formData = toFormData({
-        ...payload,
-        password: payload.password?.new,
-    })
+    const formData = toFormData(payload)
 
     const { data } = await api.put<User>(`/users/${id}`, formData)
 
