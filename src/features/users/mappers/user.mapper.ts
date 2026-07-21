@@ -50,12 +50,7 @@ export const mapFormToUpdatePayload = (
     phone: data.phone,
     company: data.company,
     department: data.department,
-    ...(data.currentPassword &&
-        data.newPassword && {
-            password: {
-                current: data.currentPassword,
-                new: data.newPassword,
-            },
-        }),
+    ...(data.currentPassword && { currentPassword: data.currentPassword }),
+    ...(data.newPassword && { newPassword: data.newPassword }),
     ...(data.avatar && { avatar: data.avatar }),
 })
