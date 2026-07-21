@@ -5,12 +5,14 @@ export {
     emailAlreadyExists,
     findUserByCredentials,
     getCurrentUser,
+    updateAuthUser,
     validateToken,
 } from './auth.repository'
 export {
     createProfile,
     findProfileByUserId,
     getCurrentProfile,
+    updateProfile,
 } from './profile.repository'
 export {
     createUser,
