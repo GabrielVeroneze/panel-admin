@@ -18,10 +18,6 @@ type UpdateUserParams = {
     id: string
 }
 
-type UserUpdatedPayload = Omit<UpdateUserPayload, 'password'> & {
-    password?: string
-}
-
 type DeleteUserParams = {
     id: string
 }
@@ -98,7 +94,7 @@ export const usersHandlers = [
         },
     ),
 
-    http.put<UpdateUserParams, UserUpdatedPayload, User>(
+    http.put<UpdateUserParams, UpdateUserPayload, User>(
         '/api/users/:id',
         async ({ params, request }) => {
             await delay(1000)
@@ -115,13 +111,16 @@ export const usersHandlers = [
 
             const avatar = formData.get('avatar') as File | null
 
-            const payload: UserUpdatedPayload = {
+            const payload: UpdateUserPayload = {
                 name: (formData.get('name') as string) || undefined,
                 email: (formData.get('email') as string) || undefined,
                 phone: (formData.get('phone') as string) || undefined,
                 company: (formData.get('company') as string) || undefined,
                 department: (formData.get('department') as string) || undefined,
-                password: (formData.get('password') as string) || undefined,
+                currentPassword:
+                    (formData.get('currentPassword') as string) || undefined,
+                newPassword:
+                    (formData.get('newPassword') as string) || undefined,
                 avatar: avatar ?? undefined,
             }
 
