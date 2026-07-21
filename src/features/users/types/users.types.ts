@@ -38,10 +38,8 @@ export type UpdateUserPayload = {
     phone?: string
     company?: string
     department?: string
-    password?: {
-        current: string
-        new: string
-    }
+    currentPassword?: string
+    newPassword?: string
     avatar?: File
 }
 
