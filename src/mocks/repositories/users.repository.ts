@@ -1,4 +1,5 @@
-import { usersDatabase, type DatabaseUser } from '../database/'
+import { usersDatabase, type DatabaseUser } from '../database'
+import { updateAuthUser, updateProfile } from './'
 import type {
     CreateUserPayload,
     UpdateUserPayload,
@@ -53,6 +54,16 @@ export const updateUser = (
     if (avatar) {
         user.image = URL.createObjectURL(avatar)
     }
+
+    updateProfile(id, {
+        ...data,
+        avatar,
+    })
+
+    updateAuthUser(id, {
+        ...data,
+        avatar,
+    })
 
     return user
 }
