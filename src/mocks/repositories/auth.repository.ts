@@ -9,6 +9,7 @@ import type {
     SignUpPayload,
     SignInPayload,
 } from '@/features/auth/types'
+import type { UpdateUserPayload } from '@/features/users/types'
 
 const generateId = () => {
     return authUsersDatabase.length + 1
@@ -51,6 +52,43 @@ export const createAuthUser = (data: SignUpPayload): AuthUser => {
     const { password: _, ...authUser } = user
 
     return authUser
+}
+
+export const updateAuthUser = (
+    id: number,
+    payload: UpdateUserPayload,
+): AuthUser | null => {
+    const user = authUsersDatabase.find((user) => user.id === id)
+
+    if (!user) {
+        return null
+    }
+
+    const { avatar, ...data } = payload
+
+    if (data.name !== undefined) {
+        user.name = data.name
+    }
+
+    if (data.email !== undefined) {
+        user.email = data.email
+    }
+
+    if (data.currentPassword && data.newPassword) {
+        user.password = data.newPassword
+    }
+
+    if (avatar) {
+        user.avatar = URL.createObjectURL(avatar)
+    }
+
+    return {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        avatar: user.avatar,
+    }
 }
 
 export const findUserByCredentials = (data: SignInPayload): AuthUser | null => {
