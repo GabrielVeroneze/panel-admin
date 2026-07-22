@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { fetchCurrentUserThunk } from '@/features/auth/store'
 import {
     getUsers,
     createUser as createUserRequest,
@@ -54,8 +55,16 @@ export const createUser = createAsyncThunk<User, CreateUserParams>(
 
 export const updateUser = createAsyncThunk<User, UpdateUserParams>(
     'users/updateUser',
-    async ({ id, payload }) => {
-        return await updateUserRequest(id, payload)
+    async ({ id, payload }, { dispatch, rejectWithValue }) => {
+        try {
+            const user = await updateUserRequest(id, payload)
+
+            await dispatch(fetchCurrentUserThunk()).unwrap()
+
+            return user
+        } catch {
+            return rejectWithValue('Unable to update user')
+        }
     },
 )
 
