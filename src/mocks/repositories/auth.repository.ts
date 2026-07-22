@@ -29,6 +29,18 @@ const getMockSession = (): MockSession | null => {
     return session ? JSON.parse(session) : null
 }
 
+const updateMockSession = (user: AuthUser) => {
+    const session = getMockSession()
+
+    if (!session || session.user.id !== user.id) {
+        return
+    }
+
+    session.user = user
+
+    saveMockSession(session)
+}
+
 export const clearMockSession = () => {
     localStorage.removeItem(MOCK_SESSION_KEY)
 }
@@ -74,7 +86,7 @@ export const updateAuthUser = (
         user.email = data.email
     }
 
-    if (data.currentPassword && data.newPassword) {
+    if (data.currentPassword !== undefined && data.newPassword !== undefined) {
         user.password = data.newPassword
     }
 
@@ -82,13 +94,17 @@ export const updateAuthUser = (
         user.avatar = URL.createObjectURL(avatar)
     }
 
-    return {
+    const authUser: AuthUser = {
         id: user.id,
         name: user.name,
         email: user.email,
         role: user.role,
         avatar: user.avatar,
     }
+
+    updateMockSession(authUser)
+
+    return authUser
 }
 
 export const findUserByCredentials = (data: SignInPayload): AuthUser | null => {
