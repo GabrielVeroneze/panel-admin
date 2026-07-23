@@ -45,12 +45,20 @@ const profileSlice = createSlice({
                 state.loading = false
                 state.myProfile = action.payload
             })
+            .addCase(fetchMyProfile.rejected, (state) => {
+                state.loading = false
+                state.myProfile = null
+            })
             .addCase(fetchUserProfile.pending, (state) => {
                 state.loading = true
             })
             .addCase(fetchUserProfile.fulfilled, (state, action) => {
                 state.loading = false
                 state.userProfile = action.payload
+            })
+            .addCase(fetchUserProfile.rejected, (state) => {
+                state.loading = false
+                state.userProfile = null
             })
     },
 })
