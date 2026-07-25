@@ -15,6 +15,16 @@ export {
     updateProfile,
 } from './profile.repository'
 export {
+    connectSocialAccount,
+    findSettingsByUserId,
+    getCurrentSettings,
+    updateEmailSettings,
+    updateGeneralInformation,
+    updateNotifications,
+    updatePreferences,
+    updateSettingsProfileAvatar,
+} from './settings.repository'
+export {
     createUser,
     deleteUser,
     deleteUsers,
