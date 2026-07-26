@@ -168,3 +168,83 @@ export const connectSocialAccount = (
 
     return account
 }
+
+export const disconnectSocialAccount = (
+    platform: SocialPlatform,
+): SocialAccount | null => {
+    const user = getCurrentUser()
+
+    if (!user) {
+        return null
+    }
+
+    const settings = getStoredSettings(user.id)
+
+    if (!settings) {
+        return null
+    }
+
+    const account = settings.socialAccounts.find(
+        (account) => account.platform === platform,
+    )
+
+    if (!account) {
+        return null
+    }
+
+    account.connected = false
+
+    return account
+}
+
+export const removeConnectedAccount = (accountId: number): boolean => {
+    const user = getCurrentUser()
+
+    if (!user) {
+        return false
+    }
+
+    const settings = getStoredSettings(user.id)
+
+    if (!settings) {
+        return false
+    }
+
+    const index = settings.connectedAccounts.findIndex(
+        (account) => account.id === accountId,
+    )
+
+    if (index === -1) {
+        return false
+    }
+
+    settings.connectedAccounts.splice(index, 1)
+
+    return true
+}
+
+export const removeDeviceSession = (deviceId: number): boolean => {
+    const user = getCurrentUser()
+
+    if (!user) {
+        return false
+    }
+
+    const settings = getStoredSettings(user.id)
+
+    if (!settings) {
+        return false
+    }
+
+    const index = settings.recentDevices.findIndex(
+        (device) => device.id === deviceId,
+    )
+
+    if (index === -1) {
+        return false
+    }
+
+    settings.recentDevices.splice(index, 1)
+
+    return true
+}
