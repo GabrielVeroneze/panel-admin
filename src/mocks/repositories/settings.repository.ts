@@ -1,4 +1,4 @@
-import { settingsDatabase } from '../database'
+import { settingsDatabase, type StoredSettings } from '../database'
 import { getCurrentUser } from './'
 import type {
     EmailPreferences,
@@ -41,16 +41,20 @@ const getStoredSettings = (userId: number) => {
     )
 }
 
-export const updateSettingsProfileAvatar = (
-    avatar: File,
-): SettingsProfile | null => {
+const getCurrentStoredSettings = (): StoredSettings | null => {
     const user = getCurrentUser()
 
     if (!user) {
         return null
     }
 
-    const settings = getStoredSettings(user.id)
+    return getStoredSettings(user.id)
+}
+
+export const updateSettingsProfileAvatar = (
+    avatar: File,
+): SettingsProfile | null => {
+    const settings = getCurrentStoredSettings()
 
     if (!settings) {
         return null
@@ -64,13 +68,7 @@ export const updateSettingsProfileAvatar = (
 export const updateGeneralInformation = (
     payload: GeneralInformation,
 ): GeneralInformation | null => {
-    const user = getCurrentUser()
-
-    if (!user) {
-        return null
-    }
-
-    const settings = getStoredSettings(user.id)
+    const settings = getCurrentStoredSettings()
 
     if (!settings) {
         return null
@@ -84,13 +82,7 @@ export const updateGeneralInformation = (
 export const updatePreferences = (
     payload: SettingsPreferences,
 ): SettingsPreferences | null => {
-    const user = getCurrentUser()
-
-    if (!user) {
-        return null
-    }
-
-    const settings = getStoredSettings(user.id)
+    const settings = getCurrentStoredSettings()
 
     if (!settings) {
         return null
@@ -104,13 +96,7 @@ export const updatePreferences = (
 export const updateNotifications = (
     payload: NotificationPreferences,
 ): NotificationPreferences | null => {
-    const user = getCurrentUser()
-
-    if (!user) {
-        return null
-    }
-
-    const settings = getStoredSettings(user.id)
+    const settings = getCurrentStoredSettings()
 
     if (!settings) {
         return null
@@ -124,13 +110,7 @@ export const updateNotifications = (
 export const updateEmailSettings = (
     payload: EmailPreferences,
 ): EmailPreferences | null => {
-    const user = getCurrentUser()
-
-    if (!user) {
-        return null
-    }
-
-    const settings = getStoredSettings(user.id)
+    const settings = getCurrentStoredSettings()
 
     if (!settings) {
         return null
@@ -144,13 +124,7 @@ export const updateEmailSettings = (
 export const connectSocialAccount = (
     platform: SocialPlatform,
 ): SocialAccount | null => {
-    const user = getCurrentUser()
-
-    if (!user) {
-        return null
-    }
-
-    const settings = getStoredSettings(user.id)
+    const settings = getCurrentStoredSettings()
 
     if (!settings) {
         return null
@@ -172,13 +146,7 @@ export const connectSocialAccount = (
 export const disconnectSocialAccount = (
     platform: SocialPlatform,
 ): SocialAccount | null => {
-    const user = getCurrentUser()
-
-    if (!user) {
-        return null
-    }
-
-    const settings = getStoredSettings(user.id)
+    const settings = getCurrentStoredSettings()
 
     if (!settings) {
         return null
@@ -198,13 +166,7 @@ export const disconnectSocialAccount = (
 }
 
 export const removeConnectedAccount = (accountId: number): boolean => {
-    const user = getCurrentUser()
-
-    if (!user) {
-        return false
-    }
-
-    const settings = getStoredSettings(user.id)
+    const settings = getCurrentStoredSettings()
 
     if (!settings) {
         return false
@@ -224,13 +186,7 @@ export const removeConnectedAccount = (accountId: number): boolean => {
 }
 
 export const removeDeviceSession = (deviceId: number): boolean => {
-    const user = getCurrentUser()
-
-    if (!user) {
-        return false
-    }
-
-    const settings = getStoredSettings(user.id)
+    const settings = getCurrentStoredSettings()
 
     if (!settings) {
         return false
