@@ -16,8 +16,11 @@ export {
 } from './profile.repository'
 export {
     connectSocialAccount,
+    disconnectSocialAccount,
     findSettingsByUserId,
     getCurrentSettings,
+    removeConnectedAccount,
+    removeDeviceSession,
     updateEmailSettings,
     updateGeneralInformation,
     updateNotifications,
