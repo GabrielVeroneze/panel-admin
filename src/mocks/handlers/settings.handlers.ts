@@ -1,5 +1,16 @@
 import { delay, http, HttpResponse } from 'msw'
-import { settingsDatabase } from '../database'
+import {
+    connectSocialAccount,
+    disconnectSocialAccount,
+    getCurrentSettings,
+    removeConnectedAccount,
+    removeDeviceSession,
+    updateEmailSettings,
+    updateGeneralInformation,
+    updateNotifications,
+    updatePreferences,
+    updateSettingsProfileAvatar,
+} from '../repositories'
 import type {
     EmailPreferences,
     GeneralInformation,
@@ -7,6 +18,7 @@ import type {
     Settings,
     SettingsPreferences,
     SettingsProfile,
+    SocialPlatform,
 } from '@/features/settings/types'
 
 type PasswordResponse = {
@@ -17,7 +29,15 @@ export const settingsHandlers = [
     http.get<never, never, Settings>('/api/settings', async () => {
         await delay(1000)
 
-        return HttpResponse.json(settingsDatabase)
+        const settings = getCurrentSettings()
+
+        if (!settings) {
+            return HttpResponse.json(null, {
+                status: 404,
+            })
+        }
+
+        return HttpResponse.json(settings)
     }),
 
     http.put<never, FormData, SettingsProfile>(
@@ -27,11 +47,21 @@ export const settingsHandlers = [
 
             const avatar = formData.get('avatar') as File | null
 
-            if (avatar) {
-                settingsDatabase.profile.avatar = URL.createObjectURL(avatar)
+            if (!avatar) {
+                return HttpResponse.json(null, {
+                    status: 400,
+                })
             }
 
-            return HttpResponse.json(settingsDatabase.profile)
+            const profile = updateSettingsProfileAvatar(avatar)
+
+            if (!profile) {
+                return HttpResponse.json(null, {
+                    status: 404,
+                })
+            }
+
+            return HttpResponse.json(profile)
         },
     ),
 
@@ -40,9 +70,15 @@ export const settingsHandlers = [
         async ({ request }) => {
             const payload = await request.json()
 
-            settingsDatabase.preferences = payload
+            const preferences = updatePreferences(payload)
 
-            return HttpResponse.json(payload)
+            if (!preferences) {
+                return HttpResponse.json(null, {
+                    status: 404,
+                })
+            }
+
+            return HttpResponse.json(preferences)
         },
     ),
 
@@ -51,9 +87,15 @@ export const settingsHandlers = [
         async ({ request }) => {
             const payload = await request.json()
 
-            settingsDatabase.generalInformation = payload
+            const information = updateGeneralInformation(payload)
 
-            return HttpResponse.json(payload)
+            if (!information) {
+                return HttpResponse.json(null, {
+                    status: 404,
+                })
+            }
+
+            return HttpResponse.json(information)
         },
     ),
 
@@ -71,9 +113,15 @@ export const settingsHandlers = [
         async ({ request }) => {
             const payload = await request.json()
 
-            settingsDatabase.notifications = payload
+            const notifications = updateNotifications(payload)
 
-            return HttpResponse.json(payload)
+            if (!notifications) {
+                return HttpResponse.json(null, {
+                    status: 404,
+                })
+            }
+
+            return HttpResponse.json(notifications)
         },
     ),
 
@@ -82,27 +130,35 @@ export const settingsHandlers = [
         async ({ request }) => {
             const payload = await request.json()
 
-            settingsDatabase.emailSettings = payload
+            const emailSettings = updateEmailSettings(payload)
 
-            return HttpResponse.json(payload)
+            if (!emailSettings) {
+                return HttpResponse.json(null, {
+                    status: 404,
+                })
+            }
+
+            return HttpResponse.json(emailSettings)
         },
     ),
 
     http.put(
         '/api/settings/social-accounts/:platform/connect',
         async ({ params }) => {
-            const account = settingsDatabase.socialAccounts.find(
-                (item) => item.platform === params.platform,
+            const account = connectSocialAccount(
+                params.platform as SocialPlatform,
             )
 
             if (!account) {
                 return HttpResponse.json(
-                    { message: 'Account not found' },
-                    { status: 404 },
+                    {
+                        message: 'Account not found',
+                    },
+                    {
+                        status: 404,
+                    },
                 )
             }
-
-            account.connected = true
 
             return HttpResponse.json(account)
         },
@@ -111,32 +167,38 @@ export const settingsHandlers = [
     http.put(
         '/api/settings/social-accounts/:platform/disconnect',
         async ({ params }) => {
-            const account = settingsDatabase.socialAccounts.find(
-                (item) => item.platform === params.platform,
+            const account = disconnectSocialAccount(
+                params.platform as SocialPlatform,
             )
 
             if (!account) {
                 return HttpResponse.json(
-                    { message: 'Account not found' },
-                    { status: 404 },
+                    {
+                        message: 'Account not found',
+                    },
+                    {
+                        status: 404,
+                    },
                 )
             }
-
-            account.connected = false
 
             return HttpResponse.json(account)
         },
     ),
 
     http.delete('/api/settings/connected-accounts/:id', async ({ params }) => {
-        const id = Number(params.id)
+        const removed = removeConnectedAccount(Number(params.id))
 
-        const remainingConnectedAccounts =
-            settingsDatabase.connectedAccounts.filter(
-                (account) => account.id !== id,
+        if (!removed) {
+            return HttpResponse.json(
+                {
+                    message: 'Account not found',
+                },
+                {
+                    status: 404,
+                },
             )
-
-        settingsDatabase.connectedAccounts = remainingConnectedAccounts
+        }
 
         return HttpResponse.json(null, {
             status: 204,
@@ -144,23 +206,21 @@ export const settingsHandlers = [
     }),
 
     http.delete('/api/settings/devices/:id', async ({ params }) => {
-        const deviceId = Number(params.id)
+        const removed = removeDeviceSession(Number(params.id))
 
-        const deviceExists = settingsDatabase.recentDevices.some(
-            (device) => device.id === deviceId,
-        )
-
-        if (!deviceExists) {
+        if (!removed) {
             return HttpResponse.json(
-                { message: 'Device not found' },
-                { status: 404 },
+                {
+                    message: 'Device not found',
+                },
+                {
+                    status: 404,
+                },
             )
         }
 
-        settingsDatabase.recentDevices = settingsDatabase.recentDevices.filter(
-            (device) => device.id !== deviceId,
-        )
-
-        return HttpResponse.json({ success: true }, { status: 200 })
+        return HttpResponse.json(null, {
+            status: 204,
+        })
     }),
 ]
