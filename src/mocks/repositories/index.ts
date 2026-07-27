@@ -16,6 +16,7 @@ export {
 } from './profile.repository'
 export {
     connectSocialAccount,
+    createSettings,
     disconnectSocialAccount,
     findSettingsByUserId,
     getCurrentSettings,
@@ -25,6 +26,7 @@ export {
     updateGeneralInformation,
     updateNotifications,
     updatePreferences,
+    updateSettings,
     updateSettingsProfileAvatar,
 } from './settings.repository'
 export {
