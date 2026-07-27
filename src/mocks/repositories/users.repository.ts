@@ -1,5 +1,5 @@
 import { usersDatabase, type DatabaseUser } from '../database'
-import { updateAuthUser, updateProfile } from './'
+import { updateAuthUser, updateProfile, updateSettings } from './'
 import type {
     CreateUserPayload,
     UpdateUserPayload,
@@ -56,6 +56,11 @@ export const updateUser = (
     }
 
     updateProfile(id, {
+        ...data,
+        avatar,
+    })
+
+    updateSettings(id, {
         ...data,
         avatar,
     })
