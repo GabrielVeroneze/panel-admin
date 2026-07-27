@@ -4,6 +4,7 @@ import {
     createAuthUser,
     createMockSession,
     createProfile,
+    createSettings,
     createUser,
     emailAlreadyExists,
     findUserByCredentials,
@@ -85,6 +86,7 @@ export const authHandlers = [
             })
 
             createProfile(authUser)
+            createSettings(authUser)
 
             return HttpResponse.json(
                 {
