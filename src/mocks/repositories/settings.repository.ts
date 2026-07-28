@@ -153,8 +153,6 @@ export const updateSettings = (
     if (data.department !== undefined) {
         settings.profile.role = data.department
 
-        settings.generalInformation.role = data.department
-
         settings.generalInformation.department = data.department
     }
 
