@@ -158,7 +158,9 @@ export const updateSettings = (
         settings.generalInformation.department = data.department
     }
 
-    return settings
+    const { userId: _, ...response } = settings
+
+    return response
 }
 
 export const updateSettingsProfileAvatar = (
