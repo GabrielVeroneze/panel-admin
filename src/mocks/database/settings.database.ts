@@ -39,9 +39,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/neilsims',
+                url: 'facebook.com/neilsims',
             },
             {
                 id: 3,
@@ -129,15 +129,15 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'behance',
+                platform: 'facebook',
                 connected: true,
-                url: 'behance.net/robertacasas',
+                url: 'facebook.com/robertacasas',
             },
             {
                 id: 3,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: false,
-                url: 'linkedin.com/in/robertacasas',
+                url: 'twitter.com/robertacasas',
             },
         ],
         connectedAccounts: [
@@ -233,9 +233,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/michaelgough',
+                url: 'facebook.com/michaelgough',
             },
             {
                 id: 3,
@@ -317,9 +317,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/jeseleos',
+                url: 'facebook.com/jeseleos',
             },
             {
                 id: 2,
@@ -328,10 +328,10 @@ export const settingsDatabase: StoredSettings[] = [
                 url: 'twitter.com/jeseleos',
             },
             {
-                id: 3,
-                platform: 'instagram',
-                connected: false,
-                url: 'instagram.com/jese.leos',
+                id: 1,
+                platform: 'facebook',
+                connected: true,
+                url: 'facebook.com/jeseleos',
             },
         ],
         connectedAccounts: [
@@ -427,9 +427,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/bonniegreen',
+                url: 'facebook.com/bonniegreen',
             },
             {
                 id: 3,
@@ -517,9 +517,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: false,
-                url: 'linkedin.com/in/thomaslean',
+                url: 'facebook.com/thomaslean',
             },
             {
                 id: 3,
@@ -621,9 +621,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/heleneengels',
+                url: 'facebook.com/heleneengels',
             },
             {
                 id: 3,
@@ -711,9 +711,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/lanabyrd',
+                url: 'facebook.com/lanabyrd',
             },
             {
                 id: 3,
@@ -815,15 +815,15 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/leslielivingston',
+                url: 'facebook.com/leslielivingston',
             },
             {
                 id: 3,
-                platform: 'behance',
+                platform: 'github',
                 connected: false,
-                url: 'behance.net/leslielivingston',
+                url: 'github.com/leslielivingston',
             },
         ],
         connectedAccounts: [
@@ -899,15 +899,15 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'instagram',
+                platform: 'facebook',
                 connected: true,
-                url: 'instagram.com/karennelson',
+                url: 'facebook.com/karennelson',
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/karennelson',
+                url: 'github.com/karennelson',
             },
             {
                 id: 3,
@@ -1003,9 +1003,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/robertbrownseo',
+                url: 'facebook.com/robertbrownseo',
             },
             {
                 id: 2,
@@ -1099,15 +1099,15 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: false,
-                url: 'linkedin.com/in/josephmcfall',
+                url: 'facebook.com/josephmcfall',
             },
             {
                 id: 3,
-                platform: 'stackoverflow',
+                platform: 'twitter',
                 connected: true,
-                url: 'stackoverflow.com/users/josephmcfall',
+                url: 'twitter.com/josephmcfall',
             },
         ],
         connectedAccounts: [
@@ -1203,9 +1203,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/amandasilva',
+                url: 'facebook.com/amandasilva',
             },
             {
                 id: 3,
@@ -1293,9 +1293,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: false,
-                url: 'linkedin.com/in/lucasmartins',
+                url: 'facebook.com/lucasmartins',
             },
             {
                 id: 3,
@@ -1391,9 +1391,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/sophiaturner',
+                url: 'facebook.com/sophiaturner',
             },
             {
                 id: 2,
@@ -1487,9 +1487,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/johncarter',
+                url: 'facebook.com/johncarter',
             },
             {
                 id: 3,
@@ -1578,15 +1578,15 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'behance',
+                platform: 'facebook',
                 connected: true,
-                url: 'behance.net/emmawatson',
+                url: 'facebook.com/emmawatson',
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/emmawatson',
+                url: 'github.com/emmawatson',
             },
             {
                 id: 3,
@@ -1674,9 +1674,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/liamjohnson',
+                url: 'facebook.com/liamjohnson',
             },
             {
                 id: 3,
@@ -1771,9 +1771,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/oliviabrownqa',
+                url: 'facebook.com/oliviabrownqa',
             },
             {
                 id: 3,
@@ -1868,9 +1868,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/noahwilsondevops',
+                url: 'facebook.com/noahwilsondevops',
             },
             {
                 id: 3,
@@ -1959,9 +1959,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/avamartinez',
+                url: 'facebook.com/avamartinez',
             },
             {
                 id: 2,
@@ -2062,9 +2062,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/jamesanderson',
+                url: 'facebook.com/jamesanderson',
             },
             {
                 id: 3,
@@ -2146,9 +2146,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'behance',
+                platform: 'facebook',
                 connected: true,
-                url: 'behance.net/isabellathomas',
+                url: 'facebook.com/isabellathomas',
             },
             {
                 id: 2,
@@ -2158,9 +2158,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 3,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: false,
-                url: 'linkedin.com/in/isabellathomas',
+                url: 'github.com/isabellathomas',
             },
         ],
         connectedAccounts: [
@@ -2250,9 +2250,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/benjamintaylor',
+                url: 'facebook.com/benjamintaylor',
             },
             {
                 id: 2,
@@ -2353,9 +2353,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/miamoore',
+                url: 'facebook.com/miamoore',
             },
             {
                 id: 3,
@@ -2450,9 +2450,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/lucaspereira',
+                url: 'twitter.com/lucaspereira',
             },
             {
                 id: 3,
@@ -2541,9 +2541,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'behance',
+                platform: 'twitter',
                 connected: true,
-                url: 'behance.net/marianacosta',
+                url: 'twitter.com/marianacosta',
             },
             {
                 id: 2,
@@ -2553,9 +2553,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 3,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: false,
-                url: 'linkedin.com/in/marianacosta',
+                url: 'twitter.com/mariana_costa',
             },
         ],
         connectedAccounts: [
@@ -2624,7 +2624,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Daniel',
             lastName: 'Schmidt',
-            email: '[daniel.schmidt28@example.com](mailto:daniel.schmidt28@example.com)',
+            email: 'daniel.schmidt28@example.com',
             role: 'DevOps Engineer',
             phone: '+4915123456128',
             birthDate: '1988-08-14',
@@ -2644,9 +2644,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/danielschmidtdevops',
+                url: 'twitter.com/danielschmidt',
             },
             {
                 id: 3,
@@ -2721,7 +2721,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Sophie',
             lastName: 'Dubois',
-            email: '[sophie.dubois29@example.com](mailto:sophie.dubois29@example.com)',
+            email: 'sophie.dubois29@example.com',
             role: 'Product Manager',
             phone: '+33612345129',
             birthDate: '1991-05-09',
@@ -2735,9 +2735,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/sophiedubois',
+                url: 'twitter.com/sophiedubois',
             },
             {
                 id: 2,
@@ -2825,7 +2825,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Carlos',
             lastName: 'Ruiz',
-            email: '[carlos.ruiz30@example.com](mailto:carlos.ruiz30@example.com)',
+            email: 'carlos.ruiz30@example.com',
             role: 'Marketing',
             phone: '+525512345630',
             birthDate: '1987-11-21',
@@ -2839,15 +2839,15 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/carlosruiz',
+                url: 'twitter.com/carlosruiz',
             },
             {
                 id: 2,
-                platform: 'instagram',
+                platform: 'facebook',
                 connected: true,
-                url: 'instagram.com/carlosruizmx',
+                url: 'facebook.com/carlosruiz',
             },
             {
                 id: 3,
@@ -2936,9 +2936,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/ethanclarkqa',
+                url: 'twitter.com/ethanclark',
             },
             {
                 id: 2,
@@ -3033,21 +3033,21 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'behance',
+                platform: 'dribbble',
                 connected: true,
-                url: 'behance.net/chloemartin',
+                url: 'dribbble.com/chloemartin',
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/chloemartindesign',
+                url: 'twitter.com/chloemartin',
             },
             {
                 id: 3,
-                platform: 'instagram',
+                platform: 'facebook',
                 connected: false,
-                url: 'instagram.com/chloemartindesign',
+                url: 'facebook.com/chloemartin',
             },
         ],
         connectedAccounts: [
@@ -3136,9 +3136,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/henrywalkerdev',
+                url: 'twitter.com/henrywalker',
             },
             {
                 id: 3,
@@ -3220,7 +3220,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Amelia',
             lastName: 'Scott',
-            email: '[amelia.scott34@example.com](mailto:amelia.scott34@example.com)',
+            email: 'amelia.scott34@example.com',
             role: 'Product Manager',
             phone: '+14165550134',
             birthDate: '1991-08-06',
@@ -3234,9 +3234,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/ameliascott',
+                url: 'twitter.com/ameliascott',
             },
             {
                 id: 2,
@@ -3324,7 +3324,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Jack',
             lastName: 'Hall',
-            email: '[jack.hall35@example.com](mailto:jack.hall35@example.com)',
+            email: 'jack.hall35@example.com',
             role: 'Back End Developer',
             phone: '+61412345135',
             birthDate: '1988-02-23',
@@ -3344,9 +3344,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/jackhall',
+                url: 'twitter.com/jackhall',
             },
             {
                 id: 3,
@@ -3428,7 +3428,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Sofia',
             lastName: 'Rossi',
-            email: '[sofia.rossi36@example.com](mailto:sofia.rossi36@example.com)',
+            email: 'sofia.rossi36@example.com',
             role: 'Designer',
             phone: '+393123456136',
             birthDate: '1993-11-15',
@@ -3442,9 +3442,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'behance',
+                platform: 'github',
                 connected: true,
-                url: 'behance.net/sofiarossi',
+                url: 'github.com/sofiarossi',
             },
             {
                 id: 2,
@@ -3454,9 +3454,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 3,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: false,
-                url: 'linkedin.com/in/sofiarossi',
+                url: 'twitter.com/sofiarossi',
             },
         ],
         connectedAccounts: [
@@ -3532,7 +3532,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Mateo',
             lastName: 'Garcia',
-            email: '[mateo.garcia37@example.com](mailto:mateo.garcia37@example.com)',
+            email: 'mateo.garcia37@example.com',
             role: 'Marketing',
             phone: '+34600110137',
             birthDate: '1990-06-14',
@@ -3546,9 +3546,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/mateogarcia',
+                url: 'facebook.com/mateogarcia',
             },
             {
                 id: 2,
@@ -3558,9 +3558,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 3,
-                platform: 'instagram',
+                platform: 'github',
                 connected: false,
-                url: 'instagram.com/mateogarcia',
+                url: 'github.com/mateogarcia',
             },
         ],
         connectedAccounts: [
@@ -3622,7 +3622,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Luca',
             lastName: 'Bianchi',
-            email: '[luca.bianchi38@example.com](mailto:luca.bianchi38@example.com)',
+            email: 'luca.bianchi38@example.com',
             role: 'Front End Developer',
             phone: '+393123456138',
             birthDate: '1992-09-21',
@@ -3642,9 +3642,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/lucabianchi',
+                url: 'twitter.com/lucabianchi',
             },
             {
                 id: 3,
@@ -3726,7 +3726,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Hannah',
             lastName: 'White',
-            email: '[hannah.white39@example.com](mailto:hannah.white39@example.com)',
+            email: 'hannah.white39@example.com',
             role: 'QA Engineer',
             phone: '+12024560139',
             birthDate: '1991-12-03',
@@ -3740,9 +3740,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/hannahwhiteqa',
+                url: 'facebook.com/hannahwhiteqa',
             },
             {
                 id: 2,
@@ -3830,7 +3830,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Leo',
             lastName: 'Müller',
-            email: '[leo.muller40@example.com](mailto:leo.muller40@example.com)',
+            email: 'leo.muller40@example.com',
             role: 'DevOps Engineer',
             phone: '+4915123456140',
             birthDate: '1991-04-18',
@@ -3844,9 +3844,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/leomuller',
+                url: 'facebook.com/leomuller',
             },
             {
                 id: 2,
@@ -3920,7 +3920,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Pedro',
             lastName: 'Alves',
-            email: '[pedro.alves41@example.com](mailto:pedro.alves41@example.com)',
+            email: 'pedro.alves41@example.com',
             role: 'Back End Developer',
             phone: '+5511982340141',
             birthDate: '1993-11-07',
@@ -3940,9 +3940,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/pedroalves',
+                url: 'facebook.com/pedroalves',
             },
             {
                 id: 3,
@@ -4017,7 +4017,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Laura',
             lastName: 'Sánchez',
-            email: '[laura.sanchez42@example.com](mailto:laura.sanchez42@example.com)',
+            email: 'laura.sanchez42@example.com',
             role: 'Designer',
             phone: '+34600110142',
             birthDate: '1994-02-26',
@@ -4031,15 +4031,15 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'behance',
+                platform: 'github',
                 connected: true,
-                url: 'behance.net/laurasanchez',
+                url: 'github.com/laurasanchez',
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/laurasanchez',
+                url: 'facebook.com/laurasanchez',
             },
             {
                 id: 3,
@@ -4127,9 +4127,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/tombaker',
+                url: 'facebook.com/tombaker',
             },
             {
                 id: 3,
@@ -4211,9 +4211,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/ninafischer',
+                url: 'facebook.com/ninafischer',
             },
             {
                 id: 2,
@@ -4301,9 +4301,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'facebook',
                 connected: true,
-                url: 'linkedin.com/in/victorhugo',
+                url: 'facebook.com/victorhugo',
             },
             {
                 id: 2,
@@ -4467,9 +4467,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'instagram',
+                platform: 'twitter',
                 connected: true,
-                url: 'instagram.com/clara.design',
+                url: 'twitter.com/claramoreau',
             },
         ],
         connectedAccounts: [
@@ -4537,9 +4537,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/oscarnielsen48',
+                url: 'twitter.com/oscarnielsen48',
             },
         ],
         connectedAccounts: [
@@ -4607,9 +4607,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/brunosouza49',
+                url: 'twitter.com/brunosouza49',
             },
         ],
         connectedAccounts: [
@@ -4671,9 +4671,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/alicedupont50',
+                url: 'github.com/alicedupont50',
             },
             {
                 id: 2,
@@ -4747,9 +4747,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/georgeking51',
+                url: 'github.com/georgeking51',
             },
         ],
         connectedAccounts: [
@@ -4817,9 +4817,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'instagram',
+                platform: 'twitter',
                 connected: true,
-                url: 'instagram.com/ella.design52',
+                url: 'twitter.com/ellawright52',
             },
         ],
         connectedAccounts: [
@@ -4887,9 +4887,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/samuellee53',
+                url: 'twitter.com/samuellee53',
             },
         ],
         connectedAccounts: [
@@ -4957,9 +4957,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/gracehill54',
+                url: 'twitter.com/gracehill54',
             },
         ],
         connectedAccounts: [
@@ -5021,9 +5021,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/arthurpetit55',
+                url: 'github.com/arthurpetit55',
             },
             {
                 id: 2,
@@ -5097,9 +5097,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/feliperocha56',
+                url: 'twitter.com/feliperocha56',
             },
         ],
         connectedAccounts: [
@@ -5167,9 +5167,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/evanovak57',
+                url: 'twitter.com/evanovak57',
             },
         ],
         connectedAccounts: [
@@ -5220,6 +5220,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'martin.keller58@example.com',
             role: 'Senior DevOps Engineer',
             phone: '+4915123456158',
+            birthDate: '1988-03-12',
             organization: 'CloudOps',
             department: 'DevOps',
             address: '89 Königsallee',
@@ -5236,9 +5237,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/martinkeller58',
+                url: 'twitter.com/martinkeller58',
             },
         ],
         connectedAccounts: [
@@ -5289,6 +5290,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'julia.weber59@example.com',
             role: 'Senior Product Manager',
             phone: '+31612345159',
+            birthDate: '1993-07-22',
             organization: 'Productify',
             department: 'Product',
             address: '340 Herengracht',
@@ -5299,9 +5301,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/juliaweber59',
+                url: 'twitter.com/juliaweber59',
             },
         ],
         connectedAccounts: [
@@ -5352,6 +5354,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'andres.cruz60@example.com',
             role: 'Marketing Manager',
             phone: '+525512345660',
+            birthDate: '1989-09-10',
             organization: 'MarketPro',
             department: 'Marketing',
             address: '742 Paseo de la Reforma',
@@ -5362,9 +5365,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/andrescruz60',
+                url: 'twitter.com/andrescruz60',
             },
         ],
         connectedAccounts: [
@@ -5415,6 +5418,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'victor.silva61@example.com',
             role: 'Senior Full Stack Developer',
             phone: '+5511982340161',
+            birthDate: '1994-01-30',
             organization: 'DevSolutions',
             department: 'Full Stack Developer',
             address: '1840 Avenida Faria Lima',
@@ -5431,9 +5435,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/victorsilva61',
+                url: 'twitter.com/victorsilva61',
             },
         ],
         connectedAccounts: [
@@ -5484,6 +5488,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'isabel.costa62@example.com',
             role: 'Senior Designer',
             phone: '+351912345162',
+            birthDate: '1991-05-18',
             organization: 'Designify',
             department: 'Designer',
             address: '112 Avenida da Liberdade',
@@ -5494,9 +5499,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/isabelcosta62',
+                url: 'twitter.com/isabelcosta62',
             },
         ],
         connectedAccounts: [
@@ -5547,6 +5552,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'daniel.young63@example.com',
             role: 'Senior QA Engineer',
             phone: '+12024560163',
+            birthDate: '1987-12-05',
             organization: 'QualityLabs',
             department: 'QA Engineer',
             address: '875 Madison Avenue',
@@ -5557,9 +5563,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/danielyoung63',
+                url: 'twitter.com/danielyoung63',
             },
         ],
         connectedAccounts: [
@@ -5610,6 +5616,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'emily.green64@example.com',
             role: 'Senior Product Manager',
             phone: '+14165550164',
+            birthDate: '1990-10-14',
             organization: 'Productify',
             department: 'Product Manager',
             address: '215 King Street West',
@@ -5620,9 +5627,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/emilygreen64',
+                url: 'twitter.com/emilygreen64',
             },
         ],
         connectedAccounts: [
@@ -5673,6 +5680,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'hugo.fernandes65@example.com',
             role: 'Senior Back End Developer',
             phone: '+5511982340165',
+            birthDate: '1992-06-25',
             organization: 'DevSolutions',
             department: 'Back End Developer',
             address: '990 Avenida Paulista',
@@ -5689,9 +5697,9 @@ export const settingsDatabase: StoredSettings[] = [
             },
             {
                 id: 2,
-                platform: 'linkedin',
+                platform: 'twitter',
                 connected: true,
-                url: 'linkedin.com/in/hugofernandes65',
+                url: 'twitter.com/hugofernandes65',
             },
         ],
         connectedAccounts: [
@@ -5742,6 +5750,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'anna.schmidt66@example.com',
             role: 'Senior Designer',
             phone: '+4915123456166',
+            birthDate: '1990-04-12',
             organization: 'Designify',
             department: 'Designer',
             address: '248 Friedrichstraße',
@@ -5752,9 +5761,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/annaschmidt66',
+                url: 'github.com/annaschmidt66',
             },
         ],
         connectedAccounts: [
@@ -5805,6 +5814,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'marco.conti67@example.com',
             role: 'Front End Developer',
             phone: '+393123456167',
+            birthDate: '1988-09-20',
             organization: 'TechCorp',
             department: 'Front End Developer',
             address: '95 Via Torino',
@@ -5815,9 +5825,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/marcoconti67',
+                url: 'github.com/marcoconti67',
             },
         ],
         connectedAccounts: [
@@ -5868,6 +5878,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'santiago.lopez68@example.com',
             role: 'Marketing',
             phone: '+34600110168',
+            birthDate: '1992-12-05',
             organization: 'MarketPro',
             department: 'Marketing',
             address: '402 Gran Via',
@@ -5878,9 +5889,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/santiagolopez68',
+                url: 'github.com/santiagolopez68',
             },
         ],
         connectedAccounts: [
@@ -5931,6 +5942,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'laura.becker69@example.com',
             role: 'QA Engineer',
             phone: '+4915123456169',
+            birthDate: '1995-02-14',
             organization: 'QualityLabs',
             department: 'QA Engineer',
             address: '315 Alexanderplatz',
@@ -5941,9 +5953,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/laurabecker69',
+                url: 'github.com/laurabecker69',
             },
         ],
         connectedAccounts: [
@@ -5994,6 +6006,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'peter.evans70@example.com',
             role: 'DevOps Engineer',
             phone: '+447700900170',
+            birthDate: '1987-07-30',
             organization: 'CloudOps',
             department: 'DevOps Engineer',
             address: '180 Canary Wharf',
@@ -6004,9 +6017,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/peterevans70',
+                url: 'github.com/peterevans70',
             },
         ],
         connectedAccounts: [
@@ -6057,6 +6070,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'john.miller71@example.com',
             role: 'Full Stack Developer',
             phone: '+12024560171',
+            birthDate: '1991-11-03',
             organization: 'DevSolutions',
             department: 'Full Stack Developer',
             address: '920 Market Street',
@@ -6067,9 +6081,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/johnmiller71',
+                url: 'github.com/johnmiller71',
             },
         ],
         connectedAccounts: [
@@ -6120,6 +6134,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'sophie.mendes72@example.com',
             role: 'Designer',
             phone: '+33612345172',
+            birthDate: '1994-06-25',
             organization: 'Designify',
             department: 'Designer',
             address: '88 Avenue des Champs-Élysées',
@@ -6130,9 +6145,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/sophiemendes72',
+                url: 'github.com/sophiemendes72',
             },
         ],
         connectedAccounts: [
@@ -6183,6 +6198,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'hiroshi.tanaka73@example.com',
             role: 'Back End Developer',
             phone: '+819012345173',
+            birthDate: '1989-01-18',
             organization: 'DevSolutions',
             department: 'Back End Developer',
             address: '4-2-8 Shibuya',
@@ -6193,9 +6209,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/hiroshitanaka73',
+                url: 'github.com/hiroshitanaka73',
             },
         ],
         connectedAccounts: [
@@ -6246,6 +6262,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'giulia.rossi74@example.com',
             role: 'Product Manager',
             phone: '+393123456174',
+            birthDate: '1993-08-11',
             organization: 'Productify',
             department: 'Product Manager',
             address: '24 Via Monte Napoleone',
@@ -6256,9 +6273,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/giuliarossi74',
+                url: 'github.com/giuliarossi74',
             },
         ],
         connectedAccounts: [
@@ -6309,6 +6326,7 @@ export const settingsDatabase: StoredSettings[] = [
             email: 'liam.oconnor75@example.com',
             role: 'DevOps Engineer',
             phone: '+353831234175',
+            birthDate: '1990-10-09',
             organization: 'CloudOps',
             department: 'DevOps Engineer',
             address: '42 Grand Canal Dock',
@@ -6319,9 +6337,9 @@ export const settingsDatabase: StoredSettings[] = [
         socialAccounts: [
             {
                 id: 1,
-                platform: 'linkedin',
+                platform: 'github',
                 connected: true,
-                url: 'linkedin.com/in/liamoconnor75',
+                url: 'github.com/liamoconnor75',
             },
         ],
         connectedAccounts: [
