@@ -54,6 +54,8 @@ const getCurrentStoredSettings = (): StoredSettings | null => {
 }
 
 export const createSettings = (user: AuthUser): Settings => {
+    const [firstName, ...lastName] = user.name.split(' ')
+
     const settings: StoredSettings = {
         userId: user.id,
         profile: {
@@ -66,8 +68,8 @@ export const createSettings = (user: AuthUser): Settings => {
             timezone: 'America/New_York',
         },
         generalInformation: {
-            firstName: user.name,
-            lastName: '',
+            firstName: firstName,
+            lastName: lastName.join(' '),
             email: user.email,
             role: user.role,
             phone: '',
@@ -123,7 +125,7 @@ export const updateSettings = (
     const settings = getStoredSettings(id)
 
     if (!settings) {
-         return null
+        return null
     }
 
     const { avatar, ...data } = payload
@@ -135,7 +137,10 @@ export const updateSettings = (
     if (data.name !== undefined) {
         settings.profile.name = data.name
 
-        settings.generalInformation.firstName = data.name
+        const [firstName, ...lastName] = data.name.split(' ')
+
+        settings.generalInformation.firstName = firstName
+        settings.generalInformation.lastName = lastName.join(' ')
     }
 
     if (data.email !== undefined) {
