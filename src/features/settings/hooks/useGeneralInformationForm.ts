@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAppDispatch } from '@/store'
@@ -29,15 +28,9 @@ export const useGeneralInformationForm = (data?: GeneralInformation) => {
 
     const form = useForm<GeneralInformationFormValues>({
         resolver: zodResolver(generalInformationSchema),
-        defaultValues: data ?? defaultValues,
+        values: data ?? defaultValues,
         mode: 'onTouched',
     })
-
-    useEffect(() => {
-        if (!data) return
-
-        form.reset(data)
-    }, [data, form])
 
     const { handleSubmit } = form
 
