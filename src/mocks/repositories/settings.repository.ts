@@ -191,6 +191,9 @@ export const updateGeneralInformation = (
 
     settings.generalInformation = payload
 
+    settings.profile.name = `${payload.firstName} ${payload.lastName}`
+    settings.profile.role = payload.role
+
     return settings.generalInformation
 }
 
