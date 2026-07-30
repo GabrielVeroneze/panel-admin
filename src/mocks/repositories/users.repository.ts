@@ -97,6 +97,21 @@ export const updateUserFromSettings = (
     return user
 }
 
+export const updateUserAvatarFromSettings = (
+    userId: number,
+    avatar: File,
+): DatabaseUser | null => {
+    const user = usersDatabase.find((user) => user.id === userId)
+
+    if (!user) {
+        return null
+    }
+
+    user.image = URL.createObjectURL(avatar)
+
+    return user
+}
+
 export const deleteUser = (id: number) => {
     const index = usersDatabase.findIndex((user) => user.id === id)
 
