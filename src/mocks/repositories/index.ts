@@ -5,6 +5,7 @@ export {
     emailAlreadyExists,
     findUserByCredentials,
     getCurrentUser,
+    updateAuthAvatarFromSettings,
     updateAuthUser,
     updateAuthUserFromSettings,
     validateToken,
@@ -14,6 +15,7 @@ export {
     findProfileByUserId,
     getCurrentProfile,
     updateProfile,
+    updateProfileAvatarFromSettings,
     updateProfileFromSettings,
 } from './profile.repository'
 export {
@@ -38,5 +40,6 @@ export {
     getUserById,
     getUsers,
     updateUser,
+    updateUserAvatarFromSettings,
     updateUserFromSettings,
 } from './users.repository'
