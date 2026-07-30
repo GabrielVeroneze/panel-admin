@@ -1,8 +1,11 @@
 import { settingsDatabase, type StoredSettings } from '../database'
 import {
     getCurrentUser,
+    updateAuthAvatarFromSettings,
     updateAuthUserFromSettings,
+    updateProfileAvatarFromSettings,
     updateProfileFromSettings,
+    updateUserAvatarFromSettings,
     updateUserFromSettings,
 } from './'
 import type { UpdateUserPayload } from '@/features/users/types'
@@ -181,6 +184,12 @@ export const updateSettingsProfileAvatar = (
     }
 
     settings.profile.avatar = URL.createObjectURL(avatar)
+
+    updateProfileAvatarFromSettings(settings.userId, avatar)
+
+    updateUserAvatarFromSettings(settings.userId, avatar)
+
+    updateAuthAvatarFromSettings(settings.userId, avatar)
 
     return settings.profile
 }
