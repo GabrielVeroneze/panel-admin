@@ -2,6 +2,7 @@ import { usersProfilesDatabase } from '../database'
 import { getCurrentUser } from './'
 import type { AuthUser } from '@/features/auth/types'
 import type { UserProfile } from '@/features/profile/types'
+import type { GeneralInformation } from '@/features/settings/types'
 import type { UpdateUserPayload } from '@/features/users/types'
 
 export const createProfile = (user: AuthUser): UserProfile => {
@@ -77,6 +78,29 @@ export const updateProfile = (
     if (avatar) {
         profile.avatar = URL.createObjectURL(avatar)
     }
+
+    return profile
+}
+
+export const updateProfileFromSettings = (
+    userId: number,
+    payload: GeneralInformation,
+): UserProfile | null => {
+    const profile = usersProfilesDatabase.find(
+        (profile) => profile.id === userId,
+    )
+
+    if (!profile) {
+        return null
+    }
+
+    profile.name = `${payload.firstName} ${payload.lastName}`
+
+    profile.role = payload.role
+
+    profile.contact.email = payload.email
+
+    profile.contact.phone = payload.phone
 
     return profile
 }
