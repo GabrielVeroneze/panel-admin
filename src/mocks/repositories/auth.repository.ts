@@ -132,6 +132,31 @@ export const updateAuthUserFromSettings = (
     return user
 }
 
+export const updateAuthAvatarFromSettings = (
+    userId: number,
+    avatar: File,
+): AuthUser | null => {
+    const user = authUsersDatabase.find((user) => user.id === userId)
+
+    if (!user) {
+        return null
+    }
+
+    user.avatar = URL.createObjectURL(avatar)
+
+    const authUser: AuthUser = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        avatar: user.avatar,
+    }
+
+    updateMockSession(authUser)
+
+    return authUser
+}
+
 export const findUserByCredentials = (data: SignInPayload): AuthUser | null => {
     const user = authUsersDatabase.find(
         (user) => user.email === data.email && user.password === data.password,
