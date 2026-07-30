@@ -105,6 +105,23 @@ export const updateProfileFromSettings = (
     return profile
 }
 
+export const updateProfileAvatarFromSettings = (
+    userId: number,
+    avatar: File,
+): UserProfile | null => {
+    const profile = usersProfilesDatabase.find(
+        (profile) => profile.id === userId,
+    )
+
+    if (!profile) {
+        return null
+    }
+
+    profile.avatar = URL.createObjectURL(avatar)
+
+    return profile
+}
+
 export const findProfileByUserId = (userId: number): UserProfile | null => {
     const profile = usersProfilesDatabase.find(
         (profile) => profile.id === userId,
