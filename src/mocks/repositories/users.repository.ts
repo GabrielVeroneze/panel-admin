@@ -1,5 +1,6 @@
 import { usersDatabase, type DatabaseUser } from '../database'
 import { updateAuthUser, updateProfile, updateSettings } from './'
+import type { GeneralInformation } from '@/features/settings/types'
 import type {
     CreateUserPayload,
     UpdateUserPayload,
@@ -69,6 +70,29 @@ export const updateUser = (
         ...data,
         avatar,
     })
+
+    return user
+}
+
+export const updateUserFromSettings = (
+    userId: number,
+    payload: GeneralInformation,
+): DatabaseUser | null => {
+    const user = usersDatabase.find((user) => user.id === userId)
+
+    if (!user) {
+        return null
+    }
+
+    user.name = `${payload.firstName} ${payload.lastName}`
+
+    user.email = payload.email
+
+    user.phone = payload.phone
+
+    user.company = payload.organization
+
+    user.department = payload.role
 
     return user
 }
