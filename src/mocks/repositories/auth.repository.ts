@@ -9,6 +9,7 @@ import type {
     SignUpPayload,
     SignInPayload,
 } from '@/features/auth/types'
+import type { GeneralInformation } from '@/features/settings/types'
 import type { UpdateUserPayload } from '@/features/users/types'
 
 const generateId = () => {
@@ -105,6 +106,30 @@ export const updateAuthUser = (
     updateMockSession(authUser)
 
     return authUser
+}
+
+export const updateAuthUserFromSettings = (
+    userId: number,
+    payload: GeneralInformation,
+): AuthUser | null => {
+    const user = authUsersDatabase.find((user) => user.id === userId)
+
+    if (!user) {
+        return null
+    }
+
+    user.name = `${payload.firstName} ${payload.lastName}`
+    user.email = payload.email
+
+    updateMockSession({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        avatar: user.avatar,
+    })
+
+    return user
 }
 
 export const findUserByCredentials = (data: SignInPayload): AuthUser | null => {
