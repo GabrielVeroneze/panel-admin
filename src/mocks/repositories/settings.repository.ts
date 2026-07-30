@@ -1,5 +1,10 @@
 import { settingsDatabase, type StoredSettings } from '../database'
-import { getCurrentUser } from './'
+import {
+    getCurrentUser,
+    updateAuthUserFromSettings,
+    updateProfileFromSettings,
+    updateUserFromSettings,
+} from './'
 import type { UpdateUserPayload } from '@/features/users/types'
 import type { AuthUser } from '@/features/auth/types'
 import type {
@@ -193,6 +198,12 @@ export const updateGeneralInformation = (
 
     settings.profile.name = `${payload.firstName} ${payload.lastName}`
     settings.profile.role = payload.role
+
+    updateProfileFromSettings(settings.userId, payload)
+
+    updateUserFromSettings(settings.userId, payload)
+
+    updateAuthUserFromSettings(settings.userId, payload)
 
     return settings.generalInformation
 }
