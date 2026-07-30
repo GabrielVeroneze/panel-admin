@@ -6,6 +6,7 @@ export {
     findUserByCredentials,
     getCurrentUser,
     updateAuthUser,
+    updateAuthUserFromSettings,
     validateToken,
 } from './auth.repository'
 export {
@@ -13,6 +14,7 @@ export {
     findProfileByUserId,
     getCurrentProfile,
     updateProfile,
+    updateProfileFromSettings,
 } from './profile.repository'
 export {
     connectSocialAccount,
@@ -36,4 +38,5 @@ export {
     getUserById,
     getUsers,
     updateUser,
+    updateUserFromSettings,
 } from './users.repository'
