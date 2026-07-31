@@ -148,6 +148,9 @@ const settingsSlice = createSlice({
                 if (!state.settings) return
 
                 state.settings.generalInformation = action.payload
+
+                state.settings.profile.name = `${action.payload.firstName} ${action.payload.lastName}`
+                state.settings.profile.role = action.payload.role
             })
             .addCase(saveNotifications.fulfilled, (state, action) => {
                 if (!state.settings) return
