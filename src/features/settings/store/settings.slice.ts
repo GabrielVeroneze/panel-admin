@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { fetchCurrentUserThunk } from '@/features/auth/store'
+import { fetchMyProfile } from '@/features/profile/store'
 import {
     connectSocialAccount,
     disconnectConnectedAccount,
@@ -61,8 +63,14 @@ export const savePreferences = createAsyncThunk<
 export const saveGeneralInformation = createAsyncThunk<
     GeneralInformation,
     GeneralInformation
->('settings/saveGeneralInformation', async (payload) => {
-    return await updateGeneralInformation(payload)
+>('settings/saveGeneralInformation', async (payload, { dispatch }) => {
+    const response = await updateGeneralInformation(payload)
+
+    await dispatch(fetchSettings())
+    await dispatch(fetchCurrentUserThunk())
+    await dispatch(fetchMyProfile())
+
+    return response
 })
 
 export const saveNotifications = createAsyncThunk<
