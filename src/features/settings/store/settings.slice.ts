@@ -49,8 +49,14 @@ export const fetchSettings = createAsyncThunk<Settings>(
 export const updateAvatar = createAsyncThunk<
     SettingsProfile,
     UpdateProfileAvatarPayload
->('settings/updateAvatar', async (payload) => {
-    return await updateProfileAvatar(payload)
+>('settings/updateAvatar', async (payload, { dispatch }) => {
+    const profile = await updateProfileAvatar(payload)
+
+    await dispatch(fetchSettings())
+    await dispatch(fetchCurrentUserThunk())
+    await dispatch(fetchMyProfile())
+
+    return profile
 })
 
 export const savePreferences = createAsyncThunk<
