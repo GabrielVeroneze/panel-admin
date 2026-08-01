@@ -4,11 +4,7 @@ import { useAuth } from '@/features/auth/hooks'
 export const ProtectedRoute = () => {
     const location = useLocation()
 
-    const { authenticated, loading } = useAuth()
-
-    if (loading) {
-        return null
-    }
+    const { authenticated } = useAuth()
 
     if (!authenticated) {
         return (
