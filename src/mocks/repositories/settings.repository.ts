@@ -1,4 +1,8 @@
-import { settingsDatabase, type StoredSettings } from '../database'
+import {
+    authUsersDatabase,
+    settingsDatabase,
+    type StoredSettings,
+} from '../database'
 import {
     getCurrentUser,
     updateAuthAvatarFromSettings,
@@ -19,6 +23,7 @@ import type {
     SettingsProfile,
     SocialAccount,
     SocialPlatform,
+    UpdatePasswordPayload,
 } from '@/features/settings/types'
 
 export const findSettingsByUserId = (userId: number): Settings | null => {
@@ -215,6 +220,32 @@ export const updateGeneralInformation = (
     updateAuthUserFromSettings(settings.userId, payload)
 
     return settings.generalInformation
+}
+
+export const updateCurrentUserPassword = (
+    payload: UpdatePasswordPayload,
+): boolean => {
+    const currentUser = getCurrentUser()
+
+    if (!currentUser) {
+        return false
+    }
+
+    const authUser = authUsersDatabase.find(
+        (user) => user.id === currentUser.id,
+    )
+
+    if (!authUser) {
+        return false
+    }
+
+    if (authUser.password !== payload.currentPassword) {
+        return false
+    }
+
+    authUser.password = payload.newPassword
+
+    return true
 }
 
 export const updatePreferences = (
