@@ -5,6 +5,7 @@ import {
     getCurrentSettings,
     removeConnectedAccount,
     removeDeviceSession,
+    updateCurrentUserPassword,
     updateEmailSettings,
     updateGeneralInformation,
     updateNotifications,
@@ -19,10 +20,12 @@ import type {
     SettingsPreferences,
     SettingsProfile,
     SocialPlatform,
+    UpdatePasswordPayload,
 } from '@/features/settings/types'
 
 type PasswordResponse = {
-    success: boolean
+    success?: boolean
+    message?: string
 }
 
 export const settingsHandlers = [
@@ -99,9 +102,24 @@ export const settingsHandlers = [
         },
     ),
 
-    http.put<never, never, PasswordResponse>(
+    http.put<never, UpdatePasswordPayload, PasswordResponse>(
         '/api/settings/password',
-        async () => {
+        async ({ request }) => {
+            const payload = await request.json()
+
+            const updated = updateCurrentUserPassword(payload)
+
+            if (!updated) {
+                return HttpResponse.json(
+                    {
+                        message: 'Current password is incorrect',
+                    },
+                    {
+                        status: 400,
+                    },
+                )
+            }
+
             return HttpResponse.json({
                 success: true,
             })
