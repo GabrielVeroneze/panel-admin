@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Toast } from '@/shared/lib'
 import { useAppDispatch } from '@/store'
 import { savePassword } from '../store'
 import { passwordSchema, type PasswordFormValues } from '../schemas'
@@ -19,10 +20,18 @@ export const usePasswordForm = () => {
         mode: 'onTouched',
     })
 
-    const { handleSubmit } = form
+    const { handleSubmit, reset } = form
 
     const onSubmit = handleSubmit(async (values) => {
-        await dispatch(savePassword(values))
+        try {
+            await dispatch(savePassword(values)).unwrap()
+
+            reset()
+
+            Toast.success('Password updated successfully')
+        } catch (error) {
+            Toast.error(String(error))
+        }
     })
 
     return {
