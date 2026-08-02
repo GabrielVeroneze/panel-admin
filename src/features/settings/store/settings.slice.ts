@@ -95,8 +95,12 @@ export const saveEmailSettings = createAsyncThunk<
 
 export const savePassword = createAsyncThunk<void, UpdatePasswordPayload>(
     'settings/savePassword',
-    async (payload) => {
-        return await updatePassword(payload)
+    async (payload, { rejectWithValue }) => {
+        try {
+            await updatePassword(payload)
+        } catch {
+            return rejectWithValue('Current password is incorrect')
+        }
     },
 )
 
