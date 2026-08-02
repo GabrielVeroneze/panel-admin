@@ -26,6 +26,7 @@ export {
     getCurrentSettings,
     removeConnectedAccount,
     removeDeviceSession,
+    updateCurrentUserPassword,
     updateEmailSettings,
     updateGeneralInformation,
     updateNotifications,
