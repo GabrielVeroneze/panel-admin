@@ -25,7 +25,7 @@ export const ActivityItem = ({
                 <p className={styles.target}>{target}</p>
                 <span className={styles.date}>
                     <ClockIcon />
-                     {formatRelativeTime(createdAt)}
+                    {formatRelativeTime(createdAt)}
                 </span>
             </div>
         </div>
