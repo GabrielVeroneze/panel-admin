@@ -795,7 +795,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Leslie',
             lastName: 'Livingston',
-            email: '[leslie.livingston9@example.com](mailto:leslie.livingston9@example.com)',
+            email: 'leslie.livingston9@example.com',
             role: 'Web Designer',
             phone: '+393123456109',
             birthDate: '1992-08-27',
@@ -885,7 +885,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Karen',
             lastName: 'Nelson',
-            email: '[karen.nelson10@example.com](mailto:karen.nelson10@example.com)',
+            email: 'karen.nelson10@example.com',
             role: 'Designer',
             phone: '+31612345110',
             birthDate: '1987-12-04',
@@ -1740,7 +1740,7 @@ export const settingsDatabase: StoredSettings[] = [
     {
         userId: 19,
         profile: {
-            avatar: '[https://i.pravatar.cc/300?img=19](https://i.pravatar.cc/300?img=19)',
+            avatar: 'https://i.pravatar.cc/300?img=19',
             name: 'Olivia Brown',
             role: 'QA Engineer',
         },
@@ -1751,7 +1751,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Olivia',
             lastName: 'Brown',
-            email: '[olivia.brown19@example.com](mailto:olivia.brown19@example.com)',
+            email: 'olivia.brown19@example.com',
             role: 'QA Engineer',
             phone: '+61412345119',
             birthDate: '1993-06-12',
@@ -1785,21 +1785,21 @@ export const settingsDatabase: StoredSettings[] = [
         connectedAccounts: [
             {
                 id: 1,
-                avatar: '[https://i.pravatar.cc/150?img=20](https://i.pravatar.cc/150?img=20)',
+                avatar: 'https://i.pravatar.cc/150?img=20',
                 name: 'Noah Wilson',
                 city: 'Berlin',
                 lastSeen: 'Yesterday',
             },
             {
                 id: 2,
-                avatar: '[https://i.pravatar.cc/150?img=21](https://i.pravatar.cc/150?img=21)',
+                avatar: 'https://i.pravatar.cc/150?img=21',
                 name: 'Ava Martinez',
                 city: 'Madrid',
                 lastSeen: '5 minutes ago',
             },
             {
                 id: 3,
-                avatar: '[https://i.pravatar.cc/150?img=17](https://i.pravatar.cc/150?img=17)',
+                avatar: 'https://i.pravatar.cc/150?img=17',
                 name: 'Emma Watson',
                 city: 'London',
                 lastSeen: '3 days ago',
@@ -1837,7 +1837,7 @@ export const settingsDatabase: StoredSettings[] = [
     {
         userId: 20,
         profile: {
-            avatar: '[https://i.pravatar.cc/300?img=20](https://i.pravatar.cc/300?img=20)',
+            avatar: 'https://i.pravatar.cc/300?img=20',
             name: 'Noah Wilson',
             role: 'DevOps Engineer',
         },
@@ -1848,7 +1848,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Noah',
             lastName: 'Wilson',
-            email: '[noah.wilson20@example.com](mailto:noah.wilson20@example.com)',
+            email: 'noah.wilson20@example.com',
             role: 'DevOps Engineer',
             phone: '+4915123456120',
             birthDate: '1989-10-28',
@@ -1882,14 +1882,14 @@ export const settingsDatabase: StoredSettings[] = [
         connectedAccounts: [
             {
                 id: 1,
-                avatar: '[https://i.pravatar.cc/150?img=18](https://i.pravatar.cc/150?img=18)',
+                avatar: 'https://i.pravatar.cc/150?img=18',
                 name: 'John Carter',
                 city: 'Toronto',
                 lastSeen: '2 hours ago',
             },
             {
                 id: 2,
-                avatar: '[https://i.pravatar.cc/150?img=13](https://i.pravatar.cc/150?img=13)',
+                avatar: 'https://i.pravatar.cc/150?img=13',
                 name: 'Amanda Silva',
                 city: 'São Paulo',
                 lastSeen: 'Yesterday',
@@ -1934,7 +1934,7 @@ export const settingsDatabase: StoredSettings[] = [
     {
         userId: 21,
         profile: {
-            avatar: '[https://i.pravatar.cc/300?img=21](https://i.pravatar.cc/300?img=21)',
+            avatar: 'https://i.pravatar.cc/300?img=21',
             name: 'Ava Martinez',
             role: 'Product Manager',
         },
@@ -1945,7 +1945,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Ava',
             lastName: 'Martinez',
-            email: '[ava.martinez21@example.com](mailto:ava.martinez21@example.com)',
+            email: 'ava.martinez21@example.com',
             role: 'Product Manager',
             phone: '+34600110121',
             birthDate: '1991-03-07',
@@ -1979,21 +1979,21 @@ export const settingsDatabase: StoredSettings[] = [
         connectedAccounts: [
             {
                 id: 1,
-                avatar: '[https://i.pravatar.cc/150?img=19](https://i.pravatar.cc/150?img=19)',
+                avatar: 'https://i.pravatar.cc/150?img=19',
                 name: 'Olivia Brown',
                 city: 'Sydney',
                 lastSeen: 'Yesterday',
             },
             {
                 id: 2,
-                avatar: '[https://i.pravatar.cc/150?img=14](https://i.pravatar.cc/150?img=14)',
+                avatar: 'https://i.pravatar.cc/150?img=14',
                 name: 'Lucas Martins',
                 city: 'São Paulo',
                 lastSeen: '5 minutes ago',
             },
             {
                 id: 3,
-                avatar: '[https://i.pravatar.cc/150?img=24](https://i.pravatar.cc/150?img=24)',
+                avatar: 'https://i.pravatar.cc/150?img=24',
                 name: 'Carlos Moreno',
                 city: 'Barcelona',
                 lastSeen: '3 days ago',
@@ -2042,7 +2042,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'James',
             lastName: 'Anderson',
-            email: '[james.anderson22@example.com](mailto:james.anderson22@example.com)',
+            email: 'james.anderson22@example.com',
             role: 'Full Stack Developer',
             phone: '+353831234122',
             birthDate: '1989-02-17',
@@ -2132,7 +2132,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Isabella',
             lastName: 'Thomas',
-            email: '[isabella.thomas23@example.com](mailto:isabella.thomas23@example.com)',
+            email: 'isabella.thomas23@example.com',
             role: 'Designer',
             phone: '+33612345123',
             birthDate: '1994-09-03',
@@ -2236,7 +2236,7 @@ export const settingsDatabase: StoredSettings[] = [
         generalInformation: {
             firstName: 'Benjamin',
             lastName: 'Taylor',
-            email: '[benjamin.taylor24@example.com](mailto:benjamin.taylor24@example.com)',
+            email: 'benjamin.taylor24@example.com',
             role: 'SEO Specialist',
             phone: '+31612345124',
             birthDate: '1990-12-26',
