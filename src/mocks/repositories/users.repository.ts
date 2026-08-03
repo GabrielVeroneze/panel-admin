@@ -1,5 +1,12 @@
 import { usersDatabase, type DatabaseUser } from '../database'
-import { updateAuthUser, updateProfile, updateSettings } from './'
+import {
+    createAuthUser,
+    createProfile,
+    createSettings,
+    updateAuthUser,
+    updateProfile,
+    updateSettings,
+} from './'
 import type { GeneralInformation } from '@/features/settings/types'
 import type {
     CreateUserPayload,
@@ -34,6 +41,16 @@ export const createUser = (payload: CreateUserPayload): DatabaseUser => {
     }
 
     usersDatabase.push(user)
+
+    const authUser = createAuthUser({
+        name: user.name,
+        email: user.email,
+        password: user.password,
+    })
+
+    createProfile(authUser)
+
+    createSettings(authUser)
 
     return user
 }
