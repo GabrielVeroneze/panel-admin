@@ -1,2 +1,5 @@
 export { ErrorPage } from './ErrorPage/ErrorPage'
+export { ForbiddenPage } from './ForbiddenPage/ForbiddenPage'
+export { MaintenancePage } from './MaintenancePage/MaintenancePage'
 export { NotFoundPage } from './NotFoundPage/NotFoundPage'
+export { ServerErrorPage } from './ServerErrorPage/ServerErrorPage'
