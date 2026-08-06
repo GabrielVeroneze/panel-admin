@@ -1,0 +1,31 @@
+@use '@/styles/tokens' as *;
+
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: $space-6;
+    justify-content: center;
+    max-width: 875px;
+    padding: $space-8;
+
+    .image {
+        height: 400px;
+        margin-bottom: $space-4;
+        width: auto;
+    }
+
+    .title {
+        color: $gray-darkest;
+        font-size: $text-6xl;
+        font-weight: $font-bold;
+        text-align: center;
+    }
+
+    .description {
+        color: $gray-dark;
+        font-size: $text-3xl;
+        font-weight: $font-normal;
+        text-align: center;
+    }
+}
