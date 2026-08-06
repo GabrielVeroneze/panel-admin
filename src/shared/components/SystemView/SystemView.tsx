@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router'
 import { Button } from '@/shared/components'
-import { ChevronLeftIcon } from '@/shared/assets/icons'
 import styles from './SystemView.module.scss'
 
 type SystemViewProps = {
@@ -28,8 +27,6 @@ export const SystemView = ({
             <p className={styles.description}>{description}</p>
             <Button
                 className={styles.button}
-                icon={<ChevronLeftIcon />}
-                iconPosition="left"
                 size="lg"
                 onClick={() => navigate(action.to)}
             >
