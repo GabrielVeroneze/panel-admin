@@ -48,4 +48,24 @@
             font-size: $text-2xl;
         }
     }
+
+    @include media-down(sm) {
+        gap: $space-4;
+        max-width: 100%;
+        padding: $space-4;
+
+        .image {
+            height: 250px;
+            margin-bottom: $space-2;
+            max-width: 100%;
+        }
+
+        .title {
+            font-size: $text-4xl;
+        }
+
+        .description {
+            font-size: $text-xl;
+        }
+    }
 }
