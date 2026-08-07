@@ -9,7 +9,7 @@ export const ErrorPage = () => {
             description="An unexpected error occurred while processing your request. Please try again. If the problem persists, return to the dashboard and try again later."
             action={{
                 label: 'Try Again',
-                to: '/',
+                onClick: () => window.location.reload(),
             }}
         />
     )
