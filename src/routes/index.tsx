@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router'
 import { AppLayout, AuthLayout, PageLayout } from '@/shared/layout'
 import { ProtectedRoute } from '@/shared/auth'
-import { ErrorPage, NotFoundPage } from '@/shared/pages'
+import { ErrorPage, MaintenancePage, NotFoundPage } from '@/shared/pages'
 import { DashboardPage } from '@/features/dashboard'
 import { UsersPage } from '@/features/users'
 import { MyProfilePage, UserProfilePage } from '@/features/profile'
@@ -70,6 +70,14 @@ export const router = createBrowserRouter([
                 ],
             },
         ],
+    },
+    {
+        path: '/500',
+        element: <ErrorPage />,
+    },
+    {
+        path: '/maintenance',
+        element: <MaintenancePage />,
     },
     {
         path: '*',
