@@ -23,6 +23,7 @@ export const Textarea = ({
                 disabled && styles.disabled,
                 className,
             )}
+            disabled={disabled}
             {...props}
         />
     )
