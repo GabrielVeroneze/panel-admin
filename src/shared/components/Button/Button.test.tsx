@@ -81,12 +81,10 @@ describe('Button', () => {
             </Button>,
         )
 
-        const button = screen.getByRole('button', {
-            name: 'Icon Save',
-        })
+        const button = screen.getByRole('button')
+        const icon = screen.getByTestId('button-icon')
 
-        expect(button).toBeInTheDocument()
-        expect(screen.getByTestId('button-icon')).toBeInTheDocument()
+        expect(button.firstElementChild).toBe(icon)
     })
 
     it('renders the icon on the right', () => {
@@ -99,12 +97,10 @@ describe('Button', () => {
             </Button>,
         )
 
-        const button = screen.getByRole('button', {
-            name: 'Save Icon',
-        })
+        const button = screen.getByRole('button')
+        const icon = screen.getByTestId('button-icon')
 
-        expect(button).toBeInTheDocument()
-        expect(screen.getByTestId('button-icon')).toBeInTheDocument()
+        expect(button.lastElementChild).toBe(icon)
     })
 
     it('renders only the icon when iconPosition is only', () => {
