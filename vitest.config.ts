@@ -12,6 +12,11 @@ export default mergeConfig(
                 reporter: ['text', 'html'],
                 exclude: ['src/tests/**', 'src/mocks/**', '**/*.d.ts'],
             },
+            css: {
+                modules: {
+                    classNameStrategy: 'non-scoped',
+                },
+            },
         },
     }),
 )
