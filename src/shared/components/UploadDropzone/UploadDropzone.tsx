@@ -56,6 +56,7 @@ export const UploadDropzone = ({
 
     return (
         <div
+            aria-label="Upload files"
             className={clsx(
                 styles.dropzone,
                 isDragging && styles.dragging,
@@ -71,6 +72,7 @@ export const UploadDropzone = ({
             onDrop={handleDrop}
         >
             <input
+                aria-label="File upload"
                 className={styles.input}
                 id={id}
                 ref={inputRef}
