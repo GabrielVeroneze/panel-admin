@@ -1,5 +1,10 @@
 import { createBrowserRouter } from 'react-router'
-import { AppLayout, AuthLayout, PageLayout, SystemLayout } from '@/shared/layout'
+import {
+    AppLayout,
+    AuthLayout,
+    PageLayout,
+    SystemLayout,
+} from '@/shared/layout'
 import { ProtectedRoute } from '@/shared/auth'
 import { ErrorPage, MaintenancePage, NotFoundPage } from '@/shared/pages'
 import { DashboardPage } from '@/features/dashboard'
