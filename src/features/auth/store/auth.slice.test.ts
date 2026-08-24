@@ -8,6 +8,13 @@ vi.mock('@/shared/utils', () => ({
     getSession: mockGetSession,
 }))
 
+vi.mock('@/services/api', () => ({
+    api: {
+        post: vi.fn(),
+        get: vi.fn(),
+    },
+}))
+
 describe('auth.slice', () => {
     afterEach(() => {
         vi.resetModules()
