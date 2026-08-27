@@ -22,9 +22,12 @@ export const useSignInForm = () => {
     })
 
     const onSubmit = async (data: SignInFormValues) => {
-        await signIn(data)
-
-        navigate('/')
+        try {
+            await signIn(data)
+            navigate('/')
+        } catch {
+            return
+        }
     }
 
     return {
