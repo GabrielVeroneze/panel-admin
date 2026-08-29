@@ -13,7 +13,15 @@ export const AppInitializer = ({ children }: AppInitializerProps) => {
             return
         }
 
-        fetchCurrentUser()
+        const initializeAuth = async () => {
+            try {
+                await fetchCurrentUser()
+            } catch {
+                return
+            }
+        }
+
+        initializeAuth()
     }, [fetchCurrentUser])
 
     return children
