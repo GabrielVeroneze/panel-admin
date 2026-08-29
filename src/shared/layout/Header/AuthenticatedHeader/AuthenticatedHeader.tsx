@@ -28,9 +28,13 @@ export const AuthenticatedHeader = ({ user }: AuthenticatedHeaderProps) => {
     const { logout } = useAuth()
 
     const handleLogout = async () => {
-        await logout()
+        try {
+            await logout()
 
-        navigate('/auth/sign-in')
+            navigate('/auth/sign-in')
+        } catch {
+            return
+        }
     }
 
     return (
