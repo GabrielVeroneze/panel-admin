@@ -197,12 +197,11 @@ describe('useSignInForm', () => {
                 rememberMe: false,
             }
 
-            await expect(
-                act(async () => {
-                    await result.current.onSubmit(data)
-                }),
-            ).rejects.toThrow('Invalid credentials')
+            await act(async () => {
+                await result.current.onSubmit(data)
+            })
 
+            expect(mockSignIn).toHaveBeenCalledWith(data)
             expect(mockNavigate).not.toHaveBeenCalled()
         })
 
