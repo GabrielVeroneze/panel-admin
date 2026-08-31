@@ -270,9 +270,7 @@ describe('useSignUpForm', () => {
 
             const { result } = renderHook(() => useSignUpForm())
 
-            await expect(result.current.onSubmit(data)).rejects.toThrow(
-                'Unable to create account',
-            )
+            await expect(result.current.onSubmit(data)).resolves.toBeUndefined()
 
             expect(Toast.success).not.toHaveBeenCalled()
         })
@@ -284,9 +282,7 @@ describe('useSignUpForm', () => {
 
             const { result } = renderHook(() => useSignUpForm())
 
-            await expect(result.current.onSubmit(data)).rejects.toThrow(
-                'Unable to create account',
-            )
+            await expect(result.current.onSubmit(data)).resolves.toBeUndefined()
 
             expect(mockNavigate).not.toHaveBeenCalled()
         })
