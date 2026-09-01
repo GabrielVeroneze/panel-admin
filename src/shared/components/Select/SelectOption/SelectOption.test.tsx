@@ -71,12 +71,10 @@ describe('SelectOption', () => {
             expect(option).toBeDisabled()
         })
 
-        it('supports the selected prop', () => {
+        it('supports the selected option', () => {
             render(
-                <select>
-                    <SelectOption value="br" selected>
-                        Brazil
-                    </SelectOption>
+                <select defaultValue="br">
+                    <SelectOption value="br">Brazil</SelectOption>
                 </select>,
             )
 
