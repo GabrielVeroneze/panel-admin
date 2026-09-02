@@ -5,5 +5,5 @@ export {
     deleteUsers,
     fetchUsers,
     updateUser,
-} from './users.slice'
+} from './users.thunks'
 export { selectUsersList } from './users.selectors'
