@@ -6,9 +6,9 @@ import {
     EditUserModal,
     UsersFooterInfo,
     UsersTable,
-} from './components'
-import { deleteUsers } from './store'
-import { useUsersPage } from './hooks'
+} from '@/features/users/components'
+import { deleteUsers } from '@/features/users/store'
+import { useUsersPage } from '@/features/users/hooks'
 import styles from '@/styles/layouts/page.module.scss'
 
 export const UsersPage = () => {
