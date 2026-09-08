@@ -27,13 +27,17 @@ export const useUsersPage = () => {
     }
 
     const handleCreateSubmit = async (data: CreateUserFormValues) => {
-        await dispatch(
-            createUser({
-                payload: mapFormToCreatePayload(data),
-            }),
-        )
+        try {
+            await dispatch(
+                createUser({
+                    payload: mapFormToCreatePayload(data),
+                }),
+            ).unwrap()
 
-        modal.close()
+            modal.close()
+        } catch {
+            return
+        }
     }
 
     const handleUpdateSubmit = async (data: UpdateUserFormValues) => {
