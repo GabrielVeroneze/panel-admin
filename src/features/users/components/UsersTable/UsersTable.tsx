@@ -113,6 +113,7 @@ export const UsersTable = ({
                                     variant="primary"
                                     iconPosition="left"
                                     icon={<PencilAltSolidIcon />}
+                                    aria-label={`Edit user ${user.name}`}
                                     onClick={() => onEdit(user.id)}
                                 >
                                     Edit Item
