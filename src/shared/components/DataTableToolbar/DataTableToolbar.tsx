@@ -37,14 +37,21 @@ export const DataTableToolbar = ({
                 onChange={(e) => onSearchChange(e.target.value)}
             />
             <div className={styles.actions}>
-                <IconButton icon={<CogIcon />} />
+                <IconButton icon={<CogIcon />} aria-label="Table settings" />
                 <IconButton
                     icon={<TrashSolidIcon />}
+                    aria-label="Delete selected users"
                     onClick={onDelete}
                     disabled={!hasSelection}
                 />
-                <IconButton icon={<ExclamationCircleSolidIcon />} />
-                <IconButton icon={<DotsVerticalSolidIcon />} />
+                <IconButton
+                    icon={<ExclamationCircleSolidIcon />}
+                    aria-label="Table information"
+                />
+                <IconButton
+                    icon={<DotsVerticalSolidIcon />}
+                    aria-label="More table actions"
+                />
             </div>
             <Button
                 className={styles.button}
