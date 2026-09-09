@@ -43,14 +43,18 @@ export const useUsersPage = () => {
     const handleUpdateSubmit = async (data: UpdateUserFormValues) => {
         if (!modal.editingItem) return
 
-        await dispatch(
-            updateUser({
-                id: modal.editingItem.id,
-                payload: mapFormToUpdatePayload(data),
-            }),
-        )
+        try {
+            await dispatch(
+                updateUser({
+                    id: modal.editingItem.id,
+                    payload: mapFormToUpdatePayload(data),
+                }),
+            ).unwrap()
 
-        modal.close()
+            modal.close()
+        } catch {
+            return
+        }
     }
 
     const handleDeleteUser = async () => {
