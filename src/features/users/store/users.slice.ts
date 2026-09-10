@@ -29,6 +29,9 @@ const usersSlice = createSlice({
                 state.loading = false
                 state.data = action.payload
             })
+            .addCase(fetchUsers.rejected, (state) => {
+                state.loading = false
+            })
             .addCase(createUser.fulfilled, (state, action) => {
                 if (!state.data) return
 
