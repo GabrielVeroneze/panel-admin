@@ -56,7 +56,7 @@ describe('Users update integration', () => {
 
         await userEventInstance.click(
             screen.getByRole('button', {
-                name: /edit item/i,
+                name: /edit user gabriel veroneze/i,
             }),
         )
 
@@ -114,7 +114,7 @@ describe('Users update integration', () => {
 
         await userEventInstance.click(
             screen.getByRole('button', {
-                name: /edit item/i,
+                name: /edit user gabriel veroneze/i,
             }),
         )
 
@@ -183,7 +183,7 @@ describe('Users update integration', () => {
 
         await userEventInstance.click(
             screen.getByRole('button', {
-                name: /edit item/i,
+                name: /edit user gabriel veroneze/i,
             }),
         )
 
