@@ -115,6 +115,10 @@ describe('useUsersPage', () => {
             loading: false,
         })
 
+        mockDispatch.mockReturnValue({
+            unwrap: vi.fn().mockResolvedValue(undefined),
+        })
+
         mockCreateUser.mockImplementation((params) => ({
             type: 'users/createUser',
             payload: params,
