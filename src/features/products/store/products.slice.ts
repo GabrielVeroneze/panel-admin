@@ -1,77 +1,20 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import type { AsyncState } from '@/shared/types'
+import type { PaginatedProducts } from '../types'
 import {
-    getProducts,
-    createProduct as createProductRequest,
-    deleteProduct as deleteProductRequest,
-    deleteProducts as deleteProductsRequest,
-    updateProduct as updateProductRequest,
-} from '../api'
-import type { AsyncState, PaginationParams } from '@/shared/types'
-import type {
-    CreateProductPayload,
-    PaginatedProducts,
-    Product,
-    UpdateProductPayload,
-} from '../types'
+    createProduct,
+    deleteProduct,
+    deleteProducts,
+    fetchProducts,
+    updateProduct,
+} from './products.thunks'
 
 type ProductsState = AsyncState<PaginatedProducts>
-
-type CreateProductParams = {
-    payload: CreateProductPayload
-}
-
-type UpdateProductParams = {
-    id: number
-    payload: UpdateProductPayload
-}
-
-type DeleteProductParams = {
-    id: number
-}
-
-type DeleteProductsParams = {
-    ids: number[]
-}
 
 const initialState: ProductsState = {
     data: null,
     loading: false,
 }
-
-export const fetchProducts = createAsyncThunk<
-    PaginatedProducts,
-    PaginationParams
->('products/fetchProducts', async ({ page, pageSize, search }) => {
-    return await getProducts({ page, pageSize, search })
-})
-
-export const createProduct = createAsyncThunk<Product, CreateProductParams>(
-    'products/createProduct',
-    async ({ payload }) => {
-        return await createProductRequest(payload)
-    },
-)
-
-export const updateProduct = createAsyncThunk<Product, UpdateProductParams>(
-    'products/updateProduct',
-    async ({ id, payload }) => {
-        return await updateProductRequest(id, payload)
-    },
-)
-
-export const deleteProduct = createAsyncThunk<void, DeleteProductParams>(
-    'products/deleteProduct',
-    async ({ id }) => {
-        await deleteProductRequest(id)
-    },
-)
-
-export const deleteProducts = createAsyncThunk<void, DeleteProductsParams>(
-    'products/deleteProducts',
-    async ({ ids }) => {
-        await deleteProductsRequest(ids)
-    },
-)
 
 const productsSlice = createSlice({
     name: 'products',
