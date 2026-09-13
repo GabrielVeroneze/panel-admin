@@ -5,5 +5,5 @@ export {
     deleteProducts,
     fetchProducts,
     updateProduct,
-} from './products.slice'
+} from './products.thunks'
 export { selectProductsList } from './products.selectors'
