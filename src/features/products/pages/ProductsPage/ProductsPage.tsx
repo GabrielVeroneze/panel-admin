@@ -5,9 +5,9 @@ import {
     CreateProductModal,
     EditProductModal,
     ProductsTable,
-} from './components'
-import { deleteProducts } from './store'
-import { useProductsPage } from './hooks'
+} from '@/features/products/components'
+import { deleteProducts } from '@/features/products/store'
+import { useProductsPage } from '@/features/products/hooks'
 import styles from '@/styles/layouts/page.module.scss'
 
 export const ProductsPage = () => {
