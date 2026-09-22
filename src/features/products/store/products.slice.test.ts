@@ -428,7 +428,7 @@ describe('products reducer', () => {
             })
         })
 
-        it('does not change the state when fetchProducts is rejected', () => {
+        it('stops loading when fetchProducts is rejected', () => {
             const state = reducer(
                 {
                     data: productsData,
@@ -446,7 +446,7 @@ describe('products reducer', () => {
 
             expect(state).toEqual({
                 data: productsData,
-                loading: true,
+                loading: false,
             })
         })
     })
