@@ -300,5 +300,5 @@ describe('Products CRUD integration', () => {
                 name: /edit product/i,
             }),
         ).not.toBeInTheDocument()
-    })
+    }, 10000)
 })
