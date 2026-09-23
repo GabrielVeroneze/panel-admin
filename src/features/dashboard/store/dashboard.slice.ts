@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getDashboard } from '../api'
+import { createSlice } from '@reduxjs/toolkit'
+import { fetchDashboard } from './dashboard.thunks'
 import type { DashboardData } from '../types'
 
 type DashboardState = {
@@ -11,13 +11,6 @@ const initialState: DashboardState = {
     data: null,
     loading: false,
 }
-
-export const fetchDashboard = createAsyncThunk<DashboardData>(
-    'dashboard/fetchDashboard',
-    async () => {
-        return await getDashboard()
-    },
-)
 
 const dashboardSlice = createSlice({
     name: 'dashboard',
