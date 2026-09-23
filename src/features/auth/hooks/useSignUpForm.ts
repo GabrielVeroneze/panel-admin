@@ -27,9 +27,9 @@ export const useSignUpForm = () => {
     const onSubmit = async (data: SignUpFormValues) => {
         try {
             await signUp(data)
-            
+
             Toast.success('Account successfully created')
-            
+
             navigate('/auth/sign-in')
         } catch {
             return
