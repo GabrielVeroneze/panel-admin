@@ -1,5 +1,5 @@
 import { Card } from '@/shared/components'
-import { useDashboard } from './hooks'
+import { useDashboard } from '@/features/dashboard/hooks'
 import {
     LatestCustomersList,
     SalesChart,
@@ -9,7 +9,7 @@ import {
     TodaySales,
     TodayVisitors,
     TransactionsTable,
-} from './components'
+} from '@/features/dashboard/components'
 import styles from './DashboardPage.module.scss'
 
 export const DashboardPage = () => {
