@@ -18,7 +18,7 @@ export const SessionsByCountry = ({
 }: SessionsByCountryProps) => {
     if (loading) return <SessionsByCountrySkeleton />
 
-    if (!data) {
+    if (!data || data.length === 0) {
         return (
             <EmptyState
                 icon={<ExclamationCircleIcon />}
