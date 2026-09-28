@@ -14,7 +14,7 @@ type TodayVisitorsProps = {
 export const TodayVisitors = ({ data, loading }: TodayVisitorsProps) => {
     if (loading) return <MetricCardSkeleton />
 
-    if (!data) {
+    if (!data || data.chart.length === 0) {
         return (
             <EmptyState
                 icon={<ExclamationCircleIcon />}

@@ -19,7 +19,7 @@ const formatCurrencyTooltip: ChartValueFormatter = (value) => {
 export const TodaySales = ({ data, loading }: TodaySalesProps) => {
     if (loading) return <MetricCardSkeleton />
 
-    if (!data) {
+    if (!data || data.chart.length === 0) {
         return (
             <EmptyState
                 icon={<ExclamationCircleIcon />}
