@@ -16,7 +16,7 @@ export const LatestCustomersList = ({
 }: LatestCustomersProps) => {
     if (loading) return <LatestCustomersListSkeleton />
 
-    if (!customers) {
+    if (!customers || customers.length === 0) {
         return (
             <EmptyState
                 icon={<ExclamationCircleIcon />}

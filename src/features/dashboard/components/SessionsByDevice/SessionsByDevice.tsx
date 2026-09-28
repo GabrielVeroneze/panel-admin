@@ -27,7 +27,7 @@ const formatDeviceTooltipLabel: ChartLabelFormatter = (_, payload) => {
 export const SessionsByDevice = ({ data, loading }: SessionsByDeviceProps) => {
     if (loading) return <SessionsByDeviceSkeleton />
 
-    if (!data) {
+    if (!data || data.length === 0) {
         return (
             <EmptyState
                 icon={<ExclamationCircleIcon />}

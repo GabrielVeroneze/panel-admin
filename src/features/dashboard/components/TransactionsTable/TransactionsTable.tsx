@@ -39,7 +39,7 @@ export const TransactionsTable = ({
 }: TransactionsTableProps) => {
     if (loading) return <TransactionsTableSkeleton />
 
-    if (!transactions) {
+    if (!transactions || transactions.length === 0) {
         return (
             <EmptyState
                 icon={<ExclamationCircleIcon />}

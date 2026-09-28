@@ -34,7 +34,7 @@ export const SalesChart = ({ data, loading }: SalesChartProps) => {
 
     if (loading) return <SalesChartSkeleton />
 
-    if (!data) {
+    if (!data || data.length === 0) {
         return (
             <EmptyState
                 icon={<ExclamationCircleIcon />}
