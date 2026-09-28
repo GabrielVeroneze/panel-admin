@@ -25,6 +25,9 @@ const dashboardSlice = createSlice({
                 state.loading = false
                 state.data = action.payload
             })
+            .addCase(fetchDashboard.rejected, (state) => {
+                state.loading = false
+            })
     },
 })
 
