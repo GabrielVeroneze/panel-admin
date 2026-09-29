@@ -21,7 +21,15 @@ describe('LatestCustomersList', () => {
     })
 
     it('renders the list title when customers are provided', () => {
-        const customers: LatestCustomer[] = []
+        const customers: LatestCustomer[] = [
+            {
+                id: 1,
+                image: '/images/john.jpg',
+                name: 'John Doe',
+                email: 'john@example.com',
+                totalSpent: 1250,
+            },
+        ]
 
         render(<LatestCustomersList customers={customers} />)
 
@@ -129,13 +137,13 @@ describe('LatestCustomersList', () => {
         expect(avatar).toHaveAttribute('alt', 'John Doe')
     })
 
-    it('renders an empty list when customers is an empty array', () => {
+    it('renders the empty state when customers is an empty array', () => {
         render(<LatestCustomersList customers={[]} />)
 
         expect(
-            screen.getByRole('heading', { name: 'Latest Customers' }),
+            screen.getByRole('heading', { name: 'No customers' }),
         ).toBeVisible()
 
-        expect(screen.getByRole('list')).toBeEmptyDOMElement()
+        expect(screen.getByText('No recent customers found.')).toBeVisible()
     })
 })
