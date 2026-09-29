@@ -22,7 +22,16 @@ describe('SessionsByDevice', () => {
     })
 
     it('renders the title when data is provided', () => {
-        render(<SessionsByDevice data={[]} />)
+        const data: DeviceSession[] = [
+            {
+                metric: 'Desktop',
+                device: 'Desktop',
+                value: 60,
+                fill: '#1c64f2',
+            },
+        ]
+
+        render(<SessionsByDevice data={data} />)
 
         expect(
             screen.getByRole('heading', { name: 'Sessions by Device' }),
@@ -71,13 +80,13 @@ describe('SessionsByDevice', () => {
         expect(container.querySelector('.chartContainer')).toBeInTheDocument()
     })
 
-    it('renders the title and chart for an empty data array', () => {
-        const { container } = render(<SessionsByDevice data={[]} />)
+    it('renders the empty state when data is an empty array', () => {
+        render(<SessionsByDevice data={[]} />)
 
         expect(
-            screen.getByRole('heading', { name: 'Sessions by Device' }),
+            screen.getByRole('heading', { name: 'No device data' }),
         ).toBeVisible()
 
-        expect(container.querySelector('.chart')).toBeInTheDocument()
+        expect(screen.getByText('No sessions by device.')).toBeVisible()
     })
 })
