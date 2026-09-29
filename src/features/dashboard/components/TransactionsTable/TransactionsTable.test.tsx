@@ -20,8 +20,31 @@ describe('TransactionsTable', () => {
         expect(screen.getByText('There are no transactions yet.')).toBeVisible()
     })
 
-    it('renders the table title and description when transactions are provided', () => {
+    it('renders the empty state when transactions is an empty array', () => {
         render(<TransactionsTable transactions={[]} />)
+
+        expect(
+            screen.getByRole('heading', { name: 'No transactions' }),
+        ).toBeVisible()
+
+        expect(screen.getByText('There are no transactions yet.')).toBeVisible()
+    })
+
+    it('renders the table title and description when transactions are provided', () => {
+        const transactions: Transaction[] = [
+            {
+                id: 1,
+                description: {
+                    text: 'Purchased',
+                    highlight: 'Premium Plan',
+                },
+                date: 'Sep 25, 2026 10:30 AM',
+                amount: 1250,
+                status: 'completed',
+            },
+        ]
+
+        render(<TransactionsTable transactions={transactions} />)
 
         expect(
             screen.getByRole('heading', { name: 'Transactions' }),
@@ -33,7 +56,20 @@ describe('TransactionsTable', () => {
     })
 
     it('renders all table headers', () => {
-        render(<TransactionsTable transactions={[]} />)
+        const transactions: Transaction[] = [
+            {
+                id: 1,
+                description: {
+                    text: 'Purchased',
+                    highlight: 'Premium Plan',
+                },
+                date: 'Sep 25, 2026 10:30 AM',
+                amount: 1250,
+                status: 'completed',
+            },
+        ]
+
+        render(<TransactionsTable transactions={transactions} />)
 
         expect(
             screen.getByRole('columnheader', { name: 'Transaction' }),
@@ -179,13 +215,5 @@ describe('TransactionsTable', () => {
         render(<TransactionsTable transactions={transactions} />)
 
         expect(screen.getAllByRole('row')).toHaveLength(4)
-    })
-
-    it('renders an empty table body when transactions is an empty array', () => {
-        render(<TransactionsTable transactions={[]} />)
-
-        expect(screen.getByRole('table')).toBeInTheDocument()
-        expect(screen.getAllByRole('columnheader')).toHaveLength(4)
-        expect(screen.getAllByRole('row')).toHaveLength(1)
     })
 })
