@@ -18,13 +18,35 @@ describe('TodaySales', () => {
         expect(screen.getByText('No sales today.')).toBeVisible()
     })
 
-    it('renders the sales summary when data is provided', () => {
+    it('renders the empty state when the chart is empty', () => {
         const data: TodaySale = {
             summary: {
                 total: 12500,
                 variation: 12.5,
             },
             chart: [],
+        }
+
+        render(<TodaySales data={data} />)
+
+        expect(screen.getByRole('heading', { name: 'No data' })).toBeVisible()
+
+        expect(screen.getByText('No sales today.')).toBeVisible()
+    })
+
+    it('renders the sales summary when data is provided', () => {
+        const data: TodaySale = {
+            summary: {
+                total: 12500,
+                variation: 12.5,
+            },
+            chart: [
+                {
+                    time: '09:00',
+                    sales: 500,
+                    profit: 200,
+                },
+            ],
         }
 
         render(<TodaySales data={data} />)
@@ -68,7 +90,13 @@ describe('TodaySales', () => {
                 total: 8500,
                 variation: -8.4,
             },
-            chart: [],
+            chart: [
+                {
+                    time: '09:00',
+                    sales: 400,
+                    profit: 150,
+                },
+            ],
         }
 
         render(<TodaySales data={data} />)
