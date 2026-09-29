@@ -18,13 +18,36 @@ describe('WeekVisitors', () => {
         expect(screen.getByText('No visitors this week.')).toBeVisible()
     })
 
-    it('renders the visitors summary when data is provided', () => {
+    it('renders the empty state when the chart is empty', () => {
         const data: WeekVisitor = {
             summary: {
                 total: 12500,
                 variation: 12.5,
             },
             chart: [],
+        }
+
+        render(<WeekVisitors data={data} />)
+
+        expect(screen.getByRole('heading', { name: 'No data' })).toBeVisible()
+
+        expect(screen.getByText('No visitors this week.')).toBeVisible()
+    })
+
+    it('renders the visitors summary when data is provided', () => {
+        const data: WeekVisitor = {
+            summary: {
+                total: 12500,
+                variation: 12.5,
+            },
+            chart: [
+                {
+                    key: 'mon',
+                    label: 'Mon',
+                    day: 'Monday',
+                    users: 1500,
+                },
+            ],
         }
 
         render(<WeekVisitors data={data} />)
@@ -70,7 +93,14 @@ describe('WeekVisitors', () => {
                 total: 8500,
                 variation: -8.4,
             },
-            chart: [],
+            chart: [
+                {
+                    key: 'mon',
+                    label: 'Mon',
+                    day: 'Monday',
+                    users: 900,
+                },
+            ],
         }
 
         render(<WeekVisitors data={data} />)
