@@ -20,14 +20,40 @@ describe('SalesChart', () => {
         expect(screen.getByText('There are no sales to display.')).toBeVisible()
     })
 
-    it('renders the title when data is provided', () => {
+    it('renders the empty state when data is an empty array', () => {
         render(<SalesChart data={[]} />)
+
+        expect(
+            screen.getByRole('heading', { name: 'No sales data' }),
+        ).toBeVisible()
+
+        expect(screen.getByText('There are no sales to display.')).toBeVisible()
+    })
+
+    it('renders the title when data is provided', () => {
+        const data: Sale[] = [
+            {
+                date: 'Jan',
+                templates: 120000,
+                hosting: 80000,
+            },
+        ]
+
+        render(<SalesChart data={data} />)
 
         expect(screen.getByRole('heading', { name: 'Sales' })).toBeVisible()
     })
 
     it('renders the period filter buttons', () => {
-        render(<SalesChart data={[]} />)
+        const data: Sale[] = [
+            {
+                date: 'Jan',
+                templates: 120000,
+                hosting: 80000,
+            },
+        ]
+
+        render(<SalesChart data={data} />)
 
         expect(screen.getByRole('button', { name: 'Year' })).toBeVisible()
         expect(screen.getByRole('button', { name: 'Month' })).toBeVisible()
@@ -69,19 +95,6 @@ describe('SalesChart', () => {
 
         const { container } = render(<SalesChart data={data} />)
 
-        expect(container.querySelector('.chart')).toBeInTheDocument()
-    })
-
-    it('renders the title, filters and chart when data is an empty array', () => {
-        const { container } = render(<SalesChart data={[]} />)
-
-        expect(screen.getByRole('heading', { name: 'Sales' })).toBeVisible()
-
-        expect(screen.getByRole('button', { name: 'Year' })).toBeVisible()
-        expect(screen.getByRole('button', { name: 'Month' })).toBeVisible()
-        expect(screen.getByRole('button', { name: 'Day' })).toBeVisible()
-
-        expect(container.querySelector('.chartContainer')).toBeInTheDocument()
         expect(container.querySelector('.chart')).toBeInTheDocument()
     })
 })
