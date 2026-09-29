@@ -18,13 +18,34 @@ describe('TodayVisitors', () => {
         expect(screen.getByText('No visitors recorded.')).toBeVisible()
     })
 
-    it('renders the visitors summary when data is provided', () => {
+    it('renders the empty state when the chart is empty', () => {
         const data: TodayVisitor = {
             summary: {
                 total: 12500,
                 variation: 12.5,
             },
             chart: [],
+        }
+
+        render(<TodayVisitors data={data} />)
+
+        expect(screen.getByRole('heading', { name: 'No data' })).toBeVisible()
+
+        expect(screen.getByText('No visitors recorded.')).toBeVisible()
+    })
+
+    it('renders the visitors summary when data is provided', () => {
+        const data: TodayVisitor = {
+            summary: {
+                total: 12500,
+                variation: 12.5,
+            },
+            chart: [
+                {
+                    time: '09:00',
+                    visitors: 500,
+                },
+            ],
         }
 
         render(<TodayVisitors data={data} />)
@@ -66,7 +87,12 @@ describe('TodayVisitors', () => {
                 total: 8500,
                 variation: -8.4,
             },
-            chart: [],
+            chart: [
+                {
+                    time: '09:00',
+                    visitors: 400,
+                },
+            ],
         }
 
         render(<TodayVisitors data={data} />)
