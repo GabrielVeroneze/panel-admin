@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getMyProfile, getUserProfile } from '../api'
+import { createSlice } from '@reduxjs/toolkit'
+import { fetchMyProfile, fetchUserProfile } from './profile.thunks'
 import type { UserProfile } from '../types'
 
 type ProfileState = {
@@ -8,29 +8,11 @@ type ProfileState = {
     loading: boolean
 }
 
-type FetchUserProfileParams = {
-    id: number
-}
-
 const initialState: ProfileState = {
     myProfile: null,
     userProfile: null,
     loading: false,
 }
-
-export const fetchMyProfile = createAsyncThunk<UserProfile>(
-    'profile/fetchMyProfile',
-    async () => {
-        return await getMyProfile()
-    },
-)
-
-export const fetchUserProfile = createAsyncThunk<
-    UserProfile,
-    FetchUserProfileParams
->('profile/fetchUserProfile', async ({ id }) => {
-    return await getUserProfile(id)
-})
 
 const profileSlice = createSlice({
     name: 'profile',
