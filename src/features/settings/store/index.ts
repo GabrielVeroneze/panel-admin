@@ -11,4 +11,4 @@ export {
     savePassword,
     savePreferences,
     updateAvatar,
-} from './settings.slice'
+} from './settings.thunks'
