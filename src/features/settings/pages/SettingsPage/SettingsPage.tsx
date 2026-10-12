@@ -1,4 +1,4 @@
-import { useSettings } from './hooks'
+import { useSettings } from '@/features/settings/hooks'
 import { EmptyState } from '@/shared/components'
 import { CogSolidIcon } from '@/shared/assets/icons'
 import {
@@ -11,7 +11,7 @@ import {
     ProfileSettings,
     RecentDevicesSettings,
     SocialAccountsSettings,
-} from './components'
+} from '@/features/settings/components'
 import styles from './SettingsPage.module.scss'
 
 export const SettingsPage = () => {
