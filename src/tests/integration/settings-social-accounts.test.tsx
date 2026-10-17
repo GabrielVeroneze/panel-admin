@@ -240,12 +240,9 @@ describe('Settings integration - social accounts', () => {
         setupSettingsHandler()
 
         server.use(
-            http.put(
-                '/api/settings/social-accounts/twitter/disconnect',
-                () => {
-                    return HttpResponse.json(disconnectedAccount)
-                },
-            ),
+            http.put('/api/settings/social-accounts/twitter/disconnect', () => {
+                return HttpResponse.json(disconnectedAccount)
+            }),
         )
 
         const store = renderSettingsPage()
@@ -295,15 +292,12 @@ describe('Settings integration - social accounts', () => {
         setupSettingsHandler()
 
         server.use(
-            http.put(
-                '/api/settings/social-accounts/twitter/disconnect',
-                () => {
-                    return HttpResponse.json(
-                        { message: 'Unable to disconnect account' },
-                        { status: 500 },
-                    )
-                },
-            ),
+            http.put('/api/settings/social-accounts/twitter/disconnect', () => {
+                return HttpResponse.json(
+                    { message: 'Unable to disconnect account' },
+                    { status: 500 },
+                )
+            }),
         )
 
         const store = renderSettingsPage()

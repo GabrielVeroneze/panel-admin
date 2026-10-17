@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
 import { NotificationSettingsSkeleton } from './NotificationSettingsSkeleton'
 import type { ReactNode } from 'react'
- 
+
 vi.mock('@/shared/components', () => ({
     Skeleton: ({ className }: { className?: string }) => (
         <div data-testid="skeleton" className={className} />
