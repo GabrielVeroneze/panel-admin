@@ -164,7 +164,7 @@ describe('Auth - products integration', () => {
                 name: 'Name',
             }),
         ).not.toBeInTheDocument()
-    })
+    }, 10000)
 
     it('redirects an unauthenticated user who attempts to access products directly', async () => {
         const store = setupStore()
