@@ -6,7 +6,7 @@ import { router } from '@/routes'
 import '@/styles/global.scss'
 
 const enableMocking = async () => {
-    if (import.meta.env.DEV) {
+    if (import.meta.env.DEV && import.meta.env.VITE_ENABLE_MSW !== 'false') {
         const { worker } = await import('./mocks/browser')
 
         return worker.start({
