@@ -1,4 +1,4 @@
-import type { Page } from '@playwright/test'
+import type { Browser, Page } from '@playwright/test'
 
 export const testUser = {
     id: 1,
@@ -35,5 +35,24 @@ export const mockFailedSignIn = async (page: Page) => {
                 message: 'Invalid credentials',
             }),
         })
+    })
+}
+
+export const createAuthenticatedContext = async (browser: Browser) => {
+    return browser.newContext({
+        storageState: {
+            cookies: [],
+            origins: [
+                {
+                    origin: 'http://localhost:5173',
+                    localStorage: [
+                        {
+                            name: 'auth-session',
+                            value: JSON.stringify(testSession),
+                        },
+                    ],
+                },
+            ],
+        },
     })
 }
