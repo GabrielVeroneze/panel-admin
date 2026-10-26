@@ -29,4 +29,10 @@ export default defineConfig([
             ],
         },
     },
+    {
+        files: ['e2e/**/*.{ts,tsx}'],
+        rules: {
+            'react-hooks/rules-of-hooks': 'off',
+        },
+    },
 ])
