@@ -1,21 +1,9 @@
-import { expect, test } from '@playwright/test'
-import { createAuthenticatedContext, testUser } from '../fixtures/auth'
+import { expect, test } from '../fixtures/test'
 
 test.describe('Logout', () => {
     test('logs out and prevents access to protected routes', async ({
-        browser,
+        authenticatedPage: page,
     }) => {
-        const context = await createAuthenticatedContext(browser)
-        const page = await context.newPage()
-
-        await page.route('**/api/auth/me', async (route) => {
-            await route.fulfill({
-                status: 200,
-                contentType: 'application/json',
-                body: JSON.stringify(testUser),
-            })
-        })
-
         await page.route('**/api/auth/sign-out', async (route) => {
             await route.fulfill({
                 status: 200,
@@ -51,7 +39,5 @@ test.describe('Logout', () => {
 
         await page.goto('/users')
         await expect(page).toHaveURL('/auth/sign-in')
-
-        await context.close()
     })
 })
