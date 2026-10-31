@@ -17,10 +17,14 @@ test.describe('Users editing', () => {
             department: 'Design',
         }
 
-        await mockUsersList(page, [user])
+        const users = [user]
+
+        await mockUsersList(page, users)
 
         await page.route(/\/api\/users\/1\/?$/, async (route) => {
             if (route.request().method() === 'PUT') {
+                users[0] = updatedUser
+
                 await route.fulfill({
                     status: 200,
                     contentType: 'application/json',
@@ -54,30 +58,48 @@ test.describe('Users editing', () => {
 
         await page.getByPlaceholder('Enter first name').fill('Marina')
         await page.getByPlaceholder('Enter last name').fill('Oliveira')
+
         await page
             .getByPlaceholder('Enter email address')
-            .fill('marina.oliveira@example.com')
+            .fill(updatedUser.email)
 
         await page
             .getByPlaceholder('Enter company name')
-            .fill('Updated Company')
-        await page.getByPlaceholder('Enter department name').fill('Design')
+            .fill(updatedUser.company)
 
-        const updateRequest = page.waitForRequest(
-            (request) =>
-                request.method() === 'PUT' &&
-                new URL(request.url()).pathname === '/api/users/1',
+        await page
+            .getByPlaceholder('Enter department name')
+            .fill(updatedUser.department)
+
+        const updateResponsePromise = page.waitForResponse(
+            (response) =>
+                response.request().method() === 'PUT' &&
+                new URL(response.url()).pathname === '/api/users/1',
         )
 
         await page.getByRole('button', { name: 'Save' }).click()
 
-        const request = await updateRequest
+        const updateResponse = await updateResponsePromise
 
-        expect(request.method()).toBe('PUT')
-        expect(new URL(request.url()).pathname).toBe('/api/users/1')
+        expect(updateResponse.status()).toBe(200)
+        expect(await updateResponse.json()).toMatchObject(updatedUser)
 
         await expect(
             page.getByText('Edit user', { exact: true }),
+        ).not.toBeVisible()
+
+        const updatedUserRow = page
+            .getByRole('row')
+            .filter({ hasText: updatedUser.email })
+
+        await expect(updatedUserRow).toBeVisible()
+        await expect(updatedUserRow).toContainText(updatedUser.name)
+        await expect(updatedUserRow).toContainText(updatedUser.email)
+        await expect(updatedUserRow).toContainText(updatedUser.department)
+        await expect(updatedUserRow).toContainText(updatedUser.country)
+
+        await expect(
+            page.getByText(user.email, { exact: true }),
         ).not.toBeVisible()
     })
 })
