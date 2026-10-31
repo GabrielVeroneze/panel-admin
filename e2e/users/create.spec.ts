@@ -12,13 +12,15 @@ test.describe('Users creation', () => {
             department: 'Engineering',
         }
 
-        const users = [createdUser]
+        const users: (typeof createdUser)[] = []
 
         await page.route(/\/api\/users\/?(?:\?.*)?$/, async (route) => {
             const request = route.request()
             const url = new URL(request.url())
 
             if (request.method() === 'POST' && url.pathname === '/api/users') {
+                users.push(createdUser)
+
                 await route.fulfill({
                     status: 201,
                     contentType: 'application/json',
@@ -60,30 +62,47 @@ test.describe('Users creation', () => {
         await page.getByPlaceholder('Enter last name').fill('Created User')
         await page
             .getByPlaceholder('Enter email address')
-            .fill('e2e.created@example.com')
+            .fill(createdUser.email)
 
-        await page.locator('input[type="tel"]').fill('+14155552671')
+        await page.locator('input[type="tel"]').fill(createdUser.phone)
 
-        await page.getByPlaceholder('Enter company name').fill('E2E Company')
-        await page.getByPlaceholder('Enter department name').fill('Engineering')
+        await page
+            .getByPlaceholder('Enter company name')
+            .fill(createdUser.company)
+        await page
+            .getByPlaceholder('Enter department name')
+            .fill(createdUser.department)
 
         await page.getByPlaceholder('Enter password').fill('TestPass123!')
         await page
             .getByPlaceholder('Enter confirm password')
             .fill('TestPass123!')
 
-        const createRequest = page.waitForRequest(
-            (request) =>
-                request.method() === 'POST' &&
-                new URL(request.url()).pathname === '/api/users',
+        const createResponsePromise = page.waitForResponse(
+            (response) =>
+                response.request().method() === 'POST' &&
+                new URL(response.url()).pathname === '/api/users',
         )
 
         await page.getByRole('button', { name: 'Save' }).click()
 
-        await createRequest
+        const createResponse = await createResponsePromise
+
+        expect(createResponse.status()).toBe(201)
+        expect(await createResponse.json()).toMatchObject(createdUser)
 
         await expect(
             page.getByText('Create user', { exact: true }),
         ).not.toBeVisible()
+
+        const createdUserRow = page
+            .getByRole('row')
+            .filter({ hasText: createdUser.email })
+
+        await expect(createdUserRow).toBeVisible()
+        await expect(createdUserRow).toContainText(createdUser.name)
+        await expect(createdUserRow).toContainText(createdUser.email)
+        await expect(createdUserRow).toContainText(createdUser.department)
+        await expect(createdUserRow).toContainText(createdUser.country)
     })
 })
