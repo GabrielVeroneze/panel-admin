@@ -74,6 +74,79 @@ export const testProfile: UserProfile = {
     ],
 }
 
+export const testUserProfile: UserProfile = {
+    id: 2,
+    avatar: 'https://i.pravatar.cc/150?img=2',
+    name: 'Roberta Casas',
+    role: 'Designer',
+    country: 'Spain',
+    contact: {
+        email: 'roberta.casas2@example.com',
+        address: '22 Avenida Diagonal, Barcelona 08019, Spain',
+        phone: '+34600110102',
+    },
+    about: 'Creative Designer with extensive experience creating digital products, branding systems and user-centered interfaces. Passionate about transforming business requirements into engaging visual experiences while maintaining usability and accessibility standards.',
+    skills: [
+        { id: 'figma', label: 'Figma' },
+        { id: 'photoshop', label: 'Photoshop' },
+        { id: 'illustrator', label: 'Illustrator' },
+    ],
+    summary: {
+        products: {
+            count: 96,
+            variation: 8,
+        },
+        users: {
+            count: 27,
+            variation: 4,
+        },
+        profile: {
+            role: 'Lead Designer',
+            status: 'active',
+            lastLogin: '2026-07-19T17:45:00.000Z',
+            memberSince: '2022-09-08T00:00:00.000Z',
+        },
+    },
+    activities: [
+        {
+            id: 1,
+            type: 'product-created',
+            target: 'Design System Kit',
+            createdAt: '2026-07-19T18:10:00.000Z',
+        },
+    ],
+    recentProducts: [
+        {
+            id: 1,
+            image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6',
+            name: 'Design System Template',
+            category: 'Design Assets',
+            price: 89,
+            stockQuantity: 20,
+        },
+    ],
+    experience: [
+        {
+            id: 1,
+            period: '2021 - Present',
+            title: 'Lead Designer',
+            organization: 'Designify',
+            description:
+                'Managing design systems, product branding and UX initiatives across multiple digital products.',
+        },
+    ],
+    education: [
+        {
+            id: 1,
+            period: '2013 - 2015',
+            title: 'Master of Visual Communication',
+            organization: 'University of Barcelona',
+            description:
+                'Specialized in digital design, branding and user experience.',
+        },
+    ],
+}
+
 export const mockMyProfile = async (
     page: Page,
     profile: UserProfile = testProfile,
@@ -86,6 +159,25 @@ export const mockMyProfile = async (
 
         await route.fulfill({
             status: 200,
+            contentType: 'application/json',
+            body: JSON.stringify(profile),
+        })
+    })
+}
+
+export const mockUserProfile = async (
+    page: Page,
+    userId: number,
+    profile: UserProfile | null = testUserProfile,
+) => {
+    await page.route(new RegExp(`/api/users/${userId}/?$`), async (route) => {
+        if (route.request().method() !== 'GET') {
+            await route.fallback()
+            return
+        }
+
+        await route.fulfill({
+            status: profile ? 200 : 404,
             contentType: 'application/json',
             body: JSON.stringify(profile),
         })
