@@ -98,4 +98,30 @@ test.describe('Sign up', () => {
 
         await expect(page).toHaveURL('/auth/sign-up')
     })
+
+    test('does not sign up when terms and conditions are not accepted', async ({
+        page,
+    }) => {
+        await page.route('**/api/auth/sign-up', async (route) => {
+            await route.fulfill({
+                status: 201,
+                contentType: 'application/json',
+                body: JSON.stringify({ message: 'User created successfully' }),
+            })
+        })
+
+        await page.getByLabel('Full Name').fill('John Doe')
+        await page.getByLabel('Your Email').fill('john.doe@example.com')
+        await page.getByLabel('Password', { exact: true }).fill('Password123!')
+        await page.getByLabel('Confirm Password').fill('Password123!')
+
+        await page.getByRole('button', { name: 'Create account' }).click()
+
+        await expect(page).toHaveURL('/auth/sign-up')
+        await expect(
+            page.getByRole('checkbox', {
+                name: 'I accept the Terms & Conditions',
+            }),
+        ).not.toBeChecked()
+    })
 })
