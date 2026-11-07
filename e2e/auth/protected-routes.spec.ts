@@ -54,4 +54,24 @@ test.describe('Protected routes', () => {
 
         await expect(page).toHaveURL('/users')
     })
+
+    test('redirects to sign in when the session is invalid', async ({
+        page,
+    }) => {
+        await page.addInitScript((session) => {
+            localStorage.setItem('auth-session', JSON.stringify(session))
+        }, testSession)
+
+        await page.route('**/api/auth/me', async (route) => {
+            await route.fulfill({
+                status: 401,
+                contentType: 'application/json',
+                body: JSON.stringify({ message: 'Unauthorized' }),
+            })
+        })
+
+        await page.goto('/users')
+
+        await expect(page).toHaveURL('/auth/sign-in')
+    })
 })
