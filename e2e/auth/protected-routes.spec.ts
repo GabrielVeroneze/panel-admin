@@ -30,4 +30,28 @@ test.describe('Protected routes', () => {
 
         await expect(page).toHaveURL('/users')
     })
+
+    test('keeps authenticated users signed in after reloading the page', async ({
+        page,
+    }) => {
+        await page.route('**/api/auth/me', async (route) => {
+            await route.fulfill({
+                status: 200,
+                contentType: 'application/json',
+                body: JSON.stringify(testUser),
+            })
+        })
+
+        await page.addInitScript((session) => {
+            localStorage.setItem('auth-session', JSON.stringify(session))
+        }, testSession)
+
+        await page.goto('/users')
+
+        await expect(page).toHaveURL('/users')
+
+        await page.reload()
+
+        await expect(page).toHaveURL('/users')
+    })
 })
