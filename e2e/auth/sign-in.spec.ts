@@ -54,4 +54,25 @@ test.describe('Sign in', () => {
         await expect(page.getByText('Password is required')).toBeVisible()
         await expect(page).toHaveURL('/auth/sign-in')
     })
+
+    test('displays an error when the sign-in request fails unexpectedly', async ({
+        page,
+    }) => {
+        await page.route('**/api/auth/sign-in', async (route) => {
+            await route.fulfill({
+                status: 500,
+                contentType: 'application/json',
+                body: JSON.stringify({ message: 'Internal server error' }),
+            })
+        })
+
+        await page.goto('/auth/sign-in')
+
+        await page.getByLabel('Your Email').fill('test@example.com')
+        await page.getByLabel('Password').fill('ValidPassword123!')
+        await page.getByRole('button', { name: 'Sign In' }).click()
+
+        await expect(page.getByText('Invalid credentials')).toBeVisible()
+        await expect(page).toHaveURL('/auth/sign-in')
+    })
 })
