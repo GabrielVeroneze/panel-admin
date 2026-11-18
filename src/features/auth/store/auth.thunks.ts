@@ -1,5 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { clearSessionStorage, getSession, saveSession } from '@/shared/utils'
+import {
+    clearSessionStorage,
+    getApiErrorMessage,
+    getSession,
+    saveSession,
+} from '@/shared/utils'
 import { signIn, signUp, logout, me } from '../api'
 import type { SignInFormValues, SignUpFormValues } from '../schemas'
 import type { AuthResponse, AuthUser } from '../types'
@@ -27,8 +32,12 @@ export const signInThunk = createAsyncThunk<
             )
 
             return response
-        } catch {
-            return rejectWithValue('Invalid credentials')
+        } catch (error) {
+            return rejectWithValue(
+                getApiErrorMessage(error, {
+                    fallback: 'Unable to sign in. Please try again.',
+                }),
+            )
         }
     },
 )
