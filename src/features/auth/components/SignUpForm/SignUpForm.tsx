@@ -73,7 +73,11 @@ export const SignUpForm = () => {
                 label="I accept the Terms & Conditions"
                 {...register('terms')}
             />
-            {error && <p className={styles.error}>{error}</p>}
+            {error && (
+                <p className={styles.error} role="alert">
+                    {error}
+                </p>
+            )}
             <Button type="submit" size="lg" loading={loading}>
                 Create account
             </Button>
