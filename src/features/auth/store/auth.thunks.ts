@@ -49,8 +49,12 @@ export const signUpThunk = createAsyncThunk<
 >('auth/signUp', async ({ name, email, password }, { rejectWithValue }) => {
     try {
         await signUp({ name, email, password })
-    } catch {
-        return rejectWithValue('Unable to create account')
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to create account. Please try again.',
+            }),
+        )
     }
 })
 
