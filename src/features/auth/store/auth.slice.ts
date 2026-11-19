@@ -52,7 +52,8 @@ export const authSlice = createSlice({
             })
             .addCase(signInThunk.rejected, (state, action) => {
                 state.loading = false
-                state.error = action.payload ?? 'Unexpected error'
+                state.error =
+                    action.payload ?? 'Unable to sign in. Please try again.'
             })
             .addCase(signUpThunk.pending, (state) => {
                 state.loading = true
