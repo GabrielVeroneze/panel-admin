@@ -9,11 +9,16 @@ import {
 import type { AsyncState } from '@/shared/types'
 import type { PaginatedUsers } from '../types'
 
-type UsersState = AsyncState<PaginatedUsers>
+type UsersState = AsyncState<PaginatedUsers> & {
+    createLoading: boolean
+    createError: string | null
+}
 
 const initialState: UsersState = {
     data: null,
     loading: false,
+    createLoading: false,
+    createError: null,
 }
 
 const usersSlice = createSlice({
@@ -32,11 +37,23 @@ const usersSlice = createSlice({
             .addCase(fetchUsers.rejected, (state) => {
                 state.loading = false
             })
+            .addCase(createUser.pending, (state) => {
+                state.createLoading = true
+                state.createError = null
+            })
             .addCase(createUser.fulfilled, (state, action) => {
+                state.createLoading = false
+                state.createError = null
+
                 if (!state.data) return
 
                 state.data.list.unshift(action.payload)
                 state.data.total += 1
+            })
+            .addCase(createUser.rejected, (state, action) => {
+                state.createLoading = false
+                state.createError =
+                    action.payload ?? 'Unable to create user. Please try again.'
             })
             .addCase(updateUser.fulfilled, (state, action) => {
                 if (!state.data) return
