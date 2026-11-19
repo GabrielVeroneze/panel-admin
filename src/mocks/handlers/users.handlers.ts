@@ -6,6 +6,7 @@ import {
     getUserById,
     getUsers,
     updateUser,
+    emailAlreadyExists,
 } from '../repositories'
 import type {
     CreateUserPayload,
@@ -13,6 +14,12 @@ import type {
     UpdateUserPayload,
     User,
 } from '@/features/users/types'
+
+type CreateUserResponse =
+    | User
+    | {
+          message: string
+      }
 
 type UpdateUserParams = {
     id: string
@@ -67,7 +74,7 @@ export const usersHandlers = [
         },
     ),
 
-    http.post<never, CreateUserPayload, User>(
+    http.post<never, CreateUserPayload, CreateUserResponse>(
         '/api/users',
         async ({ request }) => {
             await delay(1000)
@@ -86,11 +93,24 @@ export const usersHandlers = [
                 avatar: avatar ?? undefined,
             }
 
+            if (emailAlreadyExists(payload.email)) {
+                return HttpResponse.json(
+                    {
+                        message: 'Email already registered',
+                    },
+                    {
+                        status: 409,
+                    },
+                )
+            }
+
             const createdUser = createUser(payload)
 
             const { password: _password, ...response } = createdUser
 
-            return HttpResponse.json(response)
+            return HttpResponse.json(response, {
+                status: 201,
+            })
         },
     ),
 
