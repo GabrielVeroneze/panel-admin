@@ -43,7 +43,11 @@ export const SignInForm = () => {
                 />
             </FormField>
             <Checkbox label="Remember me" {...register('rememberMe')} />
-            {error && <p className={styles.error}>{error}</p>}
+            {error && (
+                <p className={styles.error} role="alert">
+                    {error}
+                </p>
+            )}
             <Button type="submit" size="lg" loading={loading}>
                 Sign In
             </Button>
