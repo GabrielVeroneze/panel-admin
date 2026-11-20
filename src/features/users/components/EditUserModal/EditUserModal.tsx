@@ -14,6 +14,8 @@ import styles from '@/styles/modules/modal.module.scss'
 type EditUserModalProps = {
     open: boolean
     user?: User | null
+    loading?: boolean
+    error?: string | null
     onUpdate: (data: UpdateUserFormValues) => void
     onClose: () => void
     onDelete?: () => void
@@ -22,6 +24,8 @@ type EditUserModalProps = {
 export const EditUserModal = ({
     open,
     user,
+    loading = false,
+    error,
     onUpdate,
     onClose,
     onDelete,
@@ -32,7 +36,12 @@ export const EditUserModal = ({
         <Modal open={open} onClose={onClose}>
             <ModalHeader title="Edit user" onClose={onClose} />
             <ModalContent>
-                <EditUserForm formId={formId} user={user} onSubmit={onUpdate} />
+                <EditUserForm
+                    formId={formId}
+                    user={user}
+                    error={error}
+                    onSubmit={onUpdate}
+                />
             </ModalContent>
             <ModalFooter>
                 <Button
@@ -41,6 +50,8 @@ export const EditUserModal = ({
                     type="submit"
                     variant="primary"
                     size="lg"
+                    loading={loading}
+                    disabled={loading}
                 >
                     Save
                 </Button>
@@ -51,6 +62,7 @@ export const EditUserModal = ({
                     iconPosition="left"
                     icon={<XSolidIcon />}
                     onClick={onDelete}
+                    disabled={loading}
                 >
                     Delete account
                 </Button>
