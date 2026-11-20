@@ -56,17 +56,25 @@ export const createUser = createAsyncThunk<
     }
 })
 
-export const updateUser = createAsyncThunk<User, UpdateUserParams>(
+export const updateUser = createAsyncThunk<
+    User,
+    UpdateUserParams,
+    { rejectValue: string }
+>(
     'users/updateUser',
     async ({ id, payload }, { dispatch, rejectWithValue }) => {
         try {
             const user = await updateUserRequest(id, payload)
 
-            await dispatch(fetchCurrentUserThunk()).unwrap()
+            await dispatch(fetchCurrentUserThunk())
 
             return user
-        } catch {
-            return rejectWithValue('Unable to update user')
+        } catch (error) {
+            return rejectWithValue(
+                getApiErrorMessage(error, {
+                    fallback: 'Unable to update user. Please try again.',
+                }),
+            )
         }
     },
 )
