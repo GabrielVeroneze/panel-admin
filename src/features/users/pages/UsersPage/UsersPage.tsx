@@ -25,6 +25,8 @@ export const UsersPage = () => {
         handleCreateSubmit,
         handleUpdateSubmit,
         handleDeleteUser,
+        createLoading,
+        createError,
     } = useUsersPage()
 
     const {
@@ -71,6 +73,8 @@ export const UsersPage = () => {
             {modal.isCreateOpen && (
                 <CreateUserModal
                     open
+                    loading={createLoading}
+                    error={createError}
                     onCreate={handleCreateSubmit}
                     onClose={modal.close}
                 />
