@@ -1,4 +1,5 @@
 import { FormProvider } from 'react-hook-form'
+import { FormError } from '@/shared/components'
 import { useEditUserForm } from '@/features/users/hooks'
 import { AvatarField, CommonUserFields } from '@/features/users/components'
 import { EditPasswordFields } from './EditPasswordFields/EditPasswordFields'
@@ -9,10 +10,16 @@ import styles from './EditUserForm.module.scss'
 type EditUserFormProps = {
     formId: string
     user?: User | null
+    error?: string | null
     onSubmit: (data: UpdateUserFormValues) => void
 }
 
-export const EditUserForm = ({ formId, user, onSubmit }: EditUserFormProps) => {
+export const EditUserForm = ({
+    formId,
+    user,
+    error,
+    onSubmit,
+}: EditUserFormProps) => {
     const methods = useEditUserForm(user)
 
     return (
@@ -25,6 +32,7 @@ export const EditUserForm = ({ formId, user, onSubmit }: EditUserFormProps) => {
                 <CommonUserFields />
                 <EditPasswordFields />
                 <AvatarField />
+                <FormError message={error} />
             </form>
         </FormProvider>
     )
