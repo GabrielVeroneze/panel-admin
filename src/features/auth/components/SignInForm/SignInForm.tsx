@@ -1,5 +1,11 @@
 import { Link } from 'react-router'
-import { Button, Checkbox, FormField, Input } from '@/shared/components'
+import {
+    Button,
+    Checkbox,
+    FormError,
+    FormField,
+    Input,
+} from '@/shared/components'
 import { useSignInForm } from '@/features/auth/hooks'
 import styles from './SignInForm.module.scss'
 
@@ -43,11 +49,7 @@ export const SignInForm = () => {
                 />
             </FormField>
             <Checkbox label="Remember me" {...register('rememberMe')} />
-            {error && (
-                <p className={styles.error} role="alert">
-                    {error}
-                </p>
-            )}
+            <FormError message={error} />
             <Button type="submit" size="lg" loading={loading}>
                 Sign In
             </Button>
