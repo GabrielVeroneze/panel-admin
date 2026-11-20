@@ -5,9 +5,14 @@ import { fetchUsers, selectUsersList } from '../store'
 export const useUsers = (page: number, pageSize: number, search?: string) => {
     const dispatch = useAppDispatch()
 
-    const { data, loading, createLoading, createError } = useAppSelector(
-        (state) => state.users,
-    )
+    const {
+        data,
+        loading,
+        createLoading,
+        createError,
+        updateLoading,
+        updateError,
+    } = useAppSelector((state) => state.users)
 
     const usersList = useAppSelector(selectUsersList)
 
@@ -29,5 +34,7 @@ export const useUsers = (page: number, pageSize: number, search?: string) => {
         loading,
         createLoading,
         createError,
+        updateLoading,
+        updateError,
     }
 }
