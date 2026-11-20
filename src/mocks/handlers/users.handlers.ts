@@ -21,6 +21,12 @@ type CreateUserResponse =
           message: string
       }
 
+type UpdateUserResponse =
+    | User
+    | {
+          message: string
+      }
+
 type UpdateUserParams = {
     id: string
 }
@@ -114,7 +120,7 @@ export const usersHandlers = [
         },
     ),
 
-    http.put<UpdateUserParams, UpdateUserPayload, User>(
+    http.put<UpdateUserParams, UpdateUserPayload, UpdateUserResponse>(
         '/api/users/:id',
         async ({ params, request }) => {
             await delay(1000)
@@ -122,9 +128,14 @@ export const usersHandlers = [
             const id = Number(params.id)
 
             if (!getUserById(id)) {
-                return HttpResponse.json(null, {
-                    status: 404,
-                })
+                return HttpResponse.json(
+                    {
+                        message: 'User not found',
+                    },
+                    {
+                        status: 404,
+                    },
+                )
             }
 
             const formData = await request.formData()
@@ -147,9 +158,14 @@ export const usersHandlers = [
             const updatedUser = updateUser(id, payload)
 
             if (!updatedUser) {
-                return HttpResponse.json(null, {
-                    status: 404,
-                })
+                return HttpResponse.json(
+                    {
+                        message: 'Unable to update user',
+                    },
+                    {
+                        status: 400,
+                    },
+                )
             }
 
             const { password: _password, ...response } = updatedUser
