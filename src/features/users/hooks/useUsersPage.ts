@@ -14,8 +14,16 @@ export const useUsersPage = () => {
 
     const pageSize = 15
 
-    const { users, usersList, total, loading, createLoading, createError } =
-        useUsers(filters.page, pageSize, filters.search)
+    const {
+        users,
+        usersList,
+        total,
+        loading,
+        createLoading,
+        createError,
+        updateLoading,
+        updateError,
+    } = useUsers(filters.page, pageSize, filters.search)
 
     const handleEdit = (userId: number) => {
         const user = users.find((user) => user.id === userId)
@@ -50,6 +58,7 @@ export const useUsersPage = () => {
                 }),
             ).unwrap()
 
+            Toast.success('User updated successfully')
             modal.close()
         } catch {
             return
@@ -81,5 +90,7 @@ export const useUsersPage = () => {
         handleDeleteUser,
         createLoading,
         createError,
+        updateLoading,
+        updateError,
     }
 }
