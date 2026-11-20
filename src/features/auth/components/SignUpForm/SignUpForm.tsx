@@ -1,5 +1,11 @@
 import { Link } from 'react-router'
-import { Button, Checkbox, FormField, Input } from '@/shared/components'
+import {
+    Button,
+    Checkbox,
+    FormError,
+    FormField,
+    Input,
+} from '@/shared/components'
 import { useSignUpForm } from '@/features/auth/hooks'
 import styles from './SignUpForm.module.scss'
 
@@ -73,11 +79,7 @@ export const SignUpForm = () => {
                 label="I accept the Terms & Conditions"
                 {...register('terms')}
             />
-            {error && (
-                <p className={styles.error} role="alert">
-                    {error}
-                </p>
-            )}
+            <FormError message={error} />
             <Button type="submit" size="lg" loading={loading}>
                 Create account
             </Button>
