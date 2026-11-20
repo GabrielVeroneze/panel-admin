@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { getApiErrorMessage } from '@/shared/utils'
 import { fetchCurrentUserThunk } from '@/features/auth/store'
 import {
     getUsers,
@@ -39,12 +40,21 @@ export const fetchUsers = createAsyncThunk<PaginatedUsers, PaginationParams>(
     },
 )
 
-export const createUser = createAsyncThunk<User, CreateUserParams>(
-    'users/createUser',
-    async ({ payload }) => {
+export const createUser = createAsyncThunk<
+    User,
+    CreateUserParams,
+    { rejectValue: string }
+>('users/createUser', async ({ payload }, { rejectWithValue }) => {
+    try {
         return await createUserRequest(payload)
-    },
-)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to create user. Please try again.',
+            }),
+        )
+    }
+})
 
 export const updateUser = createAsyncThunk<User, UpdateUserParams>(
     'users/updateUser',
