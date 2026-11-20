@@ -1,5 +1,6 @@
 import { useAppDispatch } from '@/store'
 import { useFormModal, usePaginationFilters } from '@/shared/hooks'
+import { Toast } from '@/shared/lib'
 import { createUser, deleteUser, updateUser } from '../store'
 import { mapFormToCreatePayload, mapFormToUpdatePayload } from '../mappers'
 import { useUsers } from '../hooks'
@@ -13,11 +14,8 @@ export const useUsersPage = () => {
 
     const pageSize = 15
 
-    const { users, usersList, total, loading } = useUsers(
-        filters.page,
-        pageSize,
-        filters.search,
-    )
+    const { users, usersList, total, loading, createLoading, createError } =
+        useUsers(filters.page, pageSize, filters.search)
 
     const handleEdit = (userId: number) => {
         const user = users.find((user) => user.id === userId)
@@ -34,6 +32,7 @@ export const useUsersPage = () => {
                 }),
             ).unwrap()
 
+            Toast.success('User created successfully')
             modal.close()
         } catch {
             return
@@ -80,5 +79,7 @@ export const useUsersPage = () => {
         handleCreateSubmit,
         handleUpdateSubmit,
         handleDeleteUser,
+        createLoading,
+        createError,
     }
 }
