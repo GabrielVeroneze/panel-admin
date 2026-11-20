@@ -1,4 +1,5 @@
 import { FormProvider } from 'react-hook-form'
+import { FormError } from '@/shared/components'
 import { useCreateUserForm } from '@/features/users/hooks'
 import { AvatarField, CommonUserFields } from '@/features/users/components'
 import { CreatePasswordFields } from './CreatePasswordFields/CreatePasswordFields'
@@ -7,10 +8,15 @@ import styles from './CreateUserForm.module.scss'
 
 type CreateUserFormProps = {
     formId: string
+    error: string | null
     onSubmit: (data: CreateUserFormValues) => void
 }
 
-export const CreateUserForm = ({ formId, onSubmit }: CreateUserFormProps) => {
+export const CreateUserForm = ({
+    formId,
+    error,
+    onSubmit,
+}: CreateUserFormProps) => {
     const methods = useCreateUserForm()
 
     return (
@@ -23,6 +29,7 @@ export const CreateUserForm = ({ formId, onSubmit }: CreateUserFormProps) => {
                 <CommonUserFields />
                 <CreatePasswordFields />
                 <AvatarField />
+                <FormError message={error} />
             </form>
         </FormProvider>
     )
