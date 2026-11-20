@@ -11,12 +11,16 @@ import styles from '@/styles/modules/modal.module.scss'
 
 type CreateUserModalProps = {
     open: boolean
+    loading: boolean
+    error: string | null
     onCreate: (data: CreateUserFormValues) => void
     onClose: () => void
 }
 
 export const CreateUserModal = ({
     open,
+    loading,
+    error,
     onCreate,
     onClose,
 }: CreateUserModalProps) => {
@@ -26,7 +30,11 @@ export const CreateUserModal = ({
         <Modal open={open} onClose={onClose}>
             <ModalHeader title="Create user" onClose={onClose} />
             <ModalContent>
-                <CreateUserForm formId={formId} onSubmit={onCreate} />
+                <CreateUserForm
+                    formId={formId}
+                    error={error}
+                    onSubmit={onCreate}
+                />
             </ModalContent>
             <ModalFooter>
                 <Button
@@ -35,6 +43,7 @@ export const CreateUserModal = ({
                     type="submit"
                     variant="primary"
                     size="lg"
+                    loading={loading}
                 >
                     Save
                 </Button>
@@ -43,6 +52,7 @@ export const CreateUserModal = ({
                     variant="danger"
                     size="lg"
                     onClick={onClose}
+                    disabled={loading}
                 >
                     Cancel
                 </Button>
