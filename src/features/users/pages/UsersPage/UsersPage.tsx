@@ -27,6 +27,8 @@ export const UsersPage = () => {
         handleDeleteUser,
         createLoading,
         createError,
+        updateLoading,
+        updateError,
     } = useUsersPage()
 
     const {
@@ -83,6 +85,8 @@ export const UsersPage = () => {
                 <EditUserModal
                     open
                     user={modal.editingItem}
+                    loading={updateLoading}
+                    error={updateError}
                     onUpdate={handleUpdateSubmit}
                     onDelete={handleDeleteUser}
                     onClose={modal.close}
