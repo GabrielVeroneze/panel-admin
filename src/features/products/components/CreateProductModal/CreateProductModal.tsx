@@ -11,22 +11,36 @@ import styles from '@/styles/modules/modal.module.scss'
 
 type CreateProductModalProps = {
     open: boolean
-    onCreate: (data: CreateProductFormValues) => void
+    loading: boolean
+    error: string | null
+    onCreate: (data: CreateProductFormValues) => Promise<void>
     onClose: () => void
 }
 
 export const CreateProductModal = ({
     open,
+    loading,
+    error,
     onCreate,
     onClose,
 }: CreateProductModalProps) => {
     const formId = 'product-form'
 
+    const handleClose = () => {
+        if (loading) return
+
+        onClose()
+    }
+
     return (
-        <Modal open={open} onClose={onClose}>
-            <ModalHeader title="Create product" onClose={onClose} />
+        <Modal open={open} onClose={handleClose}>
+            <ModalHeader title="Create product" onClose={handleClose} />
             <ModalContent>
-                <CreateProductForm formId={formId} onSubmit={onCreate} />
+                <CreateProductForm
+                    formId={formId}
+                    error={error}
+                    onSubmit={onCreate}
+                />
             </ModalContent>
             <ModalFooter>
                 <Button
@@ -35,6 +49,8 @@ export const CreateProductModal = ({
                     type="submit"
                     variant="primary"
                     size="lg"
+                    loading={loading}
+                    disabled={loading}
                 >
                     Save
                 </Button>
@@ -42,7 +58,8 @@ export const CreateProductModal = ({
                     className={styles.button}
                     variant="danger"
                     size="lg"
-                    onClick={onClose}
+                    onClick={handleClose}
+                    disabled={loading}
                 >
                     Cancel
                 </Button>
