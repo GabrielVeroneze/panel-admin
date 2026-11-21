@@ -79,16 +79,34 @@ export const updateUser = createAsyncThunk<
     },
 )
 
-export const deleteUser = createAsyncThunk<void, DeleteUserParams>(
-    'users/deleteUser',
-    async ({ id }) => {
+export const deleteUser = createAsyncThunk<
+    void,
+    DeleteUserParams,
+    { rejectValue: string }
+>('users/deleteUser', async ({ id }, { rejectWithValue }) => {
+    try {
         await deleteUserRequest(id)
-    },
-)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to delete user. Please try again.',
+            }),
+        )
+    }
+})
 
-export const deleteUsers = createAsyncThunk<void, DeleteUsersParams>(
-    'users/deleteUsers',
-    async ({ ids }) => {
+export const deleteUsers = createAsyncThunk<
+    void,
+    DeleteUsersParams,
+    { rejectValue: string }
+>('users/deleteUsers', async ({ ids }, { rejectWithValue }) => {
+    try {
         await deleteUsersRequest(ids)
-    },
-)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to delete selected users. Please try again.',
+            }),
+        )
+    }
+})
