@@ -13,6 +13,7 @@ type DataTableToolbarProps = {
     searchPlaceholder: string
     createLabel: string
     hasSelection: boolean
+    deleteLoading?: boolean
     onSearchChange: (value: string) => void
     onCreate: () => void
     onDelete: () => void
@@ -23,6 +24,7 @@ export const DataTableToolbar = ({
     searchPlaceholder,
     createLabel,
     hasSelection,
+    deleteLoading = false,
     onSearchChange,
     onCreate,
     onDelete,
@@ -42,7 +44,7 @@ export const DataTableToolbar = ({
                     icon={<TrashSolidIcon />}
                     aria-label="Delete selected users"
                     onClick={onDelete}
-                    disabled={!hasSelection}
+                    disabled={!hasSelection || deleteLoading}
                 />
                 <IconButton
                     icon={<ExclamationCircleSolidIcon />}
