@@ -3,7 +3,7 @@ import { useState } from 'react'
 type UseDataSelectionProps<T> = {
     items: T[]
     getId: (item: T) => number
-    onDelete?: (ids: number[]) => void
+    onDelete?: (ids: number[]) => Promise<void>
 }
 
 export const useDataSelection = <T>({
@@ -31,12 +31,16 @@ export const useDataSelection = <T>({
         }
     }
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         if (!onDelete || selectedIds.length === 0) return
 
-        onDelete(selectedIds)
+        try {
+            await onDelete(selectedIds)
 
-        setSelectedIds([])
+            setSelectedIds([])
+        } catch {
+            return
+        }
     }
 
     const allSelected = items.length > 0 && selectedIds.length === items.length
