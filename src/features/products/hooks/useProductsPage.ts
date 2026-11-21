@@ -1,6 +1,12 @@
 import { useAppDispatch } from '@/store'
 import { useFormModal, usePaginationFilters } from '@/shared/hooks'
-import { createProduct, deleteProduct, updateProduct } from '../store'
+import { Toast } from '@/shared/lib'
+import {
+    clearCreateError,
+    createProduct,
+    deleteProduct,
+    updateProduct,
+} from '../store'
 import { mapFormToCreatePayload, mapFormToUpdatePayload } from '../mappers'
 import { useProducts } from '../hooks'
 import type {
@@ -16,11 +22,14 @@ export const useProductsPage = () => {
 
     const pageSize = 15
 
-    const { products, productsList, total, loading } = useProducts(
-        filters.page,
-        pageSize,
-        filters.search,
-    )
+    const {
+        products,
+        productsList,
+        total,
+        loading,
+        createLoading,
+        createError,
+    } = useProducts(filters.page, pageSize, filters.search)
 
     const handleEdit = (productId: number) => {
         const product = products.find((product) => product.id === productId)
@@ -29,14 +38,25 @@ export const useProductsPage = () => {
         modal.openEdit(product)
     }
 
-    const handleCreateSubmit = async (data: CreateProductFormValues) => {
-        await dispatch(
-            createProduct({
-                payload: mapFormToCreatePayload(data),
-            }),
-        )
+    const handleOpenCreate = () => {
+        dispatch(clearCreateError())
 
-        modal.close()
+        modal.openCreate()
+    }
+
+    const handleCreateSubmit = async (data: CreateProductFormValues) => {
+        try {
+            await dispatch(
+                createProduct({
+                    payload: mapFormToCreatePayload(data),
+                }),
+            ).unwrap()
+
+            Toast.success('Product created successfully')
+            modal.close()
+        } catch {
+            return
+        }
     }
 
     const handleUpdateSubmit = async (data: UpdateProductFormValues) => {
@@ -75,5 +95,8 @@ export const useProductsPage = () => {
         handleCreateSubmit,
         handleUpdateSubmit,
         handleDeleteProduct,
+        handleOpenCreate,
+        createLoading,
+        createError,
     }
 }
