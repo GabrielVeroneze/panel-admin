@@ -24,6 +24,9 @@ export const ProductsPage = () => {
         handleCreateSubmit,
         handleUpdateSubmit,
         handleDeleteProduct,
+        handleOpenCreate,
+        createLoading,
+        createError,
     } = useProductsPage()
 
     const {
@@ -47,7 +50,7 @@ export const ProductsPage = () => {
                 createLabel="Add Product"
                 hasSelection={hasSelection}
                 onSearchChange={filters.handleSearchChange}
-                onCreate={modal.openCreate}
+                onCreate={handleOpenCreate}
                 onDelete={handleDelete}
             />
             <ProductsTable
@@ -69,6 +72,8 @@ export const ProductsPage = () => {
             {modal.isCreateOpen && (
                 <CreateProductModal
                     open
+                    loading={createLoading}
+                    error={createError}
                     onCreate={handleCreateSubmit}
                     onClose={modal.close}
                 />
