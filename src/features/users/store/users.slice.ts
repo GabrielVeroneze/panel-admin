@@ -14,6 +14,10 @@ type UsersState = AsyncState<PaginatedUsers> & {
     createError: string | null
     updateLoading: boolean
     updateError: string | null
+    deleteUserLoading: boolean
+    deleteUserError: string | null
+    deleteUsersLoading: boolean
+    deleteUsersError: string | null
 }
 
 const initialState: UsersState = {
@@ -23,6 +27,10 @@ const initialState: UsersState = {
     createError: null,
     updateLoading: false,
     updateError: null,
+    deleteUserLoading: false,
+    deleteUserError: null,
+    deleteUsersLoading: false,
+    deleteUsersError: null,
 }
 
 const usersSlice = createSlice({
@@ -84,7 +92,14 @@ const usersSlice = createSlice({
                 state.updateError =
                     action.payload ?? 'Unable to update user. Please try again.'
             })
+            .addCase(deleteUser.pending, (state) => {
+                state.deleteUserLoading = true
+                state.deleteUserError = null
+            })
             .addCase(deleteUser.fulfilled, (state, action) => {
+                state.deleteUserLoading = false
+                state.deleteUserError = null
+
                 if (!state.data) return
 
                 const id = action.meta.arg.id
@@ -94,7 +109,19 @@ const usersSlice = createSlice({
                 )
                 state.data.total -= 1
             })
+            .addCase(deleteUser.rejected, (state, action) => {
+                state.deleteUserLoading = false
+                state.deleteUserError =
+                    action.payload ?? 'Unable to delete user. Please try again.'
+            })
+            .addCase(deleteUsers.pending, (state) => {
+                state.deleteUsersLoading = true
+                state.deleteUsersError = null
+            })
             .addCase(deleteUsers.fulfilled, (state, action) => {
+                state.deleteUsersLoading = false
+                state.deleteUsersError = null
+
                 if (!state.data) return
 
                 const ids = action.meta.arg.ids
@@ -103,6 +130,12 @@ const usersSlice = createSlice({
                     (user) => !ids.includes(user.id),
                 )
                 state.data.total -= ids.length
+            })
+            .addCase(deleteUsers.rejected, (state, action) => {
+                state.deleteUsersLoading = false
+                state.deleteUsersError =
+                    action.payload ??
+                    'Unable to delete selected users. Please try again.'
             })
     },
 })
