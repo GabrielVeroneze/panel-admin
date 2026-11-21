@@ -9,7 +9,10 @@ export const useProducts = (
 ) => {
     const dispatch = useAppDispatch()
 
-    const { data, loading } = useAppSelector((state) => state.products)
+    const { data, loading, createLoading, createError } = useAppSelector(
+        (state) => state.products,
+    )
+
     const productsList = useAppSelector(selectProductsList)
 
     useEffect(() => {
@@ -28,5 +31,7 @@ export const useProducts = (
         page: currentPage,
         pageSize: currentPageSize,
         loading,
+        createLoading,
+        createError,
     }
 }
