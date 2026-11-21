@@ -1,7 +1,7 @@
 import { useAppDispatch } from '@/store'
 import { useFormModal, usePaginationFilters } from '@/shared/hooks'
 import { Toast } from '@/shared/lib'
-import { createUser, deleteUser, updateUser } from '../store'
+import { createUser, deleteUser, deleteUsers, updateUser } from '../store'
 import { mapFormToCreatePayload, mapFormToUpdatePayload } from '../mappers'
 import { useUsers } from '../hooks'
 import type { CreateUserFormValues, UpdateUserFormValues } from '../schemas'
@@ -23,6 +23,10 @@ export const useUsersPage = () => {
         createError,
         updateLoading,
         updateError,
+        deleteUserLoading,
+        deleteUserError,
+        deleteUsersLoading,
+        deleteUsersError,
     } = useUsers(filters.page, pageSize, filters.search)
 
     const handleEdit = (userId: number) => {
@@ -68,13 +72,42 @@ export const useUsersPage = () => {
     const handleDeleteUser = async () => {
         if (!modal.editingItem) return
 
-        await dispatch(
-            deleteUser({
-                id: modal.editingItem.id,
-            }),
-        )
+        try {
+            await dispatch(
+                deleteUser({
+                    id: modal.editingItem.id,
+                }),
+            ).unwrap()
 
-        modal.close()
+            Toast.success('User deleted successfully')
+            modal.close()
+        } catch {
+            return
+        }
+    }
+
+    const handleDeleteUsers = async (ids: number[]) => {
+        try {
+            await dispatch(
+                deleteUsers({
+                    ids,
+                }),
+            ).unwrap()
+
+            Toast.success(
+                ids.length === 1
+                    ? 'User deleted successfully'
+                    : 'Users deleted successfully',
+            )
+        } catch (error) {
+            Toast.error(
+                typeof error === 'string'
+                    ? error
+                    : 'Unable to delete selected users. Please try again.',
+            )
+
+            throw error
+        }
     }
 
     return {
@@ -88,9 +121,14 @@ export const useUsersPage = () => {
         handleCreateSubmit,
         handleUpdateSubmit,
         handleDeleteUser,
+        handleDeleteUsers,
         createLoading,
         createError,
         updateLoading,
         updateError,
+        deleteUserLoading,
+        deleteUserError,
+        deleteUsersLoading,
+        deleteUsersError,
     }
 }
