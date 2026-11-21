@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { getApiErrorMessage } from '@/shared/utils'
 import {
     getProducts,
     createProduct as createProductRequest,
@@ -38,12 +39,21 @@ export const fetchProducts = createAsyncThunk<
     return await getProducts({ page, pageSize, search })
 })
 
-export const createProduct = createAsyncThunk<Product, CreateProductParams>(
-    'products/createProduct',
-    async ({ payload }) => {
+export const createProduct = createAsyncThunk<
+    Product,
+    CreateProductParams,
+    { rejectValue: string }
+>('products/createProduct', async ({ payload }, { rejectWithValue }) => {
+    try {
         return await createProductRequest(payload)
-    },
-)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to create product. Please try again.',
+            }),
+        )
+    }
+})
 
 export const updateProduct = createAsyncThunk<Product, UpdateProductParams>(
     'products/updateProduct',
