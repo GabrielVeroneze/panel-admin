@@ -1,5 +1,6 @@
 import {
     Button,
+    FormError,
     Modal,
     ModalContent,
     ModalFooter,
@@ -16,6 +17,8 @@ type EditUserModalProps = {
     user?: User | null
     loading?: boolean
     error?: string | null
+    deleteLoading?: boolean
+    deleteError?: string | null
     onUpdate: (data: UpdateUserFormValues) => void
     onClose: () => void
     onDelete?: () => void
@@ -26,15 +29,24 @@ export const EditUserModal = ({
     user,
     loading = false,
     error,
+    deleteLoading = false,
+    deleteError,
     onUpdate,
     onClose,
     onDelete,
 }: EditUserModalProps) => {
     const formId = 'user-form'
+    const isBusy = loading || deleteLoading
+
+    const handleClose = () => {
+        if (isBusy) return
+
+        onClose()
+    }
 
     return (
-        <Modal open={open} onClose={onClose}>
-            <ModalHeader title="Edit user" onClose={onClose} />
+        <Modal open={open} onClose={handleClose}>
+            <ModalHeader title="Edit user" onClose={handleClose} />
             <ModalContent>
                 <EditUserForm
                     formId={formId}
@@ -42,6 +54,7 @@ export const EditUserModal = ({
                     error={error}
                     onSubmit={onUpdate}
                 />
+                <FormError message={deleteError} />
             </ModalContent>
             <ModalFooter>
                 <Button
@@ -51,7 +64,7 @@ export const EditUserModal = ({
                     variant="primary"
                     size="lg"
                     loading={loading}
-                    disabled={loading}
+                    disabled={isBusy}
                 >
                     Save
                 </Button>
@@ -62,7 +75,8 @@ export const EditUserModal = ({
                     iconPosition="left"
                     icon={<XSolidIcon />}
                     onClick={onDelete}
-                    disabled={loading}
+                    loading={deleteLoading}
+                    disabled={isBusy}
                 >
                     Delete account
                 </Button>
