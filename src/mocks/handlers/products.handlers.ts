@@ -7,6 +7,12 @@ import type {
     UpdateProductPayload,
 } from '@/features/products/types'
 
+type CreateProductResponse =
+    | Product
+    | {
+          message: string
+      }
+
 type UpdateProductParams = {
     id: string
 }
@@ -54,9 +60,11 @@ export const productsHandlers = [
         },
     ),
 
-    http.post<never, CreateProductPayload, Product>(
+    http.post<never, CreateProductPayload, CreateProductResponse>(
         '/api/products',
         async ({ request }) => {
+            await delay(1000)
+
             const formData = await request.formData()
 
             const name = formData.get('name') as string
@@ -65,6 +73,21 @@ export const productsHandlers = [
             const price = Number(formData.get('price'))
             const description = formData.get('description') as string
             const images = formData.getAll('images') as File[]
+
+            const productAlreadyExists = productsDatabase.some(
+                (product) => product.name.toLowerCase() === name.toLowerCase(),
+            )
+
+            if (productAlreadyExists) {
+                return HttpResponse.json(
+                    {
+                        message: 'A product with this name already exists',
+                    },
+                    {
+                        status: 409,
+                    },
+                )
+            }
 
             const nextId =
                 productsDatabase.length > 0
@@ -85,7 +108,9 @@ export const productsHandlers = [
 
             productsDatabase.push(newProduct)
 
-            return HttpResponse.json(newProduct)
+            return HttpResponse.json(newProduct, {
+                status: 201,
+            })
         },
     ),
 
