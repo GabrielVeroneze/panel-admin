@@ -27,6 +27,10 @@ type UpdateUserResponse =
           message: string
       }
 
+type DeleteUserResponse = {
+    message: string
+} | null
+
 type UpdateUserParams = {
     id: string
 }
@@ -174,7 +178,7 @@ export const usersHandlers = [
         },
     ),
 
-    http.delete<DeleteUserParams, never, null>(
+    http.delete<DeleteUserParams, never, DeleteUserResponse>(
         '/api/users/:id',
         async ({ params }) => {
             await delay(1000)
@@ -184,18 +188,23 @@ export const usersHandlers = [
             const deleted = deleteUser(id)
 
             if (!deleted) {
-                return HttpResponse.json(null, {
-                    status: 404,
-                })
+                return HttpResponse.json(
+                    {
+                        message: 'User not found',
+                    },
+                    {
+                        status: 404,
+                    },
+                )
             }
 
-            return HttpResponse.json(null, {
+            return new HttpResponse(null, {
                 status: 204,
             })
         },
     ),
 
-    http.delete<never, DeleteUsersPayload, null>(
+    http.delete<never, DeleteUsersPayload, DeleteUserResponse>(
         '/api/users',
         async ({ request }) => {
             await delay(1000)
@@ -203,14 +212,19 @@ export const usersHandlers = [
             const { ids } = await request.json()
 
             if (!ids || ids.length === 0) {
-                return HttpResponse.json(null, {
-                    status: 400,
-                })
+                return HttpResponse.json(
+                    {
+                        message: 'No users selected for deletion',
+                    },
+                    {
+                        status: 400,
+                    },
+                )
             }
 
             deleteUsers(ids)
 
-            return HttpResponse.json(null, {
+            return new HttpResponse(null, {
                 status: 204,
             })
         },
