@@ -1,4 +1,3 @@
-import { useAppDispatch } from '@/store'
 import { useDataSelection } from '@/shared/hooks'
 import { DataTableFooter, DataTableToolbar } from '@/shared/components'
 import {
@@ -7,13 +6,10 @@ import {
     UsersFooterInfo,
     UsersTable,
 } from '@/features/users/components'
-import { deleteUsers } from '@/features/users/store'
 import { useUsersPage } from '@/features/users/hooks'
 import styles from '@/styles/layouts/page.module.scss'
 
 export const UsersPage = () => {
-    const dispatch = useAppDispatch()
-
     const {
         filters,
         pageSize,
@@ -25,10 +21,14 @@ export const UsersPage = () => {
         handleCreateSubmit,
         handleUpdateSubmit,
         handleDeleteUser,
+        handleDeleteUsers,
         createLoading,
         createError,
         updateLoading,
         updateError,
+        deleteUserLoading,
+        deleteUserError,
+        deleteUsersLoading,
     } = useUsersPage()
 
     const {
@@ -41,7 +41,7 @@ export const UsersPage = () => {
     } = useDataSelection({
         items: usersList,
         getId: (user) => user.id,
-        onDelete: (ids) => dispatch(deleteUsers({ ids })),
+        onDelete: handleDeleteUsers,
     })
 
     return (
@@ -51,6 +51,7 @@ export const UsersPage = () => {
                 searchPlaceholder="Search for users"
                 createLabel="Add User"
                 hasSelection={hasSelection}
+                deleteLoading={deleteUsersLoading}
                 onSearchChange={filters.handleSearchChange}
                 onCreate={modal.openCreate}
                 onDelete={handleDelete}
@@ -87,6 +88,8 @@ export const UsersPage = () => {
                     user={modal.editingItem}
                     loading={updateLoading}
                     error={updateError}
+                    deleteLoading={deleteUserLoading}
+                    deleteError={deleteUserError}
                     onUpdate={handleUpdateSubmit}
                     onDelete={handleDeleteUser}
                     onClose={modal.close}
