@@ -12,6 +12,10 @@ export const useUsers = (page: number, pageSize: number, search?: string) => {
         createError,
         updateLoading,
         updateError,
+        deleteUserLoading,
+        deleteUserError,
+        deleteUsersLoading,
+        deleteUsersError,
     } = useAppSelector((state) => state.users)
 
     const usersList = useAppSelector(selectUsersList)
@@ -36,5 +40,9 @@ export const useUsers = (page: number, pageSize: number, search?: string) => {
         createError,
         updateLoading,
         updateError,
+        deleteUserLoading,
+        deleteUserError,
+        deleteUsersLoading,
+        deleteUsersError,
     }
 }
