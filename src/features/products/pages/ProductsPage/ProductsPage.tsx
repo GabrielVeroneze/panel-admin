@@ -27,6 +27,8 @@ export const ProductsPage = () => {
         handleOpenCreate,
         createLoading,
         createError,
+        updateLoading,
+        updateError,
     } = useProductsPage()
 
     const {
@@ -82,6 +84,8 @@ export const ProductsPage = () => {
                 <EditProductModal
                     open
                     product={modal.editingItem}
+                    loading={updateLoading}
+                    error={updateError}
                     onUpdate={handleUpdateSubmit}
                     onDelete={handleDeleteProduct}
                     onClose={modal.close}
