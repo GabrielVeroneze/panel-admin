@@ -9,9 +9,14 @@ export const useProducts = (
 ) => {
     const dispatch = useAppDispatch()
 
-    const { data, loading, createLoading, createError } = useAppSelector(
-        (state) => state.products,
-    )
+    const {
+        data,
+        loading,
+        createLoading,
+        createError,
+        updateLoading,
+        updateError,
+    } = useAppSelector((state) => state.products)
 
     const productsList = useAppSelector(selectProductsList)
 
@@ -33,5 +38,7 @@ export const useProducts = (
         loading,
         createLoading,
         createError,
+        updateLoading,
+        updateError,
     }
 }
