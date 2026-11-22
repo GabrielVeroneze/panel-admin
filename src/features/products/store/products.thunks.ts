@@ -55,12 +55,21 @@ export const createProduct = createAsyncThunk<
     }
 })
 
-export const updateProduct = createAsyncThunk<Product, UpdateProductParams>(
-    'products/updateProduct',
-    async ({ id, payload }) => {
+export const updateProduct = createAsyncThunk<
+    Product,
+    UpdateProductParams,
+    { rejectValue: string }
+>('products/updateProduct', async ({ id, payload }, { rejectWithValue }) => {
+    try {
         return await updateProductRequest(id, payload)
-    },
-)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to update product. Please try again.',
+            }),
+        )
+    }
+})
 
 export const deleteProduct = createAsyncThunk<void, DeleteProductParams>(
     'products/deleteProduct',
