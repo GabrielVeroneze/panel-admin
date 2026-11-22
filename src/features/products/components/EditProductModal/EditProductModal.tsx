@@ -14,7 +14,9 @@ import styles from '@/styles/modules/modal.module.scss'
 type EditProductModalProps = {
     open: boolean
     product?: Product | null
-    onUpdate: (data: UpdateProductFormValues) => void
+    loading: boolean
+    error: string | null
+    onUpdate: (data: UpdateProductFormValues) => Promise<void>
     onClose: () => void
     onDelete?: () => void
 }
@@ -22,19 +24,28 @@ type EditProductModalProps = {
 export const EditProductModal = ({
     open,
     product,
+    loading,
+    error,
     onUpdate,
     onClose,
     onDelete,
 }: EditProductModalProps) => {
     const formId = 'product-form'
 
+    const handleClose = () => {
+        if (loading) return
+
+        onClose()
+    }
+
     return (
-        <Modal open={open} onClose={onClose}>
-            <ModalHeader title="Edit product" onClose={onClose} />
+        <Modal open={open} onClose={handleClose}>
+            <ModalHeader title="Edit product" onClose={handleClose} />
             <ModalContent>
                 <EditProductForm
                     formId={formId}
                     product={product}
+                    error={error}
                     onSubmit={onUpdate}
                 />
             </ModalContent>
@@ -45,6 +56,8 @@ export const EditProductModal = ({
                     type="submit"
                     variant="primary"
                     size="lg"
+                    loading={loading}
+                    disabled={loading}
                 >
                     Save
                 </Button>
@@ -55,6 +68,7 @@ export const EditProductModal = ({
                     iconPosition="left"
                     icon={<XSolidIcon />}
                     onClick={onDelete}
+                    disabled={loading}
                 >
                     Delete product
                 </Button>
