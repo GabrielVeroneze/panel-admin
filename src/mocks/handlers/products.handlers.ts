@@ -13,6 +13,12 @@ type CreateProductResponse =
           message: string
       }
 
+type UpdateProductResponse =
+    | Product
+    | {
+          message: string
+      }
+
 type UpdateProductParams = {
     id: string
 }
@@ -114,9 +120,11 @@ export const productsHandlers = [
         },
     ),
 
-    http.put<UpdateProductParams, UpdateProductPayload, Product>(
+    http.put<UpdateProductParams, UpdateProductPayload, UpdateProductResponse>(
         '/api/products/:id',
         async ({ params, request }) => {
+            await delay(1000)
+
             const id = Number(params.id)
             const formData = await request.formData()
 
@@ -132,7 +140,31 @@ export const productsHandlers = [
             )
 
             if (productIndex === -1) {
-                return HttpResponse.json(null, { status: 404 })
+                return HttpResponse.json(
+                    {
+                        message: 'Product not found',
+                    },
+                    {
+                        status: 404,
+                    },
+                )
+            }
+
+            const productAlreadyExists = productsDatabase.some(
+                (product) =>
+                    product.id !== id &&
+                    product.name.toLowerCase() === (name ?? '').toLowerCase(),
+            )
+
+            if (productAlreadyExists) {
+                return HttpResponse.json(
+                    {
+                        message: 'A product with this name already exists',
+                    },
+                    {
+                        status: 409,
+                    },
+                )
             }
 
             const existingProduct = productsDatabase[productIndex]
