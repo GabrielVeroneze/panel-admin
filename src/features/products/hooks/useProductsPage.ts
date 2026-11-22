@@ -3,6 +3,7 @@ import { useFormModal, usePaginationFilters } from '@/shared/hooks'
 import { Toast } from '@/shared/lib'
 import {
     clearCreateError,
+    clearUpdateError,
     createProduct,
     deleteProduct,
     updateProduct,
@@ -29,12 +30,15 @@ export const useProductsPage = () => {
         loading,
         createLoading,
         createError,
+        updateLoading,
+        updateError,
     } = useProducts(filters.page, pageSize, filters.search)
 
     const handleEdit = (productId: number) => {
         const product = products.find((product) => product.id === productId)
         if (!product) return
 
+        dispatch(clearUpdateError())
         modal.openEdit(product)
     }
 
@@ -62,14 +66,19 @@ export const useProductsPage = () => {
     const handleUpdateSubmit = async (data: UpdateProductFormValues) => {
         if (!modal.editingItem) return
 
-        await dispatch(
-            updateProduct({
-                id: modal.editingItem.id,
-                payload: mapFormToUpdatePayload(data),
-            }),
-        )
+        try {
+            await dispatch(
+                updateProduct({
+                    id: modal.editingItem.id,
+                    payload: mapFormToUpdatePayload(data),
+                }),
+            ).unwrap()
 
-        modal.close()
+            Toast.success('Product updated successfully')
+            modal.close()
+        } catch {
+            return
+        }
     }
 
     const handleDeleteProduct = async () => {
@@ -98,5 +107,7 @@ export const useProductsPage = () => {
         handleOpenCreate,
         createLoading,
         createError,
+        updateLoading,
+        updateError,
     }
 }
