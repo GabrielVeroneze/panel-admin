@@ -42,7 +42,7 @@ export const DataTableToolbar = ({
                 <IconButton icon={<CogIcon />} aria-label="Table settings" />
                 <IconButton
                     icon={<TrashSolidIcon />}
-                    aria-label="Delete selected users"
+                    aria-label="Delete selected items"
                     onClick={onDelete}
                     disabled={!hasSelection || deleteLoading}
                 />
