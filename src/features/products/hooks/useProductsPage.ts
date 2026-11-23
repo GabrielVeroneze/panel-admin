@@ -3,9 +3,11 @@ import { useFormModal, usePaginationFilters } from '@/shared/hooks'
 import { Toast } from '@/shared/lib'
 import {
     clearCreateError,
+    clearDeleteError,
     clearUpdateError,
     createProduct,
     deleteProduct,
+    deleteProducts,
     updateProduct,
 } from '../store'
 import { mapFormToCreatePayload, mapFormToUpdatePayload } from '../mappers'
@@ -32,6 +34,9 @@ export const useProductsPage = () => {
         createError,
         updateLoading,
         updateError,
+        deleteLoading,
+        deleteError,
+        deleteMultipleLoading,
     } = useProducts(filters.page, pageSize, filters.search)
 
     const handleEdit = (productId: number) => {
@@ -39,6 +44,8 @@ export const useProductsPage = () => {
         if (!product) return
 
         dispatch(clearUpdateError())
+        dispatch(clearDeleteError())
+
         modal.openEdit(product)
     }
 
@@ -84,13 +91,38 @@ export const useProductsPage = () => {
     const handleDeleteProduct = async () => {
         if (!modal.editingItem) return
 
-        await dispatch(
-            deleteProduct({
-                id: modal.editingItem.id,
-            }),
-        )
+        try {
+            await dispatch(
+                deleteProduct({
+                    id: modal.editingItem.id,
+                }),
+            ).unwrap()
 
-        modal.close()
+            Toast.success('Product deleted successfully')
+            modal.close()
+        } catch {
+            return
+        }
+    }
+
+    const handleDeleteProducts = async (ids: number[]) => {
+        try {
+            await dispatch(deleteProducts({ ids })).unwrap()
+
+            Toast.success(
+                ids.length === 1
+                    ? 'Product deleted successfully'
+                    : 'Products deleted successfully',
+            )
+        } catch (error) {
+            Toast.error(
+                typeof error === 'string'
+                    ? error
+                    : 'Unable to delete selected products. Please try again.',
+            )
+
+            throw error
+        }
     }
 
     return {
@@ -104,10 +136,14 @@ export const useProductsPage = () => {
         handleCreateSubmit,
         handleUpdateSubmit,
         handleDeleteProduct,
+        handleDeleteProducts,
         handleOpenCreate,
         createLoading,
         createError,
         updateLoading,
         updateError,
+        deleteLoading,
+        deleteError,
+        deleteMultipleLoading,
     }
 }
