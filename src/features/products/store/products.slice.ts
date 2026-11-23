@@ -14,6 +14,9 @@ type ProductsState = AsyncState<PaginatedProducts> & {
     createError: string | null
     updateLoading: boolean
     updateError: string | null
+    deleteLoading: boolean
+    deleteError: string | null
+    deleteMultipleLoading: boolean
 }
 
 const initialState: ProductsState = {
@@ -23,6 +26,9 @@ const initialState: ProductsState = {
     createError: null,
     updateLoading: false,
     updateError: null,
+    deleteLoading: false,
+    deleteError: null,
+    deleteMultipleLoading: false,
 }
 
 const productsSlice = createSlice({
@@ -34,6 +40,9 @@ const productsSlice = createSlice({
         },
         clearUpdateError: (state) => {
             state.updateError = null
+        },
+        clearDeleteError: (state) => {
+            state.deleteError = null
         },
     },
     extraReducers: (builder) => {
@@ -91,7 +100,13 @@ const productsSlice = createSlice({
                     action.payload ??
                     'Unable to update product. Please try again.'
             })
+            .addCase(deleteProduct.pending, (state) => {
+                state.deleteLoading = true
+                state.deleteError = null
+            })
             .addCase(deleteProduct.fulfilled, (state, action) => {
+                state.deleteLoading = false
+
                 if (!state.data) return
 
                 const id = action.meta.arg.id
@@ -99,9 +114,21 @@ const productsSlice = createSlice({
                 state.data.list = state.data.list.filter(
                     (product) => product.id !== id,
                 )
+
                 state.data.total -= 1
             })
+            .addCase(deleteProduct.rejected, (state, action) => {
+                state.deleteLoading = false
+                state.deleteError =
+                    action.payload ??
+                    'Unable to delete product. Please try again.'
+            })
+            .addCase(deleteProducts.pending, (state) => {
+                state.deleteMultipleLoading = true
+            })
             .addCase(deleteProducts.fulfilled, (state, action) => {
+                state.deleteMultipleLoading = false
+
                 if (!state.data) return
 
                 const ids = action.meta.arg.ids
@@ -109,11 +136,16 @@ const productsSlice = createSlice({
                 state.data.list = state.data.list.filter(
                     (product) => !ids.includes(product.id),
                 )
+
                 state.data.total -= ids.length
+            })
+            .addCase(deleteProducts.rejected, (state) => {
+                state.deleteMultipleLoading = false
             })
     },
 })
 
-export const { clearCreateError, clearUpdateError } = productsSlice.actions
+export const { clearCreateError, clearUpdateError, clearDeleteError } =
+    productsSlice.actions
 
 export default productsSlice.reducer
