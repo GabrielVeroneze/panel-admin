@@ -188,9 +188,11 @@ export const productsHandlers = [
         },
     ),
 
-    http.delete<DeleteProductParams, never, null>(
+    http.delete<DeleteProductParams, never, { message: string }>(
         '/api/products/:id',
         async ({ params }) => {
+            await delay(1000)
+
             const id = Number(params.id)
 
             const productIndex = productsDatabase.findIndex(
@@ -198,22 +200,53 @@ export const productsHandlers = [
             )
 
             if (productIndex === -1) {
-                return HttpResponse.json(null, { status: 404 })
+                return HttpResponse.json(
+                    {
+                        message: 'Product not found',
+                    },
+                    {
+                        status: 404,
+                    },
+                )
             }
 
             productsDatabase.splice(productIndex, 1)
 
-            return HttpResponse.json(null, { status: 204 })
+            return new HttpResponse(null, { status: 204 })
         },
     ),
 
-    http.delete<never, DeleteProductsPayload, null>(
+    http.delete<never, DeleteProductsPayload, { message: string }>(
         '/api/products',
         async ({ request }) => {
+            await delay(1000)
+
             const { ids } = await request.json()
 
             if (!ids || ids.length === 0) {
-                return HttpResponse.json(null, { status: 400 })
+                return HttpResponse.json(
+                    {
+                        message: 'No products selected for deletion',
+                    },
+                    {
+                        status: 400,
+                    },
+                )
+            }
+
+            const allProductsExist = ids.every((id) =>
+                productsDatabase.some((product) => product.id === id),
+            )
+
+            if (!allProductsExist) {
+                return HttpResponse.json(
+                    {
+                        message: 'One or more products were not found',
+                    },
+                    {
+                        status: 404,
+                    },
+                )
             }
 
             for (const id of ids) {
@@ -221,12 +254,10 @@ export const productsHandlers = [
                     (product) => product.id === id,
                 )
 
-                if (index !== -1) {
-                    productsDatabase.splice(index, 1)
-                }
+                productsDatabase.splice(index, 1)
             }
 
-            return HttpResponse.json(null, { status: 204 })
+            return new HttpResponse(null, { status: 204 })
         },
     ),
 ]
