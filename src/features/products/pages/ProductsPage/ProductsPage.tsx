@@ -1,4 +1,3 @@
-import { useAppDispatch } from '@/store'
 import { useDataSelection } from '@/shared/hooks'
 import { DataTableFooter, DataTableToolbar } from '@/shared/components'
 import {
@@ -6,13 +5,10 @@ import {
     EditProductModal,
     ProductsTable,
 } from '@/features/products/components'
-import { deleteProducts } from '@/features/products/store'
 import { useProductsPage } from '@/features/products/hooks'
 import styles from '@/styles/layouts/page.module.scss'
 
 export const ProductsPage = () => {
-    const dispatch = useAppDispatch()
-
     const {
         filters,
         pageSize,
@@ -24,11 +20,15 @@ export const ProductsPage = () => {
         handleCreateSubmit,
         handleUpdateSubmit,
         handleDeleteProduct,
+        handleDeleteProducts,
         handleOpenCreate,
         createLoading,
         createError,
         updateLoading,
         updateError,
+        deleteLoading,
+        deleteError,
+        deleteMultipleLoading,
     } = useProductsPage()
 
     const {
@@ -41,7 +41,7 @@ export const ProductsPage = () => {
     } = useDataSelection({
         items: productsList,
         getId: (product) => product.id,
-        onDelete: (ids) => dispatch(deleteProducts({ ids })),
+        onDelete: handleDeleteProducts,
     })
 
     return (
@@ -51,6 +51,7 @@ export const ProductsPage = () => {
                 searchPlaceholder="Search for products"
                 createLabel="Add Product"
                 hasSelection={hasSelection}
+                deleteLoading={deleteMultipleLoading}
                 onSearchChange={filters.handleSearchChange}
                 onCreate={handleOpenCreate}
                 onDelete={handleDelete}
@@ -86,6 +87,8 @@ export const ProductsPage = () => {
                     product={modal.editingItem}
                     loading={updateLoading}
                     error={updateError}
+                    deleteLoading={deleteLoading}
+                    deleteError={deleteError}
                     onUpdate={handleUpdateSubmit}
                     onDelete={handleDeleteProduct}
                     onClose={modal.close}
