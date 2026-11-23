@@ -1,5 +1,9 @@
 export { default as productsReducer } from './products.slice'
-export { clearCreateError, clearUpdateError } from './products.slice'
+export {
+    clearCreateError,
+    clearDeleteError,
+    clearUpdateError,
+} from './products.slice'
 export {
     createProduct,
     deleteProduct,
