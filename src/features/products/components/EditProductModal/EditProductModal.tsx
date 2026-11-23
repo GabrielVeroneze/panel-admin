@@ -1,5 +1,6 @@
 import {
     Button,
+    FormError,
     Modal,
     ModalContent,
     ModalFooter,
@@ -16,6 +17,8 @@ type EditProductModalProps = {
     product?: Product | null
     loading: boolean
     error: string | null
+    deleteLoading: boolean
+    deleteError: string | null
     onUpdate: (data: UpdateProductFormValues) => Promise<void>
     onClose: () => void
     onDelete?: () => void
@@ -26,14 +29,17 @@ export const EditProductModal = ({
     product,
     loading,
     error,
+    deleteLoading,
+    deleteError,
     onUpdate,
     onClose,
     onDelete,
 }: EditProductModalProps) => {
     const formId = 'product-form'
+    const isBusy = loading || deleteLoading
 
     const handleClose = () => {
-        if (loading) return
+        if (isBusy) return
 
         onClose()
     }
@@ -48,6 +54,7 @@ export const EditProductModal = ({
                     error={error}
                     onSubmit={onUpdate}
                 />
+                <FormError message={deleteError} />
             </ModalContent>
             <ModalFooter>
                 <Button
@@ -57,7 +64,7 @@ export const EditProductModal = ({
                     variant="primary"
                     size="lg"
                     loading={loading}
-                    disabled={loading}
+                    disabled={isBusy}
                 >
                     Save
                 </Button>
@@ -68,7 +75,8 @@ export const EditProductModal = ({
                     iconPosition="left"
                     icon={<XSolidIcon />}
                     onClick={onDelete}
-                    disabled={loading}
+                    loading={deleteLoading}
+                    disabled={isBusy}
                 >
                     Delete product
                 </Button>
