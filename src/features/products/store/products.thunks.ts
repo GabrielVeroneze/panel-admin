@@ -71,16 +71,35 @@ export const updateProduct = createAsyncThunk<
     }
 })
 
-export const deleteProduct = createAsyncThunk<void, DeleteProductParams>(
-    'products/deleteProduct',
-    async ({ id }) => {
+export const deleteProduct = createAsyncThunk<
+    void,
+    DeleteProductParams,
+    { rejectValue: string }
+>('products/deleteProduct', async ({ id }, { rejectWithValue }) => {
+    try {
         await deleteProductRequest(id)
-    },
-)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to delete product. Please try again.',
+            }),
+        )
+    }
+})
 
-export const deleteProducts = createAsyncThunk<void, DeleteProductsParams>(
-    'products/deleteProducts',
-    async ({ ids }) => {
+export const deleteProducts = createAsyncThunk<
+    void,
+    DeleteProductsParams,
+    { rejectValue: string }
+>('products/deleteProducts', async ({ ids }, { rejectWithValue }) => {
+    try {
         await deleteProductsRequest(ids)
-    },
-)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback:
+                    'Unable to delete selected products. Please try again.',
+            }),
+        )
+    }
+})
