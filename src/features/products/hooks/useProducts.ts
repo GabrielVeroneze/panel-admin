@@ -16,6 +16,9 @@ export const useProducts = (
         createError,
         updateLoading,
         updateError,
+        deleteLoading,
+        deleteError,
+        deleteMultipleLoading,
     } = useAppSelector((state) => state.products)
 
     const productsList = useAppSelector(selectProductsList)
@@ -40,5 +43,8 @@ export const useProducts = (
         createError,
         updateLoading,
         updateError,
+        deleteLoading,
+        deleteError,
+        deleteMultipleLoading,
     }
 }
