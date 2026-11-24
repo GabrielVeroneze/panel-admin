@@ -3,4 +3,5 @@ export type SettingsToggle = {
     description: string
     enabled: boolean
     onChange: () => void
+    disabled?: boolean
 }
