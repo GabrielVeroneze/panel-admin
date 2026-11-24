@@ -1,4 +1,4 @@
-import { Button, FormField, Input } from '@/shared/components'
+import { Button, FormError, FormField, Input } from '@/shared/components'
 import { usePasswordForm } from '@/features/settings/hooks'
 import { SettingsCard } from '@/features/settings/components'
 import { PasswordSettingsSkeleton } from './PasswordSettingsSkeleton'
@@ -9,7 +9,7 @@ type PasswordSettingsProps = {
 }
 
 export const PasswordSettings = ({ loading }: PasswordSettingsProps) => {
-    const { form, onSubmit } = usePasswordForm()
+    const { form, onSubmit, passwordLoading } = usePasswordForm()
 
     const {
         register,
@@ -81,7 +81,13 @@ export const PasswordSettings = ({ loading }: PasswordSettingsProps) => {
                         </li>
                     </ul>
                 </div>
-                <Button className={styles.button} type="submit" size="lg">
+                <FormError message={errors.root?.server?.message} />
+                <Button
+                    className={styles.button}
+                    type="submit"
+                    size="lg"
+                    loading={passwordLoading}
+                >
                     Update
                 </Button>
             </form>
