@@ -10,7 +10,7 @@ type ConnectedAccountItemProps = {
 export const ConnectedAccountItem = ({
     account,
 }: ConnectedAccountItemProps) => {
-    const { handleDisconnect } = useConnectedAccount(account)
+    const { handleDisconnect, isLoading } = useConnectedAccount(account)
 
     return (
         <div className={styles.item}>
@@ -29,6 +29,7 @@ export const ConnectedAccountItem = ({
                 size="lg"
                 variant="transparent"
                 onClick={handleDisconnect}
+                loading={isLoading}
             >
                 Disconnect
             </Button>
