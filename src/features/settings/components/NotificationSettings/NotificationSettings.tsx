@@ -17,9 +17,8 @@ export const NotificationSettings = ({
     notificationPreferences,
     loading,
 }: NotificationSettingsProps) => {
-    const { updateNotification } = useNotificationPreferences(
-        notificationPreferences,
-    )
+    const { updateNotification, notificationsLoading } =
+        useNotificationPreferences(notificationPreferences)
 
     if (loading) return <NotificationSettingsSkeleton />
 
@@ -35,24 +34,28 @@ export const NotificationSettings = ({
                     description="Receive news, announcements, and updates about the platform"
                     enabled={notificationPreferences.companyNews}
                     onChange={() => updateNotification('companyNews')}
+                    disabled={notificationsLoading}
                 />
                 <SettingsToggleItem
                     label="Account Activity"
                     description="Receive important notifications about your account and recent activity"
                     enabled={notificationPreferences.accountActivity}
                     onChange={() => updateNotification('accountActivity')}
+                    disabled={notificationsLoading}
                 />
                 <SettingsToggleItem
                     label="Meetups Near You"
                     description="Receive notifications about events and meetups happening near your location"
                     enabled={notificationPreferences.meetupsNearYou}
                     onChange={() => updateNotification('meetupsNearYou')}
+                    disabled={notificationsLoading}
                 />
                 <SettingsToggleItem
                     label="New Messages"
                     description="Receive notifications when you get new messages or conversations"
                     enabled={notificationPreferences.newMessages}
                     onChange={() => updateNotification('newMessages')}
+                    disabled={notificationsLoading}
                 />
             </SettingsToggleList>
         </SettingsCard>
