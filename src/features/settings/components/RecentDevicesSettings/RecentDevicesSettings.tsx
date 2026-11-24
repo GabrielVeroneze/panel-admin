@@ -24,7 +24,7 @@ export const RecentDevicesSettings = ({
     devices,
     loading,
 }: RecentDevicesSettingsProps) => {
-    const { disconnectSession } = useDeviceSessions()
+    const { disconnectSession, recentDevicesLoading } = useDeviceSessions()
 
     if (loading) return <RecentDevicesSettingsSkeleton />
 
@@ -82,6 +82,9 @@ export const RecentDevicesSettings = ({
                                 <Button
                                     size="md"
                                     variant="primary"
+                                    loading={recentDevicesLoading.includes(
+                                        device.id,
+                                    )}
                                     onClick={() => disconnectSession(device.id)}
                                 >
                                     Disconnect
