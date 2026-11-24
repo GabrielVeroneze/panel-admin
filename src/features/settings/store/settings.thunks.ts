@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { getApiErrorMessage } from '@/shared/utils'
 import { fetchCurrentUserThunk } from '@/features/auth/store'
 import { fetchMyProfile } from '@/features/profile/store'
 import {
@@ -38,90 +39,184 @@ export const fetchSettings = createAsyncThunk<Settings>(
 
 export const updateAvatar = createAsyncThunk<
     SettingsProfile,
-    UpdateProfileAvatarPayload
->('settings/updateAvatar', async (payload, { dispatch }) => {
-    const profile = await updateProfileAvatar(payload)
+    UpdateProfileAvatarPayload,
+    { rejectValue: string }
+>('settings/updateAvatar', async (payload, { dispatch, rejectWithValue }) => {
+    try {
+        const profile = await updateProfileAvatar(payload)
 
-    await dispatch(fetchSettings())
-    await dispatch(fetchCurrentUserThunk())
-    await dispatch(fetchMyProfile())
+        await dispatch(fetchSettings())
+        await dispatch(fetchCurrentUserThunk())
+        await dispatch(fetchMyProfile())
 
-    return profile
+        return profile
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to update profile picture. Please try again.',
+            }),
+        )
+    }
 })
 
 export const savePreferences = createAsyncThunk<
     SettingsPreferences,
-    SettingsPreferences
->('settings/savePreferences', async (payload) => {
-    return await updatePreferences(payload)
+    SettingsPreferences,
+    { rejectValue: string }
+>('settings/savePreferences', async (payload, { rejectWithValue }) => {
+    try {
+        return await updatePreferences(payload)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback:
+                    'Unable to update language and timezone preferences. Please try again.',
+            }),
+        )
+    }
 })
 
 export const saveGeneralInformation = createAsyncThunk<
     GeneralInformation,
-    GeneralInformation
->('settings/saveGeneralInformation', async (payload, { dispatch }) => {
-    const response = await updateGeneralInformation(payload)
-
-    await dispatch(fetchSettings())
-    await dispatch(fetchCurrentUserThunk())
-    await dispatch(fetchMyProfile())
-
-    return response
-})
-
-export const saveNotifications = createAsyncThunk<
-    NotificationPreferences,
-    NotificationPreferences
->('settings/saveNotifications', async (payload) => {
-    return await updateNotifications(payload)
-})
-
-export const saveEmailSettings = createAsyncThunk<
-    EmailPreferences,
-    EmailPreferences
->('settings/saveEmailSettings', async (payload) => {
-    return await updateEmailSettings(payload)
-})
-
-export const savePassword = createAsyncThunk<void, UpdatePasswordPayload>(
-    'settings/savePassword',
-    async (payload, { rejectWithValue }) => {
+    GeneralInformation,
+    { rejectValue: string }
+>(
+    'settings/saveGeneralInformation',
+    async (payload, { dispatch, rejectWithValue }) => {
         try {
-            await updatePassword(payload)
-        } catch {
-            return rejectWithValue('Current password is incorrect')
+            const response = await updateGeneralInformation(payload)
+
+            await dispatch(fetchSettings())
+            await dispatch(fetchCurrentUserThunk())
+            await dispatch(fetchMyProfile())
+
+            return response
+        } catch (error) {
+            return rejectWithValue(
+                getApiErrorMessage(error, {
+                    fallback:
+                        'Unable to update general information. Please try again.',
+                }),
+            )
         }
     },
 )
 
-export const connectAccount = createAsyncThunk<SocialAccount, SocialPlatform>(
-    'settings/connectAccount',
-    async (platform) => {
+export const saveNotifications = createAsyncThunk<
+    NotificationPreferences,
+    NotificationPreferences,
+    { rejectValue: string }
+>('settings/saveNotifications', async (payload, { rejectWithValue }) => {
+    try {
+        return await updateNotifications(payload)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback:
+                    'Unable to update notification preferences. Please try again.',
+            }),
+        )
+    }
+})
+
+export const saveEmailSettings = createAsyncThunk<
+    EmailPreferences,
+    EmailPreferences,
+    { rejectValue: string }
+>('settings/saveEmailSettings', async (payload, { rejectWithValue }) => {
+    try {
+        return await updateEmailSettings(payload)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback:
+                    'Unable to update email preferences. Please try again.',
+            }),
+        )
+    }
+})
+
+export const savePassword = createAsyncThunk<
+    void,
+    UpdatePasswordPayload,
+    { rejectValue: string }
+>('settings/savePassword', async (payload, { rejectWithValue }) => {
+    try {
+        await updatePassword(payload)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to update password. Please try again.',
+            }),
+        )
+    }
+})
+
+export const connectAccount = createAsyncThunk<
+    SocialAccount,
+    SocialPlatform,
+    { rejectValue: string }
+>('settings/connectAccount', async (platform, { rejectWithValue }) => {
+    try {
         return await connectSocialAccount(platform)
-    },
-)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to connect social account. Please try again.',
+            }),
+        )
+    }
+})
 
 export const disconnectAccount = createAsyncThunk<
     SocialAccount,
-    SocialPlatform
->('settings/disconnectAccount', async (platform) => {
-    return await disconnectSocialAccount(platform)
+    SocialPlatform,
+    { rejectValue: string }
+>('settings/disconnectAccount', async (platform, { rejectWithValue }) => {
+    try {
+        return await disconnectSocialAccount(platform)
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback:
+                    'Unable to disconnect social account. Please try again.',
+            }),
+        )
+    }
 })
 
 export const removeConnectedAccount = createAsyncThunk<
     ConnectedAccount['id'],
-    ConnectedAccount['id']
->('settings/removeConnectedAccount', async (accountId) => {
-    await disconnectConnectedAccount(accountId)
+    ConnectedAccount['id'],
+    { rejectValue: string }
+>('settings/removeConnectedAccount', async (accountId, { rejectWithValue }) => {
+    try {
+        await disconnectConnectedAccount(accountId)
 
-    return accountId
+        return accountId
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to disconnect account. Please try again.',
+            }),
+        )
+    }
 })
 
 export const removeDeviceSession = createAsyncThunk<
     DeviceSession['id'],
-    DeviceSession['id']
->('settings/removeDeviceSession', async (deviceId) => {
-    await revokeDeviceSession(deviceId)
+    DeviceSession['id'],
+    { rejectValue: string }
+>('settings/removeDeviceSession', async (deviceId, { rejectWithValue }) => {
+    try {
+        await revokeDeviceSession(deviceId)
 
-    return deviceId
+        return deviceId
+    } catch (error) {
+        return rejectWithValue(
+            getApiErrorMessage(error, {
+                fallback: 'Unable to disconnect device. Please try again.',
+            }),
+        )
+    }
 })
