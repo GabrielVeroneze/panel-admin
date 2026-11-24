@@ -9,7 +9,7 @@ type SocialAccountItemProps = {
 }
 
 export const SocialAccountItem = ({ account }: SocialAccountItemProps) => {
-    const { handleToggleConnection } = useSocialAccount(account)
+    const { handleToggleConnection, isLoading } = useSocialAccount(account)
 
     const config = socialAccountConfig[account.platform]
     const Icon = config.icon
@@ -39,6 +39,7 @@ export const SocialAccountItem = ({ account }: SocialAccountItemProps) => {
                 size="lg"
                 variant={account.connected ? 'transparent' : 'primary'}
                 onClick={handleToggleConnection}
+                loading={isLoading}
             >
                 {account.connected ? 'Disconnect' : 'Connect'}
             </Button>
