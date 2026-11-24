@@ -17,7 +17,8 @@ export const EmailSettings = ({
     emailPreferences,
     loading,
 }: EmailSettingsProps) => {
-    const { updateEmailPreference } = useEmailPreferences(emailPreferences)
+    const { updateEmailPreference, emailSettingsLoading } =
+        useEmailPreferences(emailPreferences)
 
     if (loading) return <EmailSettingsSkeleton />
 
@@ -33,6 +34,7 @@ export const EmailSettings = ({
                     description="Send an email reminding me to rate an item a week after purchase"
                     enabled={emailPreferences.ratingReminders}
                     onChange={() => updateEmailPreference('ratingReminders')}
+                    disabled={emailSettingsLoading}
                 />
                 <SettingsToggleItem
                     label="Item update notifications"
@@ -41,6 +43,7 @@ export const EmailSettings = ({
                     onChange={() =>
                         updateEmailPreference('itemUpdateNotifications')
                     }
+                    disabled={emailSettingsLoading}
                 />
                 <SettingsToggleItem
                     label="Item comment notifications"
@@ -49,6 +52,7 @@ export const EmailSettings = ({
                     onChange={() =>
                         updateEmailPreference('itemCommentNotifications')
                     }
+                    disabled={emailSettingsLoading}
                 />
                 <SettingsToggleItem
                     label="Buyer review notifications"
@@ -57,6 +61,7 @@ export const EmailSettings = ({
                     onChange={() =>
                         updateEmailPreference('buyerReviewNotifications')
                     }
+                    disabled={emailSettingsLoading}
                 />
             </SettingsToggleList>
         </SettingsCard>
