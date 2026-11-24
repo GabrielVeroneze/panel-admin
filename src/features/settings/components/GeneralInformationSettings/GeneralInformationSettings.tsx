@@ -1,5 +1,6 @@
 import {
     Button,
+    FormError,
     FormField,
     Input,
     Select,
@@ -21,7 +22,8 @@ export const GeneralInformationSettings = ({
     data,
     loading,
 }: GeneralInformationSettingsProps) => {
-    const { form, onSubmit } = useGeneralInformationForm(data)
+    const { form, onSubmit, generalInformationLoading } =
+        useGeneralInformationForm(data)
 
     const {
         register,
@@ -204,7 +206,13 @@ export const GeneralInformationSettings = ({
                         {...register('zipCode')}
                     />
                 </FormField>
-                <Button className={styles.button} type="submit" size="lg">
+                <FormError message={errors.root?.server?.message} />
+                <Button
+                    className={styles.button}
+                    type="submit"
+                    size="lg"
+                    loading={generalInformationLoading}
+                >
                     Update
                 </Button>
             </form>
