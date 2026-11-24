@@ -19,9 +19,14 @@ import type {
     Settings,
     SettingsPreferences,
     SettingsProfile,
+    SocialAccount,
     SocialPlatform,
     UpdatePasswordPayload,
 } from '@/features/settings/types'
+
+type SettingsErrorResponse = {
+    message: string
+}
 
 type PasswordResponse = {
     success?: boolean
@@ -43,7 +48,7 @@ export const settingsHandlers = [
         return HttpResponse.json(settings)
     }),
 
-    http.put<never, FormData, SettingsProfile>(
+    http.put<never, FormData, SettingsProfile | SettingsErrorResponse>(
         '/api/settings/profile',
         async ({ request }) => {
             const formData = await request.formData()
@@ -51,68 +56,9 @@ export const settingsHandlers = [
             const avatar = formData.get('avatar') as File | null
 
             if (!avatar) {
-                return HttpResponse.json(null, {
-                    status: 400,
-                })
-            }
-
-            const profile = updateSettingsProfileAvatar(avatar)
-
-            if (!profile) {
-                return HttpResponse.json(null, {
-                    status: 404,
-                })
-            }
-
-            return HttpResponse.json(profile)
-        },
-    ),
-
-    http.put<never, SettingsPreferences, SettingsPreferences>(
-        '/api/settings/preferences',
-        async ({ request }) => {
-            const payload = await request.json()
-
-            const preferences = updatePreferences(payload)
-
-            if (!preferences) {
-                return HttpResponse.json(null, {
-                    status: 404,
-                })
-            }
-
-            return HttpResponse.json(preferences)
-        },
-    ),
-
-    http.put<never, GeneralInformation, GeneralInformation>(
-        '/api/settings/general',
-        async ({ request }) => {
-            const payload = await request.json()
-
-            const information = updateGeneralInformation(payload)
-
-            if (!information) {
-                return HttpResponse.json(null, {
-                    status: 404,
-                })
-            }
-
-            return HttpResponse.json(information)
-        },
-    ),
-
-    http.put<never, UpdatePasswordPayload, PasswordResponse>(
-        '/api/settings/password',
-        async ({ request }) => {
-            const payload = await request.json()
-
-            const updated = updateCurrentUserPassword(payload)
-
-            if (!updated) {
                 return HttpResponse.json(
                     {
-                        message: 'Current password is incorrect',
+                        message: 'Please select a profile picture.',
                     },
                     {
                         status: 400,
@@ -120,57 +66,12 @@ export const settingsHandlers = [
                 )
             }
 
-            return HttpResponse.json({
-                success: true,
-            })
-        },
-    ),
+            const profile = updateSettingsProfileAvatar(avatar)
 
-    http.put<never, NotificationPreferences, NotificationPreferences>(
-        '/api/settings/notifications',
-        async ({ request }) => {
-            const payload = await request.json()
-
-            const notifications = updateNotifications(payload)
-
-            if (!notifications) {
-                return HttpResponse.json(null, {
-                    status: 404,
-                })
-            }
-
-            return HttpResponse.json(notifications)
-        },
-    ),
-
-    http.put<never, EmailPreferences, EmailPreferences>(
-        '/api/settings/email-notifications',
-        async ({ request }) => {
-            const payload = await request.json()
-
-            const emailSettings = updateEmailSettings(payload)
-
-            if (!emailSettings) {
-                return HttpResponse.json(null, {
-                    status: 404,
-                })
-            }
-
-            return HttpResponse.json(emailSettings)
-        },
-    ),
-
-    http.put(
-        '/api/settings/social-accounts/:platform/connect',
-        async ({ params }) => {
-            const account = connectSocialAccount(
-                params.platform as SocialPlatform,
-            )
-
-            if (!account) {
+            if (!profile) {
                 return HttpResponse.json(
                     {
-                        message: 'Account not found',
+                        message: 'Profile not found. Please try again.',
                     },
                     {
                         status: 404,
@@ -178,11 +79,153 @@ export const settingsHandlers = [
                 )
             }
 
-            return HttpResponse.json(account)
+            return HttpResponse.json(profile)
         },
     ),
 
-    http.put(
+    http.put<
+        never,
+        SettingsPreferences,
+        SettingsPreferences | SettingsErrorResponse
+    >('/api/settings/preferences', async ({ request }) => {
+        const payload = await request.json()
+
+        const preferences = updatePreferences(payload)
+
+        if (!preferences) {
+            return HttpResponse.json(
+                {
+                    message:
+                        'Unable to update your language and timezone preferences.',
+                },
+                {
+                    status: 404,
+                },
+            )
+        }
+
+        return HttpResponse.json(preferences)
+    }),
+
+    http.put<
+        never,
+        GeneralInformation,
+        GeneralInformation | SettingsErrorResponse
+    >('/api/settings/general', async ({ request }) => {
+        const payload = await request.json()
+
+        const information = updateGeneralInformation(payload)
+
+        if (!information) {
+            return HttpResponse.json(
+                {
+                    message: 'Unable to find your profile information.',
+                },
+                {
+                    status: 404,
+                },
+            )
+        }
+
+        return HttpResponse.json(information)
+    }),
+
+    http.put<
+        never,
+        UpdatePasswordPayload,
+        PasswordResponse | SettingsErrorResponse
+    >('/api/settings/password', async ({ request }) => {
+        const payload = await request.json()
+
+        const updated = updateCurrentUserPassword(payload)
+
+        if (!updated) {
+            return HttpResponse.json(
+                {
+                    message: 'Current password is incorrect',
+                },
+                {
+                    status: 400,
+                },
+            )
+        }
+
+        return HttpResponse.json({
+            success: true,
+        })
+    }),
+
+    http.put<
+        never,
+        NotificationPreferences,
+        NotificationPreferences | SettingsErrorResponse
+    >('/api/settings/notifications', async ({ request }) => {
+        const payload = await request.json()
+
+        const notifications = updateNotifications(payload)
+
+        if (!notifications) {
+            return HttpResponse.json(
+                {
+                    message: 'Unable to update notification preferences.',
+                },
+                {
+                    status: 404,
+                },
+            )
+        }
+
+        return HttpResponse.json(notifications)
+    }),
+
+    http.put<never, EmailPreferences, EmailPreferences | SettingsErrorResponse>(
+        '/api/settings/email-notifications',
+        async ({ request }) => {
+            const payload = await request.json()
+
+            const emailSettings = updateEmailSettings(payload)
+
+            if (!emailSettings) {
+                return HttpResponse.json(
+                    {
+                        message: 'Unable to update email preferences.',
+                    },
+                    {
+                        status: 404,
+                    },
+                )
+            }
+
+            return HttpResponse.json(emailSettings)
+        },
+    ),
+
+    http.put<
+        { platform: string },
+        never,
+        SocialAccount | SettingsErrorResponse
+    >('/api/settings/social-accounts/:platform/connect', async ({ params }) => {
+        const account = connectSocialAccount(params.platform as SocialPlatform)
+
+        if (!account) {
+            return HttpResponse.json(
+                {
+                    message: 'Account not found',
+                },
+                {
+                    status: 404,
+                },
+            )
+        }
+
+        return HttpResponse.json(account)
+    }),
+
+    http.put<
+        { platform: string },
+        never,
+        SocialAccount | SettingsErrorResponse
+    >(
         '/api/settings/social-accounts/:platform/disconnect',
         async ({ params }) => {
             const account = disconnectSocialAccount(
@@ -204,41 +247,47 @@ export const settingsHandlers = [
         },
     ),
 
-    http.delete('/api/settings/connected-accounts/:id', async ({ params }) => {
-        const removed = removeConnectedAccount(Number(params.id))
+    http.delete<{ id: string }, never, SettingsErrorResponse>(
+        '/api/settings/connected-accounts/:id',
+        async ({ params }) => {
+            const removed = removeConnectedAccount(Number(params.id))
 
-        if (!removed) {
-            return HttpResponse.json(
-                {
-                    message: 'Account not found',
-                },
-                {
-                    status: 404,
-                },
-            )
-        }
+            if (!removed) {
+                return HttpResponse.json(
+                    {
+                        message: 'Account not found',
+                    },
+                    {
+                        status: 404,
+                    },
+                )
+            }
 
-        return HttpResponse.json(null, {
-            status: 204,
-        })
-    }),
+            return new HttpResponse(null, {
+                status: 204,
+            })
+        },
+    ),
 
-    http.delete('/api/settings/devices/:id', async ({ params }) => {
-        const removed = removeDeviceSession(Number(params.id))
+    http.delete<{ id: string }, never, SettingsErrorResponse>(
+        '/api/settings/devices/:id',
+        async ({ params }) => {
+            const removed = removeDeviceSession(Number(params.id))
 
-        if (!removed) {
-            return HttpResponse.json(
-                {
-                    message: 'Device not found',
-                },
-                {
-                    status: 404,
-                },
-            )
-        }
+            if (!removed) {
+                return HttpResponse.json(
+                    {
+                        message: 'Device not found',
+                    },
+                    {
+                        status: 404,
+                    },
+                )
+            }
 
-        return HttpResponse.json(null, {
-            status: 204,
-        })
-    }),
+            return new HttpResponse(null, {
+                status: 204,
+            })
+        },
+    ),
 ]
