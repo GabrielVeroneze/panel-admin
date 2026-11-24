@@ -1,12 +1,19 @@
 import { useRef, type ChangeEvent } from 'react'
-import { useAppDispatch } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { Toast } from '@/shared/lib'
 import { updateAvatar } from '../store'
 
 export const useProfileAvatar = () => {
     const dispatch = useAppDispatch()
     const inputRef = useRef<HTMLInputElement>(null)
 
+    const avatarLoading = useAppSelector(
+        (state) => state.settings.avatarLoading,
+    )
+
     const openFilePicker = () => {
+        if (avatarLoading) return
+
         inputRef.current?.click()
     }
 
@@ -15,17 +22,28 @@ export const useProfileAvatar = () => {
 
         if (!file) return
 
-        await dispatch(
-            updateAvatar({
-                avatar: file,
-            }),
-        )
+        try {
+            await dispatch(
+                updateAvatar({
+                    avatar: file,
+                }),
+            ).unwrap()
 
-        event.target.value = ''
+            Toast.success('Profile picture updated successfully.')
+        } catch (error) {
+            Toast.error(
+                typeof error === 'string'
+                    ? error
+                    : 'Unable to update profile picture. Please try again.',
+            )
+        } finally {
+            event.target.value = ''
+        }
     }
 
     return {
         inputRef,
+        avatarLoading,
         openFilePicker,
         handleFileChange,
     }
