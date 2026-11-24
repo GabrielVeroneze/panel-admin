@@ -11,7 +11,8 @@ type ProfileSettingsProps = {
 }
 
 export const ProfileSettings = ({ profile, loading }: ProfileSettingsProps) => {
-    const { inputRef, handleFileChange, openFilePicker } = useProfileAvatar()
+    const { inputRef, avatarLoading, handleFileChange, openFilePicker } =
+        useProfileAvatar()
 
     if (loading) return <ProfileSettingsSkeleton />
 
@@ -30,6 +31,7 @@ export const ProfileSettings = ({ profile, loading }: ProfileSettingsProps) => {
                     icon={<CogSolidIcon />}
                     iconPosition="left"
                     onClick={openFilePicker}
+                    loading={avatarLoading}
                 >
                     Change Picture
                 </Button>
@@ -38,6 +40,7 @@ export const ProfileSettings = ({ profile, loading }: ProfileSettingsProps) => {
                     type="file"
                     accept="image/*"
                     hidden
+                    disabled={avatarLoading}
                     onChange={handleFileChange}
                 />
             </div>
