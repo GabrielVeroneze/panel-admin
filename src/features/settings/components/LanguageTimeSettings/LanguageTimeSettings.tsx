@@ -1,4 +1,10 @@
-import { Button, FormField, Select, SelectOption } from '@/shared/components'
+import {
+    Button,
+    FormError,
+    FormField,
+    Select,
+    SelectOption,
+} from '@/shared/components'
 import { useLanguageTimeForm } from '@/features/settings/hooks'
 import { SettingsCard } from '@/features/settings/components'
 import { languageOptions, timezoneOptions } from './languageTimeOptions'
@@ -18,6 +24,7 @@ export const LanguageTimeSettings = ({
     const {
         register,
         onSubmit,
+        preferencesLoading,
         formState: { errors },
     } = useLanguageTimeForm(preferences)
 
@@ -64,7 +71,13 @@ export const LanguageTimeSettings = ({
                         ))}
                     </Select>
                 </FormField>
-                <Button className={styles.button} type="submit" size="lg">
+                <FormError message={errors.root?.server?.message} />
+                <Button
+                    className={styles.button}
+                    type="submit"
+                    size="lg"
+                    loading={preferencesLoading}
+                >
                     Update
                 </Button>
             </form>
