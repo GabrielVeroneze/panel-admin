@@ -65,6 +65,12 @@ vi.mock('@/shared/components', () => ({
         </label>
     ),
 
+    FormError: ({ message }: { message?: string | null }) => {
+        if (!message) return null
+
+        return <p role="alert">{message}</p>
+    },
+
     FormField: ({
         children,
         id,
@@ -86,6 +92,7 @@ vi.mock('@/shared/components', () => ({
             {message && <span>{message}</span>}
         </div>
     ),
+
     Input: ({
         ...props
     }: React.InputHTMLAttributes<HTMLInputElement> & {
@@ -404,17 +411,15 @@ describe('SignUpForm', () => {
 
             render(<SignUpForm />)
 
-            expect(
-                screen.getByText('Unable to create account'),
-            ).toBeInTheDocument()
+            expect(screen.getByRole('alert')).toHaveTextContent(
+                'Unable to create account',
+            )
         })
 
         it('does not render the authentication error when there is no error', () => {
             render(<SignUpForm />)
 
-            expect(
-                screen.queryByText('Unable to create account'),
-            ).not.toBeInTheDocument()
+            expect(screen.queryByRole('alert')).not.toBeInTheDocument()
         })
     })
 
