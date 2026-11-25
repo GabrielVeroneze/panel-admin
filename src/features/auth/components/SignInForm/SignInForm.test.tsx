@@ -73,6 +73,12 @@ vi.mock('@/shared/components', () => ({
         </label>
     ),
 
+    FormError: ({ message }: { message?: string | null }) => {
+        if (!message) return null
+
+        return <p role="alert">{message}</p>
+    },
+
     FormField: ({
         children,
         id,
@@ -316,15 +322,15 @@ describe('SignInForm', () => {
 
             render(<SignInForm />)
 
-            expect(screen.getByText('Invalid credentials')).toBeInTheDocument()
+            expect(screen.getByRole('alert')).toHaveTextContent(
+                'Invalid credentials',
+            )
         })
 
         it('does not render the authentication error when there is no error', () => {
             render(<SignInForm />)
 
-            expect(
-                screen.queryByText('Invalid credentials'),
-            ).not.toBeInTheDocument()
+            expect(screen.queryByRole('alert')).not.toBeInTheDocument()
         })
     })
 
