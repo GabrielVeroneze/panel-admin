@@ -51,6 +51,8 @@ export const settingsHandlers = [
     http.put<never, FormData, SettingsProfile | SettingsErrorResponse>(
         '/api/settings/profile',
         async ({ request }) => {
+            await delay(1000)
+
             const formData = await request.formData()
 
             const avatar = formData.get('avatar') as File | null
@@ -88,6 +90,8 @@ export const settingsHandlers = [
         SettingsPreferences,
         SettingsPreferences | SettingsErrorResponse
     >('/api/settings/preferences', async ({ request }) => {
+        await delay(1000)
+
         const payload = await request.json()
 
         const preferences = updatePreferences(payload)
@@ -112,6 +116,8 @@ export const settingsHandlers = [
         GeneralInformation,
         GeneralInformation | SettingsErrorResponse
     >('/api/settings/general', async ({ request }) => {
+        await delay(1000)
+
         const payload = await request.json()
 
         const information = updateGeneralInformation(payload)
@@ -135,6 +141,8 @@ export const settingsHandlers = [
         UpdatePasswordPayload,
         PasswordResponse | SettingsErrorResponse
     >('/api/settings/password', async ({ request }) => {
+        await delay(1000)
+
         const payload = await request.json()
 
         const updated = updateCurrentUserPassword(payload)
@@ -160,6 +168,8 @@ export const settingsHandlers = [
         NotificationPreferences,
         NotificationPreferences | SettingsErrorResponse
     >('/api/settings/notifications', async ({ request }) => {
+        await delay(1000)
+
         const payload = await request.json()
 
         const notifications = updateNotifications(payload)
@@ -181,6 +191,8 @@ export const settingsHandlers = [
     http.put<never, EmailPreferences, EmailPreferences | SettingsErrorResponse>(
         '/api/settings/email-notifications',
         async ({ request }) => {
+            await delay(1000)
+
             const payload = await request.json()
 
             const emailSettings = updateEmailSettings(payload)
@@ -205,6 +217,8 @@ export const settingsHandlers = [
         never,
         SocialAccount | SettingsErrorResponse
     >('/api/settings/social-accounts/:platform/connect', async ({ params }) => {
+        await delay(1000)
+
         const account = connectSocialAccount(params.platform as SocialPlatform)
 
         if (!account) {
@@ -228,6 +242,8 @@ export const settingsHandlers = [
     >(
         '/api/settings/social-accounts/:platform/disconnect',
         async ({ params }) => {
+            await delay(1000)
+
             const account = disconnectSocialAccount(
                 params.platform as SocialPlatform,
             )
@@ -250,6 +266,8 @@ export const settingsHandlers = [
     http.delete<{ id: string }, never, SettingsErrorResponse>(
         '/api/settings/connected-accounts/:id',
         async ({ params }) => {
+            await delay(1000)
+
             const removed = removeConnectedAccount(Number(params.id))
 
             if (!removed) {
@@ -272,6 +290,8 @@ export const settingsHandlers = [
     http.delete<{ id: string }, never, SettingsErrorResponse>(
         '/api/settings/devices/:id',
         async ({ params }) => {
+            await delay(1000)
+
             const removed = removeDeviceSession(Number(params.id))
 
             if (!removed) {
