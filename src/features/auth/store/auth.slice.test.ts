@@ -199,7 +199,7 @@ describe('auth.slice', () => {
             })
         })
 
-        it('uses Unexpected error when rejected without a payload', async () => {
+        it('uses the fallback error when rejected without a payload', async () => {
             const { default: reducer } = await import('./auth.slice')
             const { signInThunk } = await import('./auth.thunks')
 
@@ -221,7 +221,7 @@ describe('auth.slice', () => {
             )
 
             expect(result.loading).toBe(false)
-            expect(result.error).toBe('Unexpected error')
+            expect(result.error).toBe('Unable to sign in. Please try again.')
         })
     })
 
@@ -312,7 +312,7 @@ describe('auth.slice', () => {
             expect(result.error).toBe('Unable to create account')
         })
 
-        it('uses Unexpected error when rejected without a payload', async () => {
+        it('uses the fallback error when rejected without a payload', async () => {
             const { default: reducer } = await import('./auth.slice')
             const { signUpThunk } = await import('./auth.thunks')
 
@@ -334,7 +334,9 @@ describe('auth.slice', () => {
             )
 
             expect(result.loading).toBe(false)
-            expect(result.error).toBe('Unexpected error')
+            expect(result.error).toBe(
+                'Unable to create account. Please try again.',
+            )
         })
     })
 
