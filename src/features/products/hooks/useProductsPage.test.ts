@@ -26,9 +26,19 @@ vi.mock('../hooks', () => ({
 }))
 
 vi.mock('../store', () => ({
+    clearCreateError: vi.fn(() => ({
+        type: 'products/clearCreateError',
+    })),
+    clearUpdateError: vi.fn(() => ({
+        type: 'products/clearUpdateError',
+    })),
+    clearDeleteError: vi.fn(() => ({
+        type: 'products/clearDeleteError',
+    })),
     createProduct: vi.fn(),
     updateProduct: vi.fn(),
     deleteProduct: vi.fn(),
+    deleteProducts: vi.fn(),
 }))
 
 vi.mock('../mappers', () => ({
@@ -120,6 +130,17 @@ beforeEach(() => {
         loading: false,
         page: 1,
         pageSize: 15,
+        createLoading: false,
+        createError: null,
+        updateLoading: false,
+        updateError: null,
+        deleteLoading: false,
+        deleteError: null,
+        deleteMultipleLoading: false,
+    })
+
+    mockDispatch.mockReturnValue({
+        unwrap: vi.fn().mockResolvedValue(undefined),
     })
 })
 
@@ -189,8 +210,6 @@ describe('useProductsPage', () => {
 
         vi.mocked(createProduct).mockReturnValue(action as never)
 
-        mockDispatch.mockResolvedValue(undefined)
-
         const { result } = renderHook(() => useProductsPage())
 
         await act(async () => {
@@ -225,8 +244,6 @@ describe('useProductsPage', () => {
         vi.mocked(mapFormToUpdatePayload).mockReturnValue(payload as never)
 
         vi.mocked(updateProduct).mockReturnValue(action as never)
-
-        mockDispatch.mockResolvedValue(undefined)
 
         const { result } = renderHook(() => useProductsPage())
 
@@ -268,8 +285,6 @@ describe('useProductsPage', () => {
         })
 
         vi.mocked(deleteProduct).mockReturnValue(action as never)
-
-        mockDispatch.mockResolvedValue(undefined)
 
         const { result } = renderHook(() => useProductsPage())
 
