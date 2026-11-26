@@ -11,6 +11,9 @@ import type { AuthResponse, AuthUser } from '../types'
 
 vi.mock('@/shared/utils', () => ({
     clearSessionStorage: vi.fn(),
+    getApiErrorMessage: vi.fn(
+        (_error: unknown, { fallback }: { fallback: string }) => fallback,
+    ),
     getSession: vi.fn(),
     saveSession: vi.fn(),
 }))
@@ -87,7 +90,7 @@ describe('auth.thunks', () => {
             })
         })
 
-        it('rejects with Invalid credentials when signIn fails', async () => {
+        it('rejects with the fallback message when signIn fails', async () => {
             vi.mocked(signIn).mockRejectedValue(new Error('Unauthorized'))
 
             const result = await signInThunk({
@@ -97,7 +100,7 @@ describe('auth.thunks', () => {
 
             expect(result).toMatchObject({
                 type: 'auth/signIn/rejected',
-                payload: 'Invalid credentials',
+                payload: 'Unable to sign in. Please try again.',
             })
 
             expect(saveSession).not.toHaveBeenCalled()
@@ -176,7 +179,7 @@ describe('auth.thunks', () => {
             expect(result.payload).toBeUndefined()
         })
 
-        it('rejects with Unable to create account when signUp fails', async () => {
+        it('rejects with the fallback message when signUp fails', async () => {
             vi.mocked(signUp).mockRejectedValue(
                 new Error('Email already exists'),
             )
@@ -189,7 +192,7 @@ describe('auth.thunks', () => {
 
             expect(result).toMatchObject({
                 type: 'auth/signUp/rejected',
-                payload: 'Unable to create account',
+                payload: 'Unable to create account. Please try again.',
             })
         })
     })
