@@ -167,7 +167,9 @@ describe('users.thunks', () => {
             expect(createUser.rejected.match(result)).toBe(true)
 
             if (createUser.rejected.match(result)) {
-                expect(result.error.message).toBe('Request failed')
+                expect(result.payload).toBe(
+                    'Unable to create user. Please try again.',
+                )
             }
         })
     })
@@ -303,11 +305,13 @@ describe('users.thunks', () => {
             expect(updateUser.rejected.match(result)).toBe(true)
 
             if (updateUser.rejected.match(result)) {
-                expect(result.payload).toBe('Unable to update user')
+                expect(result.payload).toBe(
+                    'Unable to update user. Please try again.',
+                )
             }
         })
 
-        it('returns a rejected action when refreshing the current user fails', async () => {
+        it('returns the updated user when refreshing the current user fails', async () => {
             const id = 1
 
             const payload: UpdateUserPayload = {
@@ -326,21 +330,34 @@ describe('users.thunks', () => {
                 status: 'active',
             }
 
+            const fetchCurrentUserAction = {
+                type: 'auth/fetchCurrentUser/rejected',
+                error: {
+                    message: 'Refresh failed',
+                },
+            }
+
             vi.mocked(updateUserRequest).mockResolvedValue(user)
 
-            const dispatch = vi.fn().mockReturnValue({
-                unwrap: vi.fn().mockRejectedValue(new Error('Refresh failed')),
-            })
+            vi.mocked(fetchCurrentUserThunk).mockReturnValue(
+                fetchCurrentUserAction as never,
+            )
+
+            const dispatch = vi.fn().mockReturnValue(fetchCurrentUserAction)
 
             const result = await updateUser({
                 id,
                 payload,
             })(dispatch, vi.fn(), undefined)
 
-            expect(updateUser.rejected.match(result)).toBe(true)
+            expect(updateUserRequest).toHaveBeenCalledWith(id, payload)
+            expect(fetchCurrentUserThunk).toHaveBeenCalledTimes(1)
+            expect(dispatch).toHaveBeenCalledWith(fetchCurrentUserAction)
 
-            if (updateUser.rejected.match(result)) {
-                expect(result.payload).toBe('Unable to update user')
+            expect(updateUser.fulfilled.match(result)).toBe(true)
+
+            if (updateUser.fulfilled.match(result)) {
+                expect(result.payload).toEqual(user)
             }
         })
 
@@ -365,7 +382,9 @@ describe('users.thunks', () => {
             expect(updateUser.rejected.match(result)).toBe(true)
 
             if (updateUser.rejected.match(result)) {
-                expect(result.payload).toBe('Unable to update user')
+                expect(result.payload).toBe(
+                    'Unable to update user. Please try again.',
+                )
             }
 
             expect(updateUserRequest).toHaveBeenCalledWith(id, payload)
@@ -410,7 +429,9 @@ describe('users.thunks', () => {
             expect(deleteUser.rejected.match(result)).toBe(true)
 
             if (deleteUser.rejected.match(result)) {
-                expect(result.error.message).toBe('Request failed')
+                expect(result.payload).toBe(
+                    'Unable to delete user. Please try again.',
+                )
             }
         })
     })
@@ -469,7 +490,9 @@ describe('users.thunks', () => {
             expect(deleteUsers.rejected.match(result)).toBe(true)
 
             if (deleteUsers.rejected.match(result)) {
-                expect(result.error.message).toBe('Request failed')
+                expect(result.payload).toBe(
+                    'Unable to delete selected users. Please try again.',
+                )
             }
         })
     })
