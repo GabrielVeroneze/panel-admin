@@ -22,6 +22,12 @@ const {
 }))
 
 vi.mock('@/shared/components', () => ({
+    FormError: ({ message }: { message?: string | null }) => {
+        if (!message) return null
+
+        return <p role="alert">{message}</p>
+    },
+
     Modal: ({
         open,
         onClose,
@@ -451,10 +457,12 @@ describe('EditUserModal', () => {
             />,
         )
 
-        expect(mockModalHeader).toHaveBeenCalledWith({
-            title: 'Edit user',
-            onClose,
-        })
+        expect(mockModalHeader).toHaveBeenCalledWith(
+            expect.objectContaining({
+                title: 'Edit user',
+                onClose: expect.any(Function),
+            }),
+        )
     })
 
     it('passes onClose to Modal', () => {
@@ -469,9 +477,40 @@ describe('EditUserModal', () => {
             />,
         )
 
-        expect(mockModal).toHaveBeenCalledWith({
-            open: true,
-            onClose,
-        })
+        expect(mockModal).toHaveBeenCalledWith(
+            expect.objectContaining({
+                open: true,
+                onClose: expect.any(Function),
+            }),
+        )
+    })
+
+    it('renders the delete error when provided', () => {
+        render(
+            <EditUserModal
+                open={true}
+                user={user}
+                onUpdate={vi.fn()}
+                onClose={vi.fn()}
+                deleteError="Unable to delete account"
+            />,
+        )
+
+        expect(screen.getByRole('alert')).toHaveTextContent(
+            'Unable to delete account',
+        )
+    })
+
+    it('does not render the delete error when it is not provided', () => {
+        render(
+            <EditUserModal
+                open={true}
+                user={user}
+                onUpdate={vi.fn()}
+                onClose={vi.fn()}
+            />,
+        )
+
+        expect(screen.queryByRole('alert')).not.toBeInTheDocument()
     })
 })
