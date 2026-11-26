@@ -7,7 +7,19 @@ import {
     fetchUsers,
     updateUser,
 } from './users.thunks'
+import type { AsyncState } from '@/shared/types'
 import type { PaginatedUsers, User } from '../types'
+
+type UsersState = AsyncState<PaginatedUsers> & {
+    createLoading: boolean
+    createError: string | null
+    updateLoading: boolean
+    updateError: string | null
+    deleteUserLoading: boolean
+    deleteUserError: string | null
+    deleteUsersLoading: boolean
+    deleteUsersError: string | null
+}
 
 vi.mock('@/services/api', () => ({
     api: {
@@ -57,6 +69,20 @@ const createPaginatedUsers = (
     ...overrides,
 })
 
+const createUsersState = (overrides: Partial<UsersState> = {}): UsersState => ({
+    data: null,
+    loading: false,
+    createLoading: false,
+    createError: null,
+    updateLoading: false,
+    updateError: null,
+    deleteUserLoading: false,
+    deleteUserError: null,
+    deleteUsersLoading: false,
+    deleteUsersError: null,
+    ...overrides,
+})
+
 describe('users.slice', () => {
     describe('initial state', () => {
         it('returns the initial state', () => {
@@ -64,10 +90,7 @@ describe('users.slice', () => {
                 type: 'unknown',
             })
 
-            expect(state).toEqual({
-                data: null,
-                loading: false,
-            })
+            expect(state).toEqual(createUsersState())
         })
     })
 
@@ -89,10 +112,10 @@ describe('users.slice', () => {
             const data = createPaginatedUsers()
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 fetchUsers.pending('request-id', {
                     page: 2,
                     pageSize: 10,
@@ -107,10 +130,10 @@ describe('users.slice', () => {
             const data = createPaginatedUsers()
 
             const state = reducer(
-                {
+                createUsersState({
                     data: null,
                     loading: true,
-                },
+                }),
                 fetchUsers.fulfilled(data, 'request-id', {
                     page: 1,
                     pageSize: 10,
@@ -137,10 +160,10 @@ describe('users.slice', () => {
             })
 
             const state = reducer(
-                {
+                createUsersState({
                     data: previousData,
                     loading: true,
-                },
+                }),
                 fetchUsers.fulfilled(newData, 'request-id', {
                     page: 2,
                     pageSize: 10,
@@ -162,10 +185,10 @@ describe('users.slice', () => {
             })
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 createUser.fulfilled(newUser, 'request-id', {
                     payload: {
                         name: 'New User',
@@ -191,10 +214,10 @@ describe('users.slice', () => {
             })
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 createUser.fulfilled(newUser, 'request-id', {
                     payload: {
                         name: 'New User',
@@ -217,10 +240,10 @@ describe('users.slice', () => {
             })
 
             const state = reducer(
-                {
+                createUsersState({
                     data: null,
                     loading: false,
-                },
+                }),
                 createUser.fulfilled(newUser, 'request-id', {
                     payload: {
                         name: 'New User',
@@ -233,10 +256,7 @@ describe('users.slice', () => {
                 }),
             )
 
-            expect(state).toEqual({
-                data: null,
-                loading: false,
-            })
+            expect(state).toEqual(createUsersState())
         })
     })
 
@@ -252,10 +272,10 @@ describe('users.slice', () => {
             })
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 updateUser.fulfilled(updatedUser, 'request-id', {
                     id: 2,
                     payload: {
@@ -279,10 +299,10 @@ describe('users.slice', () => {
             })
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 updateUser.fulfilled(updatedUser, 'request-id', {
                     id: 2,
                     payload: {
@@ -309,10 +329,10 @@ describe('users.slice', () => {
             })
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 updateUser.fulfilled(updatedUser, 'request-id', {
                     id: 999,
                     payload: {
@@ -332,10 +352,10 @@ describe('users.slice', () => {
             })
 
             const state = reducer(
-                {
+                createUsersState({
                     data: null,
                     loading: false,
-                },
+                }),
                 updateUser.fulfilled(updatedUser, 'request-id', {
                     id: 1,
                     payload: {
@@ -344,10 +364,7 @@ describe('users.slice', () => {
                 }),
             )
 
-            expect(state).toEqual({
-                data: null,
-                loading: false,
-            })
+            expect(state).toEqual(createUsersState())
         })
     })
 
@@ -356,10 +373,10 @@ describe('users.slice', () => {
             const data = createPaginatedUsers()
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 deleteUser.fulfilled(undefined, 'request-id', {
                     id: 2,
                 }),
@@ -372,10 +389,10 @@ describe('users.slice', () => {
             const data = createPaginatedUsers()
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 deleteUser.fulfilled(undefined, 'request-id', {
                     id: 2,
                 }),
@@ -388,10 +405,10 @@ describe('users.slice', () => {
             const data = createPaginatedUsers()
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 deleteUser.fulfilled(undefined, 'request-id', {
                     id: 1,
                 }),
@@ -404,19 +421,16 @@ describe('users.slice', () => {
 
         it('does nothing when there is no existing data', () => {
             const state = reducer(
-                {
+                createUsersState({
                     data: null,
                     loading: false,
-                },
+                }),
                 deleteUser.fulfilled(undefined, 'request-id', {
                     id: 1,
                 }),
             )
 
-            expect(state).toEqual({
-                data: null,
-                loading: false,
-            })
+            expect(state).toEqual(createUsersState())
         })
     })
 
@@ -425,10 +439,10 @@ describe('users.slice', () => {
             const data = createPaginatedUsers()
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 deleteUsers.fulfilled(undefined, 'request-id', {
                     ids: [1, 3],
                 }),
@@ -441,10 +455,10 @@ describe('users.slice', () => {
             const data = createPaginatedUsers()
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 deleteUsers.fulfilled(undefined, 'request-id', {
                     ids: [1, 3],
                 }),
@@ -457,10 +471,10 @@ describe('users.slice', () => {
             const data = createPaginatedUsers()
 
             const state = reducer(
-                {
+                createUsersState({
                     data,
                     loading: false,
-                },
+                }),
                 deleteUsers.fulfilled(undefined, 'request-id', {
                     ids: [2],
                 }),
@@ -473,19 +487,16 @@ describe('users.slice', () => {
 
         it('does nothing when there is no existing data', () => {
             const state = reducer(
-                {
+                createUsersState({
                     data: null,
                     loading: false,
-                },
+                }),
                 deleteUsers.fulfilled(undefined, 'request-id', {
                     ids: [1, 2],
                 }),
             )
 
-            expect(state).toEqual({
-                data: null,
-                loading: false,
-            })
+            expect(state).toEqual(createUsersState())
         })
     })
 })
