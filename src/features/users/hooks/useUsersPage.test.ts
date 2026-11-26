@@ -113,6 +113,14 @@ describe('useUsersPage', () => {
             page: 1,
             pageSize: 15,
             loading: false,
+            createLoading: false,
+            createError: null,
+            updateLoading: false,
+            updateError: null,
+            deleteUserLoading: false,
+            deleteUserError: null,
+            deleteUsersLoading: false,
+            deleteUsersError: null,
         })
 
         mockDispatch.mockReturnValue({
