@@ -1,13 +1,15 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, renderHook, waitFor } from '@testing-library/react'
-import { useAppDispatch } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
 import { Toast } from '@/shared/lib'
+import { getApiErrorMessage } from '@/shared/utils'
 import { savePassword } from '../store'
 import { usePasswordForm } from './usePasswordForm'
 import type { PasswordFormValues } from '../schemas'
 
 vi.mock('@/store', () => ({
     useAppDispatch: vi.fn(),
+    useAppSelector: vi.fn(),
 }))
 
 vi.mock('../store', () => ({
@@ -19,6 +21,10 @@ vi.mock('@/shared/lib', () => ({
         success: vi.fn(),
         error: vi.fn(),
     },
+}))
+
+vi.mock('@/shared/utils', () => ({
+    getApiErrorMessage: vi.fn(),
 }))
 
 describe('usePasswordForm', () => {
@@ -49,6 +55,12 @@ describe('usePasswordForm', () => {
         vi.clearAllMocks()
 
         vi.mocked(useAppDispatch).mockReturnValue(dispatch)
+        vi.mocked(useAppSelector).mockReturnValue(false)
+
+        vi.mocked(getApiErrorMessage).mockImplementation(
+            (error, { fallback }) =>
+                typeof error === 'string' ? error : fallback,
+        )
     })
 
     it('returns the form and onSubmit function', () => {
@@ -135,12 +147,12 @@ describe('usePasswordForm', () => {
 
         expect(Toast.success).toHaveBeenCalledTimes(1)
         expect(Toast.success).toHaveBeenCalledWith(
-            'Password updated successfully',
+            'Password updated successfully.',
         )
         expect(Toast.error).not.toHaveBeenCalled()
     })
 
-    it('shows an error toast when password updating fails', async () => {
+    it('displays a server error when password updating fails', async () => {
         const errorMessage = 'Current password is incorrect'
         const unwrap = vi.fn().mockRejectedValue(errorMessage)
         const passwordAction = createPasswordAction(unwrap)
@@ -166,12 +178,12 @@ describe('usePasswordForm', () => {
             await result.current.onSubmit()
         })
 
-        expect(Toast.error).toHaveBeenCalledTimes(1)
-        expect(Toast.error).toHaveBeenCalledWith(errorMessage)
+        expect(result.current.errors.root?.server?.message).toBe(errorMessage)
+        expect(Toast.error).not.toHaveBeenCalled()
         expect(Toast.success).not.toHaveBeenCalled()
     })
 
-    it('does not reset the form when password updating fails', async () => {
+    it('does not reset the form or display a success toast when password updating fails', async () => {
         const unwrap = vi
             .fn()
             .mockRejectedValue('Current password is incorrect')
@@ -199,6 +211,7 @@ describe('usePasswordForm', () => {
         })
 
         expect(result.current.form.getValues()).toEqual(validValues)
+        expect(Toast.success).not.toHaveBeenCalled()
     })
 
     it('does not dispatch when all fields are empty', async () => {
@@ -355,5 +368,13 @@ describe('usePasswordForm', () => {
 
         expect(savePassword).not.toHaveBeenCalled()
         expect(dispatch).not.toHaveBeenCalled()
+    })
+
+    it('returns the password loading state', () => {
+        vi.mocked(useAppSelector).mockReturnValue(true)
+
+        const { result } = renderPasswordForm()
+
+        expect(result.current.passwordLoading).toBe(true)
     })
 })
