@@ -182,8 +182,9 @@ describe('products thunks', () => {
 
             expect(result).toMatchObject({
                 type: 'products/createProduct/rejected',
-                error: {
-                    message: 'Failed to create product',
+                payload: 'Unable to create product. Please try again.',
+                meta: {
+                    rejectedWithValue: true,
                 },
             })
         })
@@ -240,8 +241,9 @@ describe('products thunks', () => {
 
             expect(result).toMatchObject({
                 type: 'products/updateProduct/rejected',
-                error: {
-                    message: 'Failed to update product',
+                payload: 'Unable to update product. Please try again.',
+                meta: {
+                    rejectedWithValue: true,
                 },
             })
         })
@@ -292,8 +294,9 @@ describe('products thunks', () => {
 
             expect(result).toMatchObject({
                 type: 'products/deleteProduct/rejected',
-                error: {
-                    message: 'Failed to delete product',
+                payload: 'Unable to delete product. Please try again.',
+                meta: {
+                    rejectedWithValue: true,
                 },
             })
         })
@@ -342,8 +345,10 @@ describe('products thunks', () => {
 
             expect(result).toMatchObject({
                 type: 'products/deleteProducts/rejected',
-                error: {
-                    message: 'Failed to delete products',
+                payload:
+                    'Unable to delete selected products. Please try again.',
+                meta: {
+                    rejectedWithValue: true,
                 },
             })
         })
