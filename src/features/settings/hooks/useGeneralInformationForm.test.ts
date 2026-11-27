@@ -1,12 +1,13 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, renderHook, waitFor } from '@testing-library/react'
-import { useAppDispatch } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
 import { saveGeneralInformation } from '../store'
 import { useGeneralInformationForm } from './useGeneralInformationForm'
 import type { GeneralInformation } from '../types'
 
 vi.mock('@/store', () => ({
     useAppDispatch: vi.fn(),
+    useAppSelector: vi.fn(),
 }))
 
 vi.mock('../store', () => ({
@@ -39,6 +40,7 @@ describe('useGeneralInformationForm', () => {
         vi.clearAllMocks()
 
         vi.mocked(useAppDispatch).mockReturnValue(dispatch)
+        vi.mocked(useAppSelector).mockReturnValue(false)
 
         vi.mocked(saveGeneralInformation).mockReturnValue(
             saveGeneralInformationAction as never,
@@ -197,5 +199,13 @@ describe('useGeneralInformationForm', () => {
         })
 
         expect(saveGeneralInformation).toHaveBeenCalledWith(updatedInformation)
+    })
+
+    it('returns the general information loading state', () => {
+        vi.mocked(useAppSelector).mockReturnValue(true)
+
+        const { result } = renderHook(() => useGeneralInformationForm())
+
+        expect(result.current.generalInformationLoading).toBe(true)
     })
 })
