@@ -25,6 +25,7 @@ describe('EditProductForm', () => {
                 formId={formId}
                 product={product}
                 onSubmit={onSubmit}
+                error={null}
             />,
         )
 
@@ -42,6 +43,7 @@ describe('EditProductForm', () => {
                 formId={formId}
                 product={product}
                 onSubmit={onSubmit}
+                error={null}
             />,
         )
 
@@ -76,6 +78,7 @@ describe('EditProductForm', () => {
                 formId={formId}
                 product={product}
                 onSubmit={onSubmit}
+                error={null}
             />,
         )
 
@@ -100,6 +103,23 @@ describe('EditProductForm', () => {
         )
     })
 
+    it('renders the provided error message', () => {
+        const onSubmit = vi.fn()
+
+        render(
+            <EditProductForm
+                formId={formId}
+                product={product}
+                onSubmit={onSubmit}
+                error="Unable to update product. Please try again."
+            />,
+        )
+
+        expect(
+            screen.getByText('Unable to update product. Please try again.'),
+        ).toBeInTheDocument()
+    })
+
     it('does not render the existing product image as a new upload', () => {
         const onSubmit = vi.fn()
 
@@ -108,6 +128,7 @@ describe('EditProductForm', () => {
                 formId={formId}
                 product={product}
                 onSubmit={onSubmit}
+                error={null}
             />,
         )
 
@@ -119,7 +140,13 @@ describe('EditProductForm', () => {
     it('uses empty default values when no product is provided', () => {
         const onSubmit = vi.fn()
 
-        render(<EditProductForm formId={formId} onSubmit={onSubmit} />)
+        render(
+            <EditProductForm
+                formId={formId}
+                onSubmit={onSubmit}
+                error={null}
+            />,
+        )
 
         expect(
             screen.getByRole('textbox', { name: 'Product Name' }),
@@ -146,6 +173,7 @@ describe('EditProductForm', () => {
                 formId={formId}
                 product={null}
                 onSubmit={onSubmit}
+                error={null}
             />,
         )
 
@@ -169,7 +197,13 @@ describe('EditProductForm', () => {
     it('does not call onSubmit when the form is submitted with invalid data', async () => {
         const onSubmit = vi.fn()
 
-        render(<EditProductForm formId={formId} onSubmit={onSubmit} />)
+        render(
+            <EditProductForm
+                formId={formId}
+                onSubmit={onSubmit}
+                error={null}
+            />,
+        )
 
         fireEvent.submit(document.getElementById(formId)!)
 
@@ -202,6 +236,7 @@ describe('EditProductForm', () => {
                 formId={formId}
                 product={product}
                 onSubmit={onSubmit}
+                error={null}
             />,
         )
 
@@ -232,6 +267,7 @@ describe('EditProductForm', () => {
                 formId={formId}
                 product={product}
                 onSubmit={onSubmit}
+                error={null}
             />,
         )
 
@@ -296,6 +332,7 @@ describe('EditProductForm', () => {
                 formId={formId}
                 product={product}
                 onSubmit={onSubmit}
+                error={null}
             />,
         )
 
