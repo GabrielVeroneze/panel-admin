@@ -55,14 +55,23 @@ const productsData: PaginatedProducts = {
     pageSize: 15,
 }
 
+const initialState = {
+    data: null,
+    loading: false,
+    createLoading: false,
+    createError: null,
+    updateLoading: false,
+    updateError: null,
+    deleteLoading: false,
+    deleteError: null,
+    deleteMultipleLoading: false,
+}
+
 describe('products reducer', () => {
     it('returns the initial state', () => {
         const state = reducer(undefined, { type: 'unknown' })
 
-        expect(state).toEqual({
-            data: null,
-            loading: false,
-        })
+        expect(state).toEqual(initialState)
     })
 
     describe('fetchProducts', () => {
@@ -82,6 +91,7 @@ describe('products reducer', () => {
         it('stores the products and stops loading when the request succeeds', () => {
             const state = reducer(
                 {
+                    ...initialState,
                     data: null,
                     loading: true,
                 },
@@ -92,6 +102,7 @@ describe('products reducer', () => {
             )
 
             expect(state).toEqual({
+                ...initialState,
                 data: productsData,
                 loading: false,
             })
@@ -107,6 +118,7 @@ describe('products reducer', () => {
 
             const state = reducer(
                 {
+                    ...initialState,
                     data: previousData,
                     loading: true,
                 },
@@ -135,6 +147,7 @@ describe('products reducer', () => {
 
             const state = reducer(
                 {
+                    ...initialState,
                     data: productsData,
                     loading: false,
                 },
@@ -167,6 +180,7 @@ describe('products reducer', () => {
 
             const state = reducer(
                 {
+                    ...initialState,
                     data: productsData,
                     loading: false,
                 },
@@ -193,6 +207,7 @@ describe('products reducer', () => {
 
             const state = reducer(
                 {
+                    ...initialState,
                     data: null,
                     loading: false,
                 },
@@ -209,6 +224,7 @@ describe('products reducer', () => {
             )
 
             expect(state).toEqual({
+                ...initialState,
                 data: null,
                 loading: false,
             })
@@ -225,6 +241,7 @@ describe('products reducer', () => {
 
             const state = reducer(
                 {
+                    ...initialState,
                     data: productsData,
                     loading: false,
                 },
@@ -252,6 +269,7 @@ describe('products reducer', () => {
 
             const state = reducer(
                 {
+                    ...initialState,
                     data: productsData,
                     loading: false,
                 },
@@ -275,6 +293,7 @@ describe('products reducer', () => {
 
             const state = reducer(
                 {
+                    ...initialState,
                     data: productsData,
                     loading: false,
                 },
@@ -298,6 +317,7 @@ describe('products reducer', () => {
 
             const state = reducer(
                 {
+                    ...initialState,
                     data: null,
                     loading: false,
                 },
@@ -310,6 +330,7 @@ describe('products reducer', () => {
             )
 
             expect(state).toEqual({
+                ...initialState,
                 data: null,
                 loading: false,
             })
@@ -320,6 +341,7 @@ describe('products reducer', () => {
         it('removes the product with the requested id', () => {
             const state = reducer(
                 {
+                    ...initialState,
                     data: productsData,
                     loading: false,
                 },
@@ -334,6 +356,7 @@ describe('products reducer', () => {
         it('decrements the total after deleting a product', () => {
             const state = reducer(
                 {
+                    ...initialState,
                     data: productsData,
                     loading: false,
                 },
@@ -348,6 +371,7 @@ describe('products reducer', () => {
         it('does not change the state when data is null', () => {
             const state = reducer(
                 {
+                    ...initialState,
                     data: null,
                     loading: false,
                 },
@@ -357,6 +381,7 @@ describe('products reducer', () => {
             )
 
             expect(state).toEqual({
+                ...initialState,
                 data: null,
                 loading: false,
             })
@@ -367,6 +392,7 @@ describe('products reducer', () => {
         it('removes all products with the requested ids', () => {
             const state = reducer(
                 {
+                    ...initialState,
                     data: productsData,
                     loading: false,
                 },
@@ -381,6 +407,7 @@ describe('products reducer', () => {
         it('decrements the total by the number of deleted ids', () => {
             const state = reducer(
                 {
+                    ...initialState,
                     data: productsData,
                     loading: false,
                 },
@@ -395,6 +422,7 @@ describe('products reducer', () => {
         it('does not change the state when data is null', () => {
             const state = reducer(
                 {
+                    ...initialState,
                     data: null,
                     loading: false,
                 },
@@ -404,6 +432,7 @@ describe('products reducer', () => {
             )
 
             expect(state).toEqual({
+                ...initialState,
                 data: null,
                 loading: false,
             })
@@ -414,6 +443,7 @@ describe('products reducer', () => {
         it('does not change the state for an unknown action', () => {
             const state = reducer(
                 {
+                    ...initialState,
                     data: productsData,
                     loading: false,
                 },
@@ -423,6 +453,7 @@ describe('products reducer', () => {
             )
 
             expect(state).toEqual({
+                ...initialState,
                 data: productsData,
                 loading: false,
             })
@@ -431,6 +462,7 @@ describe('products reducer', () => {
         it('stops loading when fetchProducts is rejected', () => {
             const state = reducer(
                 {
+                    ...initialState,
                     data: productsData,
                     loading: true,
                 },
@@ -445,6 +477,7 @@ describe('products reducer', () => {
             )
 
             expect(state).toEqual({
+                ...initialState,
                 data: productsData,
                 loading: false,
             })
