@@ -1,9 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen } from '@testing-library/react'
 import { ProductsPage } from './ProductsPage'
 import { useAppDispatch } from '@/store'
 import { useProductsPage } from '@/features/products/hooks'
-import { deleteProducts } from '@/features/products/store'
 import type { Product, ProductListItem } from '@/features/products/types'
 
 vi.mock('@/features/products/hooks', () => ({
@@ -194,6 +193,15 @@ const mockUseProductsPage = (overrides: Partial<ProductsPageReturn> = {}) => {
         handleCreateSubmit: vi.fn(),
         handleUpdateSubmit: vi.fn(),
         handleDeleteProduct: vi.fn(),
+        handleDeleteProducts: vi.fn().mockResolvedValue(undefined),
+        handleOpenCreate: vi.fn(),
+        createLoading: false,
+        createError: null,
+        updateLoading: false,
+        updateError: null,
+        deleteLoading: false,
+        deleteError: null,
+        deleteMultipleLoading: false,
         ...overrides,
     })
 }
@@ -277,13 +285,11 @@ describe('ProductsPage', () => {
         expect(filters.handleSearchChange).toHaveBeenCalledWith('phone')
     })
 
-    it('calls modal.openCreate when Add Product is clicked', () => {
-        const openCreate = vi.fn()
+    it('calls handleOpenCreate when Add Product is clicked', () => {
+        const handleOpenCreate = vi.fn()
 
         mockUseProductsPage({
-            modal: createModal({
-                openCreate,
-            }),
+            handleOpenCreate,
         })
 
         render(<ProductsPage />)
@@ -294,7 +300,7 @@ describe('ProductsPage', () => {
             }),
         )
 
-        expect(openCreate).toHaveBeenCalledTimes(1)
+        expect(handleOpenCreate).toHaveBeenCalledTimes(1)
     })
 
     it('opens the create modal when isCreateOpen is true', () => {
@@ -475,29 +481,31 @@ describe('ProductsPage', () => {
         expect(selectAllCheckbox).toBeChecked()
     })
 
-    it('calls handleDelete when deleting selected products', () => {
+    it('calls handleDeleteProducts with selected product ids', async () => {
+        const handleDeleteProducts = vi.fn().mockResolvedValue(undefined)
+
+        mockUseProductsPage({
+            handleDeleteProducts,
+        })
+
         render(<ProductsPage />)
 
         const checkboxes = screen.getAllByRole('checkbox')
 
-        fireEvent.click(checkboxes[1])
-
-        const deleteButton = screen.getByRole('button', {
-            name: 'Delete selected users',
+        await act(async () => {
+            fireEvent.click(checkboxes[1])
         })
 
-        fireEvent.click(deleteButton)
-
-        expect(deleteProducts).toHaveBeenCalledWith({
-            ids: [1],
+        await act(async () => {
+            fireEvent.click(
+                screen.getByRole('button', {
+                    name: 'Delete selected items',
+                }),
+            )
         })
 
-        expect(dispatch).toHaveBeenCalledWith({
-            type: 'products/deleteProducts',
-            payload: {
-                ids: [1],
-            },
-        })
+        expect(handleDeleteProducts).toHaveBeenCalledTimes(1)
+        expect(handleDeleteProducts).toHaveBeenCalledWith([1])
     })
 
     it('calls handleEdit with the product id when editing a product', () => {
