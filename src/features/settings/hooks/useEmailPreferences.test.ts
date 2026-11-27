@@ -1,16 +1,30 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { renderHook } from '@testing-library/react'
-import { useAppDispatch } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { Toast } from '@/shared/lib'
+import { getApiErrorMessage } from '@/shared/utils'
 import { saveEmailSettings } from '../store'
 import { useEmailPreferences } from './useEmailPreferences'
 import type { EmailPreferences } from '../types'
 
 vi.mock('@/store', () => ({
     useAppDispatch: vi.fn(),
+    useAppSelector: vi.fn(),
 }))
 
 vi.mock('../store', () => ({
     saveEmailSettings: vi.fn(),
+}))
+
+vi.mock('@/shared/lib', () => ({
+    Toast: {
+        success: vi.fn(),
+        error: vi.fn(),
+    },
+}))
+
+vi.mock('@/shared/utils', () => ({
+    getApiErrorMessage: vi.fn(),
 }))
 
 describe('useEmailPreferences', () => {
@@ -31,9 +45,19 @@ describe('useEmailPreferences', () => {
         vi.clearAllMocks()
 
         vi.mocked(useAppDispatch).mockReturnValue(dispatch)
+        vi.mocked(useAppSelector).mockReturnValue(false)
+
+        dispatch.mockReturnValue({
+            unwrap: vi.fn().mockResolvedValue(undefined),
+        })
 
         vi.mocked(saveEmailSettings).mockReturnValue(
             saveEmailSettingsAction as never,
+        )
+
+        vi.mocked(getApiErrorMessage).mockImplementation(
+            (error, { fallback }) =>
+                typeof error === 'string' ? error : fallback,
         )
     })
 
@@ -146,5 +170,51 @@ describe('useEmailPreferences', () => {
             ...updatedPreferences,
             buyerReviewNotifications: false,
         })
+    })
+
+    it('shows a success toast after updating email preferences', async () => {
+        const { result } = renderHook(() =>
+            useEmailPreferences(emailPreferences),
+        )
+
+        await result.current.updateEmailPreference('ratingReminders')
+
+        expect(Toast.success).toHaveBeenCalledWith(
+            'Email preferences updated successfully.',
+        )
+        expect(Toast.error).not.toHaveBeenCalled()
+    })
+
+    it('shows an error toast when updating email preferences fails', async () => {
+        const errorMessage = 'Unable to update email preferences.'
+
+        const unwrap = vi.fn().mockRejectedValue(errorMessage)
+
+        dispatch.mockReturnValue({ unwrap })
+
+        vi.mocked(getApiErrorMessage).mockReturnValue(errorMessage)
+
+        const { result } = renderHook(() =>
+            useEmailPreferences(emailPreferences),
+        )
+
+        await result.current.updateEmailPreference('ratingReminders')
+
+        expect(Toast.error).toHaveBeenCalledWith(errorMessage)
+        expect(Toast.success).not.toHaveBeenCalled()
+    })
+
+    it('does not dispatch when email settings are loading', async () => {
+        vi.mocked(useAppSelector).mockReturnValue(true)
+
+        const { result } = renderHook(() =>
+            useEmailPreferences(emailPreferences),
+        )
+
+        await result.current.updateEmailPreference('ratingReminders')
+
+        expect(result.current.emailSettingsLoading).toBe(true)
+        expect(saveEmailSettings).not.toHaveBeenCalled()
+        expect(dispatch).not.toHaveBeenCalled()
     })
 })
