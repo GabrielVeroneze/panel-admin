@@ -1,16 +1,30 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { renderHook } from '@testing-library/react'
-import { useAppDispatch } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { Toast } from '@/shared/lib'
+import { getApiErrorMessage } from '@/shared/utils'
 import { saveNotifications } from '../store'
 import { useNotificationPreferences } from './useNotificationPreferences'
 import type { NotificationPreferences } from '../types'
 
 vi.mock('@/store', () => ({
     useAppDispatch: vi.fn(),
+    useAppSelector: vi.fn(),
 }))
 
 vi.mock('../store', () => ({
     saveNotifications: vi.fn(),
+}))
+
+vi.mock('@/shared/lib', () => ({
+    Toast: {
+        success: vi.fn(),
+        error: vi.fn(),
+    },
+}))
+
+vi.mock('@/shared/utils', () => ({
+    getApiErrorMessage: vi.fn(),
 }))
 
 describe('useNotificationPreferences', () => {
@@ -31,10 +45,20 @@ describe('useNotificationPreferences', () => {
         vi.clearAllMocks()
 
         vi.mocked(useAppDispatch).mockReturnValue(dispatch)
+        vi.mocked(useAppSelector).mockReturnValue(false)
 
         vi.mocked(saveNotifications).mockReturnValue(
             saveNotificationsAction as never,
         )
+
+        vi.mocked(getApiErrorMessage).mockImplementation(
+            (error, { fallback }) =>
+                typeof error === 'string' ? error : fallback,
+        )
+
+        dispatch.mockReturnValue({
+            unwrap: vi.fn().mockResolvedValue(undefined),
+        } as never)
     })
 
     it('returns the updateNotification function', () => {
@@ -144,5 +168,62 @@ describe('useNotificationPreferences', () => {
             ...updatedPreferences,
             newMessages: false,
         })
+    })
+
+    it('returns the notifications loading state', () => {
+        vi.mocked(useAppSelector).mockReturnValue(true)
+
+        const { result } = renderHook(() =>
+            useNotificationPreferences(notificationPreferences),
+        )
+
+        expect(result.current.notificationsLoading).toBe(true)
+    })
+
+    it('does not update preferences while notifications are loading', async () => {
+        vi.mocked(useAppSelector).mockReturnValue(true)
+
+        const { result } = renderHook(() =>
+            useNotificationPreferences(notificationPreferences),
+        )
+
+        await result.current.updateNotification('companyNews')
+
+        expect(saveNotifications).not.toHaveBeenCalled()
+        expect(dispatch).not.toHaveBeenCalled()
+    })
+
+    it('shows a success toast after updating notification preferences', async () => {
+        const { result } = renderHook(() =>
+            useNotificationPreferences(notificationPreferences),
+        )
+
+        await result.current.updateNotification('companyNews')
+
+        expect(Toast.success).toHaveBeenCalledWith(
+            'Notification preferences updated successfully.',
+        )
+    })
+
+    it('shows an error toast when updating notification preferences fails', async () => {
+        const errorMessage = 'Unable to save notifications'
+
+        dispatch.mockReturnValue({
+            unwrap: vi.fn().mockRejectedValue(errorMessage),
+        } as never)
+
+        const { result } = renderHook(() =>
+            useNotificationPreferences(notificationPreferences),
+        )
+
+        await result.current.updateNotification('companyNews')
+
+        expect(getApiErrorMessage).toHaveBeenCalledWith(errorMessage, {
+            fallback:
+                'Unable to update notification preferences. Please try again.',
+        })
+
+        expect(Toast.error).toHaveBeenCalledWith(errorMessage)
+        expect(Toast.success).not.toHaveBeenCalled()
     })
 })
