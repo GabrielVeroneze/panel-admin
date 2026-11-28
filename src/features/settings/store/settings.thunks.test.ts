@@ -291,12 +291,17 @@ describe('settings.thunks', () => {
             confirmPassword: 'NewPassword123!',
         }
 
-        vi.mocked(updatePassword).mockRejectedValue(
-            new Error('Invalid password'),
-        )
+        vi.mocked(updatePassword).mockRejectedValue({
+            isAxiosError: true,
+            response: {
+                status: 400,
+                data: {
+                    message: 'Current password is incorrect',
+                },
+            },
+        })
 
         const dispatch = createDispatch()
-
         const result = await dispatch(savePassword(payload))
 
         expect(updatePassword).toHaveBeenCalledWith(payload)
