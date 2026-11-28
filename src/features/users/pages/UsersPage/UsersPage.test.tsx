@@ -5,17 +5,13 @@ import type { ReactNode } from 'react'
 import type { User, UserListItem } from '@/features/users/types'
 import userEvent from '@testing-library/user-event'
 
-const {
-    mockDispatch,
-    mockUseUsersPage,
-    mockUseDataSelection,
-    mockDeleteUsers,
-} = vi.hoisted(() => ({
-    mockDispatch: vi.fn(),
-    mockUseUsersPage: vi.fn(),
-    mockUseDataSelection: vi.fn(),
-    mockDeleteUsers: vi.fn(),
-}))
+const { mockDispatch, mockUseUsersPage, mockUseDataSelection } = vi.hoisted(
+    () => ({
+        mockDispatch: vi.fn(),
+        mockUseUsersPage: vi.fn(),
+        mockUseDataSelection: vi.fn(),
+    }),
+)
 
 vi.mock('@/store', () => ({
     useAppDispatch: () => mockDispatch,
@@ -27,10 +23,6 @@ vi.mock('@/shared/hooks', () => ({
 
 vi.mock('@/features/users/hooks', () => ({
     useUsersPage: () => mockUseUsersPage(),
-}))
-
-vi.mock('@/features/users/store', () => ({
-    deleteUsers: (...args: unknown[]) => mockDeleteUsers(...args),
 }))
 
 vi.mock('@/shared/components', () => ({
@@ -257,6 +249,7 @@ const createUsersPageResult = () => {
         handleCreateSubmit: vi.fn(),
         handleUpdateSubmit: vi.fn(),
         handleDeleteUser: vi.fn(),
+        handleDeleteUsers: vi.fn(),
     }
 
     return result
@@ -283,10 +276,6 @@ describe('UsersPage', () => {
         vi.clearAllMocks()
 
         mockDispatch.mockReturnValue(vi.fn())
-
-        mockDeleteUsers.mockReturnValue({
-            type: 'users/deleteUsers',
-        })
 
         mockUseUsersPage.mockReturnValue(createUsersPageResult())
 
@@ -667,31 +656,16 @@ describe('UsersPage', () => {
         expect(config.onDelete).toBeTypeOf('function')
     })
 
-    it('dispatches deleteUsers with the selected ids', () => {
-        const deleteAction = {
-            type: 'users/deleteUsers',
-            payload: {
-                ids: [1, 2],
-            },
-        }
+    it('passes handleDeleteUsers to useDataSelection', () => {
+        const pageResult = createUsersPageResult()
 
-        mockDeleteUsers.mockReturnValue(deleteAction)
+        mockUseUsersPage.mockReturnValue(pageResult)
 
         render(<UsersPage />)
 
         const config = mockUseDataSelection.mock.calls[0][0]
 
-        config.onDelete([1, 2])
-
-        expect(mockDeleteUsers).toHaveBeenCalledTimes(1)
-
-        expect(mockDeleteUsers).toHaveBeenCalledWith({
-            ids: [1, 2],
-        })
-
-        expect(mockDispatch).toHaveBeenCalledTimes(1)
-
-        expect(mockDispatch).toHaveBeenCalledWith(deleteAction)
+        expect(config.onDelete).toBe(pageResult.handleDeleteUsers)
     })
 
     it('passes handleDelete to DataTableToolbar', async () => {
