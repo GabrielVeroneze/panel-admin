@@ -106,12 +106,25 @@ const createSettings = (): Settings => ({
     ],
 })
 
+const initialState = {
+    settings: null,
+    loading: false,
+    avatarLoading: false,
+    generalInformationLoading: false,
+    preferencesLoading: false,
+    passwordLoading: false,
+    notificationsLoading: false,
+    emailSettingsLoading: false,
+    socialAccountsLoading: [],
+    connectedAccountsLoading: [],
+    recentDevicesLoading: [],
+}
+
 describe('settings.slice', () => {
     it('returns the initial state', () => {
-        expect(settingsReducer(undefined, { type: 'unknown' })).toEqual({
-            settings: null,
-            loading: false,
-        })
+        expect(settingsReducer(undefined, { type: 'unknown' })).toEqual(
+            initialState,
+        )
     })
 
     it('sets loading to true when fetching settings starts', () => {
@@ -121,6 +134,7 @@ describe('settings.slice', () => {
         )
 
         expect(state).toEqual({
+            ...initialState,
             settings: null,
             loading: true,
         })
@@ -131,6 +145,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings: null,
                 loading: true,
             },
@@ -138,6 +153,7 @@ describe('settings.slice', () => {
         )
 
         expect(state).toEqual({
+            ...initialState,
             settings,
             loading: false,
         })
@@ -148,6 +164,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: true,
             },
@@ -155,6 +172,7 @@ describe('settings.slice', () => {
         )
 
         expect(state).toEqual({
+            ...initialState,
             settings,
             loading: false,
         })
@@ -170,6 +188,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: false,
             },
@@ -192,6 +211,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings: null,
                 loading: false,
             },
@@ -203,6 +223,7 @@ describe('settings.slice', () => {
         )
 
         expect(state).toEqual({
+            ...initialState,
             settings: null,
             loading: false,
         })
@@ -217,6 +238,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: false,
             },
@@ -234,6 +256,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings: null,
                 loading: false,
             },
@@ -241,6 +264,7 @@ describe('settings.slice', () => {
         )
 
         expect(state).toEqual({
+            ...initialState,
             settings: null,
             loading: false,
         })
@@ -257,6 +281,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: false,
             },
@@ -290,6 +315,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings: null,
                 loading: false,
             },
@@ -301,6 +327,7 @@ describe('settings.slice', () => {
         )
 
         expect(state).toEqual({
+            ...initialState,
             settings: null,
             loading: false,
         })
@@ -317,6 +344,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: false,
             },
@@ -340,6 +368,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings: null,
                 loading: false,
             },
@@ -351,6 +380,7 @@ describe('settings.slice', () => {
         )
 
         expect(state).toEqual({
+            ...initialState,
             settings: null,
             loading: false,
         })
@@ -367,6 +397,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: false,
             },
@@ -390,6 +421,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings: null,
                 loading: false,
             },
@@ -401,6 +433,7 @@ describe('settings.slice', () => {
         )
 
         expect(state).toEqual({
+            ...initialState,
             settings: null,
             loading: false,
         })
@@ -422,6 +455,7 @@ describe('settings.slice', () => {
 
             const state = settingsReducer(
                 {
+                    ...initialState,
                     settings,
                     loading: false,
                 },
@@ -447,6 +481,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: false,
             },
@@ -471,6 +506,7 @@ describe('settings.slice', () => {
 
             const state = settingsReducer(
                 {
+                    ...initialState,
                     settings,
                     loading: false,
                 },
@@ -495,6 +531,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: false,
             },
@@ -509,6 +546,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: false,
             },
@@ -525,6 +563,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: false,
             },
@@ -539,6 +578,7 @@ describe('settings.slice', () => {
     it('does not remove a connected account when settings does not exist', () => {
         const state = settingsReducer(
             {
+                ...initialState,
                 settings: null,
                 loading: false,
             },
@@ -546,6 +586,7 @@ describe('settings.slice', () => {
         )
 
         expect(state).toEqual({
+            ...initialState,
             settings: null,
             loading: false,
         })
@@ -556,6 +597,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: false,
             },
@@ -572,6 +614,7 @@ describe('settings.slice', () => {
 
         const state = settingsReducer(
             {
+                ...initialState,
                 settings,
                 loading: false,
             },
@@ -584,6 +627,7 @@ describe('settings.slice', () => {
     it('does not remove a device session when settings does not exist', () => {
         const state = settingsReducer(
             {
+                ...initialState,
                 settings: null,
                 loading: false,
             },
@@ -591,6 +635,7 @@ describe('settings.slice', () => {
         )
 
         expect(state).toEqual({
+            ...initialState,
             settings: null,
             loading: false,
         })
