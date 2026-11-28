@@ -1,11 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, renderHook } from '@testing-library/react'
-import { useAppDispatch } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
 import { updateAvatar } from '../store'
 import { useProfileAvatar } from './useProfileAvatar'
 
 vi.mock('@/store', () => ({
     useAppDispatch: vi.fn(),
+    useAppSelector: vi.fn(),
 }))
 
 vi.mock('../store', () => ({
@@ -23,10 +24,13 @@ describe('useProfileAvatar', () => {
         vi.clearAllMocks()
 
         vi.mocked(useAppDispatch).mockReturnValue(dispatch)
+        vi.mocked(useAppSelector).mockReturnValue(false)
 
         vi.mocked(updateAvatar).mockReturnValue(updateAvatarAction as never)
 
-        dispatch.mockResolvedValue(updateAvatarAction)
+        dispatch.mockReturnValue({
+            unwrap: vi.fn().mockResolvedValue(undefined),
+        })
     })
 
     it('returns the inputRef, openFilePicker and handleFileChange', () => {
@@ -181,14 +185,16 @@ describe('useProfileAvatar', () => {
             value: 'C:\\fakepath\\avatar.png',
         })
 
-        let resolveDispatch!: (value: unknown) => void
+        let resolveDispatch!: () => void
 
-        dispatch.mockImplementationOnce(
+        const unwrap = vi.fn(
             () =>
-                new Promise((resolve) => {
+                new Promise<void>((resolve) => {
                     resolveDispatch = resolve
                 }),
         )
+
+        dispatch.mockReturnValueOnce({ unwrap })
 
         const event = {
             target: input,
@@ -203,10 +209,40 @@ describe('useProfileAvatar', () => {
         expect(input.value).toBe('C:\\fakepath\\avatar.png')
 
         await act(async () => {
-            resolveDispatch(updateAvatarAction)
+            resolveDispatch()
             await handlerPromise
         })
 
         expect(input.value).toBe('')
+    })
+
+    it('returns the avatar loading state', () => {
+        vi.mocked(useAppSelector).mockReturnValue(true)
+
+        const { result } = renderHook(() => useProfileAvatar())
+
+        expect(result.current.avatarLoading).toBe(true)
+    })
+
+    it('does not open the file picker while avatar is loading', () => {
+        vi.mocked(useAppSelector).mockReturnValue(true)
+
+        const { result } = renderHook(() => useProfileAvatar())
+
+        const input = document.createElement('input')
+        input.type = 'file'
+
+        const clickSpy = vi.spyOn(input, 'click')
+
+        Object.defineProperty(result.current.inputRef, 'current', {
+            configurable: true,
+            value: input,
+        })
+
+        act(() => {
+            result.current.openFilePicker()
+        })
+
+        expect(clickSpy).not.toHaveBeenCalled()
     })
 })
