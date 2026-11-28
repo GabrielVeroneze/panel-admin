@@ -6,11 +6,13 @@ import type { ReactNode } from 'react'
 
 const mocks = vi.hoisted(() => ({
     disconnectSession: vi.fn(),
+    recentDevicesLoading: [] as number[],
 }))
 
 vi.mock('@/features/settings/hooks', () => ({
     useDeviceSessions: () => ({
         disconnectSession: mocks.disconnectSession,
+        recentDevicesLoading: mocks.recentDevicesLoading,
     }),
 }))
 
@@ -26,11 +28,13 @@ vi.mock('@/shared/components', () => ({
     Button: ({
         children,
         onClick,
+        loading,
     }: {
         children: ReactNode
         onClick?: () => void
+        loading?: boolean
     }) => (
-        <button type="button" onClick={onClick}>
+        <button type="button" onClick={onClick} disabled={loading}>
             {children}
         </button>
     ),
@@ -116,6 +120,7 @@ const devices: DeviceSession[] = [
 describe('RecentDevicesSettings', () => {
     beforeEach(() => {
         vi.clearAllMocks()
+        mocks.recentDevicesLoading = []
     })
 
     it('renders the skeleton while loading', () => {
@@ -245,5 +250,18 @@ describe('RecentDevicesSettings', () => {
         const rows = within(table).getAllByRole('row')
 
         expect(rows).toHaveLength(devices.length + 1)
+    })
+
+    it('disables only the Disconnect button for the device being disconnected', () => {
+        mocks.recentDevicesLoading = [devices[0].id]
+
+        render(<RecentDevicesSettings devices={devices} loading={false} />)
+
+        const buttons = screen.getAllByRole('button', {
+            name: 'Disconnect',
+        })
+
+        expect(buttons[0]).toBeDisabled()
+        expect(buttons[1]).toBeEnabled()
     })
 })
