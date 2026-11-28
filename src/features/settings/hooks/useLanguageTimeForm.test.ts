@@ -1,12 +1,13 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, renderHook } from '@testing-library/react'
-import { useAppDispatch } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
 import { savePreferences } from '../store'
 import { useLanguageTimeForm } from './useLanguageTimeForm'
 import type { SettingsPreferences } from '../types'
 
 vi.mock('@/store', () => ({
     useAppDispatch: vi.fn(),
+    useAppSelector: vi.fn(),
 }))
 
 vi.mock('../store', () => ({
@@ -29,6 +30,11 @@ describe('useLanguageTimeForm', () => {
         vi.clearAllMocks()
 
         vi.mocked(useAppDispatch).mockReturnValue(dispatch)
+        vi.mocked(useAppSelector).mockReturnValue(false)
+
+        dispatch.mockReturnValue({
+            unwrap: vi.fn().mockResolvedValue(undefined),
+        } as never)
 
         vi.mocked(savePreferences).mockReturnValue(
             savePreferencesAction as never,
@@ -153,5 +159,13 @@ describe('useLanguageTimeForm', () => {
             language: 'pt-BR',
             timezone: 'America/Sao_Paulo',
         })
+    })
+
+    it('returns the preferences loading state', () => {
+        vi.mocked(useAppSelector).mockReturnValue(true)
+
+        const { result } = renderHook(() => useLanguageTimeForm())
+
+        expect(result.current.preferencesLoading).toBe(true)
     })
 })
