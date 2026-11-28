@@ -1,16 +1,25 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { renderHook } from '@testing-library/react'
-import { useAppDispatch } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { Toast } from '@/shared/lib'
 import { removeConnectedAccount } from '../store'
 import { useConnectedAccount } from './useConnectedAccount'
 import type { ConnectedAccount } from '../types'
 
 vi.mock('@/store', () => ({
     useAppDispatch: vi.fn(),
+    useAppSelector: vi.fn(),
 }))
 
 vi.mock('../store', () => ({
     removeConnectedAccount: vi.fn(),
+}))
+
+vi.mock('@/shared/lib', () => ({
+    Toast: {
+        success: vi.fn(),
+        error: vi.fn(),
+    },
 }))
 
 describe('useConnectedAccount', () => {
@@ -31,10 +40,15 @@ describe('useConnectedAccount', () => {
         vi.clearAllMocks()
 
         vi.mocked(useAppDispatch).mockReturnValue(dispatch)
+        vi.mocked(useAppSelector).mockReturnValue(false)
 
         vi.mocked(removeConnectedAccount).mockReturnValue(
             removeConnectedAccountAction as never,
         )
+
+        dispatch.mockReturnValue({
+            unwrap: vi.fn().mockResolvedValue(undefined),
+        } as never)
     })
 
     it('returns the handleDisconnect function', () => {
@@ -50,10 +64,10 @@ describe('useConnectedAccount', () => {
         expect(dispatch).not.toHaveBeenCalled()
     })
 
-    it('dispatches removeConnectedAccount with the account id', () => {
+    it('dispatches removeConnectedAccount with the account id', async () => {
         const { result } = renderHook(() => useConnectedAccount(account))
 
-        result.current.handleDisconnect()
+        await result.current.handleDisconnect()
 
         expect(removeConnectedAccount).toHaveBeenCalledTimes(1)
         expect(removeConnectedAccount).toHaveBeenCalledWith(account.id)
@@ -64,7 +78,7 @@ describe('useConnectedAccount', () => {
 
     it.each([1, 42, 999])(
         'uses the correct account id when disconnecting account %s',
-        (id) => {
+        async (id) => {
             const currentAccount = {
                 ...account,
                 id,
@@ -79,13 +93,13 @@ describe('useConnectedAccount', () => {
                 useConnectedAccount(currentAccount),
             )
 
-            result.current.handleDisconnect()
+            await result.current.handleDisconnect()
 
             expect(removeConnectedAccount).toHaveBeenCalledWith(id)
         },
     )
 
-    it('uses the latest account when the account prop changes', () => {
+    it('uses the latest account when the account prop changes', async () => {
         const { result, rerender } = renderHook(
             ({ currentAccount }) => useConnectedAccount(currentAccount),
             {
@@ -104,8 +118,37 @@ describe('useConnectedAccount', () => {
             currentAccount: updatedAccount,
         })
 
-        result.current.handleDisconnect()
+        await result.current.handleDisconnect()
 
         expect(removeConnectedAccount).toHaveBeenCalledWith(99)
+    })
+
+    it('returns the loading state', () => {
+        vi.mocked(useAppSelector).mockReturnValue(true)
+
+        const { result } = renderHook(() => useConnectedAccount(account))
+
+        expect(result.current.isLoading).toBe(true)
+    })
+
+    it('does not disconnect an account that is already loading', async () => {
+        vi.mocked(useAppSelector).mockReturnValue(true)
+
+        const { result } = renderHook(() => useConnectedAccount(account))
+
+        await result.current.handleDisconnect()
+
+        expect(removeConnectedAccount).not.toHaveBeenCalled()
+        expect(dispatch).not.toHaveBeenCalled()
+    })
+
+    it('shows a success toast after disconnecting an account', async () => {
+        const { result } = renderHook(() => useConnectedAccount(account))
+
+        await result.current.handleDisconnect()
+
+        expect(Toast.success).toHaveBeenCalledWith(
+            'Account disconnected successfully.',
+        )
     })
 })
